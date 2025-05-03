@@ -2,6 +2,7 @@ import { Perfume } from "@/types/perfumes";
 import React from "react";
 import SectionsHeader from "../components/sections-header/sections-header";
 import { Package } from "lucide-react";
+import PerfumesList from "./list/perfumes-list";
 
 interface Props {
   perfumes: Perfume[];
@@ -16,6 +17,7 @@ export default function PerfumesContainer({ perfumes }: Props) {
         sectionDescription="Gestione toda la información referente a los perfumes de la Tienda"
         buttonText="Añadir Nuevo Perfume"
       />
+      <PerfumesList perfumes={perfumes} />
     </div>
   );
 }
