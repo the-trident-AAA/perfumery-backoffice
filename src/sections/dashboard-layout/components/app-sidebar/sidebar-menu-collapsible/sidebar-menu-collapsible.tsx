@@ -9,7 +9,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
-  SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
@@ -43,12 +42,12 @@ export default function SidebarMenuCollapsible({ item }: Props) {
                 <SidebarMenuCollapsible key={index} item={subItem} />
               ) : (
                 <SidebarMenuSubItem key={index}>
-                  <SidebarMenuSubButton asChild>
-                    <Link className="flex gap-2 w-full" href={subItem.path}>
+                  <Link className="flex gap-2 w-full" href={subItem.path}>
+                    <SidebarMenuButton tooltip={subItem.title}>
                       {subItem.icon && subItem.icon}
                       <span>{subItem.title}</span>
-                    </Link>
-                  </SidebarMenuSubButton>
+                    </SidebarMenuButton>
+                  </Link>
                 </SidebarMenuSubItem>
               )
             )}

@@ -24,12 +24,12 @@ export default function SidebarGroupNavigation({ group }: Props) {
             <SidebarMenuCollapsible key={index} item={navigationRoute} />
           ) : (
             <SidebarMenuItem key={index}>
-              <SidebarMenuButton tooltip={navigationRoute.title}>
-                <Link className="flex gap-2 w-full" href={navigationRoute.path}>
+              <Link className="flex gap-2 w-full" href={navigationRoute.path}>
+                <SidebarMenuButton tooltip={navigationRoute.title}>
                   {navigationRoute.icon && navigationRoute.icon}
                   <span>{navigationRoute.title}</span>
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
             </SidebarMenuItem>
           )
         )}
