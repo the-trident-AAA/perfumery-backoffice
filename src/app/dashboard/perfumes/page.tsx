@@ -1,3 +1,5 @@
+import Modal from "@/components/modal/modal";
+import { modalTypes } from "@/components/modal/types/modalTypes";
 import PerfumesContainer from "@/sections/perfumes/perfumes-container";
 import { Perfume } from "@/types/perfumes";
 import React from "react";
@@ -189,6 +191,18 @@ export default function PerfumesPage() {
   return (
     <>
       <PerfumesContainer perfumes={perfumes} />
+      <Modal
+        formPath={modalTypes.newPerfumeModal.name}
+        title={modalTypes.newPerfumeModal.title}
+      >
+        Modal De Creación de Perfume
+      </Modal>
+      <Modal
+        formPath={modalTypes.editPerfumeModal.name}
+        title={modalTypes.editPerfumeModal.title}
+      >
+        Modal De Edición de Perfume
+      </Modal>
     </>
   );
 }

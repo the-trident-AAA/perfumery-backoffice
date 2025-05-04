@@ -3,6 +3,7 @@ import React from "react";
 import SectionsHeader from "../components/sections-header/sections-header";
 import { Package } from "lucide-react";
 import PerfumesList from "./list/perfumes-list";
+import { modalTypes } from "@/components/modal/types/modalTypes";
 
 interface Props {
   perfumes: Perfume[];
@@ -16,6 +17,8 @@ export default function PerfumesContainer({ perfumes }: Props) {
         sectionTitle="Gestión de Perfumes"
         sectionDescription="Gestione toda la información referente a los perfumes de la Tienda"
         buttonText="Añadir Nuevo Perfume"
+        creationPath={modalTypes.newPerfumeModal.name}
+        isModalRedirect
       />
       <PerfumesList perfumes={perfumes} />
     </div>

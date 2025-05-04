@@ -1,17 +1,25 @@
 "use client";
+import { ModalContext } from "@/components/modal/context/modalContext";
+import { modalTypes } from "@/components/modal/types/modalTypes";
 import { Badge } from "@/components/ui/badge";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { Perfume } from "@/types/perfumes";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
-import React from "react";
+import React, { useCallback, useContext } from "react";
 
 interface Props {
   perfumes: Perfume[];
 }
 
 export default function PerfumesList({ perfumes }: Props) {
+  const { handleOpenModal } = useContext(ModalContext);
+
+  const handleEdit = useCallback((id: string) => {
+    handleOpenModal({ name: modalTypes.editPerfumeModal.name, entity: id });
+  }, [handleOpenModal]);
+
   const columns: ColumnDef<Perfume>[] = [
     {
       accessorKey: "id",
@@ -76,7 +84,7 @@ export default function PerfumesList({ perfumes }: Props) {
                 label: "Editar",
                 icon: <EditIcon />,
                 action: () => {
-                  console.log("Editar perfume");
+                  handleEdit(row.getValue("id"));
                 },
               },
               {

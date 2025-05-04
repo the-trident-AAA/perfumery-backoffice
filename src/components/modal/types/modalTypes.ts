@@ -12,11 +12,16 @@ export interface SectionModal {
 }
 export interface ModalTypes {
   newPerfumeModal: SectionModal;
+  editPerfumeModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
   newPerfumeModal: {
     name: "newPerfumeModal",
-    title: "Formulario de Perfume",
+    title: "Formulario de Creación de Perfume",
+  },
+  editPerfumeModal: {
+    name: "editPerfumeModal",
+    title: "Formulario de Edición de Perfume",
   },
 };
