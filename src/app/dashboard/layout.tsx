@@ -14,7 +14,7 @@ export default function layout({
       <DashBoardLayoutAppSidebar />
       <SidebarInset>
         <DashBoardLayoutHeader />
-        <div className="container mx-auto">{children}</div>
+        <div className="container mx-auto p-2">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );
