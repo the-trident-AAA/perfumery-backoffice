@@ -26,7 +26,7 @@ export default function SectionsHeader({
   const handeRedirect = useCallback(() => {
     if (isModalRedirect) handleOpenModal({ name: creationPath });
     else router.push(creationPath);
-  }, []);
+  }, [handleOpenModal, isModalRedirect, router, creationPath]);
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-6 mb-6 bg-white rounded-lg shadow-sm">
       <div className="flex items-start gap-4">

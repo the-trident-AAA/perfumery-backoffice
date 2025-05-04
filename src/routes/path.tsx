@@ -7,10 +7,10 @@ interface ApplicationPath {
   perfumes: Path;
 }
 
-function buildQueryString(query: Record<string, string> = {}): string {
+/*function buildQueryString(query: Record<string, string> = {}): string {
   const params = new URLSearchParams(query);
   return params.toString();
-}
+}*/
 
 export const paths: ApplicationPath = {
   home: {

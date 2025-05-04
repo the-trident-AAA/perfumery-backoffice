@@ -10,7 +10,6 @@ interface Props {
 	titleCenter?: boolean
 	titleSize?: "small" | "medium" | "big"
 	children: ReactNode
-	position?: "center" | "top"
 	wide?: "small" | "normal" | "large"
 	maxWidth?: string
 }
@@ -21,7 +20,6 @@ export default function Modal({
 	titleSize = "medium",
 	titleCenter = false,
 	children,
-	position = "center",
 	wide = "normal",
 	maxWidth,
 }: Props) {
@@ -29,7 +27,7 @@ export default function Modal({
 	return (
 		<Dialog
 			open={isModalOpen(formPath)}
-			onOpenChange={(state: boolean) => onOpenChange(formPath)}
+			onOpenChange={(_state: boolean) => onOpenChange(formPath)}
 		>
 			<DialogContent
 				className={`w-full max-h-screen pl-2 pr-2 xs:p-4 flex flex-col  ${

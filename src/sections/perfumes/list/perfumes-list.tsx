@@ -16,9 +16,12 @@ interface Props {
 export default function PerfumesList({ perfumes }: Props) {
   const { handleOpenModal } = useContext(ModalContext);
 
-  const handleEdit = useCallback((id: string) => {
-    handleOpenModal({ name: modalTypes.editPerfumeModal.name, entity: id });
-  }, [handleOpenModal]);
+  const handleEdit = useCallback(
+    (id: string) => {
+      handleOpenModal({ name: modalTypes.editPerfumeModal.name, entity: id });
+    },
+    [handleOpenModal]
+  );
 
   const columns: ColumnDef<Perfume>[] = [
     {
@@ -67,8 +70,6 @@ export default function PerfumesList({ perfumes }: Props) {
     {
       id: "actions",
       cell: ({ row }) => {
-        const payment = row.original;
-
         return (
           <TableMenu
             titleTableMenu="Acciones"
