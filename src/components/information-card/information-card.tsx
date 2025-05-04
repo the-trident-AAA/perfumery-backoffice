@@ -15,6 +15,7 @@ interface Props {
   title: string;
   description: string;
   buttonText: string;
+  image: string;
   href: string;
 }
 
@@ -22,24 +23,25 @@ export default function InformationCard({
   title,
   description,
   buttonText,
+  image,
   href,
 }: Props) {
   return (
     <Card className="border-slate-200 shadow-sm hover:shadow-md transition-shadow">
       <CardHeader>
         <CardTitle className="text-2xl">{title}</CardTitle>
-        <CardDescription className="line-clamp-3 break-words h-12">
+        <CardDescription className="line-clamp-3 break-words h-14">
           {description}
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex justify-center py-4">
-          <div className="relative w-48 h-48">
+        <div className="flex justify-center">
+          <div className="relative">
             <Image
-              src="/placeholder.svg?height=192&width=192"
+              src={image}
               alt="Panel de administración"
-              width={192}
-              height={192}
+              width={1920}
+              height={1080}
               className="object-contain"
             />
           </div>

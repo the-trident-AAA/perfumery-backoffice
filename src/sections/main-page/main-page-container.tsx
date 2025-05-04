@@ -17,6 +17,7 @@ export default function MainPageContainer() {
         <InformationCard
           title="Comenzar a Administrar"
           description="Acceda al panel de control para gestionar todos los aspectos de su tienda."
+          image="/images/place-holder.jpg"
           buttonText="Comenzar a Administrar"
           href={paths.perfumes.root}
         />
@@ -24,6 +25,7 @@ export default function MainPageContainer() {
           title="Ver Página de la Tienda"
           description="Visite la página web de su tienda para ver cómo la ven sus
                 clientes."
+          image="/images/place-holder.jpg"
           buttonText="Ver Tienda"
           href={paths.perfumes.root}
         />
