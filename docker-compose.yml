@@ -1,0 +1,19 @@
+services:
+  perfumery-backoffice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: perfumery-backoffice
+    ports:
+      - "8001:8001"
+    environment:
+      - API_URL=${API_URL:-http://localhost:3000}
+      - AUTH_SECRET=${AUTH_SECRET:-kagkhasghdgakjdghakghdkajgdkjasgdkagsdjgasjgdasdkgajdgaksd}
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - perfumery-backoffice-network
+
+networks:
+  perfumery-backoffice-network:
+    driver: bridge
