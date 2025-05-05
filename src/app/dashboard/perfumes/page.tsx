@@ -1,6 +1,8 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import PerfumesContainer from "@/sections/perfumes/perfumes-container";
+import { getPerfumesList } from "@/services/perfumes";
+import { SearchParamsPagination } from "@/types/pagination";
 import { Perfume } from "@/types/perfumes";
 import React from "react";
 
@@ -187,10 +189,18 @@ const perfumes: Perfume[] = [
   },
 ];
 
-export default function PerfumesPage() {
+type Props = {
+  searchParams: SearchParamsPagination;
+};
+
+export default async function PerfumesPage({ searchParams }: Props) {
+  const res = await getPerfumesList(searchParams);
+
+  if (!res.response || res.error) throw new Error("Error fetching products");
+
   return (
     <>
-      <PerfumesContainer perfumes={perfumes} />
+      <PerfumesContainer perfumes={res.response} />
       <Modal
         formPath={modalTypes.newPerfumeModal.name}
         title={modalTypes.newPerfumeModal.title}
