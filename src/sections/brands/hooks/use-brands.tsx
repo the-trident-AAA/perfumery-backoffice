@@ -59,8 +59,9 @@ export default function useBrands() {
   }, [fetchBrands]);
 
   useEffect(() => {
+    const debouncedFetch = debouncedFetchRef.current;
     return () => {
-      debouncedFetchRef.current.cancel();
+      debouncedFetch.cancel();
     };
   }, []);
 

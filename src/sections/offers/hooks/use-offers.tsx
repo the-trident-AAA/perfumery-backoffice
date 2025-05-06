@@ -59,8 +59,9 @@ export default function useOffers() {
   }, [fetchOffers]);
 
   useEffect(() => {
+    const debouncedFetch = debouncedFetchRef.current;
     return () => {
-      debouncedFetchRef.current.cancel();
+      debouncedFetch.cancel();
     };
   }, []);
 

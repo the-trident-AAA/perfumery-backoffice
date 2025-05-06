@@ -58,8 +58,9 @@ export default function usePerfumeTypes() {
   }, [fetchPerfumeTypes]);
 
   useEffect(() => {
+    const debouncedFetch = debouncedFetchRef.current;
     return () => {
-      debouncedFetchRef.current.cancel();
+      debouncedFetch.cancel();
     };
   }, []);
 

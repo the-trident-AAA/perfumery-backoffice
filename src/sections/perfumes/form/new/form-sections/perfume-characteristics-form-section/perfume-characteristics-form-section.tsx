@@ -1,14 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { RHFSelectField } from "@/components/form/rhf-components/rhf-select-field/rhf-select-field";
 import { RHFNumberField } from "@/components/form/rhf-components/rhf-number-field/rhf-number-field";
 import { Separator } from "@/components/ui/separator";
 import { RHFMultiSelectField } from "@/components/form/rhf-components/rhf-multi-select-field/rhf-multi-select-field";
-import { PerfumeType } from "@/types/perfume-types";
-import { getPerfumesList } from "@/services/perfumes";
-import { getPerfumeTypesList } from "@/services/perfume-types";
-import useBrands from "@/sections/brands/hooks/use-brands";
 import usePerfumeTypes from "@/sections/perfume-types/hooks/use-perfume-types";
 export default function PerfumeCharacteristicsFormSection() {
   const { perfumeTypes, loadingData } = usePerfumeTypes();
