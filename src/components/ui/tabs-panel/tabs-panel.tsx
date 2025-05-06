@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, useContext, useState } from "react";
+import React, { ReactNode, useContext } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 import { TabsPanelContext } from "./context/tabs-panel-context";
 
