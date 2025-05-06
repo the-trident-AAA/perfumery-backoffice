@@ -25,7 +25,7 @@ export default function FormSectionsController({ children }: Props) {
     } else if (errors.price || errors.cant || errors.offerId) {
       setTabValue("3"); // move comercial info section
     }
-  }, [errors]);
+  }, [errors, setTabValue]);
 
   return children;
 }
