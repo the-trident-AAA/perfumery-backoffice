@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+
 import {
   FormControl,
   FormDescription,
@@ -8,151 +8,90 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Check, ChevronsUpDown, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useFormContext } from "react-hook-form";
 
-interface Option {
-  value: string | number;
+interface SelectOption {
   label: string;
+  value: string;
 }
 
 interface Props {
   name: string;
   label?: string;
-  placeholder?: string;
   description?: string;
-  options: Option[];
+  options: SelectOption[];
+  columns?: number; // opcional: número de columnas
+  maxHeight?: string; // opcional: altura máxima para scroll
 }
+const columnClasses: Record<number, string> = {
+  1: "grid-cols-1",
+  2: "grid-cols-2",
+  3: "grid-cols-3",
+  4: "grid-cols-4",
+  5: "grid-cols-5",
+};
+
 
 export function RHFMultiSelectField({
   name,
   label,
-  placeholder,
   description,
   options,
+  columns = 2,
+  maxHeight = "max-h-60",
 }: Props) {
-  const { control, setValue, watch } = useFormContext();
-  const [open, setOpen] = useState(false);
-  const selectedValues = watch(name) || [];
-
-  const handleSelect = (option: Option) => {
-    const currentValues = [...selectedValues];
-    const optionObject = { id: Number(option.value), name: option.label };
-
-    const exists = currentValues.some((item) => item.id === optionObject.id);
-
-    if (exists) {
-      const filtered = currentValues.filter(
-        (item) => item.id !== optionObject.id
-      );
-      setValue(name, filtered, { shouldValidate: true });
-    } else {
-      setValue(name, [...currentValues, optionObject], {
-        shouldValidate: true,
-      });
-    }
-  };
-
-  const handleRemove = (id: number) => {
-    const filtered = selectedValues.filter((item: any) => item.id !== id);
-    setValue(name, filtered, { shouldValidate: true });
-  };
+  const { control } = useFormContext();
 
   return (
     <FormField
-      control={control}
       name={name}
-      render={({ field }) => (
-        <FormItem className="flex flex-col">
-          {label && <FormLabel>{label}</FormLabel>}
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <FormControl>
-                <Button
-                  variant="outline"
-                  role="combobox"
-                  aria-expanded={open}
-                  className={cn(
-                    "w-full justify-between",
-                    !selectedValues.length && "text-muted-foreground"
-                  )}
-                >
-                  {selectedValues.length > 0
-                    ? `${selectedValues.length} seleccionados`
-                    : placeholder || "Seleccionar..."}
-                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-              </FormControl>
-            </PopoverTrigger>
-            <PopoverContent className="w-full p-0">
-              <Command>
-                <CommandInput placeholder="Buscar..." />
-                <CommandList>
-                  <CommandEmpty>No se encontraron resultados.</CommandEmpty>
-                  <CommandGroup className="max-h-64 overflow-auto">
-                    {options.map((option) => {
-                      const isSelected = selectedValues.some(
-                        (item: any) => item.id === Number(option.value)
-                      );
-                      return (
-                        <CommandItem
-                          key={option.value}
-                          value={option.label}
-                          onSelect={() => handleSelect(option)}
-                        >
-                          <Check
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              isSelected ? "opacity-100" : "opacity-0"
-                            )}
-                          />
-                          {option.label}
-                        </CommandItem>
-                      );
-                    })}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+      control={control}
+      render={({ field }) => {
+        const handleCheckboxChange = (checked: boolean, value: string) => {
+          const current = new Set(field.value || []);
+          if (checked) {
+            current.add(value);
+          } else {
+            current.delete(value);
+          }
+          field.onChange(Array.from(current));
+        };
 
-          {selectedValues.length > 0 && (
-            <div className="flex flex-wrap gap-1 mt-2">
-              {selectedValues.map((item: any) => (
-                <Badge key={item.id} variant="secondary" className="text-xs">
-                  {item.name}
-                  <button
-                    type="button"
-                    className="ml-1 rounded-full outline-none focus:ring-2"
-                    onClick={() => handleRemove(item.id)}
+        return (
+          <FormItem>
+            {label && <FormLabel>{label}</FormLabel>}
+            <FormControl>
+              <div
+                className={`grid ${columnClasses[columns]} gap-2 border rounded-md p-3 ${maxHeight} overflow-y-auto`}
+              >
+                {options.map((option) => (
+                  <FormItem
+                    key={option.value}
+                    className="flex items-center gap-2 space-y-0"
                   >
-                    <X className="h-3 w-3" />
-                  </button>
-                </Badge>
-              ))}
-            </div>
-          )}
-
-          {description && <FormDescription>{description}</FormDescription>}
-          <FormMessage />
-        </FormItem>
-      )}
+                    <Checkbox
+                      id={`${name}-${option.value}`}
+                      checked={field.value?.includes(option.value)}
+                      onCheckedChange={(checked) =>
+                        handleCheckboxChange(!!checked, option.value)
+                      }
+                    />
+                    <label
+                      htmlFor={`${name}-${option.value}`}
+                      className="text-sm"
+                    >
+                      {option.label}
+                    </label>
+                  </FormItem>
+                ))}
+              </div>
+            </FormControl>
+            {description && <FormDescription>{description}</FormDescription>}
+            <FormMessage />
+          </FormItem>
+        );
+      }}
     />
   );
 }
