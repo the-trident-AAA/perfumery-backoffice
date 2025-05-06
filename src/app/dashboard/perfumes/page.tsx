@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import NewPerfumeFormContainer from "@/sections/perfumes/form/new/new-perfume-form-container";
 import PerfumesContainer from "@/sections/perfumes/perfumes-container";
 import { getPerfumesList } from "@/services/perfumes";
 import { SearchParamsPagination } from "@/types/pagination";
@@ -204,8 +205,10 @@ export default async function PerfumesPage({ searchParams }: Props) {
       <Modal
         formPath={modalTypes.newPerfumeModal.name}
         title={modalTypes.newPerfumeModal.title}
+        maxWidth="max-w-3xl"
+        className="min-h-[65vh]"
       >
-        Modal De Creación de Perfume
+        <NewPerfumeFormContainer />
       </Modal>
       <Modal
         formPath={modalTypes.editPerfumeModal.name}

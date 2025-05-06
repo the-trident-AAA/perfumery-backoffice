@@ -1,5 +1,4 @@
 "use client";
-
 import { ReactNode, useContext } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { ModalContext } from "./context/modalContext";
@@ -57,7 +56,9 @@ export default function Modal({
             {title || ""}
           </DialogTitle>
         </DialogHeader>
-        <div className="flex-1 overflow-auto h-full">{children}</div>
+        <div className="flex-1 overflow-auto flex flex-col h-full">
+          {children}
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -10,3 +10,16 @@ export interface Perfume {
   price: number;
   cant: number;
 }
+
+export interface PerfumeCreateDTO {
+  name: string;
+  brandId: string;
+  gender: string;
+  scentsId: string[];
+  liters: number;
+  perfumeTypeId: string;
+  available: true;
+  price: number;
+  cant: number;
+  offerId: string;
+}
