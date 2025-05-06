@@ -25,7 +25,7 @@ export interface PerfumeCreateDTO {
 }
 
 export enum Gender {
-  FAMALE = "femenino",
+  FEMALE = "femenino",
   MALE = "masculino",
   UNISEX = "unisex",
 }
@@ -44,7 +44,7 @@ export const genderMap: Map<
       | "warning";
   }
 > = new Map([
-  [Gender.FAMALE, { name: "Femenino", color: "primary" }],
+  [Gender.FEMALE, { name: "Femenino", color: "primary" }],
   [Gender.MALE, { name: "Masculino", color: "primary" }],
   [Gender.UNISEX, { name: "Unisex", color: "primary" }],
 ]);

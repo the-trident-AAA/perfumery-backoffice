@@ -37,8 +37,8 @@ export default function PerfumeCharacteristicsFormSection() {
                   label: genderMap.get(Gender.MALE)?.name as string,
                 },
                 {
-                  value: Gender.FAMALE,
-                  label: genderMap.get(Gender.FAMALE)?.name as string,
+                  value: Gender.FEMALE,
+                  label: genderMap.get(Gender.FEMALE)?.name as string,
                 },
                 {
                   value: Gender.UNISEX,
