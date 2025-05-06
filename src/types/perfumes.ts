@@ -1,3 +1,5 @@
+import { PerfumeCreate } from "@/sections/perfumes/form/new/schemas/perfume-create-schema";
+
 export interface Perfume {
   id: string;
   name: string;
@@ -18,10 +20,10 @@ export interface PerfumeCreateDTO {
   scentsId: string[];
   liters: number;
   perfumeTypeId: string;
-  available: true;
+  available: boolean;
   price: number;
   cant: number;
-  offerId: string;
+  offerId?: string;
 }
 
 export enum Gender {
@@ -52,3 +54,12 @@ export const genderMap: Map<
 export const genderMapInverted: Map<string, Gender> = new Map(
   Array.from(genderMap.entries()).map(([key, value]) => [value.name, key])
 );
+
+export const convertPerfumeCreateDTO = (
+  perfumeCreate: PerfumeCreate
+): PerfumeCreateDTO => {
+  return {
+    ...perfumeCreate,
+    offerId: perfumeCreate.offerId !== "" ? perfumeCreate.offerId : undefined,
+  };
+};

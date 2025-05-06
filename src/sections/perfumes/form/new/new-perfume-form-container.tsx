@@ -11,9 +11,19 @@ import { PerfumeForm } from "../perfume-form";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import { Gender } from "@/types/perfumes";
+import useCreatePerfume from "../../hooks/use-create-perfume";
+import { revalidateServerTags } from "@/lib/cache";
+import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 
 export default function NewPerfumeFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
+  const { loading: submitLoading, createPerfume } = useCreatePerfume({
+    onCreateAction: () => {
+      console.log("Perfume creado con éxito");
+      revalidateServerTags(tagsCacheByRoutes.perfumes.multipleTag);
+      handleCloseModal(modalTypes.newPerfumeModal.name);
+    },
+  });
   const form = useForm<PerfumeCreate>({
     resolver: zodResolver(perfumeCreateSchema),
     defaultValues: {
@@ -34,8 +44,8 @@ export default function NewPerfumeFormContainer() {
     handleCloseModal(modalTypes.newPerfumeModal.name);
   };
 
-  function onSubmit(values: PerfumeCreate) {
-    console.log(values);
+  function onSubmit(perfume: PerfumeCreate) {
+    createPerfume(perfume);
   }
   return (
     <FormProvider {...form}>
@@ -48,7 +58,7 @@ export default function NewPerfumeFormContainer() {
           <Button type="button" variant={"destructive"} onClick={handleClose}>
             Cancelar
           </Button>
-          <Button variant={"default"} type="submit">
+          <Button variant={"default"} type="submit" disabled={submitLoading}>
             Crear Perfume
           </Button>
         </div>
