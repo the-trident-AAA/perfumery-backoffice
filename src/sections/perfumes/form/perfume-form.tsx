@@ -5,6 +5,8 @@ import PerfumeCharacteristicsFormSection from "./new/form-sections/perfume-chara
 import PerfumeComercialInfoFormSection from "./new/form-sections/perfume-comercial-info-form-section/perfume-comercial-info-form-section";
 import { TabsContainer } from "@/components/ui/tabs-panel/tabs-panel";
 import { TabsPanelProvider } from "@/components/ui/tabs-panel/context/tabs-panel-context";
+import FormSectionsController from "./new/form-sections/form-sections-controller";
+
 
 export function PerfumeForm() {
   const tabs = useMemo(
@@ -27,9 +29,12 @@ export function PerfumeForm() {
     ],
     []
   );
+
   return (
     <TabsPanelProvider initialTab={tabs[0].value}>
-      <TabsContainer tabs={tabs} fullWidth={false} />
+      <FormSectionsController>
+        <TabsContainer tabs={tabs} fullWidth={false} />
+      </FormSectionsController>
     </TabsPanelProvider>
   );
 }
