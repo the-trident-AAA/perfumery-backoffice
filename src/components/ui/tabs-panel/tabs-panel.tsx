@@ -1,6 +1,7 @@
 "use client";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useContext, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
+import { TabsPanelContext } from "./context/tabs-panel-context";
 
 interface Props {
   currentTab: string;
@@ -75,7 +76,7 @@ interface TabContainerProps {
 }
 
 function TabsContainer({ tabs, fullWidth = true }: TabContainerProps) {
-  const [tabValue, setTabValue] = useState(tabs[0].value);
+  const { tabValue, setTabValue } = useContext(TabsPanelContext);
 
   return (
     <TabPanel
