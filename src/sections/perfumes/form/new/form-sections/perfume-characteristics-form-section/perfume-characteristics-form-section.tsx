@@ -6,8 +6,11 @@ import { RHFNumberField } from "@/components/form/rhf-components/rhf-number-fiel
 import { Separator } from "@/components/ui/separator";
 import { RHFMultiSelectField } from "@/components/form/rhf-components/rhf-multi-select-field/rhf-multi-select-field";
 import usePerfumeTypes from "@/sections/perfume-types/hooks/use-perfume-types";
+import useScents from "@/sections/scents/hooks/use-scents";
 export default function PerfumeCharacteristicsFormSection() {
-  const { perfumeTypes, loadingData } = usePerfumeTypes();
+  const { perfumeTypes, loadingData: loadingDataPerfumeTypes } =
+    usePerfumeTypes();
+  const { scents, loadingData: loadingDataScents } = useScents();
   return (
     <Card className="shadow-sm">
       <CardContent className="pt-4 px-4">
@@ -21,7 +24,7 @@ export default function PerfumeCharacteristicsFormSection() {
                 value: perfumeTypes.id,
                 label: perfumeTypes.name,
               }))}
-              loading={loadingData}
+              loading={loadingDataPerfumeTypes}
             />
             <RHFSelectField
               name="gender"
@@ -51,19 +54,13 @@ export default function PerfumeCharacteristicsFormSection() {
             name="scentsId"
             label="Aromas"
             description="Seleccione todos los aromas que apliquen"
-            options={[
-              { value: "1", label: "Floral" },
-              { value: "2", label: "Cítrico" },
-              { value: "3", label: "Amaderado" },
-              { value: "4", label: "Oriental" },
-              { value: "5", label: "Frutal" },
-              { value: "6", label: "Floral" },
-              { value: "7", label: "Cítrico" },
-              { value: "8", label: "Amaderado" },
-              { value: "9", label: "Oriental" },
-              { value: "10", label: "Frutal" },
-            ]}
+            emptyText="No hay aromas disponibles"
+            options={scents.map((scent) => ({
+              value: scent.id,
+              label: scent.name,
+            }))}
             columns={3}
+            loading={loadingDataScents}
           />
         </div>
       </CardContent>

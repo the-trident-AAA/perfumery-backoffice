@@ -23,3 +23,32 @@ export interface PerfumeCreateDTO {
   cant: number;
   offerId: string;
 }
+
+export enum Gender {
+  FAMALE = "femenino",
+  MALE = "masculino",
+  UNISEX = "unisex",
+}
+
+export const genderMap: Map<
+  Gender,
+  {
+    name: string;
+    color:
+      | "default"
+      | "primary"
+      | "secondary"
+      | "error"
+      | "info"
+      | "success"
+      | "warning";
+  }
+> = new Map([
+  [Gender.FAMALE, { name: "Femenino", color: "primary" }],
+  [Gender.MALE, { name: "Masculino", color: "primary" }],
+  [Gender.UNISEX, { name: "Unisex", color: "primary" }],
+]);
+
+export const genderMapInverted: Map<string, Gender> = new Map(
+  Array.from(genderMap.entries()).map(([key, value]) => [value.name, key])
+);
