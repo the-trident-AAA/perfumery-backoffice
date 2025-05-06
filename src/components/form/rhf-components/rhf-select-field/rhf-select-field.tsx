@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { AlertCircleIcon } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
 interface SelectOption {
@@ -29,6 +30,7 @@ interface Props {
   options: SelectOption[];
   fullWidth?: boolean;
   loading?: boolean;
+  emptyText?: string;
 }
 
 export function RHFSelectField({
@@ -39,6 +41,7 @@ export function RHFSelectField({
   options,
   fullWidth = true,
   loading = false,
+  emptyText = "No hay datos",
 }: Props) {
   const { control } = useFormContext();
 
@@ -63,11 +66,18 @@ export function RHFSelectField({
                 />
               </SelectTrigger>
               <SelectContent>
-                {options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
+                {options.length > 0 ? (
+                  options.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))
+                ) : (
+                  <div className="flex gap-2 p-2">
+                    <AlertCircleIcon />
+                    {emptyText}
+                  </div>
+                )}
               </SelectContent>
             </Select>
           </FormControl>

@@ -3,7 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { RHFNumberField } from "@/components/form/rhf-components/rhf-number-field/rhf-number-field";
 import { RHFSelectField } from "@/components/form/rhf-components/rhf-select-field/rhf-select-field";
 import { RHFToggleField } from "@/components/form/rhf-components/rhf-toggle-field/rhf-toggle-field";
+import useOffers from "@/sections/offers/hooks/use-offers";
 export default function PerfumeComercialInfoFormSection() {
+  const { offers, loadingData } = useOffers();
   return (
     <Card className="shadow-sm">
       <CardContent className="pt-4 px-4">
@@ -24,13 +26,12 @@ export default function PerfumeComercialInfoFormSection() {
             name="offerId"
             label="Oferta"
             placeholder="Seleccione una oferta"
-            options={[
-              { value: "1", label: "Sin oferta" },
-              { value: "2", label: "10% descuento" },
-              { value: "3", label: "20% descuento" },
-              { value: "4", label: "Oferta especial" },
-              // Más opciones aquí
-            ]}
+            options={offers.map((offer) => ({
+              value: offer.id,
+              label: offer.offerType,
+            }))}
+            loading={loadingData}
+            emptyText="No hay ofertas"
           />
         </div>
 
