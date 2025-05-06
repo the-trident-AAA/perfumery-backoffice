@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import PerfumeBasicInformationFormSection from "./new/form-sections/perfume-basic-information-form-section/perfume-basic-information-form-section";
 import PerfumeCharacteristicsFormSection from "./new/form-sections/perfume-characteristics-form-section/perfume-characteristics-form-section";
 import PerfumeComercialInfoFormSection from "./new/form-sections/perfume-comercial-info-form-section/perfume-comercial-info-form-section";
-import { TabsContainer } from "@/components/ui/tabs-panel";
+import { TabsContainer } from "@/components/ui/tabs-panel/tabs-panel";
 
 export function PerfumeForm() {
   const tabs = useMemo(
