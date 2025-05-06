@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useFormContext } from "react-hook-form";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 interface SelectOption {
   label: string;
@@ -23,6 +24,7 @@ interface Props {
   options: SelectOption[];
   columns?: number; // opcional: número de columnas
   maxHeight?: string; // opcional: altura máxima para scroll
+  loading?: boolean;
 }
 const columnClasses: Record<number, string> = {
   1: "grid-cols-1",
@@ -32,7 +34,6 @@ const columnClasses: Record<number, string> = {
   5: "grid-cols-5",
 };
 
-
 export function RHFMultiSelectField({
   name,
   label,
@@ -40,6 +41,7 @@ export function RHFMultiSelectField({
   options,
   columns = 2,
   maxHeight = "max-h-60",
+  loading = false,
 }: Props) {
   const { control } = useFormContext();
 
@@ -62,30 +64,36 @@ export function RHFMultiSelectField({
           <FormItem>
             {label && <FormLabel>{label}</FormLabel>}
             <FormControl>
-              <div
-                className={`grid ${columnClasses[columns]} gap-2 border rounded-md p-3 ${maxHeight} overflow-y-auto`}
-              >
-                {options.map((option) => (
-                  <FormItem
-                    key={option.value}
-                    className="flex items-center gap-2 space-y-0"
-                  >
-                    <Checkbox
-                      id={`${name}-${option.value}`}
-                      checked={field.value?.includes(option.value)}
-                      onCheckedChange={(checked) =>
-                        handleCheckboxChange(!!checked, option.value)
-                      }
-                    />
-                    <label
-                      htmlFor={`${name}-${option.value}`}
-                      className="text-sm"
+              {!loading ? (
+                <div
+                  className={`grid ${columnClasses[columns]} gap-2 border rounded-md p-3 ${maxHeight} overflow-y-auto`}
+                >
+                  {options.map((option) => (
+                    <FormItem
+                      key={option.value}
+                      className="flex items-center gap-2 space-y-0"
                     >
-                      {option.label}
-                    </label>
-                  </FormItem>
-                ))}
-              </div>
+                      <Checkbox
+                        id={`${name}-${option.value}`}
+                        checked={field.value?.includes(option.value)}
+                        onCheckedChange={(checked) =>
+                          handleCheckboxChange(!!checked, option.value)
+                        }
+                      />
+                      <label
+                        htmlFor={`${name}-${option.value}`}
+                        className="text-sm"
+                      >
+                        {option.label}
+                      </label>
+                    </FormItem>
+                  ))}
+                </div>
+              ) : (
+                <div className="mx-auto">
+                  <LoadingSpinner />
+                </div>
+              )}
             </FormControl>
             {description && <FormDescription>{description}</FormDescription>}
             <FormMessage />
