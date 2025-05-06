@@ -5,7 +5,7 @@ import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rh
 import { RHFSelectField } from "@/components/form/rhf-components/rhf-select-field/rhf-select-field";
 import useBrands from "@/sections/brands/hooks/use-brands";
 export default function PerfumeBasicInformationFormSection() {
-  const { brands } = useBrands();
+  const { brands, loadingData } = useBrands();
   return (
     <Card className="shadow-sm">
       <CardContent className="pt-4 px-4">
@@ -23,6 +23,7 @@ export default function PerfumeBasicInformationFormSection() {
               value: brand.id,
               label: brand.name,
             }))}
+            loading={loadingData}
           />
         </div>
       </CardContent>

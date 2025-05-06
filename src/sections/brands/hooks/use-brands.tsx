@@ -10,7 +10,7 @@ import useClientPagination from "@/hooks/use-client-pagination";
 export default function useBrands() {
   const [brands, setBrands] = useState<Brand[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [loadingData, setLoadingData] = useState(false);
+  const [loadingData, setLoadingData] = useState(true);
   const {
     pagination: clientPagination,
     setPagination: setClientPagination,

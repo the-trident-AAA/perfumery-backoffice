@@ -28,6 +28,7 @@ interface Props {
   description?: string;
   options: SelectOption[];
   fullWidth?: boolean;
+  loading?: boolean;
 }
 
 export function RHFSelectField({
@@ -37,6 +38,7 @@ export function RHFSelectField({
   description,
   options,
   fullWidth = true,
+  loading = false,
 }: Props) {
   const { control } = useFormContext();
 
@@ -48,9 +50,17 @@ export function RHFSelectField({
         <FormItem className={`${fullWidth ? "w-full" : ""}`}>
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
-            <Select onValueChange={field.onChange} value={field.value}>
+            <Select
+              onValueChange={field.onChange}
+              value={field.value}
+              disabled={loading} // Deshabilita si está cargando
+            >
               <SelectTrigger className={`${fullWidth ? "w-full" : ""}`}>
-                <SelectValue placeholder={placeholder || "Selecciona"} />
+                <SelectValue
+                  placeholder={
+                    loading ? "Cargando..." : placeholder || "Selecciona"
+                  }
+                />
               </SelectTrigger>
               <SelectContent>
                 {options.map((option) => (
