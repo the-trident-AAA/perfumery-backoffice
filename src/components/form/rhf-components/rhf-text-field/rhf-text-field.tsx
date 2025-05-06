@@ -16,6 +16,7 @@ interface Props {
   placeholder?: string;
   description?: string;
   type?: "text" | "email" | "password";
+  fullWidth?: boolean;
 }
 
 export function RHFTextField({
@@ -24,6 +25,7 @@ export function RHFTextField({
   placeholder,
   description,
   type = "text",
+  fullWidth = true,
 }: Props) {
   const { control } = useFormContext();
 
@@ -32,10 +34,15 @@ export function RHFTextField({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={`${fullWidth ? "w-full" : ""}`}>
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
-            <Input type={type} placeholder={placeholder} {...field} />
+            <Input
+              type={type}
+              className={`${fullWidth ? "w-full" : ""}`}
+              placeholder={placeholder}
+              {...field}
+            />
           </FormControl>
           {description && <FormDescription>{description}</FormDescription>}
           <FormMessage />

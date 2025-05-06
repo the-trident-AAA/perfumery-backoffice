@@ -27,6 +27,7 @@ interface Props {
   placeholder?: string;
   description?: string;
   options: SelectOption[];
+  fullWidth?: boolean;
 }
 
 export function RHFSelectField({
@@ -35,6 +36,7 @@ export function RHFSelectField({
   placeholder,
   description,
   options,
+  fullWidth = true,
 }: Props) {
   const { control } = useFormContext();
 
@@ -43,11 +45,11 @@ export function RHFSelectField({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={`${fullWidth ? "w-full" : ""}`}>
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
             <Select onValueChange={field.onChange} value={field.value}>
-              <SelectTrigger>
+              <SelectTrigger className={`${fullWidth ? "w-full" : ""}`}>
                 <SelectValue placeholder={placeholder || "Selecciona"} />
               </SelectTrigger>
               <SelectContent>

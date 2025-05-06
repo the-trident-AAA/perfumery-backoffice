@@ -15,6 +15,7 @@ interface Props {
   label?: string;
   placeholder?: string;
   description?: string;
+  fullWidth?: boolean;
 }
 
 export function RHFNumberField({
@@ -22,6 +23,7 @@ export function RHFNumberField({
   label,
   placeholder,
   description,
+  fullWidth = true,
 }: Props) {
   const { control } = useFormContext();
 
@@ -30,11 +32,12 @@ export function RHFNumberField({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={`${fullWidth ? "w-full" : ""}`}>
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
             <Input
               type="number"
+              className={`${fullWidth ? "w-full" : ""}`}
               placeholder={placeholder}
               {...field}
               onChange={(e) => field.onChange(Number(e.target.value))}
