@@ -1,0 +1,26 @@
+"use server";
+import { buildApiResponse } from "@/lib/api";
+import { QueryParamsURLFactory } from "@/lib/request";
+import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
+import { Brand } from "@/types/brands";
+import { IQueryable } from "@/types/request";
+
+export async function getBrandsList(params: IQueryable) {
+  const url = new QueryParamsURLFactory(params, apiRoutes.brands.get).build();
+
+  const res = await fetch(url, {
+    method: "GET",
+    next: { tags: [tagsCacheByRoutes.brands.multipleTag] },
+  });
+
+  return await buildApiResponse<Brand[]>(res);
+}
+
+export async function getBrandById(id: string) {
+  const res = await fetch(apiRoutes.brands.getById.replace(":id", id), {
+    method: "GET",
+    next: { tags: [tagsCacheByRoutes.brands.singleTag] },
+  });
+
+  return await buildApiResponse<Brand>(res);
+}
