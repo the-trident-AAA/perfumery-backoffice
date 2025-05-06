@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { RHFMultiSelectField } from "@/components/form/rhf-components/rhf-multi-select-field/rhf-multi-select-field";
 import usePerfumeTypes from "@/sections/perfume-types/hooks/use-perfume-types";
 import useScents from "@/sections/scents/hooks/use-scents";
+import { Gender, genderMap } from "@/types/perfumes";
 export default function PerfumeCharacteristicsFormSection() {
   const { perfumeTypes, loadingData: loadingDataPerfumeTypes } =
     usePerfumeTypes();
@@ -31,9 +32,18 @@ export default function PerfumeCharacteristicsFormSection() {
               label="Género"
               placeholder="Seleccione un género"
               options={[
-                { value: "Masculino", label: "Masculino" },
-                { value: "Femenino", label: "Femenino" },
-                { value: "Unisex", label: "Unisex" },
+                {
+                  value: Gender.MALE,
+                  label: genderMap.get(Gender.MALE)?.name as string,
+                },
+                {
+                  value: Gender.FAMALE,
+                  label: genderMap.get(Gender.FAMALE)?.name as string,
+                },
+                {
+                  value: Gender.UNISEX,
+                  label: genderMap.get(Gender.UNISEX)?.name as string,
+                },
               ]}
             />
           </div>

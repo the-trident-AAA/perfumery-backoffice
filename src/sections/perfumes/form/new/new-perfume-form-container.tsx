@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { PerfumeForm } from "../perfume-form";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import { Gender } from "@/types/perfumes";
 
 export default function NewPerfumeFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
@@ -20,7 +21,7 @@ export default function NewPerfumeFormContainer() {
       available: false,
       brandId: "",
       cant: 1,
-      gender: "",
+      gender: Gender.MALE,
       liters: 1,
       offerId: "",
       perfumeTypeId: "",

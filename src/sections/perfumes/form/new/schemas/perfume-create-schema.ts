@@ -1,3 +1,4 @@
+import { Gender } from "@/types/perfumes";
 import { z } from "zod";
 
 export interface PerfumeCreate {
@@ -6,7 +7,7 @@ export interface PerfumeCreate {
   perfumeTypeId: string;
   offerId: string;
   liters: number;
-  gender: string;
+  gender: Gender;
   scentsId: string[];
   available: boolean;
   price: number;
@@ -19,7 +20,7 @@ export const perfumeCreateSchema = z.object({
   perfumeTypeId: z.string(),
   offerId: z.string(),
   liters: z.number().min(1),
-  gender: z.string(),
+  gender: z.enum([Gender.MALE, Gender.FAMALE, Gender.UNISEX]),
   scentsId: z.array(z.string()).min(1),
   available: z.boolean(),
   price: z.number().min(1),
