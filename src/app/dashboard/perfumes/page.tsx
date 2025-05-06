@@ -4,10 +4,9 @@ import NewPerfumeFormContainer from "@/sections/perfumes/form/new/new-perfume-fo
 import PerfumesContainer from "@/sections/perfumes/perfumes-container";
 import { getPerfumesList } from "@/services/perfumes";
 import { SearchParamsPagination } from "@/types/pagination";
-import { Perfume } from "@/types/perfumes";
 import React from "react";
 
-const perfumes: Perfume[] = [
+/*const perfumes: Perfume[] = [
   {
     id: "1",
     available: true,
@@ -188,16 +187,16 @@ const perfumes: Perfume[] = [
     price: 100,
     scents: ["Floral", "Aldehydic"],
   },
-];
+];*/
 
 type Props = {
-  searchParams: SearchParamsPagination;
+  searchParams: Promise<SearchParamsPagination>;
 };
 
 export default async function PerfumesPage({ searchParams }: Props) {
-  const res = await getPerfumesList(searchParams);
+  const res = await getPerfumesList(await searchParams);
 
-  if (!res.response || res.error) throw new Error("Error fetching products");
+  if (!res.response || res.error) throw new Error("Error fetching perfumes");
 
   return (
     <>
