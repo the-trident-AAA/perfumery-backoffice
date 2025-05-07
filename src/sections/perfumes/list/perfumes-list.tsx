@@ -25,10 +25,6 @@ export default function PerfumesList({ perfumes }: Props) {
 
   const columns: ColumnDef<Perfume>[] = [
     {
-      accessorKey: "id",
-      header: "Id",
-    },
-    {
       accessorKey: "name",
       header: "Nombre",
     },
