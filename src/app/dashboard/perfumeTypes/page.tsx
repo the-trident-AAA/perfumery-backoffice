@@ -1,5 +1,4 @@
 import PerfumeTypesContainer from "@/sections/perfume-types/perfume-types-container";
-import ScentsContainer from "@/sections/scents/scents-container";
 import { getPerfumeTypesList } from "@/services/perfume-types";
 import { SearchParamsPagination } from "@/types/pagination";
 import React from "react";

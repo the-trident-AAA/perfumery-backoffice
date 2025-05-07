@@ -4,7 +4,6 @@ import { modalTypes } from "@/components/modal/types/modalTypes";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { PerfumeType } from "@/types/perfume-types";
-import { Scent } from "@/types/scents";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon,  Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";

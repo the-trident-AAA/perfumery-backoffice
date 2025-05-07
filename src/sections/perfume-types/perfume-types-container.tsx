@@ -1,4 +1,3 @@
-import { Perfume } from "@/types/perfumes";
 import React from "react";
 import SectionsHeader from "../components/sections-header/sections-header";
 import { Package } from "lucide-react";
