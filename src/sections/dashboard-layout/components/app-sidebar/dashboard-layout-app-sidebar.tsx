@@ -26,7 +26,7 @@ export function DashBoardLayoutAppSidebar({
           user={{
             name: "shadcn",
             email: "m@example.com",
-            avatar: "/avatars/shadcn.jpg",
+            avatar: "/images/place-holder.jpg",
           }}
         />
       </SidebarFooter>
