@@ -30,9 +30,14 @@ export const groupRoutes: GroupRoute[] = [
         path: paths.brands.root,
       },
       {
-        title: "Esencias",
+        title: "Aromas",
         icon: <Package />,
         path: paths.scents.root,
+      },
+      {
+        title: "Tipos de Perfumes",
+        icon: <Package />,
+        path: paths.perfumeTypes.root,
       },
     ],
   },

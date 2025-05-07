@@ -7,6 +7,7 @@ interface ApplicationPath {
   perfumes: Path;
   brands: Path;
   scents: Path;
+  perfumeTypes: Path;
 }
 
 /*function buildQueryString(query: Record<string, string> = {}): string {
@@ -26,5 +27,8 @@ export const paths: ApplicationPath = {
   },
   scents: {
     root: "/dashboard/scents",
+  },
+  perfumeTypes: {
+    root: "/dashboard/perfumeTypes",
   },
 } as const;

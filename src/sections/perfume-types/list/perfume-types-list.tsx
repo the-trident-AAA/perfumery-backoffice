@@ -3,16 +3,17 @@ import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
+import { PerfumeType } from "@/types/perfume-types";
 import { Scent } from "@/types/scents";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon,  Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 
 interface Props {
-  scents: Scent[];
+  perfumeTypes: PerfumeType[];
 }
 
-export default function ScentsList({ scents }: Props) {
+export default function PerfumeTypesList({ perfumeTypes }: Props) {
   const { handleOpenModal } = useContext(ModalContext);
 
   const handleEdit = useCallback(
@@ -22,10 +23,10 @@ export default function ScentsList({ scents }: Props) {
     [handleOpenModal]
   );
 
-  const columns: ColumnDef<Scent>[] = [
+  const columns: ColumnDef<PerfumeType>[] = [
     {
       accessorKey: "name",
-      header: "Esencia",
+      header: "Tipo de Perfume",
     },
     {
       id: "actions",
@@ -46,7 +47,7 @@ export default function ScentsList({ scents }: Props) {
                   label: "Eliminar",
                   icon: <Trash2Icon />,
                   action: () => {
-                    console.log("Eliminar aroma");
+                    console.log("Eliminar tipo de perfume");
                   },
                 },
               ]}
@@ -59,7 +60,7 @@ export default function ScentsList({ scents }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <DataTable columns={columns} data={scents} />
+      <DataTable columns={columns} data={perfumeTypes} />
     </div>
   );
 }
