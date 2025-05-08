@@ -3,12 +3,11 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { GroupRoute } from "@/routes/groups-routes/groups-routes";
 import SidebarMenuCollapsible from "../sidebar-menu-collapsible/sidebar-menu-collapsible";
-import Link from "next/link";
+import SideBarMenuButtonLink from "../sidebar-menu-button-link/sidebar-menu-button-link";
 
 interface Props {
   group: GroupRoute;
@@ -24,12 +23,11 @@ export default function SidebarGroupNavigation({ group }: Props) {
             <SidebarMenuCollapsible key={index} item={navigationRoute} />
           ) : (
             <SidebarMenuItem key={index}>
-              <Link className="flex gap-2 w-full" href={navigationRoute.path}>
-                <SidebarMenuButton tooltip={navigationRoute.title}>
-                  {navigationRoute.icon && navigationRoute.icon}
-                  <span>{navigationRoute.title}</span>
-                </SidebarMenuButton>
-              </Link>
+              <SideBarMenuButtonLink
+                title={navigationRoute.title}
+                icon={navigationRoute.icon}
+                path={navigationRoute.path}
+              />
             </SidebarMenuItem>
           )
         )}

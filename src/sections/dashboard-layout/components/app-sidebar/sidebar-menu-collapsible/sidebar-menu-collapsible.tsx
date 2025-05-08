@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
 import { NavigationRoute } from "@/routes/groups-routes/groups-routes";
-import Link from "next/link";
+import SideBarMenuButtonLink from "../sidebar-menu-button-link/sidebar-menu-button-link";
 
 interface Props {
   item: NavigationRoute;
@@ -42,12 +42,11 @@ export default function SidebarMenuCollapsible({ item }: Props) {
                 <SidebarMenuCollapsible key={index} item={subItem} />
               ) : (
                 <SidebarMenuSubItem key={index}>
-                  <Link className="flex gap-2 w-full" href={subItem.path}>
-                    <SidebarMenuButton tooltip={subItem.title}>
-                      {subItem.icon && subItem.icon}
-                      <span>{subItem.title}</span>
-                    </SidebarMenuButton>
-                  </Link>
+                  <SideBarMenuButtonLink
+                    title={subItem.title}
+                    icon={subItem.icon}
+                    path={subItem.path}
+                  />
                 </SidebarMenuSubItem>
               )
             )}
