@@ -67,32 +67,34 @@ export default function PerfumesList({ perfumes }: Props) {
       id: "actions",
       cell: ({ row }) => {
         return (
-          <TableMenu
-            titleTableMenu="Acciones"
-            actions={[
-              {
-                label: "Ver Detalles",
-                icon: <EyeIcon />,
-                action: () => {
-                  console.log("Detalles de un perfume");
+          <div className="flex justify-end">
+            <TableMenu
+              titleTableMenu="Acciones"
+              actions={[
+                {
+                  label: "Ver Detalles",
+                  icon: <EyeIcon />,
+                  action: () => {
+                    console.log("Detalles de un perfume");
+                  },
                 },
-              },
-              {
-                label: "Editar",
-                icon: <EditIcon />,
-                action: () => {
-                  handleEdit(row.getValue("id"));
+                {
+                  label: "Editar",
+                  icon: <EditIcon />,
+                  action: () => {
+                    handleEdit(row.getValue("id"));
+                  },
                 },
-              },
-              {
-                label: "Eliminar",
-                icon: <Trash2Icon />,
-                action: () => {
-                  console.log("Eliminar perfume");
+                {
+                  label: "Eliminar",
+                  icon: <Trash2Icon />,
+                  action: () => {
+                    console.log("Eliminar perfume");
+                  },
                 },
-              },
-            ]}
-          />
+              ]}
+            />
+          </div>
         );
       },
     },
