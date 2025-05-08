@@ -1,11 +1,11 @@
 "use client";
 import { useMemo } from "react";
-import PerfumeBasicInformationFormSection from "./new/form-sections/perfume-basic-information-form-section/perfume-basic-information-form-section";
-import PerfumeCharacteristicsFormSection from "./new/form-sections/perfume-characteristics-form-section/perfume-characteristics-form-section";
-import PerfumeComercialInfoFormSection from "./new/form-sections/perfume-comercial-info-form-section/perfume-comercial-info-form-section";
+import PerfumeBasicInformationFormSection from "./form-sections/perfume-basic-information-form-section/perfume-basic-information-form-section";
+import PerfumeCharacteristicsFormSection from "./form-sections/perfume-characteristics-form-section/perfume-characteristics-form-section";
+import PerfumeComercialInfoFormSection from "./form-sections/perfume-comercial-info-form-section/perfume-comercial-info-form-section";
 import { TabsContainer } from "@/components/ui/tabs-panel/tabs-panel";
 import { TabsPanelProvider } from "@/components/ui/tabs-panel/context/tabs-panel-context";
-import FormSectionsController from "./new/form-sections/form-sections-controller";
+import FormSectionsController from "./form-sections/form-sections-controller";
 
 
 export function PerfumeForm() {
