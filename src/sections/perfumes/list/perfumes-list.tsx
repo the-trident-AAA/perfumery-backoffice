@@ -25,6 +25,10 @@ export default function PerfumesList({ perfumes }: Props) {
 
   const columns: ColumnDef<Perfume>[] = [
     {
+      accessorKey: "id",
+      enableHiding: false,
+    },
+    {
       accessorKey: "name",
       header: "Nombre",
     },
@@ -102,7 +106,11 @@ export default function PerfumesList({ perfumes }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <DataTable columns={columns} data={perfumes} />
+      <DataTable
+        columns={columns}
+        data={perfumes}
+        initialVisibilityState={{ id: false }}
+      />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import EditPerfumeModalContainer from "@/sections/perfumes/form/edit/edit-perfume-modal-container";
 import NewPerfumeFormContainer from "@/sections/perfumes/form/new/new-perfume-form-container";
 import PerfumesContainer from "@/sections/perfumes/perfumes-container";
 import { getPerfumesList } from "@/services/perfumes";
@@ -213,7 +214,7 @@ export default async function PerfumesPage({ searchParams }: Props) {
         formPath={modalTypes.editPerfumeModal.name}
         title={modalTypes.editPerfumeModal.title}
       >
-        Modal De Edición de Perfume
+        <EditPerfumeModalContainer />
       </Modal>
     </>
   );

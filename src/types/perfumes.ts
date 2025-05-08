@@ -1,9 +1,15 @@
 import { PerfumeCreate } from "@/sections/perfumes/form/new/schemas/perfume-create-schema";
+import { Scent } from "./scents";
+import { PerfumeType } from "./perfume-types";
+import { Brand } from "./brands";
+import { Offer } from "./offers";
+import { PerfumeEdit } from "@/sections/perfumes/form/edit/schemas/perfume-edit-schema";
 
 export interface Perfume {
   id: string;
   name: string;
   brand: string;
+  offer: Offer;
   gender: string;
   scents: string[];
   liters: number;
@@ -13,7 +19,34 @@ export interface Perfume {
   cant: number;
 }
 
+export interface PerfumeDetails {
+  id: string;
+  name: string;
+  brand: Brand;
+  offer: Offer;
+  gender: Gender;
+  scents: Scent[];
+  liters: number;
+  perfumeType: PerfumeType;
+  available: boolean;
+  price: number;
+  cant: number;
+}
+
 export interface PerfumeCreateDTO {
+  name: string;
+  brandId: string;
+  gender: string;
+  scentsId: string[];
+  liters: number;
+  perfumeTypeId: string;
+  available: boolean;
+  price: number;
+  cant: number;
+  offerId?: string;
+}
+
+export interface PerfumeEditDTO {
   name: string;
   brandId: string;
   gender: string;
@@ -61,5 +94,14 @@ export const convertPerfumeCreateDTO = (
   return {
     ...perfumeCreate,
     offerId: perfumeCreate.offerId !== "" ? perfumeCreate.offerId : undefined,
+  };
+};
+
+export const convertPerfumeEditDTO = (
+  perfumeEdit: PerfumeEdit
+): PerfumeEditDTO => {
+  return {
+    ...perfumeEdit,
+    offerId: perfumeEdit.offerId !== "" ? perfumeEdit.offerId : undefined,
   };
 };

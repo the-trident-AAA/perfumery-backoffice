@@ -3,7 +3,12 @@
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
-import { Perfume, PerfumeCreateDTO } from "@/types/perfumes";
+import {
+  Perfume,
+  PerfumeCreateDTO,
+  PerfumeDetails,
+  PerfumeEditDTO,
+} from "@/types/perfumes";
 import { IQueryable } from "@/types/request";
 
 export async function getPerfumesList(params: IQueryable) {
@@ -23,7 +28,7 @@ export async function getPerfumeById(id: string) {
     next: { tags: [tagsCacheByRoutes.perfumes.singleTag] },
   });
 
-  return await buildApiResponse<Perfume>(res);
+  return await buildApiResponse<PerfumeDetails>(res);
 }
 
 export async function createPerfume(perfumeCreateDTO: PerfumeCreateDTO) {
@@ -34,6 +39,19 @@ export async function createPerfume(perfumeCreateDTO: PerfumeCreateDTO) {
       "content-type": "application/json",
     },
     body: JSON.stringify(perfumeCreateDTO),
+  });
+
+  return await buildApiResponse<Perfume>(res);
+}
+
+export async function editPerfume(id: string, perfumeEditDTO: PerfumeEditDTO) {
+  const res = await fetch(apiRoutes.perfumes.getById.replace(":id", id), {
+    method: "PATCH",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(perfumeEditDTO),
   });
 
   return await buildApiResponse<Perfume>(res);
