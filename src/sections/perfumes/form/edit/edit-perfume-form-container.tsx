@@ -35,7 +35,7 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
       cant: perfume.cant,
       gender: perfume.gender,
       liters: perfume.liters,
-      offerId: perfume.offer.id,
+      offerId: perfume.offer ? perfume.offer.id : "",
       perfumeTypeId: perfume.perfumeType.id,
       price: perfume.price,
       scentsId: perfume.scents.map((scent) => scent.id),
@@ -43,7 +43,7 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
   });
 
   const handleClose = () => {
-    handleCloseModal(modalTypes.newPerfumeModal.name);
+    handleCloseModal(modalTypes.editPerfumeModal.name);
   };
 
   function onSubmit(perfume: PerfumeEdit) {
@@ -61,7 +61,7 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
             Cancelar
           </Button>
           <Button variant={"default"} type="submit" disabled={submitLoading}>
-            Crear Perfume
+            Actualizar Perfume
           </Button>
         </div>
       </form>

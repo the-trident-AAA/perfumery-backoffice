@@ -23,7 +23,7 @@ export interface PerfumeDetails {
   id: string;
   name: string;
   brand: Brand;
-  offer: Offer;
+  offer?: Offer;
   gender: Gender;
   scents: Scent[];
   liters: number;

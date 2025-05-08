@@ -13,7 +13,7 @@ export default function EditPerfumeModalContainer() {
   const id = infoModal && infoModal.entity ? infoModal.entity : null;
   const { perfume, loading, error, fetchPerfume } = usePerfume({ id });
   return (
-    <div>
+    <div className="flex flex-1 flex-col h-full w-full">
       {!loading ? (
         perfume && !error ? (
           <EditPerfumeFormContainer perfume={perfume} />
@@ -24,8 +24,8 @@ export default function EditPerfumeModalContainer() {
           />
         )
       ) : (
-        <div className="flex justify-center items-center h-full w-full">
-          <LoadingSpinner />
+        <div className="flex justify-center flex-1 items-center h-full w-full">
+          <LoadingSpinner size={100} />
         </div>
       )}
     </div>
