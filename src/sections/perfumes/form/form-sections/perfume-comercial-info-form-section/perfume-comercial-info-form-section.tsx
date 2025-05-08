@@ -32,6 +32,7 @@ export default function PerfumeComercialInfoFormSection() {
             }))}
             loading={loadingData}
             emptyText="No hay ofertas"
+            clearable
           />
         </div>
 
