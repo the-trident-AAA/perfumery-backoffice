@@ -26,7 +26,7 @@ export default function useDeletePerfume({ id, onDeleteAction }: Props) {
         setLoading(false);
       }
     }
-  }, [id]);
+  }, [id, onDeleteAction]);
 
   return { error, loading, deletePerfume };
 }
