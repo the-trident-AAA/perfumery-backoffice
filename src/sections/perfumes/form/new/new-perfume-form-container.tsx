@@ -20,8 +20,8 @@ export default function NewPerfumeFormContainer() {
   const { loading: submitLoading, createPerfume } = useCreatePerfume({
     onCreateAction: () => {
       console.log("Perfume creado con éxito");
+      handleClose();
       revalidateServerTags(tagsCacheByRoutes.perfumes.multipleTag);
-      handleCloseModal(modalTypes.newPerfumeModal.name);
     },
   });
   const form = useForm<PerfumeCreate>({

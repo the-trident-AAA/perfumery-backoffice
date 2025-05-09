@@ -14,6 +14,12 @@ export interface ModalTypes {
   newPerfumeModal: SectionModal;
   editPerfumeModal: SectionModal;
   detailsPerfumeModal: SectionModal;
+  detelePerfumeModal: SectionModal & {
+    message: string;
+    warningMessage: string;
+    cancelButtonText: string;
+    confirmButtonText: string;
+  };
 }
 
 export const modalTypes: ModalTypes = {
@@ -28,5 +34,14 @@ export const modalTypes: ModalTypes = {
   detailsPerfumeModal: {
     name: "detailsPerfumeModal",
     title: "Detalles del Perfume",
+  },
+  detelePerfumeModal: {
+    name: "detelePerfumeModal",
+    title: "Eliminación de Perfume",
+    message: "¿Está seguro de que desea eliminar el Perfume?",
+    warningMessage:
+      "Esta acción provocará la eliminación permanente del Perfume.",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Confirmar",
   },
 };

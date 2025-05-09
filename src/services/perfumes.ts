@@ -56,3 +56,15 @@ export async function editPerfume(id: string, perfumeEditDTO: PerfumeEditDTO) {
 
   return await buildApiResponse<Perfume>(res);
 }
+
+export async function deletePerfume(id: string) {
+  const res = await fetch(apiRoutes.perfumes.getById.replace(":id", id), {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+  });
+
+  return await buildApiResponse<Perfume>(res);
+}

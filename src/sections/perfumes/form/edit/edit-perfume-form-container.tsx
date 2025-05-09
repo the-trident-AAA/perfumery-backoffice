@@ -22,8 +22,8 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
     id: perfume.id,
     onEditAction: () => {
       console.log("Perfume actualizado con éxito");
+      handleClose();
       revalidateServerTags(tagsCacheByRoutes.perfumes.multipleTag);
-      handleCloseModal(modalTypes.editPerfumeModal.name);
     },
   });
   const form = useForm<PerfumeEdit>({

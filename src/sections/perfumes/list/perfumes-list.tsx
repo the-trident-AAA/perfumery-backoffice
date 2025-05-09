@@ -33,6 +33,16 @@ export default function PerfumesList({ perfumes }: Props) {
     [handleOpenModal]
   );
 
+  const handleDelete = useCallback(
+    (id: string) => {
+      handleOpenModal({
+        name: modalTypes.detelePerfumeModal.name,
+        entity: id,
+      });
+    },
+    [handleOpenModal]
+  );
+
   const columns: ColumnDef<Perfume>[] = [
     {
       accessorKey: "id",
@@ -103,7 +113,7 @@ export default function PerfumesList({ perfumes }: Props) {
                   label: "Eliminar",
                   icon: <Trash2Icon />,
                   action: () => {
-                    console.log("Eliminar perfume");
+                    handleDelete(row.getValue("id"));
                   },
                 },
               ]}
