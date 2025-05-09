@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import PerfumeDetailsModalContainer from "@/sections/perfumes/details/perfume-details-modal-container";
 import EditPerfumeModalContainer from "@/sections/perfumes/form/edit/edit-perfume-modal-container";
 import NewPerfumeFormContainer from "@/sections/perfumes/form/new/new-perfume-form-container";
 import PerfumesContainer from "@/sections/perfumes/perfumes-container";
@@ -217,6 +218,14 @@ export default async function PerfumesPage({ searchParams }: Props) {
         className="min-h-[65vh]"
       >
         <EditPerfumeModalContainer />
+      </Modal>
+      <Modal
+        formPath={modalTypes.detailsPerfumeModal.name}
+        title={modalTypes.detailsPerfumeModal.title}
+        maxWidth="max-w-3xl"
+        className="min-h-[65vh]"
+      >
+        <PerfumeDetailsModalContainer />
       </Modal>
     </>
   );

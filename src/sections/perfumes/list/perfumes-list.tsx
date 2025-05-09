@@ -23,6 +23,16 @@ export default function PerfumesList({ perfumes }: Props) {
     [handleOpenModal]
   );
 
+  const handleViewDetails = useCallback(
+    (id: string) => {
+      handleOpenModal({
+        name: modalTypes.detailsPerfumeModal.name,
+        entity: id,
+      });
+    },
+    [handleOpenModal]
+  );
+
   const columns: ColumnDef<Perfume>[] = [
     {
       accessorKey: "id",
@@ -79,7 +89,7 @@ export default function PerfumesList({ perfumes }: Props) {
                   label: "Ver Detalles",
                   icon: <EyeIcon />,
                   action: () => {
-                    console.log("Detalles de un perfume");
+                    handleViewDetails(row.getValue("id"));
                   },
                 },
                 {
