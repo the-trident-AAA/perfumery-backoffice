@@ -90,6 +90,7 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem
                 onClick={() => {
+                  document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
                   handleOpenModal({ name: modalTypes.editProfileModal.name });
                 }}
               >
