@@ -21,6 +21,7 @@ export interface ModalTypes {
     confirmButtonText: string;
   };
   editProfileModal: SectionModal;
+  changePasswordModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -48,5 +49,9 @@ export const modalTypes: ModalTypes = {
   editProfileModal: {
     name: "editProfileModal",
     title: "Edición de Perfil",
+  },
+  changePasswordModal: {
+    name: "changePasswordModal",
+    title: "Cambio de Contraseña",
   },
 };

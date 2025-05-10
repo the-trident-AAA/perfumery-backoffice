@@ -6,6 +6,7 @@ import { DashBoardLayoutAppSidebar } from "@/sections/dashboard-layout/component
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import EditProfileModalContainer from "@/sections/profile/edit/edit-profile-modal-container";
+import EditProfileChangePasswordModalContainter from "@/sections/profile/edit/edit-profile-change-password-form/edit-profile-change-password-modal-container";
 
 export default function layout({
   children,
@@ -24,6 +25,9 @@ export default function layout({
             maxWidth="max-w-3xl"
           >
             <EditProfileModalContainer />
+          </Modal>
+          <Modal formPath={modalTypes.changePasswordModal.name}>
+            <EditProfileChangePasswordModalContainter />
           </Modal>
         </div>
       </SidebarInset>
