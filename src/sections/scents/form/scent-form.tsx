@@ -1,13 +1,13 @@
 import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rhf-text-field";
 import React from "react";
 
-export default function BrandForm() {
+export default function ScentForm() {
   return (
     <div>
       <RHFTextField
         name="name"
-        label="Nombre de la Marca"
-        placeholder="Ingrese el nombre de la Marca"
+        label="Nombre del aroma"
+        placeholder="Ingrese el aroma"
       />
     </div>
   );
