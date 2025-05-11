@@ -18,7 +18,7 @@ export default function PerfumeTypesContainer({ perfumeTypes }: Props) {
         sectionTitle="Gestión de Tipos de Perfumes"
         sectionDescription="Gestione toda la información referente a los tipos de perfumes"
         buttonText="Añadir Nuevo Tipo de Perfume"
-        creationPath={modalTypes.newPerfumeModal.name}
+        creationPath={modalTypes.newPerfumeTypeModal.name}
         isModalRedirect
       />
       <PerfumeTypesList perfumeTypes={perfumeTypes} />

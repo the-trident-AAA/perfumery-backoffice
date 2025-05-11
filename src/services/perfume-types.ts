@@ -3,7 +3,7 @@
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
-import { PerfumeType } from "@/types/perfume-types";
+import { PerfumeType, PerfumeTypeCreateDTO } from "@/types/perfume-types";
 import { IQueryable } from "@/types/request";
 
 export async function getPerfumeTypesList(params: IQueryable) {
@@ -24,6 +24,19 @@ export async function getPerfumeTypeById(id: string) {
   const res = await fetch(apiRoutes.perfumeTypes.getById.replace(":id", id), {
     method: "GET",
     next: { tags: [tagsCacheByRoutes.perfumeTypes.singleTag] },
+  });
+
+  return await buildApiResponse<PerfumeType>(res);
+}
+
+export async function createPerfumeType(perfumeTypeCreateDTO: PerfumeTypeCreateDTO) {
+  const res = await fetch(apiRoutes.perfumeTypes.get, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(perfumeTypeCreateDTO),
   });
 
   return await buildApiResponse<PerfumeType>(res);
