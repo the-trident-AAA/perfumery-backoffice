@@ -24,12 +24,23 @@ export default function OffersList({ offers }: Props) {
 
   const columns: ColumnDef<Offer>[] = [
     {
+      accessorKey: "name",
+      header: "Nombre",
+    },
+    {
+      accessorKey: "scope",
+      header: "Alcance",
+    },
+    {
       accessorKey: "offerType",
       header: "Oferta",
     },
     {
       accessorKey: "discount",
       header: "Descuento",
+      cell: ({ row }) => {
+        return Number(row.getValue("discount")) * 100 + " %";
+      },
     },
     {
       id: "actions",
