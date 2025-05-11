@@ -30,7 +30,7 @@ export default function PerfumeDetailsHeader({ perfume }: Props) {
         <h2 className="text-2xl font-semibold text-gray-900">{perfume.name}</h2>
         <p className="text-sm text-gray-500">ID: {perfume.id}</p>
 
-        <div className="mt-4">
+        <div className="mt-4 flex flex-col gap-2">
           <Separator className="mb-4" />
 
           {/* Quick info */}
@@ -67,6 +67,12 @@ export default function PerfumeDetailsHeader({ perfume }: Props) {
                 </Badge>
               </div>
             )}
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-sm font-medium text-gray-500">Descripción</p>
+            <p className="text-sm line-clamp-3 break-words leading-relaxed text-gray-700">
+              {perfume.description}
+            </p>
           </div>
         </div>
       </div>

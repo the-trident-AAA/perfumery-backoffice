@@ -4,12 +4,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rhf-text-field";
 import { RHFSelectField } from "@/components/form/rhf-components/rhf-select-field/rhf-select-field";
 import useBrands from "@/sections/brands/hooks/use-brands";
+import { RHFTextAreaField } from "@/components/form/rhf-components/rhf-text-area-field/rhf-text-area-field";
 export default function PerfumeBasicInformationFormSection() {
   const { brands, loadingData } = useBrands();
   return (
     <Card className="shadow-sm">
-      <CardContent className="pt-4 px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <CardContent className="pt-4 px-4 flex flex-col gap-4">
+        <div className="flex gap-4">
           <RHFTextField
             name="name"
             label="Nombre del Perfume"
@@ -26,6 +27,12 @@ export default function PerfumeBasicInformationFormSection() {
             loading={loadingData}
           />
         </div>
+        <RHFTextAreaField
+          name="description"
+          label="Descripción"
+          description="Introduzca la descripción del Perfume"
+          fullWidth
+        />
       </CardContent>
     </Card>
   );

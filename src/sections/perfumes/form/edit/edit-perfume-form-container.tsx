@@ -30,6 +30,7 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
     resolver: zodResolver(perfumeEditSchema),
     defaultValues: {
       name: perfume.name,
+      description: perfume.description,
       available: perfume.available,
       brandId: perfume.brand.id,
       cant: perfume.cant,

@@ -8,6 +8,7 @@ import { PerfumeEdit } from "@/sections/perfumes/form/edit/schemas/perfume-edit-
 export interface Perfume {
   id: string;
   name: string;
+  description: string;
   brand: string;
   offer: Offer;
   gender: string;
@@ -22,6 +23,7 @@ export interface Perfume {
 export interface PerfumeDetails {
   id: string;
   name: string;
+  description: string;
   image?: string;
   brand: Brand;
   offer?: Offer;
@@ -36,6 +38,7 @@ export interface PerfumeDetails {
 
 export interface PerfumeCreateDTO {
   name: string;
+  description: string;
   brandId: string;
   gender: string;
   scentsId: string[];
@@ -49,6 +52,7 @@ export interface PerfumeCreateDTO {
 
 export interface PerfumeEditDTO {
   name: string;
+  description: string;
   brandId: string;
   gender: string;
   scentsId: string[];

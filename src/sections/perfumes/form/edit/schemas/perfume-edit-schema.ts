@@ -3,6 +3,7 @@ import { z } from "zod";
 
 export interface PerfumeEdit {
   name: string;
+  description: string;
   brandId: string;
   perfumeTypeId: string;
   offerId: string;
@@ -18,6 +19,9 @@ export const perfumeEditSchema = z.object({
   name: z
     .string()
     .min(1, { message: "El nombre del perfume no puede estar vacío" }),
+  description: z
+    .string()
+    .min(1, { message: "La descripción del perfume es requerida" }),
   brandId: z.string().min(1, { message: "Debes seleccionar una marca válida" }),
   perfumeTypeId: z
     .string()
