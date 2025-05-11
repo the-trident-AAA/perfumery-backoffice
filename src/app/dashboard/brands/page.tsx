@@ -1,4 +1,7 @@
+import Modal from "@/components/modal/modal";
+import { modalTypes } from "@/components/modal/types/modalTypes";
 import BrandsContainer from "@/sections/brands/brands-container";
+import NewBrandFormContainer from "@/sections/brands/form/new/new-brand-form-container";
 import { getBrandsList } from "@/services/brands";
 import { SearchParamsPagination } from "@/types/pagination";
 import React from "react";
@@ -15,6 +18,13 @@ export default async function BrandsPage({ searchParams }: Props) {
   return (
     <>
       <BrandsContainer brands={res.response} />
+      <Modal
+        formPath={modalTypes.newBrandModal.name}
+        title={modalTypes.newBrandModal.title}
+        maxWidth="max-w-3xl"
+        >
+        <NewBrandFormContainer /> 
+      </Modal>
     </>
   );
 }

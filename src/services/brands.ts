@@ -2,7 +2,7 @@
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
-import { Brand } from "@/types/brands";
+import { Brand, BrandCreateDTO } from "@/types/brands";
 import { IQueryable } from "@/types/request";
 
 export async function getBrandsList(params: IQueryable) {
@@ -24,3 +24,17 @@ export async function getBrandById(id: string) {
 
   return await buildApiResponse<Brand>(res);
 }
+
+export async function createBrand(brandCreateDTO: BrandCreateDTO) {
+  const res = await fetch(apiRoutes.brands.get, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(brandCreateDTO),
+  });
+
+  return await buildApiResponse<Brand>(res);
+}
+

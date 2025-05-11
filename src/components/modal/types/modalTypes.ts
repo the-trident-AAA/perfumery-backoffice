@@ -22,6 +22,7 @@ export interface ModalTypes {
   };
   editProfileModal: SectionModal;
   changePasswordModal: SectionModal;
+  newBrandModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -53,5 +54,9 @@ export const modalTypes: ModalTypes = {
   changePasswordModal: {
     name: "changePasswordModal",
     title: "Cambio de Contraseña",
+  },
+  newBrandModal: {
+    name: "newBrandModal",
+    title: "Formulario de Creación de Marca",
   },
 };
