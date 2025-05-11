@@ -28,7 +28,7 @@ export default function PerfumeComercialInfoFormSection() {
             placeholder="Seleccione una oferta"
             options={offers.map((offer) => ({
               value: offer.id,
-              label: offer.offerType,
+              label: offer.name,
             }))}
             loading={loadingData}
             emptyText="No hay ofertas"
