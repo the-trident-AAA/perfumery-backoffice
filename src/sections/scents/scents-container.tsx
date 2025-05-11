@@ -17,7 +17,7 @@ export default function ScentsContainer({ scents }: Props) {
         sectionTitle="Gestión de Aromas"
         sectionDescription="Gestione toda la información referente a los aromas de los perfumes"
         buttonText="Añadir Nuevo Aroma"
-        creationPath={modalTypes.newPerfumeModal.name}
+        creationPath={modalTypes.newScentModal.name}
         isModalRedirect
       />
       <ScentsList scents={scents} />
