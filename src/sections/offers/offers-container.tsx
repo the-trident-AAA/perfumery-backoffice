@@ -17,7 +17,7 @@ export default function OffersContainer({ offers }: Props) {
         sectionTitle="Gestión de Ofertas"
         sectionDescription="Gestione toda la información referente a las ofertas de los perfumes"
         buttonText="Añadir Nueva Oferta"
-        creationPath={modalTypes.newPerfumeModal.name}
+        creationPath={modalTypes.newOfferModal.name}
         isModalRedirect
       />
       <OffersList offers={offers} />
