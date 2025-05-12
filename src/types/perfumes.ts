@@ -8,6 +8,7 @@ import { PerfumeEdit } from "@/sections/perfumes/form/edit/schemas/perfume-edit-
 export interface Perfume {
   id: string;
   name: string;
+  image?: string;
   description: string;
   brand: string;
   offer: Offer;

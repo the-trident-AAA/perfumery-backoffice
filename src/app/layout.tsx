@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ModalProvider } from "@/components/modal/context/modalContext";
 import Footer from "@/sections/root-layout/footer/footer";
+import PreviewModal from "@/components/preview-image/preview-modal";
+import { PreviewProvider } from "@/components/preview-image/context/preview-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +32,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ModalProvider>
-          <div className="flex min-h-screen flex-col">
-            {children}
-            <Footer />
-          </div>
+          <PreviewProvider>
+            <div className="flex min-h-screen flex-col">
+              <PreviewModal />
+              {children}
+              <Footer />
+            </div>
+          </PreviewProvider>
         </ModalProvider>
       </body>
     </html>
