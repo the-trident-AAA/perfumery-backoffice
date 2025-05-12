@@ -5,7 +5,7 @@ import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { PerfumeType } from "@/types/perfume-types";
 import { ColumnDef } from "@tanstack/react-table";
-import { EditIcon,  Trash2Icon } from "lucide-react";
+import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 
 interface Props {
@@ -17,12 +17,16 @@ export default function PerfumeTypesList({ perfumeTypes }: Props) {
 
   const handleEdit = useCallback(
     (id: string) => {
-      handleOpenModal({ name: modalTypes.editPerfumeModal.name, entity: id });
+      handleOpenModal({ name: modalTypes.editPerfumeTypeModal.name, entity: id });
     },
     [handleOpenModal]
   );
 
   const columns: ColumnDef<PerfumeType>[] = [
+    {
+      accessorKey: "id",
+      enableHiding: false,
+    },
     {
       accessorKey: "name",
       header: "Tipo de Perfume",
@@ -59,7 +63,7 @@ export default function PerfumeTypesList({ perfumeTypes }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <DataTable columns={columns} data={perfumeTypes} />
+      <DataTable columns={columns} data={perfumeTypes} initialVisibilityState={{id: false}}/>
     </div>
   );
 }
