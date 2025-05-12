@@ -17,12 +17,16 @@ export default function OffersList({ offers }: Props) {
 
   const handleEdit = useCallback(
     (id: string) => {
-      handleOpenModal({ name: modalTypes.editPerfumeModal.name, entity: id });
+      handleOpenModal({ name: modalTypes.editOfferModal.name, entity: id });
     },
     [handleOpenModal]
   );
 
   const columns: ColumnDef<Offer>[] = [
+    {
+      accessorKey: "id",
+      enableHiding: false,
+    },
     {
       accessorKey: "name",
       header: "Nombre",
@@ -33,7 +37,7 @@ export default function OffersList({ offers }: Props) {
     },
     {
       accessorKey: "offerType",
-      header: "Oferta",
+      header: "Tipo de Oferta",
     },
     {
       accessorKey: "discount",
@@ -74,7 +78,11 @@ export default function OffersList({ offers }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <DataTable columns={columns} data={offers} />
+      <DataTable
+        columns={columns}
+        data={offers}
+        initialVisibilityState={{ id: false }}
+      />
     </div>
   );
 }

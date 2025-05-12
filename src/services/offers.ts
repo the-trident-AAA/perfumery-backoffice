@@ -3,7 +3,7 @@
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
-import { Offer, OfferCreateDTO } from "@/types/offers";
+import { Offer, OfferCreateDTO, OfferEditDTO } from "@/types/offers";
 import { IQueryable } from "@/types/request";
 
 export async function getOffersList(params: IQueryable) {
@@ -34,6 +34,19 @@ export async function createOffer(offerCreateDTO: OfferCreateDTO) {
       "content-type": "application/json",
     },
     body: JSON.stringify(offerCreateDTO),
+  });
+
+  return await buildApiResponse<Offer>(res);
+}
+
+export async function editOffer(id: string, offerEditDTO: OfferEditDTO) {
+  const res = await fetch(apiRoutes.offers.getById.replace(":id", id), {
+    method: "PATCH",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(offerEditDTO),
   });
 
   return await buildApiResponse<Offer>(res);

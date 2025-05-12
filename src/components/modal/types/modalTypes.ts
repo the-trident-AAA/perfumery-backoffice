@@ -26,6 +26,7 @@ export interface ModalTypes {
   newScentModal: SectionModal;
   newPerfumeTypeModal: SectionModal;
   newOfferModal: SectionModal;
+  editOfferModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -73,5 +74,9 @@ export const modalTypes: ModalTypes = {
   newOfferModal: {
     name: "newOfferModal",
     title: "Formulario de Creación de Ofertas",
+  },
+  editOfferModal: {
+    name: "editOfferModal",
+    title: "Formulario de Edición de Oferta",
   },
 };
