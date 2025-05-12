@@ -34,6 +34,7 @@ export interface ModalTypes {
     cancelButtonText: string;
     confirmButtonText: string;
   };
+  previewImageModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -98,5 +99,9 @@ export const modalTypes: ModalTypes = {
       "Esta acción provocará la eliminación permanente de la Oferta.",
     cancelButtonText: "Cancelar",
     confirmButtonText: "Confirmar",
+  },
+  previewImageModal: {
+    name: "previewImageModal",
+    title: "Previsualización de Imagen",
   },
 };
