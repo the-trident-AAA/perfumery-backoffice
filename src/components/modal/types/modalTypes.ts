@@ -38,6 +38,12 @@ export interface ModalTypes {
   editBrandModal: SectionModal;
   editPerfumeTypeModal: SectionModal;
   editScentModal: SectionModal;
+  deleteBrandModal: SectionModal & {
+    message: string;
+    warningMessage: string;
+    cancelButtonText: string;
+    confirmButtonText: string;
+  };
 }
 
 export const modalTypes: ModalTypes = {
@@ -119,5 +125,14 @@ export const modalTypes: ModalTypes = {
   editScentModal: {
     name: "editScentModal",
     title: "Edición del Aroma",
+  },
+  deleteBrandModal: {
+    name: "deleteBrandModal",
+    title: "Eliminación de Marca",
+    message: "¿Está seguro de que desea eliminar esta Marca?",
+    warningMessage:
+      "Esta acción provocará la eliminación permanente de la Marca.",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Confirmar",
   },
 };
