@@ -5,7 +5,7 @@ import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { Offer } from "@/types/offers";
 import { ColumnDef } from "@tanstack/react-table";
-import { EditIcon, Trash2Icon } from "lucide-react";
+import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 
 interface Props {
@@ -18,6 +18,13 @@ export default function OffersList({ offers }: Props) {
   const handleEdit = useCallback(
     (id: string) => {
       handleOpenModal({ name: modalTypes.editOfferModal.name, entity: id });
+    },
+    [handleOpenModal]
+  );
+
+  const handleViewDetails = useCallback(
+    (id: string) => {
+      handleOpenModal({ name: modalTypes.detailsOfferModal.name, entity: id });
     },
     [handleOpenModal]
   );
@@ -54,6 +61,13 @@ export default function OffersList({ offers }: Props) {
             <TableMenu
               titleTableMenu="Acciones"
               actions={[
+                {
+                  label: "Ver Detalles",
+                  icon: <EyeIcon />,
+                  action: () => {
+                    handleViewDetails(row.getValue("id"));
+                  },
+                },
                 {
                   label: "Editar",
                   icon: <EditIcon />,

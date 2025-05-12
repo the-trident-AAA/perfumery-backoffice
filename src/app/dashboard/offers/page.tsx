@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import OfferDetailsModalContainer from "@/sections/offers/details/offer-details-modal-container";
 import EditOfferModalContainer from "@/sections/offers/form/edit/edit-offer-modal-container";
 import NewOfferFormContainer from "@/sections/offers/form/new/new-offer-form-container";
 import OffersContainer from "@/sections/offers/offers-container";
@@ -32,6 +33,14 @@ export default async function OffersPage({ searchParams }: Props) {
         maxWidth="max-w-3xl"
       >
         <EditOfferModalContainer />
+      </Modal>
+      <Modal
+        formPath={modalTypes.detailsOfferModal.name}
+        title={modalTypes.detailsOfferModal.title}
+        maxWidth="max-w-3xl"
+        className="min-h-[65vh]"
+      >
+        <OfferDetailsModalContainer />
       </Modal>
     </>
   );
