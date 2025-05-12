@@ -23,7 +23,7 @@ export default function PerfumeDetailsInformation({ perfume }: Props) {
 
         <div className="space-y-1">
           <p className="text-sm font-medium text-gray-500">Contenido</p>
-          <p className="font-medium">{perfume.liters} L</p>
+          <p className="font-medium">{perfume.milliliters} ML</p>
         </div>
 
         <div className="space-y-1">
