@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { OfferDetails } from "@/types/offers";
-import { Tag } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 

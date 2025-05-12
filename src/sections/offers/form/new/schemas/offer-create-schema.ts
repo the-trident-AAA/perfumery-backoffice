@@ -1,4 +1,3 @@
-import { Gender } from "@/types/perfumes";
 import { z } from "zod";
 
 export interface OfferCreate {
