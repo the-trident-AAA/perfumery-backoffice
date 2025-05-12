@@ -1,7 +1,5 @@
 "use client";
-import { getPerfumeTypeById } from "@/services/perfume-types";
 import { getScentById } from "@/services/scents";
-import { PerfumeTypeDetails } from "@/types/perfume-types";
 import { ScentDetails } from "@/types/scents";
 import { useCallback, useEffect, useState } from "react";
 

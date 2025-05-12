@@ -7,9 +7,11 @@ import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { useContext } from "react";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { Button } from "@/components/ui/button";
-import { BrandDetails } from "@/types/brands";
 import { PerfumeTypeDetails } from "@/types/perfume-types";
-import { PerfumeTypeEdit, perfumeTypeEditSchema } from "./schemas/perfume-type-edit-schema";
+import {
+  PerfumeTypeEdit,
+  perfumeTypeEditSchema,
+} from "./schemas/perfume-type-edit-schema";
 import PerfumeTypeForm from "../perfume-type-form";
 import useEditPerfumeType from "../../hooks/use-edit-perfume-type";
 
@@ -31,7 +33,7 @@ export default function EditPerfumeTypeFormContainer({ perfumeType }: Props) {
   const form = useForm<PerfumeTypeEdit>({
     resolver: zodResolver(perfumeTypeEditSchema),
     defaultValues: {
-     name: perfumeType.name,
+      name: perfumeType.name,
     },
   });
 

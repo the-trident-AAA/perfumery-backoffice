@@ -1,7 +1,6 @@
 "use client";
 import { useCallback, useState } from "react";
 import { editBrand as editBrandService } from "@/services/brands";
-import { convertPerfumeEditDTO } from "@/types/perfumes";
 import { BrandCreate } from "../form/new/schemas/brand-create-schema";
 import { convertBrandEditDTO } from "@/types/brands";
 
@@ -19,10 +18,7 @@ export default function useEditBrand({ id, onEditAction }: Props) {
       try {
         setLoading(true);
         setError(null);
-        const res = await editBrandService(
-          id,
-          convertBrandEditDTO(brand)
-        );
+        const res = await editBrandService(id, convertBrandEditDTO(brand));
         if (!res.response || res.error)
           setError("Error en la edición de la marca");
         else {
