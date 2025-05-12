@@ -7,7 +7,7 @@ export interface PerfumeEdit {
   brandId: string;
   perfumeTypeId: string;
   offerId: string;
-  liters: number;
+  milliliters: number;
   gender: Gender;
   scentsId: string[];
   available: boolean;
@@ -27,9 +27,9 @@ export const perfumeEditSchema = z.object({
     .string()
     .min(1, { message: "Debes seleccionar un tipo de perfume válido" }),
   offerId: z.string(),
-  liters: z
+  milliliters: z
     .number()
-    .min(1, { message: "El volumen debe ser al menos 1 litro" }),
+    .min(1, { message: "El volumen debe ser al menos 1 mililitro" }),
   gender: z.enum([Gender.MALE, Gender.FEMALE, Gender.UNISEX], {
     message:
       "Debes seleccionar un género válido (Masculino, Femenino o Unisex)",

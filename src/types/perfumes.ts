@@ -14,7 +14,7 @@ export interface Perfume {
   offer: Offer;
   gender: string;
   scents: string[];
-  liters: number;
+  milliliters: number;
   perfumeType: string;
   available: boolean;
   price: number;
@@ -30,7 +30,7 @@ export interface PerfumeDetails {
   offer?: Offer;
   gender: Gender;
   scents: Scent[];
-  liters: number;
+  milliliters: number;
   perfumeType: PerfumeType;
   available: boolean;
   price: number;
@@ -43,7 +43,7 @@ export interface PerfumeCreateDTO {
   brandId: string;
   gender: string;
   scentsId: string[];
-  liters: number;
+  milliliters: number;
   perfumeTypeId: string;
   available: boolean;
   price: number;
@@ -57,7 +57,7 @@ export interface PerfumeEditDTO {
   brandId: string;
   gender: string;
   scentsId: string[];
-  liters: number;
+  milliliters: number;
   perfumeTypeId: string;
   available: boolean;
   price: number;

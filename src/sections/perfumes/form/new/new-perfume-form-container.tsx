@@ -32,7 +32,7 @@ export default function NewPerfumeFormContainer() {
       brandId: "",
       cant: 1,
       gender: Gender.MALE,
-      liters: 1,
+      milliliters: 1,
       offerId: "",
       perfumeTypeId: "",
       price: 1,

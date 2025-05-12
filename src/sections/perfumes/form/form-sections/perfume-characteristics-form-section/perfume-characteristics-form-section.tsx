@@ -49,10 +49,10 @@ export default function PerfumeCharacteristicsFormSection() {
           </div>
           <div className="max-w-[50%]">
             <RHFNumberField
-              name="liters"
-              label="Litros"
+              name="milliliters"
+              label="Mililitros"
               placeholder="0.1"
-              description="Volumen en litros"
+              description="Volumen en Mililitros"
               fullWidth={false}
             />
           </div>

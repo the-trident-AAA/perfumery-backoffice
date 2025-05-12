@@ -35,7 +35,7 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
       brandId: perfume.brand.id,
       cant: perfume.cant,
       gender: perfume.gender,
-      liters: perfume.liters,
+      milliliters: perfume.milliliters,
       offerId: perfume.offer ? perfume.offer.id : "",
       perfumeTypeId: perfume.perfumeType.id,
       price: perfume.price,
