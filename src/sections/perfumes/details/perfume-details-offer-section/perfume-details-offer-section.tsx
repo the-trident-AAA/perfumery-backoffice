@@ -15,8 +15,16 @@ export default function PerfumeDetailsOfferSection({ offer }: Props) {
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1">
+          <p className="text-sm font-medium text-gray-500">Nombre</p>
+          <p className="font-medium">{offer.name}</p>
+        </div>
+        <div className="space-y-1">
           <p className="text-sm font-medium text-gray-500">Tipo</p>
           <p className="font-medium">{offer.offerType}</p>
+        </div>
+        <div className="space-y-1">
+          <p className="text-sm font-medium text-gray-500">Alcance</p>
+          <p className="font-medium">{offer.scope}</p>
         </div>
         <div className="space-y-1">
           <p className="text-sm font-medium text-gray-500">Descuento</p>
