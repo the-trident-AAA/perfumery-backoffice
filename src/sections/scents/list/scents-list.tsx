@@ -17,12 +17,16 @@ export default function ScentsList({ scents }: Props) {
 
   const handleEdit = useCallback(
     (id: string) => {
-      handleOpenModal({ name: modalTypes.editPerfumeModal.name, entity: id });
+      handleOpenModal({ name: modalTypes.editScentModal.name, entity: id });
     },
     [handleOpenModal]
   );
 
   const columns: ColumnDef<Scent>[] = [
+      {
+      accessorKey: "id",
+      enableHiding: false,
+    },
     {
       accessorKey: "name",
       header: "Esencia",
@@ -59,7 +63,7 @@ export default function ScentsList({ scents }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <DataTable columns={columns} data={scents} />
+      <DataTable columns={columns} data={scents} initialVisibilityState={{id: false}}/>
     </div>
   );
 }
