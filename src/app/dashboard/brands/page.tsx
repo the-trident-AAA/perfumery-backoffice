@@ -1,6 +1,7 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import BrandsContainer from "@/sections/brands/brands-container";
+import EditBrandModalContainer from "@/sections/brands/form/edit/edit-brand-modal-container";
 import NewBrandFormContainer from "@/sections/brands/form/new/new-brand-form-container";
 import { getBrandsList } from "@/services/brands";
 import { SearchParamsPagination } from "@/types/pagination";
@@ -22,8 +23,15 @@ export default async function BrandsPage({ searchParams }: Props) {
         formPath={modalTypes.newBrandModal.name}
         title={modalTypes.newBrandModal.title}
         maxWidth="max-w-3xl"
-        >
-        <NewBrandFormContainer /> 
+      >
+        <NewBrandFormContainer />
+      </Modal>
+      <Modal
+        formPath={modalTypes.editBrandModal.name}
+        title={modalTypes.editBrandModal.title}
+        maxWidth="max-w-3xl"
+      >
+        <EditBrandModalContainer />
       </Modal>
     </>
   );

@@ -35,6 +35,7 @@ export interface ModalTypes {
     confirmButtonText: string;
   };
   previewImageModal: SectionModal;
+  editBrandModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -83,6 +84,7 @@ export const modalTypes: ModalTypes = {
     name: "newOfferModal",
     title: "Formulario de Creación de Ofertas",
   },
+
   editOfferModal: {
     name: "editOfferModal",
     title: "Formulario de Edición de Oferta",
@@ -103,5 +105,9 @@ export const modalTypes: ModalTypes = {
   previewImageModal: {
     name: "previewImageModal",
     title: "Previsualización de Imagen",
+  },
+  editBrandModal: {
+    name: "editBrandModal",
+    title: "Edición de Marcas",
   },
 };
