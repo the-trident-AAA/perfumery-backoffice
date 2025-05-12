@@ -28,6 +28,12 @@ export interface ModalTypes {
   newOfferModal: SectionModal;
   editOfferModal: SectionModal;
   detailsOfferModal: SectionModal;
+  deleteOfferModal: SectionModal & {
+    message: string;
+    warningMessage: string;
+    cancelButtonText: string;
+    confirmButtonText: string;
+  };
 }
 
 export const modalTypes: ModalTypes = {
@@ -83,5 +89,14 @@ export const modalTypes: ModalTypes = {
   detailsOfferModal: {
     name: "detailsOfferModal",
     title: "Detalles de la Oferta",
+  },
+  deleteOfferModal: {
+    name: "deleteOfferModal",
+    title: "Eliminación de Oferta",
+    message: "¿Está seguro de que desea eliminar la Oferta?",
+    warningMessage:
+      "Esta acción provocará la eliminación permanente de la Oferta.",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Confirmar",
   },
 };

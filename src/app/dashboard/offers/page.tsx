@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import DeleteOfferModalContainer from "@/sections/offers/delete/delete-offer-modal-container";
 import OfferDetailsModalContainer from "@/sections/offers/details/offer-details-modal-container";
 import EditOfferModalContainer from "@/sections/offers/form/edit/edit-offer-modal-container";
 import NewOfferFormContainer from "@/sections/offers/form/new/new-offer-form-container";
@@ -41,6 +42,9 @@ export default async function OffersPage({ searchParams }: Props) {
         className="min-h-[65vh]"
       >
         <OfferDetailsModalContainer />
+      </Modal>
+      <Modal formPath={modalTypes.deleteOfferModal.name} maxWidth="max-w-xl">
+        <DeleteOfferModalContainer />
       </Modal>
     </>
   );

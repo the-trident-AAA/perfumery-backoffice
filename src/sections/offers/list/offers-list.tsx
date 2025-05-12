@@ -29,6 +29,13 @@ export default function OffersList({ offers }: Props) {
     [handleOpenModal]
   );
 
+  const handleDelete = useCallback(
+    (id: string) => {
+      handleOpenModal({ name: modalTypes.deleteOfferModal.name, entity: id });
+    },
+    [handleOpenModal]
+  );
+
   const columns: ColumnDef<Offer>[] = [
     {
       accessorKey: "id",
@@ -79,7 +86,7 @@ export default function OffersList({ offers }: Props) {
                   label: "Eliminar",
                   icon: <Trash2Icon />,
                   action: () => {
-                    console.log("Eliminar oferta");
+                    handleDelete(row.getValue("id"));
                   },
                 },
               ]}

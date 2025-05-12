@@ -11,9 +11,8 @@ export default function EditOfferModalContainer() {
   const { getInfoModal } = useContext(ModalContext);
   const infoModal = getInfoModal(modalTypes.editOfferModal.name);
   const id = infoModal && infoModal.entity ? infoModal.entity : null;
-   console.log(id)
   const { offer, loading, error, fetchOffer } = useOffer({ id });
- 
+
   return (
     <div className="flex flex-1 flex-col h-full w-full">
       {!loading ? (

@@ -51,3 +51,15 @@ export async function editOffer(id: string, offerEditDTO: OfferEditDTO) {
 
   return await buildApiResponse<Offer>(res);
 }
+
+export async function deleteOffer(id: string) {
+  const res = await fetch(apiRoutes.offers.getById.replace(":id", id), {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+  });
+
+  return await buildApiResponse<Offer>(res);
+}
