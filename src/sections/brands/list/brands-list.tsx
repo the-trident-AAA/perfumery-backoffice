@@ -17,12 +17,16 @@ export default function BrandList({ brands }: Props) {
 
   const handleEdit = useCallback(
     (id: string) => {
-      handleOpenModal({ name: modalTypes.editPerfumeModal.name, entity: id });
+      handleOpenModal({ name: modalTypes.editBrandModal.name, entity: id });
     },
     [handleOpenModal]
   );
 
   const columns: ColumnDef<Brand>[] = [
+     {
+      accessorKey: "id",
+      enableHiding: false,
+    },
     {
       accessorKey: "name",
       header: "Marca",
@@ -59,7 +63,7 @@ export default function BrandList({ brands }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <DataTable columns={columns} data={brands} />
+      <DataTable columns={columns} data={brands} initialVisibilityState={{id: false}} />
     </div>
   );
 }
