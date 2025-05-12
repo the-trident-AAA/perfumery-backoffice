@@ -36,6 +36,7 @@ export interface ModalTypes {
   };
   previewImageModal: SectionModal;
   editBrandModal: SectionModal;
+  editPerfumeTypeModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -109,5 +110,9 @@ export const modalTypes: ModalTypes = {
   editBrandModal: {
     name: "editBrandModal",
     title: "Edición de Marcas",
+  },
+    editPerfumeTypeModal: {
+    name: "editPerfumeTypeModal",
+    title: "Edición de Tipo de Perfume",
   },
 };
