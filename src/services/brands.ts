@@ -50,3 +50,15 @@ export async function editBrand(id: string, brandEditDTO: BrandEditDTO) {
 
   return await buildApiResponse<Brand>(res);
 }
+
+export async function deleteBrand(id: string) {
+  const res = await fetch(apiRoutes.brands.getById.replace(":id", id), {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+  });
+
+  return await buildApiResponse<Brand>(res);
+}

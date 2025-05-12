@@ -5,7 +5,7 @@ import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { Brand } from "@/types/brands";
 import { ColumnDef } from "@tanstack/react-table";
-import { EditIcon,  Trash2Icon } from "lucide-react";
+import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 
 interface Props {
@@ -22,8 +22,18 @@ export default function BrandList({ brands }: Props) {
     [handleOpenModal]
   );
 
+  const handleDelete = useCallback(
+    (id: string) => {
+      handleOpenModal({
+        name: modalTypes.deleteBrandModal.name,
+        entity: id,
+      });
+    },
+    [handleOpenModal]
+  );
+
   const columns: ColumnDef<Brand>[] = [
-     {
+    {
       accessorKey: "id",
       enableHiding: false,
     },
@@ -50,7 +60,7 @@ export default function BrandList({ brands }: Props) {
                   label: "Eliminar",
                   icon: <Trash2Icon />,
                   action: () => {
-                    console.log("Eliminar brand");
+                    handleDelete(row.getValue("id"));
                   },
                 },
               ]}
@@ -63,7 +73,11 @@ export default function BrandList({ brands }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <DataTable columns={columns} data={brands} initialVisibilityState={{id: false}} />
+      <DataTable
+        columns={columns}
+        data={brands}
+        initialVisibilityState={{ id: false }}
+      />
     </div>
   );
 }

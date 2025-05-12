@@ -1,6 +1,7 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import BrandsContainer from "@/sections/brands/brands-container";
+import DeleteBrandModalContainer from "@/sections/brands/delete/delete-brand-modal-container";
 import EditBrandModalContainer from "@/sections/brands/form/edit/edit-brand-modal-container";
 import NewBrandFormContainer from "@/sections/brands/form/new/new-brand-form-container";
 import { getBrandsList } from "@/services/brands";
@@ -32,6 +33,9 @@ export default async function BrandsPage({ searchParams }: Props) {
         maxWidth="max-w-3xl"
       >
         <EditBrandModalContainer />
+      </Modal>
+      <Modal formPath={modalTypes.deleteBrandModal.name} maxWidth="max-w-xl">
+        <DeleteBrandModalContainer />
       </Modal>
     </>
   );
