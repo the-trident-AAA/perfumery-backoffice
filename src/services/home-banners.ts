@@ -15,7 +15,7 @@ export async function getHomeBannersList(params: IQueryable) {
     method: "GET",
     next: { tags: [tagsCacheByRoutes.homeBanners.multipleTag] },
   });
-
+console.log(res)
   return await buildApiResponse<HomeBanner[]>(res);
 }
 

@@ -46,4 +46,21 @@ export const groupRoutes: GroupRoute[] = [
       },
     ],
   },
+  {
+    title: "Páginas",
+    navigationRoutes: [
+      {
+        title: "Home",
+        icon: <Package />,
+        path: "",
+        children: [
+          {
+            title: "Banners",
+            icon: <Package />,
+            path: paths.homeBanners.root,
+          },
+        ],
+      },
+    ],
+  },
 ];
