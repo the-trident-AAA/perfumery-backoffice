@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import DeleteScentModalContainer from "@/sections/scents/delete/delete-scent-modal-container";
 import EditScentModalContainer from "@/sections/scents/form/edit/edit-scent-modal-container";
 import NewScentFormContainer from "@/sections/scents/form/new/new-scent-form-container";
 import ScentsContainer from "@/sections/scents/scents-container";
@@ -32,6 +33,9 @@ export default async function ScentsPage({ searchParams }: Props) {
         maxWidth="max-w-3xl"
       >
         <EditScentModalContainer />
+      </Modal>
+      <Modal formPath={modalTypes.deleteScentModal.name} maxWidth="max-w-xl">
+        <DeleteScentModalContainer />
       </Modal>
     </>
   );

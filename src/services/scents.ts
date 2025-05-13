@@ -52,4 +52,14 @@ export async function editScent(id: string, scentEditDTO: ScentEditDTO) {
   return await buildApiResponse<Scent>(res);
 }
 
+export async function deleteScent(id: string) {
+  const res = await fetch(apiRoutes.scents.getById.replace(":id", id), {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+  });
 
+  return await buildApiResponse<Scent>(res);
+}
