@@ -5,7 +5,7 @@ import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { Scent } from "@/types/scents";
 import { ColumnDef } from "@tanstack/react-table";
-import { EditIcon,  Trash2Icon } from "lucide-react";
+import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 
 interface Props {
@@ -22,14 +22,24 @@ export default function ScentsList({ scents }: Props) {
     [handleOpenModal]
   );
 
+  const handleDelete = useCallback(
+    (id: string) => {
+      handleOpenModal({
+        name: modalTypes.deleteScentModal.name,
+        entity: id,
+      });
+    },
+    [handleOpenModal]
+  );
+
   const columns: ColumnDef<Scent>[] = [
-      {
+    {
       accessorKey: "id",
       enableHiding: false,
     },
     {
       accessorKey: "name",
-      header: "Esencia",
+      header: "Aroma",
     },
     {
       id: "actions",
@@ -50,7 +60,7 @@ export default function ScentsList({ scents }: Props) {
                   label: "Eliminar",
                   icon: <Trash2Icon />,
                   action: () => {
-                    console.log("Eliminar aroma");
+                    handleDelete(row.getValue("id"));
                   },
                 },
               ]}
@@ -63,7 +73,11 @@ export default function ScentsList({ scents }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <DataTable columns={columns} data={scents} initialVisibilityState={{id: false}}/>
+      <DataTable
+        columns={columns}
+        data={scents}
+        initialVisibilityState={{ id: false }}
+      />
     </div>
   );
 }
