@@ -2,7 +2,11 @@
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
-import { HomeBanner, HomeBannerDetails } from "@/types/home-banners";
+import {
+  HomeBanner,
+  HomeBannerCreateDTO,
+  HomeBannerDetails,
+} from "@/types/home-banners";
 import { IQueryable } from "@/types/request";
 
 export async function getHomeBannersList(params: IQueryable) {
@@ -15,7 +19,7 @@ export async function getHomeBannersList(params: IQueryable) {
     method: "GET",
     next: { tags: [tagsCacheByRoutes.homeBanners.multipleTag] },
   });
-console.log(res)
+  console.log(res);
   return await buildApiResponse<HomeBanner[]>(res);
 }
 
@@ -23,6 +27,21 @@ export async function getHomeBannerById(id: string) {
   const res = await fetch(apiRoutes.homeBanners.getById.replace(":id", id), {
     method: "GET",
     next: { tags: [tagsCacheByRoutes.homeBanners.singleTag] },
+  });
+
+  return await buildApiResponse<HomeBannerDetails>(res);
+}
+
+export async function createHomeBanner(
+  homeBannerCreateDTO: HomeBannerCreateDTO
+) {
+  const res = await fetch(apiRoutes.homeBanners.get, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(homeBannerCreateDTO),
   });
 
   return await buildApiResponse<HomeBannerDetails>(res);

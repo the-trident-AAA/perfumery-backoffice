@@ -17,7 +17,7 @@ export default function HomeBannersContainer({ homeBanners }: Props) {
         sectionTitle="Gestión de Banners de la Página Principal"
         sectionDescription="Gestione toda la información referente a los banners de la página principal de la Tienda"
         buttonText="Añadir Nuevo Banner"
-        creationPath={modalTypes.newPerfumeModal.name}
+        creationPath={modalTypes.newHomeBannerModal.name}
         isModalRedirect
       />
       <HomeBannersList homeBanners={homeBanners} />
