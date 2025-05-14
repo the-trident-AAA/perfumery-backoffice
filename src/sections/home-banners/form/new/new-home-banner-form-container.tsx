@@ -13,12 +13,13 @@ import {
 } from "./schemas/home-banner-create-schema";
 import useCreateHomeBanner from "../../hooks/use-create-home-banner";
 import HomeBannerForm from "../home-banner-form";
+import { toast } from "react-toastify";
 
 export default function NewHomeBannerFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
   const { loading: submitLoading, createHomeBanner } = useCreateHomeBanner({
     onCreateAction: () => {
-      console.log("Home-banner creado con éxito");
+      toast.success("Banner de la Página Home creado con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.homeBanners.multipleTag);
     },

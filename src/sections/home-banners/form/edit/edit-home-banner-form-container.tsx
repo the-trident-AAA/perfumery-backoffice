@@ -14,6 +14,7 @@ import {
 } from "./schemas/home-banner-edit-schema";
 import { HomeBannerDetails } from "@/types/home-banners";
 import useEditHomeBanner from "../../hooks/use-edit-home-banner";
+import { toast } from "react-toastify";
 
 interface Props {
   homeBanner: HomeBannerDetails;
@@ -24,7 +25,7 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
   const { loading: submitLoading, editHomeBanner } = useEditHomeBanner({
     id: homeBanner.id,
     onEditAction: () => {
-      console.log("Home-banner actualizado con éxito");
+      toast.success("Banner de la Página Home actualizado con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.homeBanners.multipleTag);
     },

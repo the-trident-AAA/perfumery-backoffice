@@ -6,6 +6,7 @@ import ConfirmationPanel from "@/components/confirmation-panel/confirmation-pane
 import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import useDeleteScent from "../hooks/use-delete-scent";
+import { toast } from "react-toastify";
 
 export default function DeleteScentModalContainer() {
   const { getInfoModal, handleCloseModal } = useContext(ModalContext);
@@ -14,7 +15,7 @@ export default function DeleteScentModalContainer() {
   const { deleteScent, loading } = useDeleteScent({
     id,
     onDeleteAction: () => {
-      console.log(id);
+      toast.success("Aroma eliminado con éxito");
       onCloseModal();
       revalidateServerTags(tagsCacheByRoutes.scents.multipleTag);
     },

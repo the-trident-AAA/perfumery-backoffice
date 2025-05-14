@@ -14,6 +14,7 @@ import {
 } from "./schemas/perfume-type-edit-schema";
 import PerfumeTypeForm from "../perfume-type-form";
 import useEditPerfumeType from "../../hooks/use-edit-perfume-type";
+import { toast } from "react-toastify";
 
 interface Props {
   perfumeType: PerfumeTypeDetails;
@@ -24,7 +25,7 @@ export default function EditPerfumeTypeFormContainer({ perfumeType }: Props) {
   const { editPerfumeType, loading: submitLoading } = useEditPerfumeType({
     id: perfumeType.id,
     onEditAction: () => {
-      console.log("Tipo de perfume actualizado con éxito");
+      toast.success("Tipo de perfume actualizado con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.perfumeTypes.multipleTag);
     },

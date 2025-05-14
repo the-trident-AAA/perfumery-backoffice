@@ -11,6 +11,7 @@ import OfferForm from "../offer-form";
 import { OfferEdit, offerEditSchema } from "./schemas/offer-edit-schema";
 import { OfferDetails } from "@/types/offers";
 import useEditOffer from "../../hooks/use-edit-offer";
+import { toast } from "react-toastify";
 
 interface Props {
   offer: OfferDetails;
@@ -21,7 +22,7 @@ export default function EditOfferFormContainer({ offer }: Props) {
   const { loading: submitLoading, editOffer } = useEditOffer({
     id: offer.id,
     onEditAction: () => {
-      console.log("Oferta actualizada con éxito");
+      toast.success("Oferta actualizada con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.offers.multipleTag);
     },

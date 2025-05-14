@@ -11,7 +11,7 @@ import { ScentDetails } from "@/types/scents";
 import { ScentEdit, scentEditSchema } from "./schemas/scent-edit-schema";
 import ScentForm from "../scent-form";
 import useEditScent from "../../hooks/use-edit-scent";
-
+import { toast } from "react-toastify";
 
 interface Props {
   scent: ScentDetails;
@@ -22,7 +22,7 @@ export default function EditScentFormContainer({ scent }: Props) {
   const { editScent, loading: submitLoading } = useEditScent({
     id: scent.id,
     onEditAction: () => {
-      console.log("Aroma actualizado con éxito");
+      toast.success("Aroma actualizado con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.scents.multipleTag);
     },
@@ -31,7 +31,7 @@ export default function EditScentFormContainer({ scent }: Props) {
   const form = useForm<ScentEdit>({
     resolver: zodResolver(scentEditSchema),
     defaultValues: {
-     name: scent.name,
+      name: scent.name,
     },
   });
 

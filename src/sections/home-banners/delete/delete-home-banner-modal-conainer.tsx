@@ -6,6 +6,7 @@ import ConfirmationPanel from "@/components/confirmation-panel/confirmation-pane
 import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import useDeleteHomeBanner from "../hooks/use-delete-home-banner";
+import { toast } from "react-toastify";
 
 export default function DeleteHomeBannerModalContainer() {
   const { getInfoModal, handleCloseModal } = useContext(ModalContext);
@@ -14,6 +15,7 @@ export default function DeleteHomeBannerModalContainer() {
   const { deleteHomeBanner, loading } = useDeleteHomeBanner({
     id,
     onDeleteAction: () => {
+      toast.success("Banner de la Página Home eliminado con éxito");
       onCloseModal();
       revalidateServerTags(tagsCacheByRoutes.homeBanners.multipleTag);
     },

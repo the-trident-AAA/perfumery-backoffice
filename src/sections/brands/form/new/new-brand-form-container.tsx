@@ -10,13 +10,13 @@ import { useContext } from "react";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { Button } from "@/components/ui/button";
 import BrandForm from "../brand-form";
-
+import { toast } from "react-toastify";
 
 export default function NewBrandFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
   const { loading: submitLoading, createBrand } = useCreateBrand({
     onCreateAction: () => {
-      console.log("Marca creada con éxito");
+      toast.success("Marca creada con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.brands.multipleTag);
     },

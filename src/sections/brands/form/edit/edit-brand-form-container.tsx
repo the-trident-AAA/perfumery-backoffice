@@ -11,6 +11,7 @@ import BrandForm from "../brand-form";
 import { BrandEdit, brandEditSchema } from "./schemas/brand-edit-schema";
 import useEditBrand from "../../hooks/use-edit-brand";
 import { BrandDetails } from "@/types/brands";
+import { toast } from "react-toastify";
 
 interface Props {
   brand: BrandDetails;
@@ -21,7 +22,7 @@ export default function EditBrandFormContainer({ brand }: Props) {
   const { editBrand, loading: submitLoading } = useEditBrand({
     id: brand.id,
     onEditAction: () => {
-      console.log("Marca actualizada con éxito");
+      toast.success("Marca actualizada con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.brands.multipleTag);
     },

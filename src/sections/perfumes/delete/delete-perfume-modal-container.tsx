@@ -6,6 +6,7 @@ import useDeletePerfume from "../hooks/use-delete-perfume";
 import ConfirmationPanel from "@/components/confirmation-panel/confirmation-panel";
 import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
+import { toast } from "react-toastify";
 
 export default function DeletePerfumeModalContainer() {
   const { getInfoModal, handleCloseModal } = useContext(ModalContext);
@@ -14,6 +15,7 @@ export default function DeletePerfumeModalContainer() {
   const { deletePerfume, loading } = useDeletePerfume({
     id,
     onDeleteAction: () => {
+      toast.success("Perfume eliminado con éxito");
       onCloseModal();
       revalidateServerTags(tagsCacheByRoutes.perfumes.multipleTag);
     },

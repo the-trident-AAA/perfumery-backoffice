@@ -6,6 +6,7 @@ import ConfirmationPanel from "@/components/confirmation-panel/confirmation-pane
 import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import useDeleteBrand from "../hooks/use-delete-brand";
+import { toast } from "react-toastify";
 
 export default function DeleteBrandModalContainer() {
   const { getInfoModal, handleCloseModal } = useContext(ModalContext);
@@ -14,6 +15,7 @@ export default function DeleteBrandModalContainer() {
   const { deleteBrand, loading } = useDeleteBrand({
     id,
     onDeleteAction: () => {
+      toast.success("Marca eliminada con éxito");
       onCloseModal();
       revalidateServerTags(tagsCacheByRoutes.brands.multipleTag);
     },

@@ -11,6 +11,7 @@ import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { PerfumeEdit, perfumeEditSchema } from "./schemas/perfume-edit-schema";
 import useEditPerfume from "../../hooks/use-edit-perfume";
+import { toast } from "react-toastify";
 
 interface Props {
   perfume: PerfumeDetails;
@@ -21,7 +22,7 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
   const { editPerfume, loading: submitLoading } = useEditPerfume({
     id: perfume.id,
     onEditAction: () => {
-      console.log("Perfume actualizado con éxito");
+      toast.success("Perfume actualizado con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.perfumes.multipleTag);
     },

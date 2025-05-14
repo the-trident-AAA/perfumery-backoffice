@@ -14,12 +14,13 @@ import { Gender } from "@/types/perfumes";
 import useCreatePerfume from "../../hooks/use-create-perfume";
 import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
+import { toast } from "react-toastify";
 
 export default function NewPerfumeFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
   const { loading: submitLoading, createPerfume } = useCreatePerfume({
     onCreateAction: () => {
-      console.log("Perfume creado con éxito");
+      toast.success("Perfume creado con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.perfumes.multipleTag);
     },

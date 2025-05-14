@@ -10,13 +10,13 @@ import { Button } from "@/components/ui/button";
 import { ScentCreate, scentCreateSchema } from "./schemas/scent-create-schema";
 import useCreateScent from "../../hooks/use-create-scents";
 import ScentForm from "../scent-form";
-
+import { toast } from "react-toastify";
 
 export default function NewScentFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
   const { loading: submitLoading, createScent } = useCreateScent({
     onCreateAction: () => {
-      console.log("Aroma creado con éxito");
+      toast.success("Aroma creado con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.scents.multipleTag);
     },

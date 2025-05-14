@@ -6,6 +6,7 @@ import ConfirmationPanel from "@/components/confirmation-panel/confirmation-pane
 import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import useDeleteOffer from "../hooks/use-delete-offer";
+import { toast } from "react-toastify";
 
 export default function DeleteOfferModalContainer() {
   const { getInfoModal, handleCloseModal } = useContext(ModalContext);
@@ -14,7 +15,7 @@ export default function DeleteOfferModalContainer() {
   const { deleteOffer, loading } = useDeleteOffer({
     id,
     onDeleteAction: () => {
-      console.log("Eliminación de oferta exitosa");
+      toast.success("Oferta eliminada con éxito");
       onCloseModal();
       revalidateServerTags(tagsCacheByRoutes.offers.multipleTag);
     },

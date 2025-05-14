@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { PerfumeTypeCreate, perfumeTypeCreateSchema } from "./schemas/perfume-type-create-schema";
 import useCreatePerfumeType from "../../hooks/use-create-perfume-types";
 import PerfumeTypeForm from "../perfume-type-form";
+import { toast } from "react-toastify";
 
 
 
@@ -17,7 +18,7 @@ export default function NewPerfumeTypeFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
   const { loading: submitLoading, createPerfumeType } = useCreatePerfumeType({
     onCreateAction: () => {
-      console.log("Tipo de Perfume creado con éxito");
+      toast.success("Tipo de Perfume creado con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.perfumeTypes.multipleTag);
     },

@@ -10,12 +10,13 @@ import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { OfferCreate, offerCreateSchema } from "./schemas/offer-create-schema";
 import useCreateOffer from "../../hooks/use-create-offer";
 import OfferForm from "../offer-form";
+import { toast } from "react-toastify";
 
 export default function NewOfferFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
   const { loading: submitLoading, createOffer } = useCreateOffer({
     onCreateAction: () => {
-      console.log("Oferta creada con éxito");
+      toast.success("Oferta creada con éxito");
       handleClose();
       revalidateServerTags(tagsCacheByRoutes.offers.multipleTag);
     },
