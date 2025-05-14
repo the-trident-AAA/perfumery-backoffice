@@ -5,6 +5,7 @@ import { ModalProvider } from "@/components/modal/context/modalContext";
 import Footer from "@/sections/root-layout/footer/footer";
 import PreviewModal from "@/components/preview-image/preview-modal";
 import { PreviewProvider } from "@/components/preview-image/context/preview-context";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
         <ModalProvider>
           <PreviewProvider>
             <div className="flex min-h-screen flex-col">
+              <ToastContainer />
               <PreviewModal />
               {children}
               <Footer />
