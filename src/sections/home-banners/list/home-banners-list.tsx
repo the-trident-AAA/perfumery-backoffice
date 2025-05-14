@@ -39,7 +39,7 @@ export default function HomeBannersList({ homeBanners }: Props) {
   const handleDelete = useCallback(
     (id: string) => {
       handleOpenModal({
-        name: modalTypes.detelePerfumeModal.name,
+        name: modalTypes.deleteHomeBannerModal.name,
         entity: id,
       });
     },

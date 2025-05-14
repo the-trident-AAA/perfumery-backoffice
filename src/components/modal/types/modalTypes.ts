@@ -55,6 +55,12 @@ export interface ModalTypes {
   selectablePerfumesModal: SectionModal;
   editHomeBannerModal: SectionModal;
   detailsHomeBannerModal: SectionModal;
+  deleteHomeBannerModal: SectionModal & {
+    message: string;
+    warningMessage: string;
+    cancelButtonText: string;
+    confirmButtonText: string;
+  };
 }
 
 export const modalTypes: ModalTypes = {
@@ -170,5 +176,15 @@ export const modalTypes: ModalTypes = {
   detailsHomeBannerModal: {
     name: "detailsHomeBannerModal",
     title: "Detalles del Banner de Página Principal",
+  },
+  deleteHomeBannerModal: {
+    name: "deleteHomeBannerModal",
+    title: "Eliminación de Banner de la Página Principal",
+    message:
+      "¿Está seguro de que desea eliminar el Banner de la Página Principal?",
+    warningMessage:
+      "Esta acción provocará la eliminación permanente del Banner de la Página Principal.",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Confirmar",
   },
 };

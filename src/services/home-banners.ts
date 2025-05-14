@@ -63,3 +63,15 @@ export async function editHomeBanner(
 
   return await buildApiResponse<HomeBannerDetails>(res);
 }
+
+export async function deleteHomeBanner(id: string) {
+  const res = await fetch(apiRoutes.homeBanners.getById.replace(":id", id), {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+  });
+
+  return await buildApiResponse<HomeBannerDetails>(res);
+}

@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import DeleteHomeBannerModalContainer from "@/sections/home-banners/delete/delete-home-banner-modal-conainer";
 import HomeBannerDetailsModalContainer from "@/sections/home-banners/details/home-banner-details-modal-container";
 import EditHomeBannerModalContainer from "@/sections/home-banners/form/edit/edit-home-banner-modal-container";
 import NewHomeBannerFormContainer from "@/sections/home-banners/form/new/new-home-banner-form-container";
@@ -36,13 +37,19 @@ export default async function HomeBannersPage({ searchParams }: Props) {
       >
         <EditHomeBannerModalContainer />
       </Modal>
-       <Modal
+      <Modal
         formPath={modalTypes.detailsHomeBannerModal.name}
         title={modalTypes.detailsHomeBannerModal.title}
         maxWidth="max-w-3xl"
         className="min-h-[74vh]"
       >
         <HomeBannerDetailsModalContainer />
+      </Modal>
+      <Modal
+        formPath={modalTypes.deleteHomeBannerModal.name}
+        maxWidth="max-w-xl"
+      >
+        <DeleteHomeBannerModalContainer />
       </Modal>
     </>
   );
