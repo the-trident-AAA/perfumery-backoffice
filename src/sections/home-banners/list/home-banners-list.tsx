@@ -69,6 +69,13 @@ export default function HomeBannersList({ homeBanners }: Props) {
     {
       accessorKey: "description",
       header: "Descripción",
+      cell: ({ row }) => {
+        return (
+          <p className="text-sm line-clamp-3 break-words max-w-[300px] whitespace-pre-wrap leading-relaxed text-gray-700">
+            {row.getValue("description")}
+          </p>
+        );
+      },
     },
     {
       id: "actions",
