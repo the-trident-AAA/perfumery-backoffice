@@ -22,6 +22,7 @@ export default async function HomeBannersPage({ searchParams }: Props) {
         formPath={modalTypes.newHomeBannerModal.name}
         title={modalTypes.newHomeBannerModal.title}
         maxWidth="max-w-3xl"
+        className="min-h-[74vh]"
       >
         <NewHomeBannerFormContainer />
       </Modal>

@@ -3,19 +3,11 @@
 import { Perfume } from "@/types/perfumes";
 import Image from "next/image";
 
-export interface PerfumeCart {
-  id: string;
-  perfume: Perfume;
-  cant: number;
-  precio: number;
-}
-
 interface PerfumeCartProps {
-  perfume: Perfume;
-  variant?: "default" | "modal";
+  data: Perfume;
 }
 
-export default function PerfumeCard({ perfume }: PerfumeCartProps) {
+export default function PerfumeCard({ data: perfume }: PerfumeCartProps) {
   return (
     <div className=" rounded-2xl border">
       <div className="p-0">
@@ -23,7 +15,7 @@ export default function PerfumeCard({ perfume }: PerfumeCartProps) {
           <div className={`relative h-28 w-28 2xs:h-32 2xs:w-32 flex-shrink-0`}>
             <Image
               className="aspect-square object-cover"
-              src={perfume.image || "images/place-holder.jpg"}
+              src={perfume.image || "/images/place-holder.jpg"}
               alt={"image"}
               width={400}
               height={400}

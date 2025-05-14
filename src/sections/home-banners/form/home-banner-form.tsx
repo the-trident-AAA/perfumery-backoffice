@@ -1,24 +1,33 @@
-"use client"
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rhf-text-field";
-import { RHFTextAreaField } from "@/components/form/rhf-components/rhf-text-area-field/rhf-text-area-field";
+"use client";
+import { useMemo } from "react";
+import { TabsContainer } from "@/components/ui/tabs-panel/tabs-panel";
+import { TabsPanelProvider } from "@/components/ui/tabs-panel/context/tabs-panel-context";
+import HomeBannerBasicInfoSection from "./form-sections/home-banner-basic-info-section/home-banner-basic-info-section";
+import HomeBannerPerfumesSection from "./form-sections/home-banner-perfumes-section/home-banner-perfumes-section";
+import HomeBannerFormSectionsController from "./form-sections/home-banner-form-sections-controller";
+
 export default function HomeBannerForm() {
+  const tabs = useMemo(
+    () => [
+      {
+        label: "Información Básica",
+        value: "1",
+        component: <HomeBannerBasicInfoSection />,
+      },
+      {
+        label: "Perfumes Asociados",
+        value: "2",
+        component: <HomeBannerPerfumesSection />,
+      },
+    ],
+    []
+  );
+
   return (
-    <Card className="shadow-sm">
-      <CardContent className="pt-4 px-4 flex flex-col gap-4">
-        <RHFTextField
-          name="title"
-          label="Título del Banner"
-          placeholder="Ingrese el título del banner"
-        />
-        <RHFTextAreaField
-          name="description"
-          label="Descripción del Banner"
-          description="Introduzca la descripción del banner"
-          fullWidth
-        />
-      </CardContent>
-    </Card>
+    <TabsPanelProvider initialTab={tabs[0].value}>
+      <HomeBannerFormSectionsController>
+        <TabsContainer tabs={tabs} fullWidth={false} />
+      </HomeBannerFormSectionsController>
+    </TabsPanelProvider>
   );
 }

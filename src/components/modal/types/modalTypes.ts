@@ -2,6 +2,7 @@ export interface InfoModal {
   name: string;
   // matadata
   entity?: string; // id entity
+  elements?: any[];
   actionInsert?: (element: any) => void;
   onClose?: () => void;
   onOpen?: () => void;
@@ -51,6 +52,7 @@ export interface ModalTypes {
     confirmButtonText: string;
   };
   newHomeBannerModal: SectionModal;
+  selectablePerfumesModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -154,5 +156,9 @@ export const modalTypes: ModalTypes = {
   newHomeBannerModal: {
     name: "newHomeBannerModal",
     title: "Formulario de Creación de Banner de Página Principal",
+  },
+  selectablePerfumesModal: {
+    name: "selectablePerfumesModal",
+    title: "Seleccione los Perfumes",
   },
 };

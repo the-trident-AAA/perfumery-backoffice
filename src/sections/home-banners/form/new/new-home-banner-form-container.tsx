@@ -28,6 +28,7 @@ export default function NewHomeBannerFormContainer() {
     defaultValues: {
       title: "",
       description: "",
+      perfumes: [],
     },
   });
 
