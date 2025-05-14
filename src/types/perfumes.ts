@@ -111,3 +111,15 @@ export const convertPerfumeEditDTO = (
     offerId: perfumeEdit.offerId !== "" ? perfumeEdit.offerId : undefined,
   };
 };
+
+export const convertPerfumeDetailsToPerfume = (
+  perfumeDetails: PerfumeDetails
+): Perfume => {
+  return {
+    ...perfumeDetails,
+    brand: perfumeDetails.brand.name,
+    discountOffer: perfumeDetails.offer ? perfumeDetails.offer.discount : 0,
+    perfumeType: perfumeDetails.perfumeType.name,
+    scents: perfumeDetails.scents.map((scent) => scent.name),
+  };
+};

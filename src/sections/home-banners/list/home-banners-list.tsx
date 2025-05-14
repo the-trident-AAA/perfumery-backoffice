@@ -29,7 +29,7 @@ export default function HomeBannersList({ homeBanners }: Props) {
   const handleViewDetails = useCallback(
     (id: string) => {
       handleOpenModal({
-        name: modalTypes.detailsPerfumeModal.name,
+        name: modalTypes.detailsHomeBannerModal.name,
         entity: id,
       });
     },

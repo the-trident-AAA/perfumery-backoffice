@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import HomeBannerDetailsModalContainer from "@/sections/home-banners/details/home-banner-details-modal-container";
 import EditHomeBannerModalContainer from "@/sections/home-banners/form/edit/edit-home-banner-modal-container";
 import NewHomeBannerFormContainer from "@/sections/home-banners/form/new/new-home-banner-form-container";
 import HomeBannersContainer from "@/sections/home-banners/home-banners-container";
@@ -34,6 +35,14 @@ export default async function HomeBannersPage({ searchParams }: Props) {
         className="min-h-[74vh]"
       >
         <EditHomeBannerModalContainer />
+      </Modal>
+       <Modal
+        formPath={modalTypes.detailsHomeBannerModal.name}
+        title={modalTypes.detailsHomeBannerModal.title}
+        maxWidth="max-w-3xl"
+        className="min-h-[74vh]"
+      >
+        <HomeBannerDetailsModalContainer />
       </Modal>
     </>
   );

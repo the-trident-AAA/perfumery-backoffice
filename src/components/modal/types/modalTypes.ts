@@ -54,6 +54,7 @@ export interface ModalTypes {
   newHomeBannerModal: SectionModal;
   selectablePerfumesModal: SectionModal;
   editHomeBannerModal: SectionModal;
+  detailsHomeBannerModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -165,5 +166,9 @@ export const modalTypes: ModalTypes = {
   editHomeBannerModal: {
     name: "editHomeBannerModal",
     title: "Formulario de Edición de Banner de Página Principal",
+  },
+  detailsHomeBannerModal: {
+    name: "detailsHomeBannerModal",
+    title: "Detalles del Banner de Página Principal",
   },
 };
