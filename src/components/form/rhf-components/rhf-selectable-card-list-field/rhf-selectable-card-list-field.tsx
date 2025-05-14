@@ -34,7 +34,7 @@ export default function RHFSelectableCardListField<T extends { id: string }>({
     trigger,
     formState: { errors },
   } = useFormContext();
-  const { handleOpenModal, handleCloseModal } = useContext(ModalContext);
+  const { handleOpenModal } = useContext(ModalContext);
   const selectedValues = watch(name) as T[];
 
   const handleSelect = useCallback(
@@ -43,7 +43,7 @@ export default function RHFSelectableCardListField<T extends { id: string }>({
       setValue(name, newValues);
       trigger(name);
     },
-    [handleCloseModal, setValue, trigger, name, selectedValues]
+    [setValue, trigger, name, selectedValues]
   );
 
   const onSelectModalOpen = useCallback(() => {

@@ -1,5 +1,5 @@
 import { HomeBannerCreate } from "@/sections/home-banners/form/new/schemas/home-banner-create-schema";
-import { Perfume, PerfumeDetails } from "./perfumes";
+import { PerfumeDetails } from "./perfumes";
 import { HomeBannerEdit } from "@/sections/home-banners/form/edit/schemas/home-banner-edit-schema";
 
 export interface HomeBanner {

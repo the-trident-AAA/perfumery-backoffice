@@ -34,7 +34,7 @@ export default function useEditHomeBanner({ id, onEditAction }: Props) {
         setLoading(false);
       }
     },
-    [onEditAction]
+    [id, onEditAction]
   );
   return {
     loading,

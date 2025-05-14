@@ -23,6 +23,6 @@ export default function useSelectablePerfumes({ action }: Props) {
   const handleAction = useCallback(() => {
     action(selectedPerfumes);
     handleCloseModal(modalTypes.selectablePerfumesModal.name);
-  }, [action, selectedPerfumes]);
+  }, [action, handleCloseModal, selectedPerfumes]);
   return { selectedPerfumes, toggleSelection, handleAction };
 }
