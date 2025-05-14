@@ -36,7 +36,7 @@ export default function EmptyContent({
 	}
 
 	return (
-		<div className="flex min-h-[400px] w-full flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-white p-8 text-center dark:border-gray-800 dark:bg-gray-950/50">
+		<div className="flex w-full flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-white p-8 text-center dark:border-gray-800 dark:bg-gray-950/50">
 			<motion.div
 				className="rounded-full bg-primary p-4 dark:bg-white"
 				initial="hidden"
