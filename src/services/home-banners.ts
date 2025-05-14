@@ -6,6 +6,7 @@ import {
   HomeBanner,
   HomeBannerCreateDTO,
   HomeBannerDetails,
+  HomeBannerEditDTO,
 } from "@/types/home-banners";
 import { IQueryable } from "@/types/request";
 
@@ -42,6 +43,22 @@ export async function createHomeBanner(
       "content-type": "application/json",
     },
     body: JSON.stringify(homeBannerCreateDTO),
+  });
+
+  return await buildApiResponse<HomeBannerDetails>(res);
+}
+
+export async function editHomeBanner(
+  id: string,
+  homeBannerEditDTO: HomeBannerEditDTO
+) {
+  const res = await fetch(apiRoutes.homeBanners.getById.replace(":id", id), {
+    method: "PATCH",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(homeBannerEditDTO),
   });
 
   return await buildApiResponse<HomeBannerDetails>(res);

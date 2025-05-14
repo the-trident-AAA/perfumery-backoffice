@@ -1,4 +1,3 @@
-import { offerSchema } from "@/sections/offers/form/schemas/offer-schema";
 import { z } from "zod";
 
 export const perfumeSchema = z.object({
@@ -14,5 +13,5 @@ export const perfumeSchema = z.object({
   available: z.boolean(),
   gender: z.string(),
   scents: z.array(z.string()),
-  offer: offerSchema.optional(),
+  discountOffer: z.number(),
 });

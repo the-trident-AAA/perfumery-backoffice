@@ -18,7 +18,10 @@ export default function HomeBannersList({ homeBanners }: Props) {
 
   const handleEdit = useCallback(
     (id: string) => {
-      handleOpenModal({ name: modalTypes.editPerfumeModal.name, entity: id });
+      handleOpenModal({
+        name: modalTypes.editHomeBannerModal.name,
+        entity: id,
+      });
     },
     [handleOpenModal]
   );

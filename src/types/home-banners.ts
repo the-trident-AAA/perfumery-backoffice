@@ -1,5 +1,6 @@
 import { HomeBannerCreate } from "@/sections/home-banners/form/new/schemas/home-banner-create-schema";
-import { Perfume } from "./perfumes";
+import { Perfume, PerfumeDetails } from "./perfumes";
+import { HomeBannerEdit } from "@/sections/home-banners/form/edit/schemas/home-banner-edit-schema";
 
 export interface HomeBanner {
   id: string;
@@ -13,10 +14,17 @@ export interface HomeBannerDetails {
   title: string;
   description: string;
   image?: string;
-  perfumes: Perfume[];
+  perfumes: PerfumeDetails[];
 }
 
 export interface HomeBannerCreateDTO {
+  title: string;
+  description: string;
+  image?: string;
+  perfumes: string[];
+}
+
+export interface HomeBannerEditDTO {
   title: string;
   description: string;
   image?: string;
@@ -29,5 +37,14 @@ export const convertHomeBannerCreateDTO = (
   return {
     ...homeBannerCreate,
     perfumes: homeBannerCreate.perfumes.map((perfume) => perfume.id),
+  };
+};
+
+export const convertHomeBannerEditDTO = (
+  homeBannerEdit: HomeBannerEdit
+): HomeBannerEditDTO => {
+  return {
+    ...homeBannerEdit,
+    perfumes: homeBannerEdit.perfumes.map((perfume) => perfume.id),
   };
 };
