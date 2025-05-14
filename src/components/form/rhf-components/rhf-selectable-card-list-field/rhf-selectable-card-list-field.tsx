@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import React, { useCallback, useContext } from "react";
 import { useFormContext } from "react-hook-form";
 import DeselectionMask from "./components/deselection-mask-card/deselection-mask-card";
+import { cn } from "@/lib/utils";
 
 interface Props<T> {
   name: string;
@@ -13,6 +14,8 @@ interface Props<T> {
   emptyText?: string;
   selectElementsText?: string;
   CardComponent: React.ComponentType<{ data: T }>;
+  className?: string;
+  errorClassName?: string;
 }
 
 export default function RHFSelectableCardListField<T extends { id: string }>({
@@ -22,8 +25,15 @@ export default function RHFSelectableCardListField<T extends { id: string }>({
   selectElementsText = "Seleccione más elementos",
   modalPath,
   CardComponent,
+  className,
+  errorClassName = "text-red-500 text-sm mt-1",
 }: Props<T>) {
-  const { watch, setValue, trigger } = useFormContext();
+  const {
+    watch,
+    setValue,
+    trigger,
+    formState: { errors },
+  } = useFormContext();
   const { handleOpenModal, handleCloseModal } = useContext(ModalContext);
   const selectedValues = watch(name) as T[];
 
@@ -42,7 +52,7 @@ export default function RHFSelectableCardListField<T extends { id: string }>({
       elements: selectedValues,
       actionInsert: handleSelect,
     });
-  }, [handleOpenModal, modalPath, selectedValues]);
+  }, [handleOpenModal, modalPath, selectedValues, handleSelect]);
 
   const handleRemove = useCallback(
     (id: string) => {
@@ -56,13 +66,14 @@ export default function RHFSelectableCardListField<T extends { id: string }>({
   );
 
   return (
-    <div className="flex flex-col h-full gap-4">
+    <div className={cn("flex flex-col h-full gap-4", className)}>
       <div className="flex justify-between gap-2">
         <h3 className="font-medium text-lg mb-3">{label}</h3>
         <Button type="button" onClick={onSelectModalOpen}>
           {selectElementsText}
         </Button>
       </div>
+
       {selectedValues.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[42vh] p-2 overflow-auto">
           {selectedValues.map((selectedValue, index) => (
@@ -78,6 +89,9 @@ export default function RHFSelectableCardListField<T extends { id: string }>({
         </div>
       ) : (
         <EmptyContent title={emptyText} />
+      )}
+      {errors[name] && (
+        <p className={errorClassName}>{errors[name]?.message as string}</p>
       )}
     </div>
   );
