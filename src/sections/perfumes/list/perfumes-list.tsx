@@ -73,8 +73,8 @@ export default function PerfumesList({ perfumes }: Props) {
       header: "Género",
     },
     {
-      accessorKey: "liters",
-      header: "Litros",
+      accessorKey: "milliliters",
+      header: "Mililitros",
     },
     {
       accessorKey: "perfumeType",
