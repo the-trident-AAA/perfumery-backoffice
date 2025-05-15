@@ -13,7 +13,7 @@ export default function FormSectionsController({ children }: Props) {
   const { setTabValue } = useContext(TabsPanelContext);
 
   useEffect(() => {
-    if (errors.name || errors.brandId) {
+    if (errors.name || errors.brandId || errors.image) {
       setTabValue("1"); // move basic information section
     } else if (
       errors.perfumeTypeId ||
