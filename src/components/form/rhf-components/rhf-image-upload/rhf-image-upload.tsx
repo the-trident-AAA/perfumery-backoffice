@@ -1,13 +1,14 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useFormContext } from "react-hook-form";
 import { X, Upload, ImageIcon, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { compressImage } from "@/lib/images";
 
 interface ImageUploadProps {
   name: string;
@@ -16,6 +17,8 @@ interface ImageUploadProps {
   className?: string;
   error?: string;
   loading?: boolean;
+  quality?: number;
+  maxWidth?: number;
 }
 
 export function RHFImageUpload({
@@ -25,12 +28,36 @@ export function RHFImageUpload({
   className,
   error,
   loading = false,
+  quality = 80,
+  maxWidth = 1920,
 }: ImageUploadProps) {
   const { setValue, watch, formState } = useFormContext();
   const value = watch(name);
   const fieldError = error || formState.errors[name]?.message;
 
   const [preview, setPreview] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const processImage = useCallback(
+    async (file: File) => {
+      setIsProcessing(true);
+      try {
+        const compressedFile = await compressImage(file, {
+          quality,
+          maxWidth,
+          format: "webp",
+        });
+
+        setValue(name, compressedFile, { shouldValidate: true });
+      } catch (err) {
+        console.error("Error processing image:", err);
+        setValue(name, file, { shouldValidate: true });
+      } finally {
+        setIsProcessing(false);
+      }
+    },
+    [name, setValue, quality, maxWidth]
+  );
 
   const { getRootProps, getInputProps, isDragActive, fileRejections } =
     useDropzone({
@@ -39,11 +66,11 @@ export function RHFImageUpload({
       },
       maxSize,
       multiple: false,
-      disabled: loading,
+      disabled: loading || isProcessing,
       onDrop: (acceptedFiles) => {
         if (acceptedFiles?.length) {
           const file = acceptedFiles[0];
-          setValue(name, file, { shouldValidate: true });
+          processImage(file);
         }
       },
     });
@@ -65,7 +92,7 @@ export function RHFImageUpload({
   // Handle file removal
   const handleRemove = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (loading) return;
+    if (loading || isProcessing) return;
     setValue(name, null, { shouldValidate: true });
     setPreview(null);
   };
@@ -86,18 +113,20 @@ export function RHFImageUpload({
             : "border-gray-300 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900/30",
           preview ? "h-64" : "h-40",
           error && "border-red-500",
-          loading ? "cursor-wait opacity-70" : "cursor-pointer",
-          loading && !preview && "animate-pulse"
+          loading || isProcessing ? "cursor-wait opacity-70" : "cursor-pointer",
+          (loading || isProcessing) && !preview && "animate-pulse"
         )}
       >
-        <input {...getInputProps()} disabled={loading} />
+        <input {...getInputProps()} disabled={loading || isProcessing} />
 
-        {loading && (
+        {(loading || isProcessing) && (
           <div className="absolute inset-0 bg-background/50 backdrop-blur-[1px] flex items-center justify-center z-10 rounded-lg">
             <div className="flex flex-col items-center gap-2">
               <Loader2 className="h-8 w-8 text-primary animate-spin" />
               <p className="text-sm text-muted-foreground">
-                Procesando imagen...
+                {isProcessing
+                  ? "Optimizando imagen..."
+                  : "Procesando imagen..."}
               </p>
             </div>
           </div>
@@ -112,7 +141,7 @@ export function RHFImageUpload({
               height={1080}
               className={cn(
                 "object-contain w-full h-full rounded-md",
-                loading && "filter blur-[1px]"
+                (loading || isProcessing) && "filter blur-[1px]"
               )}
             />
             <Button
@@ -120,7 +149,7 @@ export function RHFImageUpload({
               onClick={handleRemove}
               variant={"destructive"}
               className="absolute top-2 right-2 p-1 rounded-full"
-              disabled={loading}
+              disabled={loading || isProcessing}
             >
               <X className="h-4 w-4" />
             </Button>
@@ -139,16 +168,17 @@ export function RHFImageUpload({
                 <Upload
                   className={cn(
                     "w-10 h-10 text-gray-400",
-                    loading && "opacity-50"
+                    (loading || isProcessing) && "opacity-50"
                   )}
                 />
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {loading
+                  {loading || isProcessing
                     ? "Espera mientras se procesa la imagen..."
                     : "Arrastra y suelta una imagen, o haz clic para seleccionar"}
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-500">
                   PNG, JPG, GIF hasta {Math.round(maxSize / (1024 * 1024))}MB
+                  (se convertirá a WebP)
                 </p>
               </>
             )}
