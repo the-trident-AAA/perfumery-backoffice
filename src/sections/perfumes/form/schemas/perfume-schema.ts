@@ -4,7 +4,7 @@ export const perfumeSchema = z.object({
   id: z.string(),
   name: z.string(),
   description: z.string(),
-  image: z.string().optional(),
+  image: z.string(),
   brand: z.string(),
   price: z.number(),
   cant: z.number(),
