@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "2mb",
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "104.225.141.171",
+        port: "9000",
+        pathname: "/perfumery/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
