@@ -12,6 +12,7 @@ import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { PerfumeEdit, perfumeEditSchema } from "./schemas/perfume-edit-schema";
 import useEditPerfume from "../../hooks/use-edit-perfume";
 import { toast } from "react-toastify";
+import useImageForm from "@/components/form/hooks/use-image-form";
 
 interface Props {
   perfume: PerfumeDetails;
@@ -44,6 +45,13 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
     },
   });
 
+  const { loading, error } = useImageForm({
+    form,
+    imageUrl: perfume.image,
+    imageName: perfume.name,
+    fieldName: "image",
+  });
+
   const handleClose = () => {
     handleCloseModal(modalTypes.editPerfumeModal.name);
   };
@@ -57,7 +65,7 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
-        <PerfumeForm />
+        <PerfumeForm imageRecived={{ loading, error }} />
         <div className="flex gap-2 justify-end">
           <Button type="button" variant={"destructive"} onClick={handleClose}>
             Cancelar

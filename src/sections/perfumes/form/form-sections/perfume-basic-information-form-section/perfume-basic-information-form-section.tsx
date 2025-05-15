@@ -6,7 +6,17 @@ import { RHFSelectField } from "@/components/form/rhf-components/rhf-select-fiel
 import useBrands from "@/sections/brands/hooks/use-brands";
 import { RHFTextAreaField } from "@/components/form/rhf-components/rhf-text-area-field/rhf-text-area-field";
 import { RHFImageUpload } from "@/components/form/rhf-components/rhf-image-upload/rhf-image-upload";
-export default function PerfumeBasicInformationFormSection() {
+
+interface Props {
+  imageRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
+}
+
+export default function PerfumeBasicInformationFormSection({
+  imageRecived,
+}: Props) {
   const { brands, loadingData } = useBrands();
   return (
     <Card className="shadow-sm">
@@ -34,7 +44,11 @@ export default function PerfumeBasicInformationFormSection() {
           description="Introduzca la descripción del Perfume"
           fullWidth
         />
-        <RHFImageUpload name="image" label="Imagen del Product" />
+        <RHFImageUpload
+          name="image"
+          label="Imagen del Product"
+          {...(imageRecived && { loading: imageRecived.loading })}
+        />
       </CardContent>
     </Card>
   );

@@ -7,14 +7,22 @@ import { TabsContainer } from "@/components/ui/tabs-panel/tabs-panel";
 import { TabsPanelProvider } from "@/components/ui/tabs-panel/context/tabs-panel-context";
 import FormSectionsController from "./form-sections/form-sections-controller";
 
+interface Props {
+  imageRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
+}
 
-export function PerfumeForm() {
+export function PerfumeForm({ imageRecived }: Props) {
   const tabs = useMemo(
     () => [
       {
         label: "Información Básica",
         value: "1",
-        component: <PerfumeBasicInformationFormSection />,
+        component: (
+          <PerfumeBasicInformationFormSection imageRecived={imageRecived} />
+        ),
       },
       {
         label: "Características",
@@ -27,7 +35,7 @@ export function PerfumeForm() {
         component: <PerfumeComercialInfoFormSection />,
       },
     ],
-    []
+    [imageRecived]
   );
 
   return (
