@@ -4,7 +4,7 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { useFormContext } from "react-hook-form";
-import { X, Upload, ImageIcon } from "lucide-react";
+import { X, Upload, ImageIcon, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ interface ImageUploadProps {
   maxSize?: number; // in bytes
   className?: string;
   error?: string;
+  loading?: boolean;
 }
 
 export function RHFImageUpload({
@@ -23,6 +24,7 @@ export function RHFImageUpload({
   maxSize = 5 * 1024 * 1024, // 5MB default
   className,
   error,
+  loading = false,
 }: ImageUploadProps) {
   const { setValue, watch, formState } = useFormContext();
   const value = watch(name);
@@ -37,6 +39,7 @@ export function RHFImageUpload({
       },
       maxSize,
       multiple: false,
+      disabled: loading,
       onDrop: (acceptedFiles) => {
         if (acceptedFiles?.length) {
           const file = acceptedFiles[0];
@@ -62,6 +65,7 @@ export function RHFImageUpload({
   // Handle file removal
   const handleRemove = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (loading) return;
     setValue(name, null, { shouldValidate: true });
     setPreview(null);
   };
@@ -76,15 +80,28 @@ export function RHFImageUpload({
       <div
         {...getRootProps()}
         className={cn(
-          "relative flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg cursor-pointer transition-colors",
+          "relative flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg transition-colors",
           isDragActive
             ? "border-primary bg-primary/5"
             : "border-gray-300 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900/30",
           preview ? "h-64" : "h-40",
-          error && "border-red-500"
+          error && "border-red-500",
+          loading ? "cursor-wait opacity-70" : "cursor-pointer",
+          loading && !preview && "animate-pulse"
         )}
       >
-        <input {...getInputProps()} />
+        <input {...getInputProps()} disabled={loading} />
+
+        {loading && (
+          <div className="absolute inset-0 bg-background/50 backdrop-blur-[1px] flex items-center justify-center z-10 rounded-lg">
+            <div className="flex flex-col items-center gap-2">
+              <Loader2 className="h-8 w-8 text-primary animate-spin" />
+              <p className="text-sm text-muted-foreground">
+                Procesando imagen...
+              </p>
+            </div>
+          </div>
+        )}
 
         {preview ? (
           <>
@@ -93,13 +110,17 @@ export function RHFImageUpload({
               alt="Vista previa"
               width={1920}
               height={1080}
-              className="object-contain w-full h-full rounded-md"
+              className={cn(
+                "object-contain w-full h-full rounded-md",
+                loading && "filter blur-[1px]"
+              )}
             />
             <Button
               type="button"
               onClick={handleRemove}
               variant={"destructive"}
               className="absolute top-2 right-2 p-1 rounded-full"
+              disabled={loading}
             >
               <X className="h-4 w-4" />
             </Button>
@@ -115,9 +136,16 @@ export function RHFImageUpload({
               </>
             ) : (
               <>
-                <Upload className="w-10 h-10 text-gray-400" />
+                <Upload
+                  className={cn(
+                    "w-10 h-10 text-gray-400",
+                    loading && "opacity-50"
+                  )}
+                />
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Arrastra y suelta una imagen, o haz clic para seleccionar
+                  {loading
+                    ? "Espera mientras se procesa la imagen..."
+                    : "Arrastra y suelta una imagen, o haz clic para seleccionar"}
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-500">
                   PNG, JPG, GIF hasta {Math.round(maxSize / (1024 * 1024))}MB
