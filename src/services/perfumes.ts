@@ -2,6 +2,7 @@
 
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
+import { createFormDataBody } from "@/lib/request-body";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import {
   Perfume,
@@ -31,16 +32,27 @@ export async function getPerfumeById(id: string) {
   return await buildApiResponse<PerfumeDetails>(res);
 }
 
-export async function createPerfume(perfumeCreateDTO: PerfumeCreateDTO) {
+export async function createPerfume(
+  perfumeCreateDTO: PerfumeCreateDTO,
+  formDataWithImage: FormData
+) {
+  console.log(
+    createFormDataBody({
+      ...perfumeCreateDTO,
+      image: formDataWithImage.get("image"),
+    })
+  );
   const res = await fetch(apiRoutes.perfumes.get, {
     method: "POST",
     headers: {
       Authorization: "Bearer " + "token",
-      "content-type": "application/json",
     },
-    body: JSON.stringify(perfumeCreateDTO),
+    body: createFormDataBody({
+      ...perfumeCreateDTO,
+      image: formDataWithImage.get("image"),
+    }),
   });
-
+  console.log(res);
   return await buildApiResponse<Perfume>(res);
 }
 

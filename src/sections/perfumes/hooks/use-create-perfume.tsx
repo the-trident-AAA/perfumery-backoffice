@@ -17,8 +17,12 @@ export default function useCreatePerfume({ onCreateAction }: Props) {
       try {
         setLoading(true);
         setError(null);
+        // create form data for image
+        const formDataWithImage = new FormData();
+        formDataWithImage.append("image", perfume.image);
         const res = await createPerfumeService(
-          convertPerfumeCreateDTO(perfume)
+          convertPerfumeCreateDTO(perfume),
+          formDataWithImage
         );
         if (!res.response || res.error) {
           console.log(res.error);
