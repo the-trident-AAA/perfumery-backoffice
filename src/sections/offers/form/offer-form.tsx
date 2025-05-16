@@ -5,7 +5,15 @@ import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rh
 import { RHFTextAreaField } from "@/components/form/rhf-components/rhf-text-area-field/rhf-text-area-field";
 import { RHFNumberField } from "@/components/form/rhf-components/rhf-number-field/rhf-number-field";
 import { RHFImageUpload } from "@/components/form/rhf-components/rhf-image-upload/rhf-image-upload";
-export default function OfferForm() {
+
+interface Props {
+  imageRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
+}
+
+export default function OfferForm({ imageRecived }: Props) {
   return (
     <Card className="shadow-sm">
       <CardContent className="pt-4 px-4 flex flex-col gap-4">
@@ -39,7 +47,11 @@ export default function OfferForm() {
           description="Introduzca la descripción de la oferta"
           fullWidth
         />
-        <RHFImageUpload name="image" label="Imagen de la Oferta" />
+        <RHFImageUpload
+          name="image"
+          label="Imagen de la Oferta"
+          {...(imageRecived && { loading: imageRecived.loading })}
+        />
       </CardContent>
     </Card>
   );

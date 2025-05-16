@@ -12,6 +12,7 @@ import { OfferEdit, offerEditSchema } from "./schemas/offer-edit-schema";
 import { OfferDetails } from "@/types/offers";
 import useEditOffer from "../../hooks/use-edit-offer";
 import { toast } from "react-toastify";
+import useImageForm from "@/components/form/hooks/use-image-form";
 
 interface Props {
   offer: OfferDetails;
@@ -38,6 +39,13 @@ export default function EditOfferFormContainer({ offer }: Props) {
     },
   });
 
+  const { loading, error } = useImageForm({
+    form,
+    imageUrl: offer.image,
+    imageName: offer.name,
+    fieldName: "image",
+  });
+
   const handleClose = () => {
     handleCloseModal(modalTypes.editOfferModal.name);
   };
@@ -51,7 +59,7 @@ export default function EditOfferFormContainer({ offer }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
-        <OfferForm />
+        <OfferForm imageRecived={{ loading, error }} />
         <div className="flex gap-2 justify-end">
           <Button type="button" variant={"destructive"} onClick={handleClose}>
             Cancelar

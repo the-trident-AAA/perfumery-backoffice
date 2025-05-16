@@ -18,7 +18,14 @@ export default function useEditOffer({ id, onEditAction }: Props) {
       try {
         setLoading(true);
         setError(null);
-        const res = await editOfferService(id, convertOfferEditDTO(offer));
+        // create form data for image
+        const formDataWithImage = new FormData();
+        if (offer.image) formDataWithImage.append("image", offer.image);
+        const res = await editOfferService(
+          id,
+          convertOfferEditDTO(offer),
+          formDataWithImage
+        );
         if (!res.response || res.error)
           setError("Error en la edición de la oferta");
         else {

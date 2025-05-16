@@ -45,14 +45,20 @@ export async function createOffer(
   return await buildApiResponse<Offer>(res);
 }
 
-export async function editOffer(id: string, offerEditDTO: OfferEditDTO) {
+export async function editOffer(
+  id: string,
+  offerEditDTO: OfferEditDTO,
+  formDataWithImage: FormData
+) {
   const res = await fetch(apiRoutes.offers.getById.replace(":id", id), {
     method: "PATCH",
     headers: {
       Authorization: "Bearer " + "token",
-      "content-type": "application/json",
     },
-    body: JSON.stringify(offerEditDTO),
+    body: createFormDataBody({
+      ...offerEditDTO,
+      image: formDataWithImage.get("image"),
+    }),
   });
 
   return await buildApiResponse<Offer>(res);
