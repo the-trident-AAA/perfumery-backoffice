@@ -20,15 +20,15 @@ export const offerCreateSchema = z.object({
     .instanceof(File, {
       message: "Por favor selecciona una imagen.",
     })
+    .optional()
     .refine(
-      (file) => file && file.size <= 5 * 1024 * 1024,
+      (file) => !file || file.size <= 5 * 1024 * 1024,
       "La imagen no debe exceder 5MB."
     )
     .refine(
-      (file) => file && file.type.startsWith("image/"),
+      (file) => !file || file.type.startsWith("image/"),
       "El archivo debe ser una imagen."
-    )
-    .optional(),
+    ),
   scope: z.string().min(1, { message: "El alcance de la oferta es requerida" }),
   discount: z
     .number()

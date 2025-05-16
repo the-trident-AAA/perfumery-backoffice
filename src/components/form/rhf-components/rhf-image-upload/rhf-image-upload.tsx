@@ -93,7 +93,7 @@ export function RHFImageUpload({
   const handleRemove = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (loading || isProcessing) return;
-    setValue(name, null, { shouldValidate: true });
+    setValue(name, undefined, { shouldValidate: true });
     setPreview(null);
   };
 
