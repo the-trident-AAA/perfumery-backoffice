@@ -32,6 +32,7 @@ export default async function OffersPage({ searchParams }: Props) {
         formPath={modalTypes.editOfferModal.name}
         title={modalTypes.editOfferModal.title}
         maxWidth="max-w-3xl"
+        className="min-h-[65vh]"
       >
         <EditOfferModalContainer />
       </Modal>
