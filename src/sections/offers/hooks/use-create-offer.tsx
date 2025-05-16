@@ -17,7 +17,13 @@ export default function useCreateOffer({ onCreateAction }: Props) {
       try {
         setLoading(true);
         setError(null);
-        const res = await createOfferService(convertOfferCreateDTO(offer));
+        // create form data for image
+        const formDataWithImage = new FormData();
+        if (offer.image) formDataWithImage.append("image", offer.image);
+        const res = await createOfferService(
+          convertOfferCreateDTO(offer),
+          formDataWithImage
+        );
         if (!res.response || res.error)
           setError("Error en la creación de la oferta");
         else {

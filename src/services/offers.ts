@@ -2,6 +2,7 @@
 
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
+import { createFormDataBody } from "@/lib/request-body";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { Offer, OfferCreateDTO, OfferEditDTO } from "@/types/offers";
 import { IQueryable } from "@/types/request";
@@ -26,14 +27,19 @@ export async function getOfferById(id: string) {
   return await buildApiResponse<Offer>(res);
 }
 
-export async function createOffer(offerCreateDTO: OfferCreateDTO) {
+export async function createOffer(
+  offerCreateDTO: OfferCreateDTO,
+  formDataWithImage: FormData
+) {
   const res = await fetch(apiRoutes.offers.get, {
     method: "POST",
     headers: {
       Authorization: "Bearer " + "token",
-      "content-type": "application/json",
     },
-    body: JSON.stringify(offerCreateDTO),
+    body: createFormDataBody({
+      ...offerCreateDTO,
+      image: formDataWithImage.get("image"),
+    }),
   });
 
   return await buildApiResponse<Offer>(res);

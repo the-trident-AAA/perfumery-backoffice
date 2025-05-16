@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rhf-text-field";
 import { RHFTextAreaField } from "@/components/form/rhf-components/rhf-text-area-field/rhf-text-area-field";
 import { RHFNumberField } from "@/components/form/rhf-components/rhf-number-field/rhf-number-field";
+import { RHFImageUpload } from "@/components/form/rhf-components/rhf-image-upload/rhf-image-upload";
 export default function OfferForm() {
   return (
     <Card className="shadow-sm">
@@ -38,6 +39,7 @@ export default function OfferForm() {
           description="Introduzca la descripción de la oferta"
           fullWidth
         />
+        <RHFImageUpload name="image" label="Imagen de la Oferta" />
       </CardContent>
     </Card>
   );
