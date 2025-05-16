@@ -4,7 +4,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rhf-text-field";
 import { RHFTextAreaField } from "@/components/form/rhf-components/rhf-text-area-field/rhf-text-area-field";
 import { RHFImageUpload } from "@/components/form/rhf-components/rhf-image-upload/rhf-image-upload";
-export default function HomeBannerBasicInfoSection() {
+
+interface Props {
+  imageRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
+}
+
+export default function HomeBannerBasicInfoSection({ imageRecived }: Props) {
   return (
     <Card className="shadow-sm">
       <CardContent className="pt-4 px-4 flex flex-col gap-4">
@@ -19,7 +27,11 @@ export default function HomeBannerBasicInfoSection() {
           description="Introduzca la descripción del banner"
           fullWidth
         />
-        <RHFImageUpload name="image" label="Imagen del Banner" />
+        <RHFImageUpload
+          name="image"
+          label="Imagen del Banner"
+          {...(imageRecived && { loading: imageRecived.loading })}
+        />
       </CardContent>
     </Card>
   );

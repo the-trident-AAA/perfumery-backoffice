@@ -13,7 +13,7 @@ export default function HomeBannerFormSectionsController({ children }: Props) {
   const { setTabValue } = useContext(TabsPanelContext);
 
   useEffect(() => {
-    if (errors.title || errors.description) {
+    if (errors.title || errors.description || errors.image) {
       setTabValue("1"); // move to basic information section
     } else if (errors.perfumes) {
       setTabValue("2"); // move to perfumes section

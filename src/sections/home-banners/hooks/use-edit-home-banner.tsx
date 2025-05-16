@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import { editHomeBanner as editHomeBannerService } from "@/services/home-banners";
 import { convertHomeBannerEditDTO } from "@/types/home-banners";
 import { HomeBannerCreate } from "../form/new/schemas/home-banner-create-schema";
+import { HomeBannerEdit } from "../form/edit/schemas/home-banner-edit-schema";
 
 interface Props {
   id: string;
@@ -14,13 +15,17 @@ export default function useEditHomeBanner({ id, onEditAction }: Props) {
   const [error, setError] = useState<string | null>(null);
 
   const editHomeBanner = useCallback(
-    async (homeBanner: HomeBannerCreate) => {
+    async (homeBanner: HomeBannerEdit) => {
       try {
         setLoading(true);
         setError(null);
+        // create form data for image
+        const formDataWithImage = new FormData();
+        formDataWithImage.append("image", homeBanner.image);
         const res = await editHomeBannerService(
           id,
-          convertHomeBannerEditDTO(homeBanner)
+          convertHomeBannerEditDTO(homeBanner),
+          formDataWithImage
         );
         if (!res.response || res.error) {
           console.log(res.error);

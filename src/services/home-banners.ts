@@ -54,15 +54,18 @@ export async function createHomeBanner(
 
 export async function editHomeBanner(
   id: string,
-  homeBannerEditDTO: HomeBannerEditDTO
+  homeBannerEditDTO: HomeBannerEditDTO,
+  formDataWithImage: FormData
 ) {
   const res = await fetch(apiRoutes.homeBanners.getById.replace(":id", id), {
     method: "PATCH",
     headers: {
       Authorization: "Bearer " + "token",
-      "content-type": "application/json",
     },
-    body: JSON.stringify(homeBannerEditDTO),
+    body: createFormDataBody({
+      ...homeBannerEditDTO,
+      image: formDataWithImage.get("image"),
+    }),
   });
 
   return await buildApiResponse<HomeBannerDetails>(res);
