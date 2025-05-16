@@ -2,7 +2,6 @@
 import { useCallback, useState } from "react";
 import { editHomeBanner as editHomeBannerService } from "@/services/home-banners";
 import { convertHomeBannerEditDTO } from "@/types/home-banners";
-import { HomeBannerCreate } from "../form/new/schemas/home-banner-create-schema";
 import { HomeBannerEdit } from "../form/edit/schemas/home-banner-edit-schema";
 
 interface Props {
