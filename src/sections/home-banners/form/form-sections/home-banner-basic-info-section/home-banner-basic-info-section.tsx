@@ -3,6 +3,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rhf-text-field";
 import { RHFTextAreaField } from "@/components/form/rhf-components/rhf-text-area-field/rhf-text-area-field";
+import { RHFImageUpload } from "@/components/form/rhf-components/rhf-image-upload/rhf-image-upload";
 export default function HomeBannerBasicInfoSection() {
   return (
     <Card className="shadow-sm">
@@ -18,6 +19,7 @@ export default function HomeBannerBasicInfoSection() {
           description="Introduzca la descripción del banner"
           fullWidth
         />
+        <RHFImageUpload name="image" label="Imagen del Banner" />
       </CardContent>
     </Card>
   );

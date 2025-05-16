@@ -6,28 +6,26 @@ export interface HomeBanner {
   id: string;
   title: string;
   description: string;
-  image?: string;
+  image: string;
 }
 
 export interface HomeBannerDetails {
   id: string;
   title: string;
   description: string;
-  image?: string;
+  image: string;
   perfumes: PerfumeDetails[];
 }
 
 export interface HomeBannerCreateDTO {
   title: string;
   description: string;
-  image?: string;
   perfumes: string[];
 }
 
 export interface HomeBannerEditDTO {
   title: string;
   description: string;
-  image?: string;
   perfumes: string[];
 }
 

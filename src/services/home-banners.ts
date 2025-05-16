@@ -1,6 +1,7 @@
 "use server";
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
+import { createFormDataBody } from "@/lib/request-body";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import {
   HomeBanner,
@@ -34,15 +35,18 @@ export async function getHomeBannerById(id: string) {
 }
 
 export async function createHomeBanner(
-  homeBannerCreateDTO: HomeBannerCreateDTO
+  homeBannerCreateDTO: HomeBannerCreateDTO,
+  formDataWithImage: FormData
 ) {
   const res = await fetch(apiRoutes.homeBanners.get, {
     method: "POST",
     headers: {
       Authorization: "Bearer " + "token",
-      "content-type": "application/json",
     },
-    body: JSON.stringify(homeBannerCreateDTO),
+    body: createFormDataBody({
+      ...homeBannerCreateDTO,
+      image: formDataWithImage.get("image"),
+    }),
   });
 
   return await buildApiResponse<HomeBannerDetails>(res);

@@ -17,8 +17,12 @@ export default function useCreateHomeBanner({ onCreateAction }: Props) {
       try {
         setLoading(true);
         setError(null);
+        // create form data for image
+        const formDataWithImage = new FormData();
+        formDataWithImage.append("image", homeBanner.image);
         const res = await createHomeBannerService(
-          convertHomeBannerCreateDTO(homeBanner)
+          convertHomeBannerCreateDTO(homeBanner),
+          formDataWithImage
         );
         if (!res.response || res.error) {
           console.log(res.error);
