@@ -11,7 +11,7 @@ export interface Perfume {
   image: string;
   description: string;
   brand: string;
-  discountOffer: number;
+  discountOffer: number | null;
   gender: string;
   scents: string[];
   milliliters: number;

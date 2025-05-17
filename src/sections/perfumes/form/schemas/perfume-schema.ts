@@ -13,5 +13,5 @@ export const perfumeSchema = z.object({
   available: z.boolean(),
   gender: z.string(),
   scents: z.array(z.string()),
-  discountOffer: z.number(),
+  discountOffer: z.number().nullable(),
 });
