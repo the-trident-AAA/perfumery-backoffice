@@ -61,6 +61,12 @@ export interface ModalTypes {
     cancelButtonText: string;
     confirmButtonText: string;
   };
+  deletePerfumeTypeModal: SectionModal & {
+    message: string;
+    warningMessage: string;
+    cancelButtonText: string;
+    confirmButtonText: string;
+  };
 }
 
 export const modalTypes: ModalTypes = {
@@ -184,6 +190,15 @@ export const modalTypes: ModalTypes = {
       "¿Está seguro de que desea eliminar el Banner de la Página Principal?",
     warningMessage:
       "Esta acción provocará la eliminación permanente del Banner de la Página Principal.",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Confirmar",
+  },
+  deletePerfumeTypeModal: {
+    name: "deletePerfumeTypeModal",
+    title: "Eliminación de Tipo de Perfume",
+    message: "¿Está seguro de que desea eliminar este tipo de perfume?",
+    warningMessage:
+      "Esta acción provocará la eliminación permanente del Tipo de Perfume.",
     cancelButtonText: "Cancelar",
     confirmButtonText: "Confirmar",
   },
