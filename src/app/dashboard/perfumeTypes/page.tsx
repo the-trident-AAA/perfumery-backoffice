@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import DeletePerfumeTypeModalContainer from "@/sections/perfume-types/delete/delete-perfume-type-modal-container";
 import EditPerfumeTypeModalContainer from "@/sections/perfume-types/form/edit/edit-perfume-type-modal-container";
 import NewPerfumeTypeFormContainer from "@/sections/perfume-types/form/new/new-perfum-type-form-container";
 import PerfumeTypesContainer from "@/sections/perfume-types/perfume-types-container";
@@ -34,6 +35,9 @@ export default async function PerfumeTypesPage({ searchParams }: Props) {
         className="min-h-[50vh]"
       >
         <EditPerfumeTypeModalContainer />
+      </Modal>
+      <Modal formPath={modalTypes.deletePerfumeTypeModal.name} maxWidth="max-w-xl">
+        <DeletePerfumeTypeModalContainer />
       </Modal>
     </>
   );

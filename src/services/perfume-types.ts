@@ -70,3 +70,15 @@ export async function editPerfumeType(
 
   return await buildApiResponse<PerfumeType>(res);
 }
+
+export async function deletePerfumeType(id: string) {
+  const res = await fetch(apiRoutes.perfumeTypes.getById.replace(":id", id), {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + "token",
+      "content-type": "application/json",
+    },
+  });
+
+  return await buildApiResponse<PerfumeType>(res);
+}
