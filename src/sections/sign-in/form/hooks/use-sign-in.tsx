@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
 import { Credentials } from "../schemas/credentials-schema";
-import { signIn as signInAuth } from "@/auth";
+import { signIn as signInService } from "@/services/auth";
 
 interface Props {
   onSignInAction: () => void;
@@ -16,11 +16,7 @@ export default function useSignIn({ onSignInAction }: Props) {
       try {
         setLoading(true);
         setError(null);
-        const res = await signInAuth("credentials", {
-          email: credentials.firstCredential,
-          password: credentials.password,
-          redirect: false,
-        });
+        const res = await signInService(credentials);
         console.log(res);
         if (!res) setError("Las credenciales proporcionadas no son correctas");
         else {
