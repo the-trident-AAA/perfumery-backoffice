@@ -31,6 +31,7 @@ export default async function PerfumeTypesPage({ searchParams }: Props) {
         formPath={modalTypes.editPerfumeTypeModal.name}
         title={modalTypes.editPerfumeTypeModal.title}
         maxWidth="max-w-md"
+        className="min-h-[50vh]"
       >
         <EditPerfumeTypeModalContainer />
       </Modal>
