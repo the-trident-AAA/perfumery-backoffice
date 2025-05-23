@@ -1,0 +1,14 @@
+"use server";
+
+import { buildApiResponse } from "@/lib/api";
+import { apiRoutes } from "@/routes/api-routes/api-routes";
+import { LoginDTO } from "@/types/auth";
+import { User } from "next-auth";
+
+export async function login(credentials: LoginDTO) {
+  const res = await fetch(apiRoutes.auth.login, {
+    method: "POST",
+    body: JSON.stringify(credentials),
+  });
+  return buildApiResponse<User>(res);
+}
