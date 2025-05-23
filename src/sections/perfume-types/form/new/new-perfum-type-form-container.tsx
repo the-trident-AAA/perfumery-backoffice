@@ -7,12 +7,13 @@ import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { useContext } from "react";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { Button } from "@/components/ui/button";
-import { PerfumeTypeCreate, perfumeTypeCreateSchema } from "./schemas/perfume-type-create-schema";
+import {
+  PerfumeTypeCreate,
+  perfumeTypeCreateSchema,
+} from "./schemas/perfume-type-create-schema";
 import useCreatePerfumeType from "../../hooks/use-create-perfume-types";
 import PerfumeTypeForm from "../perfume-type-form";
 import { toast } from "react-toastify";
-
-
 
 export default function NewPerfumeTypeFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
@@ -51,7 +52,7 @@ export default function NewPerfumeTypeFormContainer() {
             Cancelar
           </Button>
           <Button variant={"default"} type="submit" disabled={submitLoading}>
-            Crear Aroma
+            Crear Tipo de Perfume
           </Button>
         </div>
       </form>

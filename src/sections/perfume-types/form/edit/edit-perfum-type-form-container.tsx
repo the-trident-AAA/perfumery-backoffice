@@ -66,7 +66,7 @@ export default function EditPerfumeTypeFormContainer({ perfumeType }: Props) {
             Cancelar
           </Button>
           <Button variant={"default"} type="submit" disabled={submitLoading}>
-            Crear Tipo de Perfume
+            Actualizar Tipo de Perfume
           </Button>
         </div>
       </form>
