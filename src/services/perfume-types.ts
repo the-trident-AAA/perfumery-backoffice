@@ -54,15 +54,18 @@ export async function createPerfumeType(
 
 export async function editPerfumeType(
   id: string,
-  perfumeTypeEditDTO: PerfumeTypeEditDTO
+  perfumeTypeEditDTO: PerfumeTypeEditDTO,
+  formDataWithImage: FormData
 ) {
   const res = await fetch(apiRoutes.perfumeTypes.getById.replace(":id", id), {
     method: "PATCH",
     headers: {
       Authorization: "Bearer " + "token",
-      "content-type": "application/json",
     },
-    body: JSON.stringify(perfumeTypeEditDTO),
+    body: createFormDataBody({
+      ...perfumeTypeEditDTO,
+      image: formDataWithImage.get("image"),
+    }),
   });
 
   return await buildApiResponse<PerfumeType>(res);

@@ -2,7 +2,14 @@ import { RHFImageUpload } from "@/components/form/rhf-components/rhf-image-uploa
 import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rhf-text-field";
 import React from "react";
 
-export default function PerfumeTypeForm() {
+interface Props {
+  imageRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
+}
+
+export default function PerfumeTypeForm({ imageRecived }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <RHFTextField
@@ -10,7 +17,11 @@ export default function PerfumeTypeForm() {
         label="Tipo de Perfume"
         placeholder="Ingrese el tipo de perfume"
       />
-      <RHFImageUpload name="image" label="Imagen del Tipo de Perfume" />
+      <RHFImageUpload
+        name="image"
+        label="Imagen del Tipo de Perfume"
+        {...(imageRecived && { loading: imageRecived.loading })}
+      />
     </div>
   );
 }

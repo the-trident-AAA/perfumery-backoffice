@@ -15,6 +15,7 @@ import {
 import PerfumeTypeForm from "../perfume-type-form";
 import useEditPerfumeType from "../../hooks/use-edit-perfume-type";
 import { toast } from "react-toastify";
+import useImageForm from "@/components/form/hooks/use-image-form";
 
 interface Props {
   perfumeType: PerfumeTypeDetails;
@@ -38,6 +39,13 @@ export default function EditPerfumeTypeFormContainer({ perfumeType }: Props) {
     },
   });
 
+  const { loading, error } = useImageForm({
+    form,
+    imageUrl: perfumeType.image,
+    imageName: perfumeType.name,
+    fieldName: "image",
+  });
+
   const handleClose = () => {
     handleCloseModal(modalTypes.editPerfumeTypeModal.name);
   };
@@ -52,7 +60,7 @@ export default function EditPerfumeTypeFormContainer({ perfumeType }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
-        <PerfumeTypeForm />
+        <PerfumeTypeForm imageRecived={{ loading, error }} />
         <div className="flex gap-2 justify-end">
           <Button type="button" variant={"destructive"} onClick={handleClose}>
             Cancelar

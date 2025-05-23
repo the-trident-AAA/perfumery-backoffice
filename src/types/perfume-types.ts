@@ -4,11 +4,13 @@ import { PerfumeTypeCreate } from "@/sections/perfume-types/form/new/schemas/per
 export interface PerfumeType {
   id: string;
   name: string;
+  image?: string;
 }
 
 export interface PerfumeTypeDetails {
   id: string;
   name: string;
+  image?: string;
 }
 
 export interface PerfumeTypeCreateDTO {
@@ -21,7 +23,7 @@ export interface PerfumeTypeEditDTO {
 
 export const convertPerfumeTypeCreateDTO = (
   perfumeTypeCreate: PerfumeTypeCreate
-): PerfumeTypeCreateDTO=> {
+): PerfumeTypeCreateDTO => {
   return {
     ...perfumeTypeCreate,
   };
