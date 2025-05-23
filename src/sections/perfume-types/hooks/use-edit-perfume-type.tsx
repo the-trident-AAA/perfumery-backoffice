@@ -1,7 +1,6 @@
 "use client";
 import { useCallback, useState } from "react";
 import { editPerfumeType as editPerfumetypeService } from "@/services/perfume-types";
-import { PerfumeTypeCreate } from "../form/new/schemas/perfume-type-create-schema";
 import { convertPerfumeTypeEditDTO } from "@/types/perfume-types";
 import { PerfumeTypeEdit } from "../form/edit/schemas/perfume-type-edit-schema";
 
