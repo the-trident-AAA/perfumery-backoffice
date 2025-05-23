@@ -1,6 +1,7 @@
 "use client";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
+import PreviewImage from "@/components/preview-image/preview-image";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { PerfumeType } from "@/types/perfume-types";
@@ -17,7 +18,10 @@ export default function PerfumeTypesList({ perfumeTypes }: Props) {
 
   const handleEdit = useCallback(
     (id: string) => {
-      handleOpenModal({ name: modalTypes.editPerfumeTypeModal.name, entity: id });
+      handleOpenModal({
+        name: modalTypes.editPerfumeTypeModal.name,
+        entity: id,
+      });
     },
     [handleOpenModal]
   );
@@ -26,6 +30,17 @@ export default function PerfumeTypesList({ perfumeTypes }: Props) {
     {
       accessorKey: "id",
       enableHiding: false,
+    },
+    {
+      accessorKey: "image",
+      header: "Imagen",
+      cell: ({ row }) => (
+        <PreviewImage
+          preview={row.getValue("image") || "/images/place-holder.jpg"}
+          height={80}
+          width={80}
+        />
+      ),
     },
     {
       accessorKey: "name",
@@ -63,7 +78,11 @@ export default function PerfumeTypesList({ perfumeTypes }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <DataTable columns={columns} data={perfumeTypes} initialVisibilityState={{id: false}}/>
+      <DataTable
+        columns={columns}
+        data={perfumeTypes}
+        initialVisibilityState={{ id: false }}
+      />
     </div>
   );
 }
