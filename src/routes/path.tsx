@@ -4,6 +4,7 @@ interface Path {
 
 interface ApplicationPath {
   home: Path;
+  sign_in: Path;
   perfumes: Path;
   brands: Path;
   scents: Path;
@@ -20,6 +21,9 @@ interface ApplicationPath {
 export const paths: ApplicationPath = {
   home: {
     root: "/",
+  },
+  sign_in: {
+    root: "/sign-in",
   },
   perfumes: {
     root: "/dashboard/perfumes",
