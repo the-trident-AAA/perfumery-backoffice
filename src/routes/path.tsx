@@ -12,6 +12,7 @@ interface ApplicationPath {
   perfumeTypes: Path;
   offers: Path;
   homeBanners: Path;
+  users: Path;
 }
 
 /*function buildQueryString(query: Record<string, string> = {}): string {
@@ -51,6 +52,9 @@ export const paths: ApplicationPath = {
   homeBanners: {
     root: "/dashboard/home-banners",
     isProtected: true,
+  },
+    users: {
+    root: "/dashboard/users",
   },
 } as const;
 
