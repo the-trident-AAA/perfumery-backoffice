@@ -9,7 +9,8 @@ services:
     environment:
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-https://perfumery-api.onrender.com/}
       - AUTH_SECRET=${AUTH_SECRET:-kagkhasghdgakjdghakghdkajgdkjasgdkagsdjgasjgdasdkgajdgaksd}
-      - NODE_ENV=${NODE_ENV:-development}
+      - NODE_ENV=production
+      - AUTH_MODE=${AUTH_MODE:-dev}
     restart: unless-stopped
     networks:
       - perfumery-backoffice-network
