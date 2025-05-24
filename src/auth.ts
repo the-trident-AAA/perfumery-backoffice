@@ -57,7 +57,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
-  trustHost: !isProduction,
+  trustHost: isProduction,
   cookies: {
     sessionToken: {
       name: `${cookiePrefix}next-auth.session-token`,
