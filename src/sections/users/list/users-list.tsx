@@ -3,10 +3,9 @@ import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
-import TableMenu from "@/components/ui/table-menu";
 import { User } from "@/types/users";
 import { ColumnDef } from "@tanstack/react-table";
-import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
+import {  EyeIcon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 
 interface Props {
