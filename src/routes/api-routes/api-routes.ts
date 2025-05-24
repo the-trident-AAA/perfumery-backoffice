@@ -1,6 +1,6 @@
 export const apiRoutes = {
   auth: {
-    login: `${process.env.NEXT_PUBLIC_API_URL}auth/sign-in`,
+    login: `${process.env.NEXT_PUBLIC_API_URL}auth/login`,
   },
   perfumes: {
     get: `${process.env.NEXT_PUBLIC_API_URL}perfume`,

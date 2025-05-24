@@ -9,14 +9,18 @@ import { User } from "next-auth";
 export async function login(credentials: CredentialsDTO) {
   const res = await fetch(apiRoutes.auth.login, {
     method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
     body: JSON.stringify(credentials),
   });
+
   return buildApiResponse<User>(res);
 }
 
 export async function signIn(credentials: CredentialsDTO) {
   return signInAuth("credentials", {
-    email: credentials.firstCredential,
+    username: credentials.username,
     password: credentials.password,
     redirect: false,
   });

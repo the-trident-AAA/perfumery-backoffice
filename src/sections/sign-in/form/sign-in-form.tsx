@@ -6,9 +6,9 @@ export default function SignInForm() {
   return (
     <div className="flex flex-col gap-4">
       <RHFTextField
-        label="Email"
+        label="Nombre de Usuario"
         name="firstCredential"
-        placeholder="ej: ejemplo@gmail.com"
+        placeholder="ej: admin"
         fullWidth
       />
       <RHFPasswordField

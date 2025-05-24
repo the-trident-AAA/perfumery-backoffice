@@ -9,10 +9,15 @@ import useSignIn from "./hooks/use-sign-in";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { paths } from "@/routes/path";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 export default function SignInFormContainer() {
   const router = useRouter();
-  const { signIn, loading: submitLoading } = useSignIn({
+  const {
+    signIn,
+    loading: submitLoading,
+    error,
+  } = useSignIn({
     onSignInAction: () => {
       toast.success("Inicio de sessión realizado con éxtio");
       router.push(paths.perfumes.root);
@@ -32,13 +37,14 @@ export default function SignInFormContainer() {
 
   return (
     <FormProvider {...form}>
-      <div className="flex-grow flex flex-col justify-center max-w-md mx-auto w-full">
-        <h1 className="text-3xl font-bold mb-2">
+      <div className="flex-grow flex flex-col gap-4 justify-center max-w-md mx-auto w-full">
+        <h1 className="text-3xl font-bold">
           Inicia sesión con su cuenta administrativa
         </h1>
-        <p className="text-gray-500 mb-8">
+        <p className="text-gray-500">
           Ingrese el correo electrónico asociado a su cuenta
         </p>
+        {error && <AlertDestructive description={error} />}
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full flex flex-col gap-6"
