@@ -16,9 +16,11 @@ export default function PerfumesContainer({ perfumes }: Props) {
         sectionIcon={<Package />}
         sectionTitle="Gestión de Perfumes"
         sectionDescription="Gestione toda la información referente a los perfumes de la Tienda"
-        buttonText="Añadir Nuevo Perfume"
-        creationPath={modalTypes.newPerfumeModal.name}
-        isModalRedirect
+        addButton={{
+          buttonText: "Añadir Nuevo Perfume",
+          creationPath: modalTypes.newPerfumeModal.name,
+          isModalRedirect: true,
+        }}
       />
       <PerfumesList perfumes={perfumes} />
     </div>

@@ -5,7 +5,6 @@ import { modalTypes } from "@/components/modal/types/modalTypes";
 import { PerfumeType } from "@/types/perfume-types";
 import PerfumeTypesList from "./list/perfume-types-list";
 
-
 interface Props {
   perfumeTypes: PerfumeType[];
 }
@@ -17,9 +16,11 @@ export default function PerfumeTypesContainer({ perfumeTypes }: Props) {
         sectionIcon={<Package />}
         sectionTitle="Gestión de Tipos de Perfumes"
         sectionDescription="Gestione toda la información referente a los tipos de perfumes"
-        buttonText="Añadir Nuevo Tipo de Perfume"
-        creationPath={modalTypes.newPerfumeTypeModal.name}
-        isModalRedirect
+        addButton={{
+          buttonText: "Añadir Nuevo Tipo de Perfume",
+          creationPath: modalTypes.newPerfumeTypeModal.name,
+          isModalRedirect: true,
+        }}
       />
       <PerfumeTypesList perfumeTypes={perfumeTypes} />
     </div>

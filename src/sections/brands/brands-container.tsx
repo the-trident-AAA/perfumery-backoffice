@@ -16,9 +16,11 @@ export default function BrandsContainer({ brands }: Props) {
         sectionIcon={<Package />}
         sectionTitle="Gestión de Marcas"
         sectionDescription="Gestione toda la información referente a las marcas de los perfumes"
-        buttonText="Añadir Nueva Marca"
-        creationPath={modalTypes.newBrandModal.name}
-        isModalRedirect
+        addButton={{
+          buttonText: "Añadir Nueva Marca",
+          creationPath: modalTypes.newBrandModal.name,
+          isModalRedirect: true,
+        }}
       />
       <BrandList brands={brands} />
     </div>
