@@ -10,7 +10,7 @@ interface CredentialsType {
 const isProduction = process.env.NODE_ENV === "production";
 const useSecureCookies = isProduction;
 const cookiePrefix = useSecureCookies ? "__Secure-" : "";
-
+console.log(process.env.NODE_ENV)
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
@@ -52,12 +52,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async session({ session, token }) {
       session.accessToken = token.accessToken as string;
       session.user.id = token.id as string;
-      session.user.username = token.username as string;
+      session.user.username = token.username as string; 
       session.user.email = token.email as string;
       return session;
     },
   },
-  trustHost: isProduction,
+  trustHost: !isProduction, 
+  
+
+  
   cookies: {
     sessionToken: {
       name: `${cookiePrefix}next-auth.session-token`,
@@ -65,8 +68,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         httpOnly: true,
         sameSite: "lax",
         path: "/",
-        secure: useSecureCookies,
-        domain: process.env.NEXTAUTH_COOKIE_DOMAIN || undefined,
+        secure: useSecureCookies, 
+        domain: process.env.NEXTAUTH_COOKIE_DOMAIN || undefined, 
       },
     },
   },
