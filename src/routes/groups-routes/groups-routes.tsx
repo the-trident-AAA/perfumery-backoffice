@@ -47,6 +47,16 @@ export const groupRoutes: GroupRoute[] = [
     ],
   },
   {
+    title: "Pedidos",
+    navigationRoutes: [
+      {
+        title: "Pedidos de Perfumes",
+        icon: <Package />,
+        path: paths.users.root,
+      },
+    ],
+  },
+  {
     title: "Páginas",
     navigationRoutes: [
       {
@@ -64,25 +74,10 @@ export const groupRoutes: GroupRoute[] = [
     ],
   },
   {
-    title: "Perfiles",
+    title: "Sistema",
     navigationRoutes: [
       {
         title: "Usuarios",
-        icon: <Package />,
-        path: paths.users.root,
-      },
-    ],
-  },
-  {
-    title: "Pedidos",
-    navigationRoutes: [
-      {
-        title: "Pendientes",
-        icon: <Package />,
-        path: paths.users.root,
-      },
-            {
-        title: "Historial",
         icon: <Package />,
         path: paths.users.root,
       },
