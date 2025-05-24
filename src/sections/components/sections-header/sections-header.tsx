@@ -1,32 +1,23 @@
-"use client";
-import { ModalContext } from "@/components/modal/context/modalContext";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { useCallback, useContext, type ReactNode } from "react";
+import { type ReactNode } from "react";
+import AddButtonSectionsHeader from "./add-button-sections-header/add-button-sections-header";
 
 interface Props {
   sectionTitle: string;
   sectionDescription: string;
   sectionIcon: ReactNode;
-  buttonText?: string;
-  creationPath: string;
-  isModalRedirect?: boolean;
+  addButton?: {
+    buttonText?: string;
+    creationPath: string;
+    isModalRedirect?: boolean;
+  };
 }
 
 export default function SectionsHeader({
   sectionTitle,
   sectionDescription,
   sectionIcon,
-  buttonText,
-  creationPath,
-  isModalRedirect = false,
+  addButton,
 }: Props) {
-  const { handleOpenModal } = useContext(ModalContext);
-  const router = useRouter();
-  const handeRedirect = useCallback(() => {
-    if (isModalRedirect) handleOpenModal({ name: creationPath });
-    else router.push(creationPath);
-  }, [handleOpenModal, isModalRedirect, router, creationPath]);
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-6 mb-6 bg-white rounded-lg shadow-sm">
       <div className="flex items-start gap-4">
@@ -38,7 +29,13 @@ export default function SectionsHeader({
           <p className="text-sm text-gray-500">{sectionDescription}</p>
         </div>
       </div>
-      {buttonText && <Button onClick={handeRedirect}>{buttonText}</Button>}
+      {addButton && (
+        <AddButtonSectionsHeader
+          buttonText={addButton.buttonText}
+          creationPath={addButton.creationPath}
+          isModalRedirect={addButton.isModalRedirect}
+        />
+      )}
     </div>
   );
 }
