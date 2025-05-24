@@ -55,6 +55,7 @@ export const paths: ApplicationPath = {
   },
     users: {
     root: "/dashboard/users",
+    isProtected: true,
   },
 } as const;
 
