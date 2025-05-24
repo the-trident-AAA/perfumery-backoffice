@@ -16,8 +16,6 @@ export default function UsersContainer({ users }: Props) {
         sectionIcon={<Package />}
         sectionTitle="Gestión de Usuarios"
         sectionDescription="Gestione toda la información referente a los usuarios"
-        buttonText=""
-        isModalRedirect
       />
       <UsersList users={users} />
     </div>
