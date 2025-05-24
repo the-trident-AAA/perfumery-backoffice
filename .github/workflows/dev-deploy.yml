@@ -27,6 +27,7 @@ jobs:
             rm -f .env &&
             echo 'NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}' > .env &&
             echo 'AUTH_SECRET=${{ secrets.AUTH_SECRET }}' >> .env &&
+            echo 'NODE_ENV=${{ secrets.NODE_ENV }}' >> .env &&
             git pull origin dev && 
             docker-compose down &&
             docker-compose pull && 
