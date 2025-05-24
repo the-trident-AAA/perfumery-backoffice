@@ -16,7 +16,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       async authorize(credentials) {
         const { username, password } = credentials as CredentialsType;
-        const res = await login({ username: username, password });
+        const res = await login({ username, password });
 
         if (!res.response || res.error) {
           return null;
@@ -24,7 +24,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const user = res.response;
         return {
           id: user.id,
-          name: user.name,
+          username: user.username,
           email: user.email,
           accessToken: user.accessToken,
         };
