@@ -6,6 +6,7 @@ import Footer from "@/sections/root-layout/footer/footer";
 import PreviewModal from "@/components/preview-image/preview-modal";
 import { PreviewProvider } from "@/components/preview-image/context/preview-context";
 import { ToastContainer } from "react-toastify";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,16 +33,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ModalProvider>
-          <PreviewProvider>
-            <div className="flex min-h-screen flex-col">
-              <ToastContainer />
-              <PreviewModal />
-              {children}
-              <Footer />
-            </div>
-          </PreviewProvider>
-        </ModalProvider>
+        <SessionProvider>
+          <ModalProvider>
+            <PreviewProvider>
+              <div className="flex min-h-screen flex-col">
+                <ToastContainer />
+                <PreviewModal />
+                {children}
+                <Footer />
+              </div>
+            </PreviewProvider>
+          </ModalProvider>
+        </SessionProvider>
       </body>
     </html>
   );
