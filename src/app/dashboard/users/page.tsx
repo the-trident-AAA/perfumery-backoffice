@@ -1,3 +1,6 @@
+import Modal from "@/components/modal/modal";
+import { modalTypes } from "@/components/modal/types/modalTypes";
+import UserDetailsModalContainer from "@/sections/users/details/user-details-modal-container";
 import UsersContainer from "@/sections/users/users-container";
 import { getUsersList } from "@/services/users";
 import { SearchParamsPagination } from "@/types/pagination";
@@ -14,7 +17,15 @@ export default async function UsersPage({ searchParams }: Props) {
 
   return (
     <>
-     <UsersContainer users={res.response} />
+      <UsersContainer users={res.response} />
+      <Modal
+        formPath={modalTypes.detailsUserModal.name}
+        title={modalTypes.detailsUserModal.title}
+        maxWidth="max-w-3xl"
+        className="min-h-[65vh]"
+      >
+        <UserDetailsModalContainer />
+      </Modal>
     </>
   );
 }
