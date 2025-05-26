@@ -1,24 +1,24 @@
 "use client";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
-import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
+import TableMenu from "@/components/ui/table-menu";
 import { User } from "@/types/users";
 import { ColumnDef } from "@tanstack/react-table";
-import {  EyeIcon } from "lucide-react";
+import { EyeIcon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 
 interface Props {
   users: User[];
 }
 
-export default function UsersList({ users }: Props) {
+export default function UserList({ users }: Props) {
   const { handleOpenModal } = useContext(ModalContext);
 
   const handleViewDetails = useCallback(
     (id: string) => {
       handleOpenModal({
-        name: modalTypes.detailsPerfumeModal.name,
+        name: modalTypes.detailsUserModal.name,
         entity: id,
       });
     },
@@ -31,21 +31,38 @@ export default function UsersList({ users }: Props) {
       enableHiding: false,
     },
     {
-      accessorKey: "name",
+      accessorKey: "username",
       header: "Usuario",
     },
     {
+      accessorKey: "avatar",
+      header: "Avatar",
+    },
+    {
+      accessorKey: "email",
+      header: "E-Mail",
+    },
+    {
+      accessorKey: "role",
+      header: "Rol",
+    },
+       {
       id: "actions",
       cell: ({ row }) => {
         return (
           <div className="flex justify-end">
-            <Button
-              className="flex items-center gap-2 px-3 py-1 rounded bg-primary text-white hover:bg-primary/80 transition"
-              onClick={() => handleViewDetails(row.getValue("id"))}
-            >
-              <EyeIcon size={18} />
-              Ver Detalles
-            </Button>
+            <TableMenu
+              titleTableMenu="Acciones"
+              actions={[
+                {
+                  label: "Ver Detalles",
+                  icon: <EyeIcon />,
+                  action: () => {
+                    handleViewDetails(row.getValue("id"));
+                  },
+                },
+              ]}
+            />
           </div>
         );
       },
