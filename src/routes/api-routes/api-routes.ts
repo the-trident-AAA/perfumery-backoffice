@@ -27,8 +27,8 @@ export const apiRoutes = {
     getById: `${process.env.NEXT_PUBLIC_API_URL}home-banner/:id`,
   },
     users: {
-    get: `${process.env.NEXT_PUBLIC_API_URL}user`,
-    getById: `${process.env.NEXT_PUBLIC_API_URL}user/:id`,
+    get: `${process.env.NEXT_PUBLIC_API_URL}users`,
+    getById: `${process.env.NEXT_PUBLIC_API_URL}users/:id`,
   },
 } as const;
 

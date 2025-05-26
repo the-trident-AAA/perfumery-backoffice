@@ -1,8 +1,8 @@
 import React from "react";
 import SectionsHeader from "../components/sections-header/sections-header";
 import { Package } from "lucide-react";
-import UsersList from "./list/users-list";
 import { User } from "@/types/users";
+import UserList from "./list/users-list";
 
 
 interface Props {
@@ -17,7 +17,7 @@ export default function UsersContainer({ users }: Props) {
         sectionTitle="Gestión de Usuarios"
         sectionDescription="Gestione toda la información referente a los usuarios"
       />
-      <UsersList users={users} />
+      <UserList users={users} />
     </div>
   );
 }

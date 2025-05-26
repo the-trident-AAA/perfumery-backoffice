@@ -1,9 +1,15 @@
 export interface User{
     id: string;
-    name: string;
+    username: string;
+    avatar: string;
+    email: string;
+    role: string;   
 }
 
 export interface UserDetails {
-  id: string;
-  name: string;
+    id: string;
+    username: string;
+    avatar: string;
+    email: string;
+    role: string;   
 }

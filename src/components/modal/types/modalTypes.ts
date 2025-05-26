@@ -67,6 +67,7 @@ export interface ModalTypes {
     cancelButtonText: string;
     confirmButtonText: string;
   };
+   detailsUserModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -201,5 +202,9 @@ export const modalTypes: ModalTypes = {
       "Esta acción provocará la eliminación permanente del Tipo de Perfume.",
     cancelButtonText: "Cancelar",
     confirmButtonText: "Confirmar",
+  },
+    detailsUserModal: {
+    name: "detailsUserModal",
+    title: "Detalles del Usuario",
   },
 };
