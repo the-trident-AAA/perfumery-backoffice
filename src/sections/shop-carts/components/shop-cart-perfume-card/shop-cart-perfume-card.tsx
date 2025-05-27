@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { fCurrency } from "@/lib/format-number";
 import { ShopCartPerfume } from "@/types/shop-cart-perfumes";
-import { ImageIcon } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 
 interface Props {
@@ -18,17 +18,13 @@ export default function ShopCartPerfumeCard({ shopCartPerfume }: Props) {
       <div className="flex items-start gap-4">
         {/* Perfume image */}
         <div className="w-16 h-16 flex-shrink-0">
-          {shopCartPerfume.perfume.image ? (
-            <img
-              src={shopCartPerfume.perfume.image || "/placeholder.svg"}
-              alt={shopCartPerfume.perfume.name}
-              className="w-full h-full object-cover rounded-md"
-            />
-          ) : (
-            <div className="w-full h-full bg-gray-100 rounded-md flex items-center justify-center">
-              <ImageIcon className="h-8 w-8 text-gray-400" />
-            </div>
-          )}
+          <Image
+            src={shopCartPerfume.perfume.image || "/images/place-holder.jpg"}
+            alt={shopCartPerfume.perfume.name}
+            className="w-full h-full object-cover rounded-md"
+            height={640}
+            width={640}
+          />
         </div>
 
         {/* Perfume details */}
