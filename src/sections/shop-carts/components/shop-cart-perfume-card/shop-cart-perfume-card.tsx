@@ -9,7 +9,6 @@ interface Props {
 }
 
 export default function ShopCartPerfumeCard({ shopCartPerfume }: Props) {
-  const itemTotal = shopCartPerfume.perfume.price * shopCartPerfume.cant;
   return (
     <div
       key={shopCartPerfume.id}
@@ -60,7 +59,7 @@ export default function ShopCartPerfumeCard({ shopCartPerfume }: Props) {
             </div>
             <div>
               <span className="text-gray-500">Subtotal:</span>
-              <p className="font-medium">{fCurrency(itemTotal)}</p>
+              <p className="font-medium">{fCurrency(shopCartPerfume.price)}</p>
             </div>
             <div>
               <span className="text-gray-500">Contenido:</span>

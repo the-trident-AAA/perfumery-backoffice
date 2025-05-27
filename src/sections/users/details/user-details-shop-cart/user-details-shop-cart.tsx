@@ -1,11 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { fCurrency } from "@/lib/format-number";
 import ShopCartPerfumeCard from "@/sections/shop-carts/components/shop-cart-perfume-card/shop-cart-perfume-card";
-import {
-  getTotalItemsShopCart,
-  getTotalPriceShopCart,
-  ShopCart,
-} from "@/types/shop-carts";
+import { ShopCart } from "@/types/shop-carts";
 import { ShoppingCartIcon } from "lucide-react";
 import React from "react";
 
@@ -14,8 +10,6 @@ interface Props {
 }
 
 export default function UserDetailsShopCart({ shopCart }: Props) {
-  const totalItems = getTotalItemsShopCart(shopCart);
-  const totalPrice = getTotalPriceShopCart(shopCart);
   return (
     <div className="mt-6">
       <div className="flex items-center justify-between mb-4">
@@ -24,8 +18,8 @@ export default function UserDetailsShopCart({ shopCart }: Props) {
           <h3 className="text-lg font-medium">Carrito de compras</h3>
         </div>
         <div className="flex items-center gap-4">
-          <Badge variant="outline">{totalItems} artículos</Badge>
-          <Badge variant="secondary">{fCurrency(totalPrice)}</Badge>
+          <Badge variant="outline">{shopCart.totalItems} artículos</Badge>
+          <Badge variant="secondary">{fCurrency(shopCart.totalMount)}</Badge>
         </div>
       </div>
 
@@ -37,11 +31,11 @@ export default function UserDetailsShopCart({ shopCart }: Props) {
           </div>
           <div>
             <p className="font-medium text-gray-500">Total de Artículos</p>
-            <p className="font-medium">{totalItems}</p>
+            <p className="font-medium">{shopCart.totalItems}</p>
           </div>
           <div>
             <p className="font-medium text-gray-500">Total a Pagar</p>
-            <p className="font-medium">{fCurrency(totalPrice)}</p>
+            <p className="font-medium">{fCurrency(shopCart.totalMount)}</p>
           </div>
           <div>
             <p className="font-medium text-gray-500">Productos Únicos</p>
