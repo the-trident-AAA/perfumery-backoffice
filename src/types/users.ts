@@ -11,3 +11,15 @@ export interface User {
 export interface UserDetails extends User {
   shopCart: ShopCart;
 }
+
+export const getRoleColor = (role: string) => {
+  switch (role.toLowerCase()) {
+    case "admin":
+      return "destructive";
+    case "moderator":
+      return "secondary";
+    default:
+      return "outline";
+  }
+};
+
