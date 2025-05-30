@@ -37,7 +37,7 @@ export default function usePerfumes() {
         if (!res.response || res.error)
           throw new Error("Error al cargar los perfumes");
 
-        const perfumes = res.response;
+        const perfumes = res.response.data;
         setPerfumes(perfumes);
 
         setPagination({ ...clientPagination, total: perfumes.length });
