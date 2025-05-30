@@ -24,7 +24,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DataTablePagination } from "./data-table-pagination";
-import React from "react";
+import React, { ReactNode } from "react";
 import { Button } from "./button";
 
 interface DataTableProps<TData, TValue> {
@@ -32,6 +32,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   dataEmptyText?: string;
   initialVisibilityState?: VisibilityState;
+  filters?: ReactNode;
 }
 
 export function DataTable<TData, TValue>({
@@ -39,6 +40,7 @@ export function DataTable<TData, TValue>({
   data,
   dataEmptyText = "No hay resultados.",
   initialVisibilityState = {},
+  filters,
 }: DataTableProps<TData, TValue>) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>(initialVisibilityState);
@@ -55,7 +57,8 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="lex items-center py-4">
+      <div className="flex flex-col gap-4 items-center py-4">
+         {filters && filters}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -81,7 +84,7 @@ export function DataTable<TData, TValue>({
                 );
               })}
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu>   
       </div>
       <div className="rounded-md border">
         <Table>
