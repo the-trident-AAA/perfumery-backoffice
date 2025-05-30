@@ -27,7 +27,11 @@ export default function useUrlFilters() {
             } else searchUrl.set(key, value);
           } else searchUrl.delete(key);
         });
-        replace(`${pathname}?${searchUrl.toString()}`);
+        replace(
+          Object.keys(updatedFilters).length > 0
+            ? `${pathname}?${searchUrl.toString()}`
+            : pathname
+        );
       }, 300),
     [searchParams, pathname, replace]
   );
