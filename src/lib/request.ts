@@ -37,8 +37,11 @@ export class QueryParamsURLFactory {
     // Add pagination
     if (pagination) {
       const { perPage, page } = pagination;
-      queryParams.append("_limit", perPage.toString());
-      queryParams.append("_start", ((page - 1) * perPage).toString());
+      queryParams.append("limit", perPage.toString());
+      queryParams.append("page", ((page - 1) * perPage).toString());
+    } else {
+      queryParams.append("page", "1");
+      queryParams.append("limit", "5");
     }
 
     // Add search
