@@ -4,8 +4,8 @@ import { useCallback, useEffect, useState, useRef } from "react";
 import { debounce } from "lodash";
 import { Brand } from "@/types/brands";
 import { getBrandsList } from "@/services/brands";
-import useBrandsFilters from "@/sections/perfumes/filters/hooks/use-brands-filters";
 import useClientPagination from "@/hooks/use-client-pagination";
+import useBrandsFilters from "../filters/hooks/use-brands-filters";
 
 export default function useBrands() {
   const [brands, setBrands] = useState<Brand[]>([]);
