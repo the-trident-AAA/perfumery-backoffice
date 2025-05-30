@@ -4,6 +4,7 @@ import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { createFormDataBody } from "@/lib/request-body";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
+import { PaginationResponse } from "@/types/pagination";
 import {
   Perfume,
   PerfumeCreateDTO,
@@ -20,7 +21,7 @@ export async function getPerfumesList(params: IQueryable) {
     next: { tags: [tagsCacheByRoutes.perfumes.multipleTag] },
   });
 
-  return await buildApiResponse<Perfume[]>(res);
+  return await buildApiResponse<PaginationResponse<Perfume>>(res);
 }
 
 export async function getPerfumeById(id: string) {

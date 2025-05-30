@@ -203,7 +203,7 @@ export default async function PerfumesPage({ searchParams }: Props) {
 
   return (
     <>
-      <PerfumesContainer perfumes={res.response} />
+      <PerfumesContainer perfumes={res.response.data} />
       <Modal
         formPath={modalTypes.newPerfumeModal.name}
         title={modalTypes.newPerfumeModal.title}
