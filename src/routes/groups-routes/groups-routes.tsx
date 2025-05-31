@@ -52,7 +52,7 @@ export const groupRoutes: GroupRoute[] = [
       {
         title: "Pedidos de Perfumes",
         icon: <Package />,
-        path: paths.users.root,
+        path: paths.orders.root,
       },
     ],
   },

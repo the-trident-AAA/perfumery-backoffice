@@ -26,9 +26,13 @@ export const apiRoutes = {
     get: `${process.env.NEXT_PUBLIC_API_URL}home-banner`,
     getById: `${process.env.NEXT_PUBLIC_API_URL}home-banner/:id`,
   },
-    users: {
+  users: {
     get: `${process.env.NEXT_PUBLIC_API_URL}users`,
     getById: `${process.env.NEXT_PUBLIC_API_URL}users/:id`,
+  },
+  orders: {
+    get: `${process.env.NEXT_PUBLIC_API_URL}order`,
+    getById: `${process.env.NEXT_PUBLIC_API_URL}order/:id`,
   },
 } as const;
 
@@ -57,8 +61,12 @@ export const tagsCacheByRoutes = {
     singleTag: "home-banner",
     multipleTag: "home-banners",
   },
-    users: {
+  users: {
     singleTag: "user",
     multipleTag: "users",
+  },
+    orders: {
+    singleTag: "order",
+    multipleTag: "orders",
   },
 } as const;
