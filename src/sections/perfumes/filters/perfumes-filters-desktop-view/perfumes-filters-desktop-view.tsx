@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Filter, X, RotateCcw } from "lucide-react";
+import { Filter, RotateCcw } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { PerfumesFilters } from "../hooks/use-perfumes-filters";
+import FilterBadge from "@/components/filters/filter-badge/filter-badge";
 
 interface Props {
   filters: PerfumesFilters;
@@ -81,42 +82,85 @@ export default function PerfumesFiltersDesktopView({
             <Label>Filtros Activos</Label>
             <div className="flex flex-wrap gap-2">
               {filters.name && (
-                <Badge variant="secondary" className="gap-1">
-                  Nombre: {filters.name}
-                  <X
-                    className="h-3 w-3 cursor-pointer"
-                    onClick={() => handleChangeFilters({ name: undefined })}
-                  />
-                </Badge>
+                <FilterBadge
+                  filterName="Nombre"
+                  filterValue={filters.name}
+                  handleDeleteFilter={() => {
+                    handleChangeFilters({ name: undefined });
+                  }}
+                />
               )}
               {filters.brandId && (
-                <Badge variant="secondary" className="gap-1">
-                  Marca: {filters.brandId}
-                  <X
-                    className="h-3 w-3 cursor-pointer"
-                    onClick={() => handleChangeFilters({ brandId: undefined })}
-                  />
-                </Badge>
+                <FilterBadge
+                  filterName="Marca"
+                  filterValue={filters.brandId}
+                  handleDeleteFilter={() => {
+                    handleChangeFilters({ brandId: undefined });
+                  }}
+                />
               )}
               {filters.gender && (
-                <Badge variant="secondary" className="gap-1">
-                  Género: {filters.gender}
-                  <X
-                    className="h-3 w-3 cursor-pointer"
-                    onClick={() => handleChangeFilters({ gender: undefined })}
-                  />
-                </Badge>
+                <FilterBadge
+                  filterName="Género"
+                  filterValue={filters.gender}
+                  handleDeleteFilter={() => {
+                    handleChangeFilters({ gender: undefined });
+                  }}
+                />
               )}
               {filters.available && (
-                <Badge variant="secondary" className="gap-1">
-                  Disponible
-                  <X
-                    className="h-3 w-3 cursor-pointer"
-                    onClick={() =>
-                      handleChangeFilters({ available: undefined })
-                    }
-                  />
-                </Badge>
+                <FilterBadge
+                  filterName="Disponible"
+                  filterValue={filters.available ? "Activos" : "No Activos"}
+                  handleDeleteFilter={() => {
+                    handleChangeFilters({ available: undefined });
+                  }}
+                />
+              )}
+              {filters.perfumeTypeId && (
+                <FilterBadge
+                  filterName="Tipo De Perfume"
+                  filterValue={filters.perfumeTypeId}
+                  handleDeleteFilter={() => {
+                    handleChangeFilters({ perfumeTypeId: undefined });
+                  }}
+                />
+              )}
+              {filters.scentsIds.length > 0 && (
+                <FilterBadge
+                  filterName="Esencias"
+                  filterValue={filters.scentsIds.length.toString()}
+                  handleDeleteFilter={() => {
+                    handleChangeFilters({ scentsIds: [] });
+                  }}
+                />
+              )}
+              {filters.offerId && (
+                <FilterBadge
+                  filterName="Oferta"
+                  filterValue={filters.offerId}
+                  handleDeleteFilter={() => {
+                    handleChangeFilters({ offerId: undefined });
+                  }}
+                />
+              )}
+              {filters.priceRange[0] > 0 && (
+                <FilterBadge
+                  filterName="Oferta"
+                  filterValue={filters.priceRange[0].toString()}
+                  handleDeleteFilter={() => {
+                    handleChangeFilters({ priceRange: [0, 1000] });
+                  }}
+                />
+              )}
+              {filters.millilitersRange[0] > 0 && (
+                <FilterBadge
+                  filterName="Oferta"
+                  filterValue={filters.millilitersRange[0].toString()}
+                  handleDeleteFilter={() => {
+                    handleChangeFilters({ millilitersRange: [0, 100] });
+                  }}
+                />
               )}
             </div>
           </div>
