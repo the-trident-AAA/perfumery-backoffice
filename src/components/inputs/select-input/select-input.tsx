@@ -20,6 +20,7 @@ interface Props {
   clearable?: {
     handleClear: () => void;
   };
+  fullWidth?: boolean;
 }
 
 export default function SelectInput({
@@ -30,6 +31,7 @@ export default function SelectInput({
   options,
   loading = false,
   clearable,
+  fullWidth = true,
 }: Props) {
   return (
     <div className="space-y-2">
@@ -40,7 +42,7 @@ export default function SelectInput({
           onValueChange={onValueChange}
           disabled={loading}
         >
-          <SelectTrigger>
+          <SelectTrigger className={`${fullWidth ? "w-full" : ""}`}>
             <SelectValue placeholder={loading ? "Cargando..." : placeHolder} />
           </SelectTrigger>
           <SelectContent>
