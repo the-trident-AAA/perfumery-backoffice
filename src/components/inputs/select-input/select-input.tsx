@@ -15,6 +15,7 @@ interface Props {
   value?: string;
   onValueChange?: (value: string) => void;
   options: { value: string; label: string }[];
+  loading?: boolean;
 }
 
 export default function SelectInput({
@@ -23,13 +24,18 @@ export default function SelectInput({
   value,
   onValueChange,
   options,
+  loading = false,
 }: Props) {
   return (
     <div className="space-y-2">
       {label && <Label>{label}</Label>}
-      <Select value={value || ""} onValueChange={onValueChange}>
+      <Select
+        value={value || ""}
+        onValueChange={onValueChange}
+        disabled={loading}
+      >
         <SelectTrigger>
-          <SelectValue placeholder={placeHolder} />
+          <SelectValue placeholder={loading ? "Cargando..." : placeHolder} />
         </SelectTrigger>
         <SelectContent>
           {options.map((option, index) => (
