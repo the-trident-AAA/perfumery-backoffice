@@ -57,7 +57,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-4 items-center py-4">
+      <div className="flex gap-4 items-center py-4">
          {filters && filters}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
