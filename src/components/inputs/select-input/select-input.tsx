@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { XIcon } from "lucide-react";
 import React from "react";
 
 interface Props {
@@ -16,6 +17,9 @@ interface Props {
   onValueChange?: (value: string) => void;
   options: { value: string; label: string }[];
   loading?: boolean;
+  clearable?: {
+    handleClear: () => void;
+  };
 }
 
 export default function SelectInput({
@@ -25,26 +29,39 @@ export default function SelectInput({
   onValueChange,
   options,
   loading = false,
+  clearable,
 }: Props) {
   return (
     <div className="space-y-2">
       {label && <Label>{label}</Label>}
-      <Select
-        value={value || ""}
-        onValueChange={onValueChange}
-        disabled={loading}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder={loading ? "Cargando..." : placeHolder} />
-        </SelectTrigger>
-        <SelectContent>
-          {options.map((option, index) => (
-            <SelectItem key={index} value={option.value}>
-              {option.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <div className="relative">
+        <Select
+          value={value || ""}
+          onValueChange={onValueChange}
+          disabled={loading}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder={loading ? "Cargando..." : placeHolder} />
+          </SelectTrigger>
+          <SelectContent>
+            {options.map((option, index) => (
+              <SelectItem key={index} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {clearable && value && (
+          <button
+            type="button"
+            onClick={clearable.handleClear}
+            className="absolute right-8 top-1/2 -translate-y-1/2 rounded-sm p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+            title="Clear selection"
+          >
+            <XIcon className="h-4 w-4" />
+          </button>
+        )}
+      </div>
     </div>
   );
 }
