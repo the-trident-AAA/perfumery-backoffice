@@ -1,5 +1,5 @@
 import { getRoleColor, UserDetails } from "@/types/users";
-import { Badge, MailIcon, User as UserIcon } from "lucide-react";
+import { Badge, MailIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
