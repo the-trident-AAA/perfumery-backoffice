@@ -1,5 +1,6 @@
 import { getRoleColor, UserDetails } from "@/types/users";
 import { Badge, MailIcon, User as UserIcon } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 
 interface Props {
@@ -11,19 +12,15 @@ export default function UserDetailsProfile({ user }: Props) {
     <div className="flex flex-col md:flex-row gap-6 mb-6">
       {/* Avatar */}
       <div className="w-full md:w-32 flex-shrink-0">
-        {user.avatar ? (
-          <div className="relative aspect-square rounded-full overflow-hidden border border-gray-200 mx-auto md:mx-0 w-32 h-32">
-            <img
-              src={user.avatar || "/placeholder.svg"}
-              alt={user.username}
-              className="object-cover w-full h-full"
-            />
-          </div>
-        ) : (
-          <div className="relative aspect-square rounded-full overflow-hidden bg-gray-100 border border-gray-200 flex items-center justify-center mx-auto md:mx-0 w-32 h-32">
-            <UserIcon className="h-16 w-16 text-gray-400" />
-          </div>
-        )}
+        <div className="relative aspect-square rounded-full overflow-hidden border border-gray-200 mx-auto md:mx-0 w-32 h-32">
+          <Image
+            src={user.avatar || "/images/place-holder.jpg"}
+            alt={user.username}
+            width={800}
+            height={800}
+            className="object-cover w-full h-full"
+          />
+        </div>
       </div>
 
       {/* User Info */}
