@@ -12,7 +12,7 @@ interface Props {
   orders: Order[];
 }
 
-export default function OrderList({ orders }: Props) {
+export default function OrdersList({ orders }: Props) {
   const { handleOpenModal } = useContext(ModalContext);
 
   const handleViewDetails = useCallback(

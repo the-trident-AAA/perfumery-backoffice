@@ -1,4 +1,4 @@
-import OrdersContainer from "@/sections/orders/order-container";
+import OrdersContainer from "@/sections/orders/orders-container";
 import { getOrdersList } from "@/services/orders";
 import { SearchParamsPagination } from "@/types/pagination";
 import React from "react";

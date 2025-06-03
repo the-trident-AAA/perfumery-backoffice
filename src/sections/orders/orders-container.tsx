@@ -2,7 +2,8 @@ import React from "react";
 import SectionsHeader from "../components/sections-header/sections-header";
 import { Package } from "lucide-react";
 import { Order } from "@/types/orders";
-import OrderList from "./list/order-list";
+import OrdersList from "./list/orders-list";
+
 
 
 interface Props {
@@ -17,7 +18,7 @@ export default function OrdersContainer({ orders }: Props) {
         sectionTitle="Gestión de Pedidos"
         sectionDescription="Gestione toda la información referente a los pedidos"
       />
-      <OrderList orders={orders} />
+      <OrdersList orders={orders} />
     </div>
   );
 }
