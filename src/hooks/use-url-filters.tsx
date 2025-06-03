@@ -10,7 +10,7 @@ export default function useUrlFilters() {
 
   const debouncedUpdateFiltersInUrl = useMemo(
     () =>
-      debounce((updatedFilters: Object) => {
+      debounce((updatedFilters: object) => {
         const searchUrl = new URLSearchParams(searchParams);
         Object.entries(updatedFilters).forEach(([key, value]) => {
           if (value !== undefined) {
@@ -37,7 +37,7 @@ export default function useUrlFilters() {
   );
 
   const updateFiltersInUrl = useCallback(
-    (updatedFilters: Object) => {
+    (updatedFilters: object) => {
       debouncedUpdateFiltersInUrl(updatedFilters);
     },
     [debouncedUpdateFiltersInUrl]
