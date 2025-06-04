@@ -20,7 +20,7 @@ export default function SearchInput({
   onChange,
 }: Props) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 w-full">
       {label && <Label htmlFor={id}>{label}</Label>}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />

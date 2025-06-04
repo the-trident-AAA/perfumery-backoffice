@@ -1,3 +1,4 @@
+import { BrandsFilters } from "@/sections/brands/filters/hooks/use-brands-filters";
 import { BrandEdit } from "@/sections/brands/form/edit/schemas/brand-edit-schema";
 import { BrandCreate } from "@/sections/brands/form/new/schemas/brand-create-schema";
 
@@ -11,12 +12,16 @@ export interface BrandDetails {
   name: string;
 }
 
-export interface BrandCreateDTO{
+export interface BrandCreateDTO {
   name: string;
 }
 
 export interface BrandEditDTO {
   name: string;
+}
+
+export interface BrandFiltersDTO {
+  name?: string;
 }
 
 export const convertBrandCreateDTO = (
@@ -27,10 +32,14 @@ export const convertBrandCreateDTO = (
   };
 };
 
-export const convertBrandEditDTO = (
-  brandEdit: BrandEdit
-): BrandEditDTO => {
+export const convertBrandEditDTO = (brandEdit: BrandEdit): BrandEditDTO => {
   return {
     ...brandEdit,
   };
+};
+
+export const convertBrandFiltersDTO = (
+  brandFilters: BrandsFilters
+): BrandFiltersDTO => {
+  return { ...brandFilters };
 };

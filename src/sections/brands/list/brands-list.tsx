@@ -7,6 +7,8 @@ import { Brand } from "@/types/brands";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
+import BrandsContainer from "../brands-container";
+import BrandsFiltersContainer from "../filters/brands-filters-container";
 
 interface Props {
   brands: Brand[];
@@ -76,7 +78,8 @@ export default function BrandList({ brands }: Props) {
       <DataTable
         columns={columns}
         data={brands}
-        initialVisibilityState={{ id: false }}
+        initialVisibilityState={{ id: false }} 
+        filters={<BrandsFiltersContainer />}
       />
     </div>
   );
