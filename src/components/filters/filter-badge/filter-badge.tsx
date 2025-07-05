@@ -16,7 +16,7 @@ export default function FilterBadge({
   handleDeleteFilter,
 }: Props) {
   return (
-    <Badge variant="secondary" className="gap-1">
+    <Badge variant="default" className="gap-1">
       {filterName + ": " + filterValue}
       <Button
         className="size-4 cursor-pointer"
