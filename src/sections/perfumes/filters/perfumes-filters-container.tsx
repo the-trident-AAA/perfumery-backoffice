@@ -8,9 +8,6 @@ import useScents from "@/sections/scents/hooks/use-scents";
 import useOffers from "@/sections/offers/hooks/use-offers";
 import SheetFilters from "@/components/filters/sheet-filters/sheet-filters";
 import PerfumesActiveFilters from "./perfumes-active-filters/perfumes-active-filters";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { RotateCcw } from "lucide-react";
 
 export default function PerfumesFiltersContainer() {
   const {
@@ -36,27 +33,13 @@ export default function PerfumesFiltersContainer() {
             handleChangeFilters={handleChangeFilters}
           />
         </SheetFilters>
-        {getActiveFiltersCount() > 0 && (
-          <Badge variant="secondary" className="ml-2">
-            {getActiveFiltersCount()}
-          </Badge>
-        )}
-        {getActiveFiltersCount() > 0 && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleResetFilters}
-            className="h-8"
-          >
-            <RotateCcw className="h-4 w-4 mr-1" />
-            Limpiar
-          </Button>
-        )}
       </div>
       {getActiveFiltersCount() > 0 && (
         <PerfumesActiveFilters
           filters={filters}
           handleChangeFilters={handleChangeFilters}
+          getActiveFiltersCount={getActiveFiltersCount}
+          handleResetFilters={handleResetFilters}
         />
       )}
     </div>
