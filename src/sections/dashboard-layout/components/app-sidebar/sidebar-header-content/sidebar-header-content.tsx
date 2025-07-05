@@ -8,7 +8,7 @@ export default function SidebarHeaderContent() {
   return (
     <div className="flex text-white flex-col gap-4 items-center justify-center">
       <StoreIcon className={` ${open ? "size-12" : "size-8"}`} />
-      {open && <p className="text-lg font-bold">Admin Panel</p>}
+      {open && <p className="text-lg font-bold">Panel de Administración</p>}
     </div>
   );
 }
