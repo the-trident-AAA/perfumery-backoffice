@@ -6,11 +6,11 @@ import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { useContext } from "react";
 import { ModalContext } from "@/components/modal/context/modalContext";
-import { Button } from "@/components/ui/button";
 import { ScentCreate, scentCreateSchema } from "./schemas/scent-create-schema";
 import useCreateScent from "../../hooks/use-create-scents";
 import ScentForm from "../scent-form";
 import { toast } from "react-toastify";
+import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
 
 export default function NewScentFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
@@ -44,14 +44,11 @@ export default function NewScentFormContainer() {
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
         <ScentForm />
-        <div className="flex gap-2 justify-end">
-          <Button type="button" variant={"destructive"} onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant={"default"} type="submit" disabled={submitLoading}>
-            Crear Aroma
-          </Button>
-        </div>
+        <FormActionButtons
+          submitLoading={submitLoading}
+          submitButtonText="Crear Aroma"
+          handleClose={handleClose}
+        />
       </form>
     </FormProvider>
   );

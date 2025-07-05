@@ -2,7 +2,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useContext } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import { revalidateServerTags } from "@/lib/cache";
@@ -11,6 +10,7 @@ import { OfferCreate, offerCreateSchema } from "./schemas/offer-create-schema";
 import useCreateOffer from "../../hooks/use-create-offer";
 import OfferForm from "../offer-form";
 import { toast } from "react-toastify";
+import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
 
 export default function NewOfferFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
@@ -46,14 +46,11 @@ export default function NewOfferFormContainer() {
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
         <OfferForm />
-        <div className="flex gap-2 justify-end">
-          <Button type="button" variant={"destructive"} onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant={"default"} type="submit" disabled={submitLoading}>
-            Crear Oferta
-          </Button>
-        </div>
+        <FormActionButtons
+          submitLoading={submitLoading}
+          submitButtonText="Crear Oferta"
+          handleClose={handleClose}
+        />
       </form>
     </FormProvider>
   );

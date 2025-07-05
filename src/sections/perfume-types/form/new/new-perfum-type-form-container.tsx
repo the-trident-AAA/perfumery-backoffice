@@ -6,7 +6,6 @@ import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { useContext } from "react";
 import { ModalContext } from "@/components/modal/context/modalContext";
-import { Button } from "@/components/ui/button";
 import {
   PerfumeTypeCreate,
   perfumeTypeCreateSchema,
@@ -14,6 +13,7 @@ import {
 import useCreatePerfumeType from "../../hooks/use-create-perfume-types";
 import PerfumeTypeForm from "../perfume-type-form";
 import { toast } from "react-toastify";
+import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
 
 export default function NewPerfumeTypeFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
@@ -47,14 +47,11 @@ export default function NewPerfumeTypeFormContainer() {
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
         <PerfumeTypeForm />
-        <div className="flex gap-2 justify-end">
-          <Button type="button" variant={"destructive"} onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant={"default"} type="submit" disabled={submitLoading}>
-            Crear Tipo de Perfume
-          </Button>
-        </div>
+        <FormActionButtons
+          submitLoading={submitLoading}
+          submitButtonText="Crear Tipo de Perfume"
+          handleClose={handleClose}
+        />
       </form>
     </FormProvider>
   );

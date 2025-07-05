@@ -2,7 +2,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useContext } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import { revalidateServerTags } from "@/lib/cache";
@@ -13,6 +12,7 @@ import { OfferDetails } from "@/types/offers";
 import useEditOffer from "../../hooks/use-edit-offer";
 import { toast } from "react-toastify";
 import useImageForm from "@/components/form/hooks/use-image-form";
+import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
 
 interface Props {
   offer: OfferDetails;
@@ -60,14 +60,11 @@ export default function EditOfferFormContainer({ offer }: Props) {
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
         <OfferForm imageRecived={{ loading, error }} />
-        <div className="flex gap-2 justify-end">
-          <Button type="button" variant={"destructive"} onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant={"default"} type="submit" disabled={submitLoading}>
-            Actualizar Oferta
-          </Button>
-        </div>
+        <FormActionButtons
+          submitLoading={submitLoading}
+          submitButtonText="Actualizar Oferta"
+          handleClose={handleClose}
+        />
       </form>
     </FormProvider>
   );
