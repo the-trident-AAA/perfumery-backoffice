@@ -36,5 +36,17 @@ export default function useBrandsFilters({ setPagination }: Props) {
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
-  return { filters, handleChangeFilters, handleResetFilters };
+  const getActiveFiltersCount = () => {
+    let count = 0;
+    if (filters.name) count++;
+
+    return count;
+  };
+
+  return {
+    filters,
+    handleChangeFilters,
+    handleResetFilters,
+    getActiveFiltersCount,
+  };
 }
