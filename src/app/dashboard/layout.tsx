@@ -19,7 +19,7 @@ export default function layout({
       <DashBoardLayoutAppSidebar />
       <SidebarInset>
         <DashBoardLayoutHeader />
-        <div className="container mx-auto p-2">
+        <div className="container h-full bg-background mx-auto p-2">
           {children}
           <Modal
             formPath={modalTypes.editProfileModal.name}
