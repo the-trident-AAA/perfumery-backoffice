@@ -8,9 +8,11 @@ interface Props {
 
 export function LoadingSpinner({ size = 24, className }: Props) {
   return (
-    <Loader2
-      className={cn("animate-spin text-muted-foreground", className)}
-      size={size}
-    />
+    <div className="p-2">
+      <Loader2
+        className={cn("animate-spin text-muted-foreground", className)}
+        size={size}
+      />
+    </div>
   );
 }
