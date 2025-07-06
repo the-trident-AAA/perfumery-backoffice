@@ -23,14 +23,12 @@ export default async function BrandsPage({ searchParams }: Props) {
       <Modal
         formPath={modalTypes.newBrandModal.name}
         title={modalTypes.newBrandModal.title}
-        maxWidth="max-w-3xl"
       >
         <NewBrandFormContainer />
       </Modal>
       <Modal
         formPath={modalTypes.editBrandModal.name}
         title={modalTypes.editBrandModal.title}
-        maxWidth="max-w-3xl"
       >
         <EditBrandModalContainer />
       </Modal>
