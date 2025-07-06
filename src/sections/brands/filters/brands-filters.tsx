@@ -12,7 +12,7 @@ export default function BrandsFilters({ filters, handleChangeFilters }: Props) {
       <SearchInput
         id="name"
         value={filters.name}
-        placeHolder="Introduzca el nombre de la marca..."
+        placeHolder="Nombre de la marca..."
         onChange={(e) => {
           handleChangeFilters({ name: e.target.value || undefined });
         }}
