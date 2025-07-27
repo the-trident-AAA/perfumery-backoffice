@@ -1,9 +1,11 @@
 "use client";
+import useUrlFilters from "@/hooks/use-url-filters";
+import { convertScentFiltersDTO } from "@/types/scents";
 import { Pagination } from "@/types/pagination";
 import { Dispatch, SetStateAction, useState } from "react";
 
-interface ScentsFilters {
-  search: string;
+export interface ScentsFilters {
+  name?: string;
 }
 
 interface Props {
@@ -11,26 +13,41 @@ interface Props {
 }
 
 export default function useScentsFilters({ setPagination }: Props) {
-  const [filters, setFilters] = useState<ScentsFilters>({
-    search: "",
-  });
+  const { updateFiltersInUrl } = useUrlFilters();
+  const [filters, setFilters] = useState<ScentsFilters>({});
 
   async function handleChangeFilters(updatedFilters: ScentsFilters) {
-    await setFilters((prev) => ({
-      ...prev,
-      ...updatedFilters,
-    }));
-    if (setPagination)
-      setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
-  }
+     const newFilters = {
+       ...filters,
+       ...updatedFilters,
+     };
+     await setFilters((prev) => ({
+       ...prev,
+       ...updatedFilters,
+     }));
+     updateFiltersInUrl(convertScentFiltersDTO(newFilters));
+     if (setPagination)
+       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
+   }
 
   function handleResetFilters() {
-    setFilters({
-      search: "",
-    });
+    setFilters({});
+    updateFiltersInUrl({});
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
-  return { filters, handleChangeFilters, handleResetFilters };
+  const getActiveFiltersCount = () => {
+    let count = 0;
+    if (filters.name) count++;
+
+    return count;
+  };
+
+  return {
+    filters,
+    handleChangeFilters,
+    handleResetFilters,
+    getActiveFiltersCount,
+  };
 }
