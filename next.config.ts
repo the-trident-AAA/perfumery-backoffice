@@ -12,8 +12,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "31.97.43.136",
-        port: "9000",
+        hostname: process.env.NEXT_PUBLIC_IMAGE_HOST || "localhost",
+        port: process.env.NEXT_PUBLIC_IMAGE_PORT || "9000",
         pathname: "/perfumery/**",
       },
     ],
