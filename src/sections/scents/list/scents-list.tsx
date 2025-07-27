@@ -7,6 +7,7 @@ import { Scent } from "@/types/scents";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
+import ScentsFiltersContainer from "../filters/scents-filters-container";
 
 interface Props {
   scents: Scent[];
@@ -77,6 +78,7 @@ export default function ScentsList({ scents }: Props) {
         columns={columns}
         data={scents}
         initialVisibilityState={{ id: false }}
+        filters={<ScentsFiltersContainer />}
       />
     </div>
   );

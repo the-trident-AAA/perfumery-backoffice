@@ -1,3 +1,4 @@
+import { ScentsFilters } from "@/sections/scents/filters/hooks/use-scents-filters";
 import { ScentEdit } from "@/sections/scents/form/edit/schemas/scent-edit-schema";
 import { ScentCreate } from "@/sections/scents/form/new/schemas/scent-create-schema";
 
@@ -17,6 +18,9 @@ export interface ScentCreateDTO {
 export interface ScentEditDTO {
   name: string;
 }
+export interface ScentFiltersDTO {
+  name?: string;
+}
 
 export const convertScentCreateDTO = (
   scentCreate: ScentCreate
@@ -32,4 +36,10 @@ export const convertScentEditDTO = (
   return {
     ...scentEdit,
   };
+};
+
+export const convertScentFiltersDTO = (
+  scentFilters: ScentsFilters
+): ScentFiltersDTO => {
+  return { ...scentFilters };
 };
