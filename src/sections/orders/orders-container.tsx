@@ -1,6 +1,6 @@
 import React from "react";
 import SectionsHeader from "../components/sections-header/sections-header";
-import { Package } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Order } from "@/types/orders";
 import OrdersList from "./list/orders-list";
 
@@ -14,7 +14,7 @@ export default function OrdersContainer({ orders }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <SectionsHeader
-        sectionIcon={<Package />}
+        sectionIcon={<ShoppingCart />}
         sectionTitle="Gestión de Pedidos"
         sectionDescription="Gestione toda la información referente a los pedidos"
       />

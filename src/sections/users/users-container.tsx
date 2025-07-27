@@ -1,6 +1,6 @@
 import React from "react";
 import SectionsHeader from "../components/sections-header/sections-header";
-import { Package } from "lucide-react";
+import { Users } from "lucide-react";
 import { User } from "@/types/users";
 import UserList from "./list/users-list";
 
@@ -13,7 +13,7 @@ export default function UsersContainer({ users }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <SectionsHeader
-        sectionIcon={<Package />}
+        sectionIcon={<Users />}
         sectionTitle="Gestión de Usuarios"
         sectionDescription="Gestione toda la información referente a los usuarios"
       />

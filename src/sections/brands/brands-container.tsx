@@ -1,6 +1,6 @@
 import React from "react";
 import SectionsHeader from "../components/sections-header/sections-header";
-import { Package } from "lucide-react";
+import { Layers } from "lucide-react";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import { Brand } from "@/types/brands";
 import BrandList from "./list/brands-list";
@@ -13,7 +13,7 @@ export default function BrandsContainer({ brands }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <SectionsHeader
-        sectionIcon={<Package />}
+        sectionIcon={<Layers />}
         sectionTitle="Gestión de Marcas"
         sectionDescription="Gestione toda la información referente a las marcas de los perfumes"
         addButton={{
