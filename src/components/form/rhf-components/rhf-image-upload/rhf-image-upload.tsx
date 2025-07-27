@@ -62,7 +62,7 @@ export function RHFImageUpload({
   const { getRootProps, getInputProps, isDragActive, fileRejections } =
     useDropzone({
       accept: {
-        "image/*": [".jpeg", ".jpg", ".png", ".gif", ".webp"],
+        "image/*": [".jpeg", ".jpg", ".png", ".gif", ".webp", ".avif"],
       },
       maxSize,
       multiple: false,
