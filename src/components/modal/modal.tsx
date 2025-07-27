@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import { ModalContext } from "./context/modalContext";
-import { Box, XIcon } from "lucide-react";
+import { FileText, XIcon } from "lucide-react";
 
 interface Props {
   formPath: string;
@@ -62,7 +62,7 @@ export default function Modal({
                 : "text-sm"
             }`}
           >
-            {icon || <Box />}
+            {icon || <FileText />}
             {title || ""}
           </DialogTitle>
           <DialogClose>

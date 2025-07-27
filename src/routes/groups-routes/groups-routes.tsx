@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { paths } from "../path";
-import { Package } from "lucide-react";
+import { SprayCan , SoapDispenserDroplet, Type , HandCoins , House , ShoppingCart , GalleryHorizontal , Users , Layers} from "lucide-react";
 
 export interface GroupRoute {
   title: string;
@@ -21,27 +21,27 @@ export const groupRoutes: GroupRoute[] = [
     navigationRoutes: [
       {
         title: "Perfumes",
-        icon: <Package />,
+        icon: <SprayCan />,
         path: paths.perfumes.root,
       },
       {
         title: "Marcas",
-        icon: <Package />,
+        icon: <Layers />,
         path: paths.brands.root,
       },
       {
         title: "Aromas",
-        icon: <Package />,
+        icon: <SoapDispenserDroplet />,
         path: paths.scents.root,
       },
       {
         title: "Tipos de Perfumes",
-        icon: <Package />,
+        icon: <Type />,
         path: paths.perfumeTypes.root,
       },
       {
         title: "Ofertas",
-        icon: <Package />,
+        icon: <HandCoins />,
         path: paths.offers.root,
       },
     ],
@@ -51,7 +51,7 @@ export const groupRoutes: GroupRoute[] = [
     navigationRoutes: [
       {
         title: "Pedidos de Perfumes",
-        icon: <Package />,
+        icon: <ShoppingCart />,
         path: paths.orders.root,
       },
     ],
@@ -61,12 +61,12 @@ export const groupRoutes: GroupRoute[] = [
     navigationRoutes: [
       {
         title: "Home",
-        icon: <Package />,
+        icon: <House />,
         path: "",
         children: [
           {
             title: "Banners",
-            icon: <Package />,
+            icon: <GalleryHorizontal />,
             path: paths.homeBanners.root,
           },
         ],
@@ -78,7 +78,7 @@ export const groupRoutes: GroupRoute[] = [
     navigationRoutes: [
       {
         title: "Usuarios",
-        icon: <Package />,
+        icon: <Users />,
         path: paths.users.root,
       },
     ],
