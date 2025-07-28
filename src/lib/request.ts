@@ -13,51 +13,24 @@ export class QueryParamsURLFactory {
 
   build(): string {
     const queryParams = new URLSearchParams();
-    const { filters, pagination, search, sorts, ...rest } = this.query;
-    // Add filters
-    if (filters) {
-      filters?.forEach((filter) => {
-        queryParams.append(
-          "filters",
-          `${filter.field},${filter.op ?? "eq"},${filter.value}`
-        );
-      });
-    }
 
-    // Add sorts
-    if (sorts?.length) {
-      queryParams.append(
-        "_sort",
-        sorts
-          .map((sort) => `${sort.field}:${sort.isAsc ? "ASC" : "DESC"}`)
-          .join(",")
-      );
-    }
-
-    // Add pagination
-    if (pagination) {
-      const { perPage, page } = pagination;
-      queryParams.append("limit", perPage.toString());
-      queryParams.append("page", ((page - 1) * perPage).toString());
-    } else {
+    // add default pagination
+    if (!this.query.page) {
       queryParams.append("page", "1");
-      queryParams.append("limit", "5");
+    }
+    if (!this.query.limit) {
+      queryParams.append("limit", "10");
     }
 
-    // Add search
-    if (search) queryParams.append(`_q`, search);
-
-    if (rest) {
-      Object.keys(rest).forEach((key) => {
-        if (Array.isArray(rest[key])) {
-          rest[key].forEach((value: string) => {
-            queryParams.append(key, value);
-          });
-        } else {
-          queryParams.append(key, rest[key]);
-        }
-      });
-    }
+    Object.keys(this.query).forEach((key) => {
+      if (Array.isArray(this.query[key])) {
+        this.query[key].forEach((value: string) => {
+          queryParams.append(key, value);
+        });
+      } else {
+        queryParams.append(key, this.query[key]);
+      }
+    });
 
     // Generate complete URL if baseUrl is provided
     if (this.baseUrl) {
