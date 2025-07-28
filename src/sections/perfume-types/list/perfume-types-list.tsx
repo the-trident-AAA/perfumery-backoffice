@@ -8,6 +8,7 @@ import { PerfumeType } from "@/types/perfume-types";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
+import PerfumeTypesFiltersContainer from "../filters/perfume-types-filters-container";
 
 interface Props {
   perfumeTypes: PerfumeType[];
@@ -92,6 +93,7 @@ export default function PerfumeTypesList({ perfumeTypes }: Props) {
         columns={columns}
         data={perfumeTypes}
         initialVisibilityState={{ id: false }}
+        filters ={<PerfumeTypesFiltersContainer/>}
       />
     </div>
   );
