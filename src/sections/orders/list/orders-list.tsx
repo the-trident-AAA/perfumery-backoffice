@@ -31,10 +31,18 @@ export default function OrdersList({ orders }: Props) {
       enableHiding: false,
     },
     {
-      accessorKey: "username",
+      accessorKey: "state",
+      header: "Estado",
+    },
+    {
+      accessorKey: "userId",
       header: "Usuario",
     },
-       {
+        {
+      accessorKey: "perfumes",
+      header: "Perfumes",
+    },
+    {
       id: "actions",
       cell: ({ row }) => {
         return (
