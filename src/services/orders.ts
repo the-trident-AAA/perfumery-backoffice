@@ -3,6 +3,7 @@ import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { Order, OrderDetails } from "@/types/orders";
+import { PaginationResponse } from "@/types/pagination";
 import { IQueryable } from "@/types/request";
 
 
@@ -14,7 +15,7 @@ export async function getOrdersList(params: IQueryable) {
     next: { tags: [tagsCacheByRoutes.orders.multipleTag] },
   });
 
-  return await buildApiResponse<Order[]>(res);
+  return await buildApiResponse<PaginationResponse<Order>>(res);
 }
 
 export async function getOrderById(id: string) {
