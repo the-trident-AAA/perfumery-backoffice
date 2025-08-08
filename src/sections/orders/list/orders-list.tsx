@@ -4,6 +4,7 @@ import { modalTypes } from "@/components/modal/types/modalTypes";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { Order } from "@/types/orders";
+import { User } from "@/types/users";
 import { ColumnDef } from "@tanstack/react-table";
 import { EyeIcon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
@@ -35,12 +36,12 @@ export default function OrdersList({ orders }: Props) {
       header: "Estado",
     },
     {
-      accessorKey: "userId",
-      header: "Usuario",
-    },
-        {
-      accessorKey: "perfumes",
-      header: "Perfumes",
+      accessorKey: "user",
+      header: "e-mail",
+      cell: ({row}) => {
+        const user = row.getValue("user") as User;
+        return <p>{user.email}</p>;
+      }
     },
     {
       id: "actions",

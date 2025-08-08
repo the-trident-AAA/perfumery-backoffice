@@ -14,7 +14,7 @@ export default async function OrdersPage({ searchParams }: Props) {
 
   return (
     <>
-      <OrdersContainer orders={res.response} />
+      <OrdersContainer orders={res.response.data} />
     </>
   );
 }
