@@ -1,3 +1,6 @@
+import Modal from "@/components/modal/modal";
+import { modalTypes } from "@/components/modal/types/modalTypes";
+import OrderDetailsModalContainer from "@/sections/orders/details/order-details-modal-container";
 import OrdersContainer from "@/sections/orders/orders-container";
 import { getOrdersList } from "@/services/orders";
 import { SearchParamsPagination } from "@/types/pagination";
@@ -15,6 +18,14 @@ export default async function OrdersPage({ searchParams }: Props) {
   return (
     <>
       <OrdersContainer orders={res.response.data} />
+      <Modal
+        formPath={modalTypes.detailsOrderModal.name}
+        title={modalTypes.detailsOrderModal.title}
+        maxWidth="max-w-3xl"
+        className="min-h-[65vh]"
+      >
+        <OrderDetailsModalContainer />
+      </Modal>
     </>
   );
 }
