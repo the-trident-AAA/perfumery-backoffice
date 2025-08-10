@@ -8,6 +8,7 @@ import { Offer } from "@/types/offers";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
+import OffersFiltersContainer from "../filters/offers-filters-container";
 
 interface Props {
   offers: Offer[];
@@ -126,6 +127,7 @@ export default function OffersList({ offers }: Props) {
         columns={columns}
         data={offers}
         initialVisibilityState={{ id: false }}
+        filters ={<OffersFiltersContainer/>}
       />
     </div>
   );
