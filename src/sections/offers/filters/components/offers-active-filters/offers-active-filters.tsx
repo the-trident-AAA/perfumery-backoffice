@@ -1,0 +1,85 @@
+import FilterBadge from "@/components/filters/filter-badge/filter-badge";
+import { Label } from "@/components/ui/label";
+import React from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { RotateCcwIcon } from "lucide-react";
+import { OffersFilters } from "../../hooks/use-offers-filters";
+
+interface Props {
+  filters: OffersFilters;
+  handleChangeFilters: (filters: Partial<OffersFilters>) => void;
+  getActiveFiltersCount: () => number;
+  handleResetFilters: () => void;
+}
+
+export default function OffersActiveFilters({
+  filters,
+  handleChangeFilters,
+  getActiveFiltersCount,
+  handleResetFilters,
+}: Props) {
+  return (
+    <div>
+      <div className="space-y-4">
+        <div className="flex gap-2 items-center">
+          <Label>Filtros Activos</Label>
+          {getActiveFiltersCount() > 0 && (
+            <Badge variant="default" className="ml-2">
+              {getActiveFiltersCount()}
+            </Badge>
+          )}
+          {getActiveFiltersCount() > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleResetFilters}
+              className="h-8"
+            >
+              <RotateCcwIcon className="h-4 w-4 mr-1" />
+              Limpiar
+            </Button>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {filters.name && (
+            <FilterBadge
+              filterName="Nombre"
+              filterValue={filters.name}
+              handleDeleteFilter={() => {
+                handleChangeFilters({ name: undefined });
+              }}
+            />
+          )}
+          {filters.description && (
+            <FilterBadge
+              filterName="Descripción"
+              filterValue={filters.description}
+              handleDeleteFilter={() => {
+                handleChangeFilters({ name: undefined });
+              }}
+            />
+          )}
+          {filters.scope && (
+            <FilterBadge
+              filterName="Alcance"
+              filterValue={filters.scope}
+              handleDeleteFilter={() => {
+                handleChangeFilters({ name: undefined });
+              }}
+            />
+          )}
+          {filters.offerType && (
+            <FilterBadge
+              filterName="Tipo de Oferta"
+              filterValue={filters.offerType}
+              handleDeleteFilter={() => {
+                handleChangeFilters({ name: undefined });
+              }}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

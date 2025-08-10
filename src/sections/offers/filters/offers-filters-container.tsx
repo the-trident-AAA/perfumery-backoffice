@@ -1,23 +1,23 @@
 import React from "react";
-import usePerfumeTypesFilters from "./hooks/use-perfume-types-filters";
-import PerfumeTypesFilters from "./perfume-types-filters";
-import PerfumeTypesActiveFilters from "./components/perfume-types-active-filters/perfume-types-active-filters";
+import useOffersFilters from "./hooks/use-offers-filters";
+import OffersActiveFilters from "./components/offers-active-filters/offers-active-filters";
+import OffersFilters from "./offers-filters";
 
-export default function PerfumeTypesFiltersContainer() {
+export default function OffersFiltersContainer() {
   const {
     filters,
     handleChangeFilters,
     handleResetFilters,
     getActiveFiltersCount,
-  } = usePerfumeTypesFilters({});
+  } = useOffersFilters({});
   return (
     <div className="flex flex-col gap-4">
-      <PerfumeTypesFilters
+      <OffersFilters
         filters={filters}
         handleChangeFilters={handleChangeFilters}
       />
       {getActiveFiltersCount() > 0 && (
-        <PerfumeTypesActiveFilters
+        <OffersActiveFilters
           filters={filters}
           handleChangeFilters={handleChangeFilters}
           getActiveFiltersCount={getActiveFiltersCount}
