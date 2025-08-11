@@ -1,6 +1,7 @@
 import { HomeBannerCreate } from "@/sections/home-banners/form/new/schemas/home-banner-create-schema";
 import { PerfumeDetails } from "./perfumes";
 import { HomeBannerEdit } from "@/sections/home-banners/form/edit/schemas/home-banner-edit-schema";
+import { HomeBannersFilters } from "@/sections/home-banners/filters/hooks/use-home-banners-filters";
 
 export interface HomeBanner {
   id: string;
@@ -29,6 +30,11 @@ export interface HomeBannerEditDTO {
   perfumes: string[];
 }
 
+export interface HomeBannerFiltersDTO {
+  title?: string;
+  description?: string;
+}
+
 export const convertHomeBannerCreateDTO = (
   homeBannerCreate: HomeBannerCreate
 ): HomeBannerCreateDTO => {
@@ -45,4 +51,10 @@ export const convertHomeBannerEditDTO = (
     ...homeBannerEdit,
     perfumes: homeBannerEdit.perfumes.map((perfume) => perfume.id),
   };
+};
+
+export const convertHomeBannersFiltersDTO = (
+  homeBannersFilters: HomeBannersFilters
+): HomeBannerFiltersDTO => {
+  return { ...homeBannersFilters };
 };
