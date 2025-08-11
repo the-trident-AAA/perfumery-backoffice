@@ -1,6 +1,6 @@
 "use client";
 import useUrlFilters from "@/hooks/use-url-filters";
-import { convertHomeBannersFiltersDTO } from "@/types/home-banners";
+import { convertHomeBannerFiltersDTO } from "@/types/home-banners";
 import { Pagination } from "@/types/pagination";
 import { Dispatch, SetStateAction, useState } from "react";
 
@@ -26,7 +26,7 @@ export default function useHomeBannersFilters({ setPagination }: Props) {
       ...prev,
       ...updatedFilters,
     }));
-    updateFiltersInUrl(convertHomeBannersFiltersDTO(newFilters));
+    updateFiltersInUrl(convertHomeBannerFiltersDTO(newFilters));
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }

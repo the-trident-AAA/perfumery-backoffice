@@ -1,3 +1,4 @@
+import { UsersFilters } from "@/sections/users/filters/hooks/use-user-filters";
 import { ShopCart } from "./shop-carts";
 
 export interface User {
@@ -7,6 +8,18 @@ export interface User {
   email: string;
   role: string;
 }
+
+export interface UserFiltersDTO {
+  username?: string;
+  email?: string;
+  role?: string;
+}
+
+export const convertUserFiltersDTO = (
+  usersFilters: UsersFilters
+): UserFiltersDTO => {
+  return { ...usersFilters };
+};
 
 export interface UserDetails extends User {
   shopCart: ShopCart;
