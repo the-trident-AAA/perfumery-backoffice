@@ -1,4 +1,5 @@
 "use client";
+import Home from "@/app/page";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import PreviewImage from "@/components/preview-image/preview-image";
@@ -8,6 +9,7 @@ import { HomeBanner } from "@/types/home-banners";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
+import HomeBannersFiltersContainer from "../filters/home-banners-filters-container";
 
 interface Props {
   homeBanners: HomeBanner[];
@@ -120,6 +122,7 @@ export default function HomeBannersList({ homeBanners }: Props) {
         columns={columns}
         data={homeBanners}
         initialVisibilityState={{ id: false }}
+        filters={<HomeBannersFiltersContainer />}
       />
     </div>
   );
