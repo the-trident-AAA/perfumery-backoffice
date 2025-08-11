@@ -53,7 +53,7 @@ export const convertHomeBannerEditDTO = (
   };
 };
 
-export const convertHomeBannersFiltersDTO = (
+export const convertHomeBannerFiltersDTO = (
   homeBannersFilters: HomeBannersFilters
 ): HomeBannerFiltersDTO => {
   return { ...homeBannersFilters };

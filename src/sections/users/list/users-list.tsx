@@ -7,6 +7,7 @@ import { User } from "@/types/users";
 import { ColumnDef } from "@tanstack/react-table";
 import { EyeIcon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
+import UsersFiltersContainer from "../filters/users-filters-container";
 
 interface Props {
   users: User[];
@@ -75,6 +76,7 @@ export default function UserList({ users }: Props) {
         columns={columns}
         data={users}
         initialVisibilityState={{ id: false }}
+        filters = {<UsersFiltersContainer/>}
       />
     </div>
   );

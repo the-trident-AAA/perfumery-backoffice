@@ -1,9 +1,13 @@
 "use client";
+import useUrlFilters from "@/hooks/use-url-filters";
 import { Pagination } from "@/types/pagination";
+import { convertUserFiltersDTO } from "@/types/users";
 import { Dispatch, SetStateAction, useState } from "react";
 
-interface UsersFilters {
-  search: string;
+export interface UsersFilters {
+  username?: string;
+  email?: string;
+  role?: string;
 }
 
 interface Props {
@@ -11,26 +15,44 @@ interface Props {
 }
 
 export default function useUsersFilters({ setPagination }: Props) {
-  const [filters, setFilters] = useState<UsersFilters>({
-    search: "",
-  });
+  const { updateFiltersInUrl } = useUrlFilters();
+  const [filters, setFilters] = useState<UsersFilters>({});
 
-  async function handleChangeFilters(updatedFilters: UsersFilters) {
+  async function handleChangeFilters(updatedFilters: Partial<UsersFilters>) {
+        const newFilters = {
+      ...filters,
+      ...updatedFilters,
+    };
     await setFilters((prev) => ({
       ...prev,
       ...updatedFilters,
     }));
+    updateFiltersInUrl(convertUserFiltersDTO(newFilters));
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
   function handleResetFilters() {
-    setFilters({
-      search: "",
-    });
+    setFilters({});
+    updateFiltersInUrl({});
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
-  return { filters, handleChangeFilters, handleResetFilters };
+   const getActiveFiltersCount = () => {
+    let count = 0;
+    if (filters.username) count++;
+    if (filters.email) count++;
+    if (filters.role) count++;
+
+    return count;
+  };
+
+
+  return {
+    filters,
+    handleChangeFilters,
+    handleResetFilters,
+    getActiveFiltersCount,
+  };
 }
