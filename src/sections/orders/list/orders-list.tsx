@@ -8,6 +8,7 @@ import { User } from "@/types/users";
 import { ColumnDef } from "@tanstack/react-table";
 import { EyeIcon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
+import OrdersFiltersContainer from "../filters/orders-filters-container";
 
 interface Props {
   orders: Order[];
@@ -72,6 +73,7 @@ export default function OrdersList({ orders }: Props) {
         columns={columns}
         data={orders}
         initialVisibilityState={{ id: false }}
+        filters={<OrdersFiltersContainer />}
       />
     </div>
   );

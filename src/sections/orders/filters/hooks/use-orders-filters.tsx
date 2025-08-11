@@ -1,9 +1,12 @@
 "use client";
+import useUrlFilters from "@/hooks/use-url-filters";
+import { convertOrderFiltersDTO } from "@/types/orders";
 import { Pagination } from "@/types/pagination";
 import { Dispatch, SetStateAction, useState } from "react";
 
-interface OrdersFilters {
-  search: string;
+export interface OrdersFilters {
+  state?: string;
+  userId?: string;
 }
 
 interface Props {
@@ -11,26 +14,43 @@ interface Props {
 }
 
 export default function useOrdersFilters({ setPagination }: Props) {
-  const [filters, setFilters] = useState<OrdersFilters>({
-    search: "",
-  });
+  const { updateFiltersInUrl } = useUrlFilters();
+  const [filters, setFilters] = useState<OrdersFilters>({});
 
   async function handleChangeFilters(updatedFilters: OrdersFilters) {
+    const newFilters = {
+      ...filters,
+      ...updatedFilters,
+    };
     await setFilters((prev) => ({
       ...prev,
       ...updatedFilters,
     }));
+    updateFiltersInUrl(convertOrderFiltersDTO(newFilters));
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
   function handleResetFilters() {
-    setFilters({
-      search: "",
-    });
+    setFilters({});
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
-  return { filters, handleChangeFilters, handleResetFilters };
+   const getActiveFiltersCount = () => {
+    let count = 0;
+    if (filters.state) count++;
+    if (filters.userId) count++;
+
+    return count;
+  };
+
+
+  return {
+    filters,
+    handleChangeFilters,
+    handleResetFilters,
+    getActiveFiltersCount,
+  };
 }
+
