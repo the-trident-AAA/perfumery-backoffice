@@ -8,7 +8,7 @@ interface Props {
   handleChangeFilters: (filters: Partial<OffersFiltersType>) => void;
 }
 
-export default function PerfumeTypesFilters({
+export default function OffersFilters({
   filters,
   handleChangeFilters,
 }: Props) {
