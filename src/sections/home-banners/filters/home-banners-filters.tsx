@@ -12,7 +12,7 @@ export default function HomeBannersFilters({
   handleChangeFilters,
 }: Props) {
   return (
-    <>
+    <div className="flex items-center gap-4">
       <SearchInput
         id="title"
         value={filters.title}
@@ -29,6 +29,6 @@ export default function HomeBannersFilters({
           handleChangeFilters({ description: e.target.value || undefined });
         }}
       />
-    </>
+    </div>
   );
 }

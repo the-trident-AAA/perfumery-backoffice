@@ -11,7 +11,7 @@ export default function HomeBannersFiltersContainer() {
     getActiveFiltersCount,
   } = useHomeBannersFilters({});
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-col gap-4">
       <HomeBannersFilters
         filters={filters}
         handleChangeFilters={handleChangeFilters}
