@@ -26,7 +26,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
   const { updateFiltersInUrl } = useUrlFilters();
   const [filters, setFilters] = useState<PerfumesFilters>({
     priceRange: [0, 1000],
-    millilitersRange: [0, 100],
+    millilitersRange: [0, 1000],
     scentsIds: [],
   });
 
@@ -47,7 +47,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
   function handleResetFilters() {
     setFilters({
       priceRange: [0, 1000],
-      millilitersRange: [0, 100],
+      millilitersRange: [0, 1000],
       scentsIds: [],
     });
     updateFiltersInUrl({});
@@ -64,8 +64,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     if (filters.perfumeTypeId) count++;
     if (filters.available !== undefined) count++;
     if (filters.offerId) count++;
-    if (filters.priceRange[0] > 0) count++;
-    if (filters.millilitersRange[0] > 0) count++;
+
     return count;
   };
 
