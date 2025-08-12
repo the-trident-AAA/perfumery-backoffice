@@ -17,7 +17,7 @@ export default function OffersFilters({
   handleChangeFilters,
 }: Props) {
   return (
-    <>
+    <div className="flex items-center gap-4">
       <SearchInput
         id="state"
         label="Estado del Pedido"
@@ -27,42 +27,42 @@ export default function OffersFilters({
           handleChangeFilters({ state: e.target.value || undefined });
         }}
       />
-        <SelectInput
-          label="Nombre del Usuario"
-          placeHolder="Seleccione un Usuario..."
-          value={filters.userId}
-          onValueChange={(value) => {
-            handleChangeFilters({ userId: value || undefined });
-          }}
-          options={users.data.map((user) => ({
-            value: user.id,
-            label: user.username,
-          }))}
-          loading={users.loading}
-          clearable={{
-            handleClear: () => {
-              handleChangeFilters({ userId: undefined });
-            },
-          }}
-        />
-        <SelectInput
-          label="Email del Usuario"
-          placeHolder="Seleccione un email..."
-          value={filters.userId}
-          onValueChange={(value) => {
-            handleChangeFilters({ userId: value || undefined });
-          }}
-          options={users.data.map((user) => ({
-            value: user.id,
-            label: user.email,
-          }))}
-          loading={users.loading}
-          clearable={{
-            handleClear: () => {
-              handleChangeFilters({ userId: undefined });
-            },
-          }}
-        />
-    </>
+      <SelectInput
+        label="Nombre del Usuario"
+        placeHolder="Seleccione un Usuario..."
+        value={filters.userId}
+        onValueChange={(value) => {
+          handleChangeFilters({ userId: value || undefined });
+        }}
+        options={users.data.map((user) => ({
+          value: user.id,
+          label: user.username,
+        }))}
+        loading={users.loading}
+        clearable={{
+          handleClear: () => {
+            handleChangeFilters({ userId: undefined });
+          },
+        }}
+      />
+      <SelectInput
+        label="Email del Usuario"
+        placeHolder="Seleccione un email..."
+        value={filters.userId}
+        onValueChange={(value) => {
+          handleChangeFilters({ userId: value || undefined });
+        }}
+        options={users.data.map((user) => ({
+          value: user.id,
+          label: user.email,
+        }))}
+        loading={users.loading}
+        clearable={{
+          handleClear: () => {
+            handleChangeFilters({ userId: undefined });
+          },
+        }}
+      />
+    </div>
   );
 }

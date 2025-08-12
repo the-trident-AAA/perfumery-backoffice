@@ -11,12 +11,12 @@ export default function OrdersFiltersContainer() {
     handleResetFilters,
     getActiveFiltersCount,
   } = useOrdersFilters({});
-  const {users , loadingData: loadingUsers} = useUsers();
+  const { users, loadingData: loadingUsers } = useUsers();
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-col gap-4">
       <OrdersFilters
         filters={filters}
-        users={{ data : users , loading : loadingUsers }}
+        users={{ data: users, loading: loadingUsers }}
         handleChangeFilters={handleChangeFilters}
       />
       {getActiveFiltersCount() > 0 && (
