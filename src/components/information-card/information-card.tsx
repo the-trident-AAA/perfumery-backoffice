@@ -27,10 +27,10 @@ export default function InformationCard({
   href,
 }: Props) {
   return (
-    <Card className="border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+    <Card className="shadow-sm border-0 hover:shadow-md bg-primary transition-shadow">
       <CardHeader>
-        <CardTitle className="text-2xl">{title}</CardTitle>
-        <CardDescription className="line-clamp-3 break-words h-14">
+        <CardTitle className="text-2xl text-secondary">{title}</CardTitle>
+        <CardDescription className="line-clamp-3 font-semibold text-secondary break-words h-14">
           {description}
         </CardDescription>
       </CardHeader>
@@ -48,7 +48,7 @@ export default function InformationCard({
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full" size="lg" asChild>
+        <Button variant={"secondary"} className="w-full" size="lg" asChild>
           <Link href={href}>
             {buttonText}
             <ArrowRight className="ml-2 h-5 w-5" />
