@@ -10,7 +10,7 @@ export default function SignOutButtonNavUser() {
   const router = useRouter();
   const { signOut, loading } = useSignOut({
     onSignOutAction: () => {
-      router.push(paths.sign_in.root);
+      router.push(paths.home.root);
     },
   });
 
