@@ -10,7 +10,7 @@ interface Props {
 
 export default function OffersFilters({ filters, handleChangeFilters }: Props) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-4">
       <SearchInput
         id="name"
         value={filters.name}
