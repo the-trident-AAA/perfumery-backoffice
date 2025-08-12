@@ -73,6 +73,10 @@ export interface PerfumesFiltersDTO {
   gender?: Gender;
   scentsIds?: string[];
   milliliters?: number;
+  millilitersMin?: number;
+  millilitersMax?: number;
+  priceMin?: number;
+  priceMax?: number;
   perfumeTypeId?: string;
   available?: boolean;
   price?: number;
@@ -145,7 +149,9 @@ export const convertPerfumesFiltersDTO = (
   const { priceRange, millilitersRange, ...rest } = perfumesFilters;
   return {
     ...rest,
-    milliliters: millilitersRange[0] > 0 ? millilitersRange[0] : undefined,
-    price: priceRange[0] > 0 ? priceRange[0] : undefined,
+    priceMin: priceRange[0],
+    priceMax: priceRange[1],
+    millilitersMin: millilitersRange[0],
+    millilitersMax: millilitersRange[1],
   };
 };
