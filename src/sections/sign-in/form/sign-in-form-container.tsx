@@ -52,7 +52,7 @@ export default function SignInFormContainer() {
           <SignInForm />
           <Button
             type="submit"
-            variant={"default"}
+            variant={"secondary"}
             className="w-full"
             disabled={submitLoading}
           >
