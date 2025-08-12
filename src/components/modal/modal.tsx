@@ -40,7 +40,7 @@ export default function Modal({
       onOpenChange={(_state: boolean) => onOpenChange(formPath)}
     >
       <DialogContent
-        className={`w-full max-h-screen flex flex-col  ${
+        className={`w-full max-h-[95vh] bg-muted flex flex-col  ${
           !maxWidth
             ? wide === "normal"
               ? "sm:max-w-lg"
@@ -50,7 +50,7 @@ export default function Modal({
             : maxWidth
         } ${className && className}`}
       >
-        <DialogHeader className="bg-primary flex gap-2 justify-between p-2 rounded-t-lg text-white">
+        <DialogHeader className="bg-primary flex gap-2 justify-between p-2 rounded-t-lg text-secondary">
           <DialogTitle
             className={`flex gap-3 ${
               titleCenter ? "justify-center" : "justify-start"
