@@ -11,6 +11,7 @@ export default function BrandsFilters({ filters, handleChangeFilters }: Props) {
   return <>
       <SearchInput
         id="name"
+        label="Buscar por Marca"
         value={filters.name}
         placeHolder="Nombre de la marca..."
         onChange={(e) => {

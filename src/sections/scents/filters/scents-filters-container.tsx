@@ -11,7 +11,7 @@ export default function ScentsFiltersContainer() {
     getActiveFiltersCount,
   } = useScentsFilters({});
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 w-64">
       <ScentsFilters
         filters={filters}
         handleChangeFilters={handleChangeFilters}

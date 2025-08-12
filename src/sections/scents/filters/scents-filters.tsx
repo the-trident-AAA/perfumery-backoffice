@@ -11,6 +11,7 @@ export default function ScentsFilters({ filters, handleChangeFilters }: Props) {
   return <>
       <SearchInput
         id="name"
+        label="Buscar por Aroma"
         value={filters.name}
         placeHolder="Nombre de la aroma..."
         onChange={(e) => {
