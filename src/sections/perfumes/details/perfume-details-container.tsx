@@ -11,7 +11,7 @@ interface Props {
 
 export default function PerfumeDetailsContainer({ perfume }: Props) {
   return (
-    <div className="w-full flex flex-col gap-2 max-w-3xl mx-auto p-6 bg-white rounded-lg">
+    <div className="w-full flex flex-col gap-2 max-w-3xl mx-auto p-6 rounded-lg">
       {/* Header Section */}
       <PerfumeDetailsHeader perfume={perfume} />
       <Separator />

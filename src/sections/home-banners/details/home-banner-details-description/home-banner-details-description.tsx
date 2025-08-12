@@ -8,8 +8,8 @@ interface Props {
 export default function HomeBannerDetailsDescription({ homeBanner }: Props) {
   return (
     <div className="my-6">
-      <h3 className="text-sm font-medium text-gray-500 mb-2">Descripción</h3>
-      <p className="text-sm line-clamp-3 break-words leading-relaxed text-gray-700">
+      <h3 className="text-sm font-medium text-secondary mb-2">Descripción</h3>
+      <p className="text-sm line-clamp-3 break-words leading-relaxed text-secondary">
         {homeBanner.description}
       </p>
     </div>

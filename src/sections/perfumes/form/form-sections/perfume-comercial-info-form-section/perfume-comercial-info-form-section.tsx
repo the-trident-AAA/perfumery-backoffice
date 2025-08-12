@@ -7,7 +7,7 @@ import useOffers from "@/sections/offers/hooks/use-offers";
 export default function PerfumeComercialInfoFormSection() {
   const { offers, loadingData } = useOffers();
   return (
-    <Card className="shadow-sm">
+    <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <RHFNumberField

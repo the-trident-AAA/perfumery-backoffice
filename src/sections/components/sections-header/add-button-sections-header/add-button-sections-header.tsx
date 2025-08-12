@@ -22,5 +22,9 @@ export default function AddButtonSectionsHeader({
     else router.push(creationPath);
   }, [handleOpenModal, isModalRedirect, router, creationPath]);
 
-  return <Button onClick={handeRedirect}>{buttonText}</Button>;
+  return (
+    <Button variant={"secondary"} onClick={handeRedirect}>
+      {buttonText}
+    </Button>
+  );
 }

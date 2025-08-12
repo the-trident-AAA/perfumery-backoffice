@@ -10,7 +10,7 @@ interface Props {
 
 export default function OfferDetailsContainer({ offer }: Props) {
   return (
-    <div className="w-full max-w-3xl mx-auto p-6 bg-white rounded-lg">
+    <div className="w-full max-w-3xl mx-auto p-6 rounded-lg">
       {/* Image and Header Section */}
       <OfferDetailsHeader offer={offer} />
       <Separator />

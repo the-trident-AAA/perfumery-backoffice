@@ -13,7 +13,7 @@ export default function PerfumeCharacteristicsFormSection() {
     usePerfumeTypes();
   const { scents, loadingData: loadingDataScents } = useScents();
   return (
-    <Card className="shadow-sm">
+    <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4">
         <div className="flex flex-col gap-2">
           <div className="flex gap-2">

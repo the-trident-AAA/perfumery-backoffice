@@ -69,7 +69,7 @@ export default function RHFSelectableCardListField<T extends { id: string }>({
     <div className={cn("flex flex-col h-full gap-4", className)}>
       <div className="flex justify-between gap-2">
         <h3 className="font-medium text-lg mb-3">{label}</h3>
-        <Button type="button" onClick={onSelectModalOpen}>
+        <Button variant={"secondary"} type="button" onClick={onSelectModalOpen}>
           {selectElementsText}
         </Button>
       </div>

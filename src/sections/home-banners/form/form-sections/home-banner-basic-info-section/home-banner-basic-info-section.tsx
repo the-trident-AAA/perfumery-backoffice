@@ -14,7 +14,7 @@ interface Props {
 
 export default function HomeBannerBasicInfoSection({ imageRecived }: Props) {
   return (
-    <Card className="shadow-sm">
+    <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4 flex flex-col gap-4">
         <RHFTextField
           name="title"

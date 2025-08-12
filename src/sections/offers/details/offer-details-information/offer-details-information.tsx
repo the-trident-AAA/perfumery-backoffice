@@ -13,18 +13,18 @@ export default function OfferDetailsInformation({ offer }: Props) {
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div className="space-y-1">
-          <p className="text-sm font-medium text-gray-500">Tipo de oferta</p>
+          <p className="text-sm font-semibold text-secondary">Tipo de oferta</p>
           <p className="font-medium">{offer.offerType}</p>
         </div>
 
         <div className="space-y-1">
-          <p className="text-sm font-medium text-gray-500">Alcance</p>
+          <p className="text-sm font-semibold text-secondary">Alcance</p>
           <p className="font-medium">{offer.scope}</p>
         </div>
 
         <div className="space-y-1 flex items-center">
           <div className="w-full">
-            <p className="text-sm font-medium text-gray-500">Descuento</p>
+            <p className="text-sm font-semibold text-secondary">Descuento</p>
             <div className="flex items-center gap-1">
               <Percent className="h-4 w-4 text-amber-600" />
               <p className="font-medium">{offer.discount * 100} %</p>

@@ -12,22 +12,22 @@ export default function PerfumeDetailsInformation({ perfume }: Props) {
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div className="space-y-1">
-          <p className="text-sm font-medium text-gray-500">Género</p>
+          <p className="text-sm font-semibold text-secondary">Género</p>
           <p className="font-medium">{perfume.gender}</p>
         </div>
 
         <div className="space-y-1">
-          <p className="text-sm font-medium text-gray-500">Tipo</p>
+          <p className="text-sm font-semibold text-secondary">Tipo</p>
           <p className="font-medium">{perfume.perfumeType.name}</p>
         </div>
 
         <div className="space-y-1">
-          <p className="text-sm font-medium text-gray-500">Contenido</p>
+          <p className="text-sm font-semibold text-secondary">Contenido</p>
           <p className="font-medium">{perfume.milliliters} ML</p>
         </div>
 
         <div className="space-y-1">
-          <p className="text-sm font-medium text-gray-500">Cantidad</p>
+          <p className="text-sm font-semibold text-secondary">Cantidad</p>
           <p className="font-medium">{perfume.cant}</p>
         </div>
       </div>

@@ -16,10 +16,10 @@ interface Props {
 export default function SidebarGroupNavigation({ group }: Props) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel className="text-base text-white">
+      <SidebarGroupLabel className="text-base text-secondary">
         {group.title}
       </SidebarGroupLabel>
-      <SidebarMenu className="text-white">
+      <SidebarMenu className="text-secondary">
         {group.navigationRoutes.map((navigationRoute, index) =>
           navigationRoute.children ? (
             <SidebarMenuCollapsible key={index} item={navigationRoute} />

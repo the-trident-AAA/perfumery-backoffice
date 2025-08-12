@@ -86,7 +86,7 @@ export default function PerfumesList({ perfumes }: Props) {
       header: "Disponibilidad",
       cell: ({ row }) => (
         <Badge
-          variant={`${row.getValue("available") ? "default" : "destructive"}`}
+          variant={`${row.getValue("available") ? "secondary" : "destructive"}`}
         >
           {row.getValue("available") ? "Disponible" : "No Disponible"}
         </Badge>

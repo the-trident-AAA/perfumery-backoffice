@@ -25,13 +25,13 @@ export default function UsersActiveFilters({
         <div className="flex gap-2 items-center">
           <Label>Filtros Activos</Label>
           {getActiveFiltersCount() > 0 && (
-            <Badge variant="default" className="ml-2">
+            <Badge variant="secondary" className="ml-2">
               {getActiveFiltersCount()}
             </Badge>
           )}
           {getActiveFiltersCount() > 0 && (
             <Button
-              variant="outline"
+              variant="secondary"
               size="sm"
               onClick={handleResetFilters}
               className="h-8"

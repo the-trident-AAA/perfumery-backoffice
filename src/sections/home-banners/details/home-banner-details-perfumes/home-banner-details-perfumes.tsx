@@ -14,7 +14,9 @@ export default function HomeBannerDetailsPerfumes({ homeBanner }: Props) {
     <div className="mt-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-medium">Perfumes asociados</h3>
-        <Badge>{homeBanner.perfumes.length} perfumes</Badge>
+        <Badge variant={"secondary"}>
+          {homeBanner.perfumes.length} perfumes
+        </Badge>
       </div>
 
       {homeBanner.perfumes.length > 0 ? (

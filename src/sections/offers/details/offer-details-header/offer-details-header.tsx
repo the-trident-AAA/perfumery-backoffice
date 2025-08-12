@@ -27,7 +27,9 @@ export default function OfferDetailsHeader({ offer }: Props) {
       {/* Header with name and ID */}
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-1">
-          <h2 className="text-2xl font-semibold text-gray-900">{offer.name}</h2>
+          <h2 className="text-2xl font-semibold text-secondary">
+            {offer.name}
+          </h2>
           <Badge
             variant="outline"
             className="bg-amber-50 text-amber-800 border-amber-200"
@@ -35,7 +37,7 @@ export default function OfferDetailsHeader({ offer }: Props) {
             {offer.discount}%
           </Badge>
         </div>
-        <p className="text-sm text-gray-500 mb-2">ID: {offer.id}</p>
+        <p className="text-sm text-secondary mb-2">ID: {offer.id}</p>
 
         <div className="flex items-center gap-2 mb-4">
           <Badge variant="secondary">{offer.offerType}</Badge>
@@ -46,8 +48,8 @@ export default function OfferDetailsHeader({ offer }: Props) {
 
         {/* Description */}
         <div className="flex flex-col gap-1">
-          <p className="text-sm font-medium text-gray-500">Descripción</p>
-          <p className="text-sm line-clamp-3 break-words leading-relaxed text-gray-700">
+          <p className="text-sm font-medium text-secondary">Descripción</p>
+          <p className="text-sm line-clamp-3 break-words leading-relaxed text-secondary">
             {offer.description}
           </p>
         </div>

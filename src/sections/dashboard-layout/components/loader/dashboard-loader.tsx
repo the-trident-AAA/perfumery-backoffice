@@ -10,11 +10,11 @@ interface LoaderProps {
 
 export function DashboardLoader({
   logoSrc = "/images/place-holder.jpg",
-  primaryColor = "#3b82f6", // blue-500
-  secondaryColor = "#93c5fd", // blue-300
+  primaryColor = "#ede0d4",
+  secondaryColor = "#252422",
 }: LoaderProps) {
   return (
-    <div className="flex h-[85vh] items-center justify-center bg-white dark:bg-gray-900">
+    <div className="flex h-[85vh] items-center justify-center bg-muted">
       <div className="flex flex-col items-center">
         <div className="relative mb-8">
           {/* Logo container with pulsing effect */}
@@ -54,8 +54,8 @@ export function DashboardLoader({
               repeat: Number.POSITIVE_INFINITY,
               ease: "easeInOut",
             }}
-            style={{ backgroundColor: primaryColor }}
-            className="absolute inset-0 rounded-full blur-md z-0"
+            style={{ backgroundColor: secondaryColor }}
+            className="absolute inset-0 rounded-full z-0"
           />
         </div>
 
@@ -96,7 +96,7 @@ export function DashboardLoader({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="mt-4 text-gray-600 dark:text-gray-300 font-medium"
+            className="mt-4 text-secondary font-medium"
           >
             Cargando...
           </motion.p>

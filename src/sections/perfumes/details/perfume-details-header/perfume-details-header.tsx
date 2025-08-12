@@ -27,8 +27,8 @@ export default function PerfumeDetailsHeader({ perfume }: Props) {
 
       {/* Header with name and ID */}
       <div className="flex-1">
-        <h2 className="text-2xl font-semibold text-gray-900">{perfume.name}</h2>
-        <p className="text-sm text-gray-500">ID: {perfume.id}</p>
+        <h2 className="text-2xl font-semibold text-secondary">{perfume.name}</h2>
+        <p className="text-sm text-secondary">ID: {perfume.id}</p>
 
         <div className="mt-4 flex flex-col gap-2">
           <Separator className="mb-4" />
@@ -36,17 +36,17 @@ export default function PerfumeDetailsHeader({ perfume }: Props) {
           {/* Quick info */}
           <div className="grid grid-cols-2 gap-y-2 gap-x-4">
             <div className="space-y-1">
-              <p className="text-sm font-medium text-gray-500">Marca</p>
+              <p className="text-sm font-medium text-secondary">Marca</p>
               <p className="font-medium">{perfume.brand.name}</p>
             </div>
 
             <div className="space-y-1">
-              <p className="text-sm font-medium text-gray-500">Precio</p>
+              <p className="text-sm font-medium text-secondary">Precio</p>
               <p className="font-medium">{fCurrency(perfume.price)}</p>
             </div>
 
             <div className="space-y-1">
-              <p className="text-sm font-medium text-gray-500">
+              <p className="text-sm font-medium text-secondary">
                 Disponibilidad
               </p>
               <Badge variant={perfume.available ? "default" : "destructive"}>
@@ -56,7 +56,7 @@ export default function PerfumeDetailsHeader({ perfume }: Props) {
 
             {perfume.offer && (
               <div className="flex flex-col gap-2">
-                <p className="text-sm font-medium text-gray-500">Descuento</p>
+                <p className="text-sm font-medium text-secondary">Descuento</p>
                 <Badge
                   variant="outline"
                   className="bg-amber-50 text-xs text-amber-800 border-amber-200 
@@ -69,8 +69,8 @@ export default function PerfumeDetailsHeader({ perfume }: Props) {
             )}
           </div>
           <div className="flex flex-col gap-1">
-            <p className="text-sm font-medium text-gray-500">Descripción</p>
-            <p className="text-sm line-clamp-3 break-words leading-relaxed text-gray-700">
+            <p className="text-sm font-medium text-secondary">Descripción</p>
+            <p className="text-sm line-clamp-3 break-words leading-relaxed text-secondary">
               {perfume.description}
             </p>
           </div>

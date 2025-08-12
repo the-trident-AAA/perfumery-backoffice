@@ -35,7 +35,7 @@ export default function RootLayout({
         <SessionProvider>
           <ModalProvider>
             <PreviewProvider>
-              <div className="flex min-h-screen bg-background flex-col">
+              <div className="flex min-h-screen bg-muted flex-col">
                 <ToastContainer />
                 <PreviewModal />
                 {children}

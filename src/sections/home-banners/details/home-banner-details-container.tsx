@@ -10,7 +10,7 @@ interface Props {
 
 export default function HomeBannerDetailsContainer({ homeBanner }: Props) {
   return (
-    <div className="w-full mx-auto p-2 bg-white">
+    <div className="w-full mx-auto p-2">
       {/* Banner Image and Header Section */}
       <HomeBannerDetailsHeader homeBanner={homeBanner} />
       <Separator />

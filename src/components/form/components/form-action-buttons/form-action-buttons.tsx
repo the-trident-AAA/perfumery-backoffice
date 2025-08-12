@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
@@ -20,7 +20,7 @@ export default function FormActionButtons({
       <Button type="button" variant={"outline"} onClick={handleClose}>
         {cancelButtonText}
       </Button>
-      <Button variant={"default"} type="submit" disabled={submitLoading}>
+      <Button variant={"secondary"} type="submit" disabled={submitLoading}>
         {submitButtonText}
       </Button>
     </div>

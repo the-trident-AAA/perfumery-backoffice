@@ -25,13 +25,13 @@ export default function OrdersActiveFilters({
         <div className="flex gap-2 items-center">
           <Label>Filtros Activos</Label>
           {getActiveFiltersCount() > 0 && (
-            <Badge variant="default" className="ml-2">
+            <Badge variant="secondary" className="ml-2">
               {getActiveFiltersCount()}
             </Badge>
           )}
           {getActiveFiltersCount() > 0 && (
             <Button
-              variant="outline"
+              variant="secondary"
               size="sm"
               onClick={handleResetFilters}
               className="h-8"
@@ -56,7 +56,7 @@ export default function OrdersActiveFilters({
               filterName="Nombre del Usuario"
               filterValue={filters.userId}
               handleDeleteFilter={() => {
-                handleChangeFilters({ userId : undefined });
+                handleChangeFilters({ userId: undefined });
               }}
             />
           )}
@@ -65,7 +65,7 @@ export default function OrdersActiveFilters({
               filterName="Correo Electrónico del Usuario"
               filterValue={filters.userId}
               handleDeleteFilter={() => {
-                handleChangeFilters({ userId : undefined });
+                handleChangeFilters({ userId: undefined });
               }}
             />
           )}

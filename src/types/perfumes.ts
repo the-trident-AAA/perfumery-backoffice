@@ -104,9 +104,9 @@ export const genderMap: Map<
       | "warning";
   }
 > = new Map([
-  [Gender.FEMALE, { name: "Femenino", color: "primary" }],
-  [Gender.MALE, { name: "Masculino", color: "primary" }],
-  [Gender.UNISEX, { name: "Unisex", color: "primary" }],
+  [Gender.FEMALE, { name: "Femenino", color: "secondary" }],
+  [Gender.MALE, { name: "Masculino", color: "secondary" }],
+  [Gender.UNISEX, { name: "Unisex", color: "secondary" }],
 ]);
 
 export const genderMapInverted: Map<string, Gender> = new Map(

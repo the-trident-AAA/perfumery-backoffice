@@ -9,10 +9,10 @@ interface Props {
 export default function PerfumeDetailsScentsSection({ scents }: Props) {
   return (
     <div>
-      <h3 className="text-sm font-medium text-gray-500 mb-2">Aromas</h3>
+      <h3 className="text-sm font-semibold text-secondary mb-2">Aromas</h3>
       <div className="flex flex-wrap gap-2">
         {scents.map((scent) => (
-          <Badge key={scent.id} variant="outline" className="bg-gray-100">
+          <Badge key={scent.id} variant="secondary">
             {scent.name}
           </Badge>
         ))}
