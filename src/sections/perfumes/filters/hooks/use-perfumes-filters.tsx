@@ -1,8 +1,10 @@
 "use client";
+
 import useUrlFilters from "@/hooks/use-url-filters";
 import { Pagination } from "@/types/pagination";
 import { convertPerfumesFiltersDTO, Gender } from "@/types/perfumes";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export interface PerfumesFilters {
   name?: string;
@@ -24,11 +26,34 @@ interface Props {
 
 export default function usePerfumesFilters({ setPagination }: Props) {
   const { updateFiltersInUrl } = useUrlFilters();
+  const searchParams = useSearchParams();
   const [filters, setFilters] = useState<PerfumesFilters>({
     priceRange: [0, 1000],
     millilitersRange: [0, 1000],
     scentsIds: [],
   });
+
+  useEffect(() => {
+    const nameParam = searchParams.get("name");
+    const perfumTypeParam = searchParams.get("perfumeTypeId");
+    const brandParam = searchParams.get("brandId");
+    const genderParam = searchParams.get("gender") as Gender | null;
+    const offerParam = searchParams.get("offerId");
+    const availableParam = searchParams.get("available");
+    setFilters((oldFilters) => ({
+      ...oldFilters,
+      name: nameParam || undefined,
+      perfumeTypeId: perfumTypeParam || undefined,
+      brandId: brandParam || undefined,
+      gender: genderParam || undefined,
+      offerId: offerParam || undefined,
+      available: availableParam
+        ? availableParam === "true"
+          ? true
+          : false
+        : undefined,
+    }));
+  }, [searchParams]);
 
   async function handleChangeFilters(updatedFilters: Partial<PerfumesFilters>) {
     const newFilters = {
@@ -39,7 +64,10 @@ export default function usePerfumesFilters({ setPagination }: Props) {
       ...prev,
       ...updatedFilters,
     }));
-    updateFiltersInUrl(convertPerfumesFiltersDTO(newFilters));
+    updateFiltersInUrl({
+      ...convertPerfumesFiltersDTO(newFilters),
+      page: 1,
+    });
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
@@ -50,7 +78,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
       millilitersRange: [0, 1000],
       scentsIds: [],
     });
-    updateFiltersInUrl({});
+    updateFiltersInUrl({ page: 1 });
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
@@ -64,7 +92,8 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     if (filters.perfumeTypeId) count++;
     if (filters.available !== undefined) count++;
     if (filters.offerId) count++;
-
+    if (filters.priceRange[0] > 0) count++;
+    if (filters.millilitersRange[0] > 0) count++;
     return count;
   };
 
