@@ -41,7 +41,7 @@ export function PerfumeForm({ imageRecived }: Props) {
   return (
     <TabsPanelProvider initialTab={tabs[0].value}>
       <FormSectionsController>
-        <TabsContainer tabs={tabs} fullWidth={false} />
+        <TabsContainer tabs={tabs} fullWidth />
       </FormSectionsController>
     </TabsPanelProvider>
   );
