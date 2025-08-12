@@ -1,19 +1,16 @@
 import React from "react";
 import { OffersFilters as OffersFiltersType } from "./hooks/use-offers-filters";
 import SearchInput from "@/components/inputs/search-input/search-input";
-import SliderInput from "@/components/inputs/slider-input/slider-input";
+//import SliderInput from "@/components/inputs/slider-input/slider-input";
 
 interface Props {
   filters: OffersFiltersType;
   handleChangeFilters: (filters: Partial<OffersFiltersType>) => void;
 }
 
-export default function OffersFilters({
-  filters,
-  handleChangeFilters,
-}: Props) {
+export default function OffersFilters({ filters, handleChangeFilters }: Props) {
   return (
-    <>
+    <div className="flex items-center gap-2">
       <SearchInput
         id="name"
         value={filters.name}
@@ -38,7 +35,7 @@ export default function OffersFilters({
           handleChangeFilters({ scope: e.target.value || undefined });
         }}
       />
-      <SliderInput
+      {/*<SliderInput
         label="Descuento (%)"
         meansure="%"
         value={filters.discount}
@@ -47,7 +44,7 @@ export default function OffersFilters({
             discount: value as [number, number],
           });
         }}
-      />
+      /> */}
       <SearchInput
         id="offerType"
         value={filters.offerType}
@@ -56,6 +53,6 @@ export default function OffersFilters({
           handleChangeFilters({ offerType: e.target.value || undefined });
         }}
       />
-    </>
+    </div>
   );
 }
