@@ -69,9 +69,7 @@ export default function Modal({
             <XIcon className="w-4 h-4 cursor-pointer hover:text-destructive" />
           </DialogClose>
         </DialogHeader>
-        <div className="flex-1 overflow-auto flex flex-col h-full p-4">
-          {children}
-        </div>
+        <div className="flex-1 flex flex-col h-full p-4">{children}</div>
       </DialogContent>
     </Dialog>
   );
