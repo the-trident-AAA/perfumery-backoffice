@@ -3,12 +3,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 interface Props {
   withText?: boolean;
+  avatarClassName?: string
 }
 
-export default function AppLogo({ withText = true }: Props) {
+export default function AppLogo({ withText = true, avatarClassName = "" }: Props) {
   return (
-    <div className="flex flex-col items-center space-x-2">
-      <Avatar className="h-12 w-12">
+    <div className="flex flex-col items-center gap-4">
+      <Avatar className={avatarClassName}>
         <AvatarImage src="/icons/logo-icon.png" />
         <AvatarFallback className="bg-secondary text-primary font-semibold text-sm">
           {"PP"}
@@ -16,7 +17,7 @@ export default function AppLogo({ withText = true }: Props) {
       </Avatar>
       {withText && (
         <span className="text-xl hidden sm:flex font-bold text-secondary">
-          Perfumes del Puro
+          Gestión del Puro
         </span>
       )}
     </div>
