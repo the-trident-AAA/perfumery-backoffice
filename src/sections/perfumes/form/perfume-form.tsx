@@ -41,7 +41,11 @@ export function PerfumeForm({ imageRecived }: Props) {
   return (
     <TabsPanelProvider initialTab={tabs[0].value}>
       <FormSectionsController>
-        <TabsContainer tabs={tabs} fullWidth classNameTabsContent="flex-1 overflow-auto flex flex-col max-h-[70vh] p-2" />
+        <TabsContainer
+          tabs={tabs}
+          fullWidth
+          classNameTabsContent="flex-1 overflow-auto flex flex-col h-[65vh] p-2"
+        />
       </FormSectionsController>
     </TabsPanelProvider>
   );
