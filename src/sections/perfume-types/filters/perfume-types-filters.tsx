@@ -11,6 +11,7 @@ export default function PerfumeTypesFilters({ filters, handleChangeFilters }: Pr
   return <>
       <SearchInput
         id="name"
+        label="Buscar por tipo de perfume"
         value={filters.name}
         placeHolder="Nombre del tipo de perfume..."
         onChange={(e) => {

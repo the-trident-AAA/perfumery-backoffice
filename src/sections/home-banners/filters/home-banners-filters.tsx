@@ -15,6 +15,7 @@ export default function HomeBannersFilters({
     <div className="flex items-center gap-4">
       <SearchInput
         id="title"
+        label="Buscar por título"
         value={filters.title}
         placeHolder="Título..."
         onChange={(e) => {
@@ -23,6 +24,7 @@ export default function HomeBannersFilters({
       />
       <SearchInput
         id="description"
+        label="Buscar por descripción"
         value={filters.description}
         placeHolder="Descripción..."
         onChange={(e) => {

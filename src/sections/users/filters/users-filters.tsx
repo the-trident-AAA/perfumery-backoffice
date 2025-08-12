@@ -12,6 +12,7 @@ export default function UsersFilters({ filters, handleChangeFilters }: Props) {
     <>
       <SearchInput
         id="username"
+        label="Buscar por nombre de Usuario"
         value={filters.username}
         placeHolder="Nombre del Usuario..."
         onChange={(e) => {
@@ -20,6 +21,7 @@ export default function UsersFilters({ filters, handleChangeFilters }: Props) {
       />
       <SearchInput
         id="email"
+        label="Buscar por email"
         value={filters.email}
         placeHolder="Email del Usuario..."
         onChange={(e) => {
