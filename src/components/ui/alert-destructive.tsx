@@ -6,15 +6,12 @@ interface Props {
   description?: string;
 }
 
-export function AlertDestructive({
-  title = "Error",
-  description = "Ha ocurrido un error inesperado",
-}: Props) {
+export function AlertDestructive({ title = "Error", description }: Props) {
   return (
     <Alert variant="destructive">
       <AlertCircle className="h-4 w-4" />
       <AlertTitle>{title}</AlertTitle>
-      <AlertDescription>{description}</AlertDescription>
+      {description && <AlertDescription>{description}</AlertDescription>}
     </Alert>
   );
 }
