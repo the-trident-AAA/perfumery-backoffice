@@ -20,7 +20,7 @@ export default function useEditBrand({ id, onEditAction }: Props) {
         setError(null);
         const res = await editBrandService(id, convertBrandEditDTO(brand));
         if (!res.response || res.error)
-          setError("Error en la edición de la marca");
+          setError(res.error?.reason || "Error en la edición de la marca");
         else {
           onEditAction();
         }

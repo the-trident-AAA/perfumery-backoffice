@@ -12,22 +12,27 @@ export default function useCreateBrand({ onCreateAction }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const createBrand = useCallback(async (brand: BrandCreate) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const res = await createBrandService(convertBrandCreateDTO(brand));
-      if (!res.response || res.error)
-        setError("Error en la creación de la marca del perfume");
-      else {
-        onCreateAction();
+  const createBrand = useCallback(
+    async (brand: BrandCreate) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const res = await createBrandService(convertBrandCreateDTO(brand));
+        if (!res.response || res.error)
+          setError(
+            res.error?.reason || "Error en la creación de la marca del perfume"
+          );
+        else {
+          onCreateAction();
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-        console.log(error)
-    } finally {
-      setLoading(false);
-    }
-  }, [onCreateAction]);
+    },
+    [onCreateAction]
+  );
   return {
     loading,
     error,

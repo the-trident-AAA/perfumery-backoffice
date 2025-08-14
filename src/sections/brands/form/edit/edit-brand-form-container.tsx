@@ -12,6 +12,7 @@ import useEditBrand from "../../hooks/use-edit-brand";
 import { BrandDetails } from "@/types/brands";
 import { toast } from "react-toastify";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 interface Props {
   brand: BrandDetails;
@@ -19,7 +20,11 @@ interface Props {
 
 export default function EditBrandFormContainer({ brand }: Props) {
   const { handleCloseModal } = useContext(ModalContext);
-  const { editBrand, loading: submitLoading } = useEditBrand({
+  const {
+    editBrand,
+    loading: submitLoading,
+    error: editBrandError,
+  } = useEditBrand({
     id: brand.id,
     onEditAction: () => {
       toast.success("Marca actualizada con éxito");
@@ -49,6 +54,7 @@ export default function EditBrandFormContainer({ brand }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
+        {editBrandError && <AlertDestructive title={editBrandError} />}
         <BrandForm />
         <FormActionButtons
           submitLoading={submitLoading}
