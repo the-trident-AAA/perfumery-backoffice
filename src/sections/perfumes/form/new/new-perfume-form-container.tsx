@@ -15,10 +15,11 @@ import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
 import { toast } from "react-toastify";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 export default function NewPerfumeFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, createPerfume } = useCreatePerfume({
+  const { loading: submitLoading, createPerfume, error: createPerfumeError } = useCreatePerfume({
     onCreateAction: () => {
       toast.success("Perfume creado con éxito");
       handleClose();
@@ -54,6 +55,7 @@ export default function NewPerfumeFormContainer() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
+        {createPerfumeError && <AlertDestructive title={createPerfumeError} />}
         <PerfumeForm />
         <FormActionButtons
           submitLoading={submitLoading}

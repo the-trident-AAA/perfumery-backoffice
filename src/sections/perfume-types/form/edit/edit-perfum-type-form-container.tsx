@@ -16,6 +16,7 @@ import useEditPerfumeType from "../../hooks/use-edit-perfume-type";
 import { toast } from "react-toastify";
 import useImageForm from "@/components/form/hooks/use-image-form";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 interface Props {
   perfumeType: PerfumeTypeDetails;
@@ -23,7 +24,7 @@ interface Props {
 
 export default function EditPerfumeTypeFormContainer({ perfumeType }: Props) {
   const { handleCloseModal } = useContext(ModalContext);
-  const { editPerfumeType, loading: submitLoading } = useEditPerfumeType({
+  const { editPerfumeType, loading: submitLoading, error: editPerfumeTypeError } = useEditPerfumeType({
     id: perfumeType.id,
     onEditAction: () => {
       toast.success("Tipo de perfume actualizado con éxito");
@@ -60,6 +61,7 @@ export default function EditPerfumeTypeFormContainer({ perfumeType }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
+        {editPerfumeTypeError && <AlertDestructive title={editPerfumeTypeError} />}
         <PerfumeTypeForm imageRecived={{ loading, error }} />
         <FormActionButtons
           submitLoading={submitLoading}

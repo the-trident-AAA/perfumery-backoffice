@@ -36,7 +36,7 @@ export default function useBrands() {
         });
 
         if (!res.response || res.error)
-          throw new Error("Error al cargar las brands");
+          throw new Error("Error al cargar la información de las marcas");
 
         const brands = res.response;
         setBrands(brands);

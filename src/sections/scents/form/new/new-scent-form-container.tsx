@@ -11,10 +11,11 @@ import useCreateScent from "../../hooks/use-create-scents";
 import ScentForm from "../scent-form";
 import { toast } from "react-toastify";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 export default function NewScentFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, createScent } = useCreateScent({
+  const { loading: submitLoading, createScent, error: createScentError } = useCreateScent({
     onCreateAction: () => {
       toast.success("Aroma creado con éxito");
       handleClose();
@@ -43,6 +44,7 @@ export default function NewScentFormContainer() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
+        {createScentError && <AlertDestructive title={createScentError} />}
         <ScentForm />
         <FormActionButtons
           submitLoading={submitLoading}

@@ -12,6 +12,7 @@ import ScentForm from "../scent-form";
 import useEditScent from "../../hooks/use-edit-scent";
 import { toast } from "react-toastify";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 interface Props {
   scent: ScentDetails;
@@ -19,7 +20,7 @@ interface Props {
 
 export default function EditScentFormContainer({ scent }: Props) {
   const { handleCloseModal } = useContext(ModalContext);
-  const { editScent, loading: submitLoading } = useEditScent({
+  const { editScent, loading: submitLoading, error: editScentError } = useEditScent({
     id: scent.id,
     onEditAction: () => {
       toast.success("Aroma actualizado con éxito");
@@ -49,6 +50,7 @@ export default function EditScentFormContainer({ scent }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
+        {editScentError && <AlertDestructive title={editScentError} />}
         <ScentForm />
         <FormActionButtons
           submitLoading={submitLoading}
