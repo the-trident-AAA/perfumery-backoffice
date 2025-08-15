@@ -14,10 +14,11 @@ import useCreatePerfumeType from "../../hooks/use-create-perfume-types";
 import PerfumeTypeForm from "../perfume-type-form";
 import { toast } from "react-toastify";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 export default function NewPerfumeTypeFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, createPerfumeType } = useCreatePerfumeType({
+  const { loading: submitLoading, createPerfumeType , error: createPerfumeTypeError } = useCreatePerfumeType({
     onCreateAction: () => {
       toast.success("Tipo de Perfume creado con éxito");
       handleClose();
@@ -46,6 +47,7 @@ export default function NewPerfumeTypeFormContainer() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
+        {createPerfumeTypeError && <AlertDestructive title={createPerfumeTypeError} />}
         <PerfumeTypeForm />
         <FormActionButtons
           submitLoading={submitLoading}

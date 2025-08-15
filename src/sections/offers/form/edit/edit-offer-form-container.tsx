@@ -13,6 +13,7 @@ import useEditOffer from "../../hooks/use-edit-offer";
 import { toast } from "react-toastify";
 import useImageForm from "@/components/form/hooks/use-image-form";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 interface Props {
   offer: OfferDetails;
@@ -20,7 +21,7 @@ interface Props {
 
 export default function EditOfferFormContainer({ offer }: Props) {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, editOffer } = useEditOffer({
+  const { loading: submitLoading, editOffer, error: editOfferError } = useEditOffer({
     id: offer.id,
     onEditAction: () => {
       toast.success("Oferta actualizada con éxito");
@@ -59,6 +60,7 @@ export default function EditOfferFormContainer({ offer }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
+        {editOfferError && <AlertDestructive title={editOfferError} />}
         <OfferForm imageRecived={{ loading, error }} />
         <FormActionButtons
           submitLoading={submitLoading}

@@ -11,10 +11,11 @@ import useCreateOffer from "../../hooks/use-create-offer";
 import OfferForm from "../offer-form";
 import { toast } from "react-toastify";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 export default function NewOfferFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, createOffer } = useCreateOffer({
+  const { loading: submitLoading, createOffer, error: createOfferError } = useCreateOffer({
     onCreateAction: () => {
       toast.success("Oferta creada con éxito");
       handleClose();
@@ -45,6 +46,7 @@ export default function NewOfferFormContainer() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
+        {createOfferError && <AlertDestructive title={createOfferError} />}
         <OfferForm />
         <FormActionButtons
           submitLoading={submitLoading}

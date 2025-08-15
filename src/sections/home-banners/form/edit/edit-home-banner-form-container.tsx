@@ -16,6 +16,7 @@ import useEditHomeBanner from "../../hooks/use-edit-home-banner";
 import { toast } from "react-toastify";
 import useImageForm from "@/components/form/hooks/use-image-form";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
+import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 interface Props {
   homeBanner: HomeBannerDetails;
@@ -23,7 +24,7 @@ interface Props {
 
 export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, editHomeBanner } = useEditHomeBanner({
+  const { loading: submitLoading, editHomeBanner, error: editHomeBannerError } = useEditHomeBanner({
     id: homeBanner.id,
     onEditAction: () => {
       toast.success("Banner de la Página Home actualizado con éxito");
@@ -66,6 +67,7 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
+        {editHomeBannerError && <AlertDestructive title={editHomeBannerError} />}
         <HomeBannerForm imageRecived={{ loading, error }} />
         <FormActionButtons
           submitLoading={submitLoading}
