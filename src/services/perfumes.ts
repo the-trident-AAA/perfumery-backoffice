@@ -35,12 +35,13 @@ export async function getPerfumeById(id: string) {
 
 export async function createPerfume(
   perfumeCreateDTO: PerfumeCreateDTO,
-  formDataWithImage: FormData
+  formData: FormData
 ) {
   console.log(
     createFormDataBody({
       ...perfumeCreateDTO,
-      image: formDataWithImage.get("image"),
+      image: formData.get("image"),
+      images: formData.getAll("images[]") as File[],
     })
   );
   const res = await fetch(apiRoutes.perfumes.get, {
@@ -50,7 +51,8 @@ export async function createPerfume(
     },
     body: createFormDataBody({
       ...perfumeCreateDTO,
-      image: formDataWithImage.get("image"),
+      image: formData.get("image"),
+      images: formData.getAll("images[]") as File[],
     }),
   });
   console.log(res);

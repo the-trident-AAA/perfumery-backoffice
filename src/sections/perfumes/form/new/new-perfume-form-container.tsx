@@ -19,7 +19,11 @@ import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 export default function NewPerfumeFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, createPerfume, error: createPerfumeError } = useCreatePerfume({
+  const {
+    loading: submitLoading,
+    createPerfume,
+    error: createPerfumeError,
+  } = useCreatePerfume({
     onCreateAction: () => {
       toast.success("Perfume creado con éxito");
       handleClose();
@@ -39,6 +43,7 @@ export default function NewPerfumeFormContainer() {
       perfumeTypeId: "",
       price: 1,
       scentsId: [],
+      images: [],
     },
   });
 
