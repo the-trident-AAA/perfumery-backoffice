@@ -27,6 +27,7 @@ export interface PerfumeDetails {
   name: string;
   description: string;
   image: string;
+  images: string[];
   brand: Brand;
   offer?: Offer;
   gender: Gender;
