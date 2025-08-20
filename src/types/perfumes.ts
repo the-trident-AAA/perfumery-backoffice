@@ -114,7 +114,7 @@ export const genderMapInverted: Map<string, Gender> = new Map(
 );
 
 export const convertPerfumeCreateDTO = (
-  perfumeCreate: PerfumeCreate
+  perfumeCreate: Omit<PerfumeCreate, "image" | "images">
 ): PerfumeCreateDTO => {
   return {
     ...perfumeCreate,
