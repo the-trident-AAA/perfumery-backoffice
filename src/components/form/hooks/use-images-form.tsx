@@ -35,7 +35,6 @@ export default function useImagesForm<T extends Record<string, any>>({
       console.log(error);
       if (error instanceof Error) setError(error.message);
     } finally {
-      console.log("Ya paré");
       setLoading(false);
     }
   }, [images, imageName, fieldName, form]);
