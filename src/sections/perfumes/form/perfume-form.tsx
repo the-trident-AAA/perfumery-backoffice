@@ -6,6 +6,8 @@ import PerfumeComercialInfoFormSection from "./form-sections/perfume-comercial-i
 import { TabsContainer } from "@/components/ui/tabs-panel/tabs-panel";
 import { TabsPanelProvider } from "@/components/ui/tabs-panel/context/tabs-panel-context";
 import FormSectionsController from "./form-sections/form-sections-controller";
+import PerfumeAdditonalInformation from "./form-sections/perfume-additional-information/perfume-additional-information";
+import { Box } from "lucide-react";
 
 interface Props {
   imageRecived?: {
@@ -19,6 +21,7 @@ export function PerfumeForm({ imageRecived }: Props) {
     () => [
       {
         label: "Información Básica",
+        icon: <Box />,
         value: "1",
         component: (
           <PerfumeBasicInformationFormSection imageRecived={imageRecived} />
@@ -26,13 +29,21 @@ export function PerfumeForm({ imageRecived }: Props) {
       },
       {
         label: "Características",
+        icon: <Box />,
         value: "2",
         component: <PerfumeCharacteristicsFormSection />,
       },
       {
         label: "Info. Comercial",
+        icon: <Box />,
         value: "3",
         component: <PerfumeComercialInfoFormSection />,
+      },
+      {
+        label: "Info. Adicional",
+        icon: <Box />,
+        value: "4",
+        component: <PerfumeAdditonalInformation />,
       },
     ],
     [imageRecived]
