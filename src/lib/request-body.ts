@@ -7,7 +7,7 @@ export function createFormDataBody(data: object) {
         if (value.length > 0) {
           if (typeof value[0] === "object")
             value.forEach((element) => {
-              formData.append(key, JSON.stringify(element));
+              formData.append(key, element);
             });
           else formData.append(key, value.join(","));
         }
