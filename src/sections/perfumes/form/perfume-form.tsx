@@ -14,9 +14,13 @@ interface Props {
     loading: boolean;
     error: string | null;
   };
+  imagesRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
 }
 
-export function PerfumeForm({ imageRecived }: Props) {
+export function PerfumeForm({ imageRecived, imagesRecived }: Props) {
   const tabs = useMemo(
     () => [
       {
@@ -43,10 +47,12 @@ export function PerfumeForm({ imageRecived }: Props) {
         label: "Info. Adicional",
         icon: <Box />,
         value: "4",
-        component: <PerfumeAdditonalInformation />,
+        component: (
+          <PerfumeAdditonalInformation imagesRecived={imagesRecived} />
+        ),
       },
     ],
-    [imageRecived]
+    [imageRecived, imagesRecived]
   );
 
   return (

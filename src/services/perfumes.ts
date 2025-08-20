@@ -62,7 +62,7 @@ export async function createPerfume(
 export async function editPerfume(
   id: string,
   perfumeEditDTO: PerfumeEditDTO,
-  formDataWithImage: FormData
+  formData: FormData
 ) {
   const res = await fetch(apiRoutes.perfumes.getById.replace(":id", id), {
     method: "PATCH",
@@ -71,7 +71,8 @@ export async function editPerfume(
     },
     body: createFormDataBody({
       ...perfumeEditDTO,
-      image: formDataWithImage.get("image"),
+      image: formData.get("image"),
+      images: formData.getAll("images[]") as File[],
     }),
   });
 

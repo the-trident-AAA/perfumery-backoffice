@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import useImageForm from "@/components/form/hooks/use-image-form";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
 import { AlertDestructive } from "@/components/ui/alert-destructive";
+import useImagesForm from "@/components/form/hooks/use-images-form";
 
 interface Props {
   perfume: PerfumeDetails;
@@ -21,7 +22,11 @@ interface Props {
 
 export default function EditPerfumeFormContainer({ perfume }: Props) {
   const { handleCloseModal } = useContext(ModalContext);
-  const { editPerfume, loading: submitLoading, error: editPerfumeError } = useEditPerfume({
+  const {
+    editPerfume,
+    loading: submitLoading,
+    error: editPerfumeError,
+  } = useEditPerfume({
     id: perfume.id,
     onEditAction: () => {
       toast.success("Perfume actualizado con éxito");
@@ -46,11 +51,18 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
     },
   });
 
-  const { loading, error } = useImageForm({
+  const { loading: imageLoading, error: errorImage } = useImageForm({
     form,
     imageUrl: perfume.image,
     imageName: perfume.name,
     fieldName: "image",
+  });
+
+  const { loading: imagesLoading, error: errorImages } = useImagesForm({
+    form,
+    images: perfume.images,
+    imageName: perfume.name,
+    fieldName: "images",
   });
 
   const handleClose = () => {
@@ -67,7 +79,10 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
         {editPerfumeError && <AlertDestructive title={editPerfumeError} />}
-        <PerfumeForm imageRecived={{ loading, error }} />
+        <PerfumeForm
+          imageRecived={{ loading: imageLoading, error: errorImage }}
+          imagesRecived={{ loading: imagesLoading, error: errorImages }}
+        />
         <FormActionButtons
           submitLoading={submitLoading}
           submitButtonText="Actualizar Perfume"

@@ -3,7 +3,14 @@ import { RHFMultiFileUpload } from "@/components/form/rhf-components/rhf-multi-f
 import { Card, CardContent } from "@/components/ui/card";
 import React from "react";
 
-export default function PerfumeAdditonalInformation() {
+interface Props {
+  imagesRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
+}
+
+export default function PerfumeAdditonalInformation({ imagesRecived }: Props) {
   return (
     <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4">
@@ -17,6 +24,7 @@ export default function PerfumeAdditonalInformation() {
           compressImages={true}
           quality={85}
           maxWidth={1920}
+          {...(imagesRecived && { loading: imagesRecived.loading })}
         />
       </CardContent>
     </Card>
