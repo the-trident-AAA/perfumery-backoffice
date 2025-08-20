@@ -123,7 +123,7 @@ export const convertPerfumeCreateDTO = (
 };
 
 export const convertPerfumeEditDTO = (
-  perfumeEdit: PerfumeEdit
+  perfumeEdit: Omit<PerfumeEdit, "image" | "images">
 ): PerfumeEditDTO => {
   return {
     ...perfumeEdit,
