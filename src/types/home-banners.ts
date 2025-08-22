@@ -6,12 +6,14 @@ export interface HomeBanner {
   id: string;
   title: string;
   description: string;
+  isMain: boolean;
 }
 
 export interface HomeBannerDetails {
   id: string;
   title: string;
   description: string;
+  isMain: boolean;
   images: string[];
 }
 
