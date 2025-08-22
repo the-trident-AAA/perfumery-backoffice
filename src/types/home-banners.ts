@@ -21,13 +21,11 @@ export interface HomeBannerDetails {
 export interface HomeBannerCreateDTO {
   title: string;
   description: string;
-  perfumes: string[];
 }
 
 export interface HomeBannerEditDTO {
   title: string;
   description: string;
-  perfumes: string[];
 }
 
 export interface HomeBannerFiltersDTO {
@@ -40,7 +38,6 @@ export const convertHomeBannerCreateDTO = (
 ): HomeBannerCreateDTO => {
   return {
     ...homeBannerCreate,
-    perfumes: homeBannerCreate.perfumes.map((perfume) => perfume.id),
   };
 };
 
@@ -49,7 +46,6 @@ export const convertHomeBannerEditDTO = (
 ): HomeBannerEditDTO => {
   return {
     ...homeBannerEdit,
-    perfumes: homeBannerEdit.perfumes.map((perfume) => perfume.id),
   };
 };
 

@@ -1,12 +1,9 @@
-import { perfumeSchema } from "@/sections/perfumes/form/schemas/perfume-schema";
-import { Perfume } from "@/types/perfumes";
 import { z } from "zod";
 
 export interface HomeBannerEdit {
   title: string;
   description: string;
   image: File;
-  perfumes: Perfume[];
 }
 
 export const homeBannerEditSchema = z.object({
@@ -28,5 +25,4 @@ export const homeBannerEditSchema = z.object({
       (file) => file && file.type.startsWith("image/"),
       "El archivo debe ser una imagen."
     ),
-  perfumes: z.array(perfumeSchema),
 });

@@ -24,7 +24,11 @@ interface Props {
 
 export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, editHomeBanner, error: editHomeBannerError } = useEditHomeBanner({
+  const {
+    loading: submitLoading,
+    editHomeBanner,
+    error: editHomeBannerError,
+  } = useEditHomeBanner({
     id: homeBanner.id,
     onEditAction: () => {
       toast.success("Banner de la Página Home actualizado con éxito");
@@ -37,13 +41,6 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
     defaultValues: {
       title: homeBanner.title,
       description: homeBanner.description,
-      perfumes: homeBanner.perfumes.map((perfume) => ({
-        ...perfume,
-        brand: perfume.brand.name,
-        perfumeType: perfume.perfumeType.name,
-        discountOffer: perfume.offer ? perfume.offer.discount : 0,
-        scents: perfume.scents.map((scent) => scent.name),
-      })),
     },
   });
 
@@ -67,7 +64,9 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
-        {editHomeBannerError && <AlertDestructive title={editHomeBannerError} />}
+        {editHomeBannerError && (
+          <AlertDestructive title={editHomeBannerError} />
+        )}
         <HomeBannerForm imageRecived={{ loading, error }} />
         <FormActionButtons
           submitLoading={submitLoading}
