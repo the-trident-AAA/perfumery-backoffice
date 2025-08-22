@@ -1,8 +1,6 @@
 "use client";
-import Home from "@/app/page";
 import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
-import PreviewImage from "@/components/preview-image/preview-image";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { HomeBanner } from "@/types/home-banners";
@@ -52,17 +50,6 @@ export default function HomeBannersList({ homeBanners }: Props) {
     {
       accessorKey: "id",
       enableHiding: false,
-    },
-    {
-      accessorKey: "image",
-      header: "Imagen",
-      cell: ({ row }) => (
-        <PreviewImage
-          preview={row.getValue("image") || "/images/place-holder.jpg"}
-          height={80}
-          width={80}
-        />
-      ),
     },
     {
       accessorKey: "title",
