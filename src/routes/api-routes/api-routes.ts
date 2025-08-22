@@ -25,6 +25,7 @@ export const apiRoutes = {
   homeBanners: {
     get: `${process.env.NEXT_PUBLIC_API_URL}home-banner`,
     getById: `${process.env.NEXT_PUBLIC_API_URL}home-banner/:id`,
+    markedAsMain: `${process.env.NEXT_PUBLIC_API_URL}/home-banner/marked-as-active/:id`
   },
   users: {
     get: `${process.env.NEXT_PUBLIC_API_URL}users`,
