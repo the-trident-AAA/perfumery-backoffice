@@ -15,6 +15,11 @@ export interface HomeBannerDetails {
   description: string;
   isMain: boolean;
   images: string[];
+  statisticalTips: {
+    statistics: string;
+    info: string;
+  }[];
+  infoTips: string[];
 }
 
 export interface HomeBannerCreateDTO {
