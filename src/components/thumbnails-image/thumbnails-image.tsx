@@ -19,7 +19,7 @@ export default function ThumbnailsImage({
       {/* Imagen principal */}
       <div
         className={`aspect-square w-full ${
-          imageSize === "sm" ? "h-[36vh]" : "h-[46vh]"
+          imageSize === "sm" ? "h-[36vh]" : "h-[50vh]"
         } rounded-xl overflow-hidden bg-gray-100`}
       >
         <Image
