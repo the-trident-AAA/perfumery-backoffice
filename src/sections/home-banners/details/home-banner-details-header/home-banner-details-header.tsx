@@ -20,9 +20,14 @@ export default function HomeBannerDetailsHeader({ homeBanner }: Props) {
       {/* Header with title and ID */}
       <div>
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold text-secondary">
-            {homeBanner.title}
-          </h2>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <h2 className="text-2xl font-semibold text-secondary">
+              {homeBanner.title}
+            </h2>
+            {homeBanner.isMain && (
+              <Badge variant={"secondary"}>Principal</Badge>
+            )}
+          </div>
           <Badge variant="secondary">
             <Layout className="h-3.5 w-3.5 mr-1" />
             homeBanner
