@@ -14,9 +14,9 @@ import {
 import { HomeBannerDetails } from "@/types/home-banners";
 import useEditHomeBanner from "../../hooks/use-edit-home-banner";
 import { toast } from "react-toastify";
-import useImageForm from "@/components/form/hooks/use-image-form";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
 import { AlertDestructive } from "@/components/ui/alert-destructive";
+import useImagesForm from "@/components/form/hooks/use-images-form";
 
 interface Props {
   homeBanner: HomeBannerDetails;
@@ -41,14 +41,15 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
     defaultValues: {
       title: homeBanner.title,
       description: homeBanner.description,
+      images: [],
     },
   });
 
-  const { loading, error } = useImageForm({
+  const { loading: loadingImages, error: errorImages } = useImagesForm({
     form,
-    imageUrl: homeBanner.image,
+    images: homeBanner.images,
     imageName: homeBanner.title,
-    fieldName: "image",
+    fieldName: "images",
   });
 
   const handleClose = () => {
@@ -67,7 +68,9 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
         {editHomeBannerError && (
           <AlertDestructive title={editHomeBannerError} />
         )}
-        <HomeBannerForm imageRecived={{ loading, error }} />
+        <HomeBannerForm
+          imagesRecived={{ loading: loadingImages, error: errorImages }}
+        />
         <FormActionButtons
           submitLoading={submitLoading}
           submitButtonText="Actualizar Banner"

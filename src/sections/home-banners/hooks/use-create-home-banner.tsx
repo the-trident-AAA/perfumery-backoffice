@@ -14,15 +14,18 @@ export default function useCreateHomeBanner({ onCreateAction }: Props) {
 
   const createHomeBanner = useCallback(
     async (homeBanner: HomeBannerCreate) => {
+      const { images, ...rest } = homeBanner;
       try {
         setLoading(true);
         setError(null);
-        // create form data for image
-        const formDataWithImage = new FormData();
-        formDataWithImage.append("image", homeBanner.image);
+        // create form data for images
+        const formData = new FormData();
+        images.forEach((image) => {
+          formData.append("images[]", image);
+        });
         const res = await createHomeBannerService(
-          convertHomeBannerCreateDTO(homeBanner),
-          formDataWithImage
+          convertHomeBannerCreateDTO(rest),
+          formData
         );
         if (!res.response || res.error) {
           console.log(res.error);

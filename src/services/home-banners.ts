@@ -36,7 +36,7 @@ export async function getHomeBannerById(id: string) {
 
 export async function createHomeBanner(
   homeBannerCreateDTO: HomeBannerCreateDTO,
-  formDataWithImage: FormData
+  formData: FormData
 ) {
   const res = await fetch(apiRoutes.homeBanners.get, {
     method: "POST",
@@ -45,7 +45,7 @@ export async function createHomeBanner(
     },
     body: createFormDataBody({
       ...homeBannerCreateDTO,
-      image: formDataWithImage.get("image"),
+      images: formData.getAll("images[]") as File[],
     }),
   });
 
@@ -55,7 +55,7 @@ export async function createHomeBanner(
 export async function editHomeBanner(
   id: string,
   homeBannerEditDTO: HomeBannerEditDTO,
-  formDataWithImage: FormData
+  formData: FormData
 ) {
   const res = await fetch(apiRoutes.homeBanners.getById.replace(":id", id), {
     method: "PATCH",
@@ -64,7 +64,7 @@ export async function editHomeBanner(
     },
     body: createFormDataBody({
       ...homeBannerEditDTO,
-      image: formDataWithImage.get("image"),
+      images: formData.getAll("images[]") as File[],
     }),
   });
 

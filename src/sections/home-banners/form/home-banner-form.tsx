@@ -7,19 +7,19 @@ import HomeBannerPerfumesSection from "./form-sections/home-banner-perfumes-sect
 import HomeBannerFormSectionsController from "./form-sections/home-banner-form-sections-controller";
 
 interface Props {
-  imageRecived?: {
+  imagesRecived?: {
     loading: boolean;
     error: string | null;
   };
 }
 
-export default function HomeBannerForm({ imageRecived }: Props) {
+export default function HomeBannerForm({ imagesRecived }: Props) {
   const tabs = useMemo(
     () => [
       {
         label: "Información Básica",
         value: "1",
-        component: <HomeBannerBasicInfoSection imageRecived={imageRecived} />,
+        component: <HomeBannerBasicInfoSection imagesRecived={imagesRecived} />,
       },
       {
         label: "Perfumes Asociados",
@@ -27,7 +27,7 @@ export default function HomeBannerForm({ imageRecived }: Props) {
         component: <HomeBannerPerfumesSection />,
       },
     ],
-    [imageRecived]
+    [imagesRecived]
   );
 
   return (

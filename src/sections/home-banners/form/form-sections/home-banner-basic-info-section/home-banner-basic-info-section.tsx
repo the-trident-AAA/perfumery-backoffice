@@ -3,16 +3,16 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rhf-text-field";
 import { RHFTextAreaField } from "@/components/form/rhf-components/rhf-text-area-field/rhf-text-area-field";
-import { RHFImageUpload } from "@/components/form/rhf-components/rhf-image-upload/rhf-image-upload";
+import { RHFMultiFileUpload } from "@/components/form/rhf-components/rhf-multi-file-upload/rhf-multi-file-upload";
 
 interface Props {
-  imageRecived?: {
+  imagesRecived?: {
     loading: boolean;
     error: string | null;
   };
 }
 
-export default function HomeBannerBasicInfoSection({ imageRecived }: Props) {
+export default function HomeBannerBasicInfoSection({ imagesRecived }: Props) {
   return (
     <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4 flex flex-col gap-4">
@@ -27,10 +27,17 @@ export default function HomeBannerBasicInfoSection({ imageRecived }: Props) {
           description="Introduzca la descripción del banner"
           fullWidth
         />
-        <RHFImageUpload
-          name="image"
-          label="Imagen del Banner"
-          {...(imageRecived && { loading: imageRecived.loading })}
+        <RHFMultiFileUpload
+          name="images"
+          label="Subir imágenes (máximo 5)"
+          maxSize={10 * 1024 * 1024} // 10MB
+          acceptedFileTypes={{
+            "image/*": [".jpeg", ".jpg", ".png", ".gif", ".webp"],
+          }}
+          compressImages={true}
+          quality={85}
+          maxWidth={1920}
+          {...(imagesRecived && { loading: imagesRecived.loading })}
         />
       </CardContent>
     </Card>

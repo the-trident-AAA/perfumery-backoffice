@@ -18,7 +18,11 @@ import { AlertDestructive } from "@/components/ui/alert-destructive";
 
 export default function NewHomeBannerFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, createHomeBanner, error: createHomeBannerError } = useCreateHomeBanner({
+  const {
+    loading: submitLoading,
+    createHomeBanner,
+    error: createHomeBannerError,
+  } = useCreateHomeBanner({
     onCreateAction: () => {
       toast.success("Banner de la Página Home creado con éxito");
       handleClose();
@@ -30,6 +34,7 @@ export default function NewHomeBannerFormContainer() {
     defaultValues: {
       title: "",
       description: "",
+      images: [],
     },
   });
 
@@ -46,7 +51,9 @@ export default function NewHomeBannerFormContainer() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
-        {createHomeBannerError && <AlertDestructive title={createHomeBannerError} />}
+        {createHomeBannerError && (
+          <AlertDestructive title={createHomeBannerError} />
+        )}
         <HomeBannerForm />
         <FormActionButtons
           submitLoading={submitLoading}

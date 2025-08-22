@@ -31,7 +31,7 @@ export interface HomeBannerFiltersDTO {
 }
 
 export const convertHomeBannerCreateDTO = (
-  homeBannerCreate: HomeBannerCreate
+  homeBannerCreate: Omit<HomeBannerCreate, "images">
 ): HomeBannerCreateDTO => {
   return {
     ...homeBannerCreate,
@@ -39,7 +39,7 @@ export const convertHomeBannerCreateDTO = (
 };
 
 export const convertHomeBannerEditDTO = (
-  homeBannerEdit: HomeBannerEdit
+  homeBannerEdit: Omit<HomeBannerEdit, "images">
 ): HomeBannerEditDTO => {
   return {
     ...homeBannerEdit,
