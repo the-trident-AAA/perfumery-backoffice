@@ -41,6 +41,8 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
     defaultValues: {
       title: homeBanner.title,
       description: homeBanner.description,
+      statisticalTips: homeBanner.statisticalTips,
+      infoTips: homeBanner.infoTips.map((infoTip) => ({ name: infoTip })),
       images: [],
     },
   });
