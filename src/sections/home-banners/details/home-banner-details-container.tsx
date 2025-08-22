@@ -2,7 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import { HomeBannerDetails } from "@/types/home-banners";
 import HomeBannerDetailsHeader from "./home-banner-details-header/home-banner-details-header";
 import HomeBannerDetailsDescription from "./home-banner-details-description/home-banner-details-description";
-import HomeBannerDetailsPerfumes from "./home-banner-details-perfumes/home-banner-details-perfumes";
+
 
 interface Props {
   homeBanner: HomeBannerDetails;
@@ -16,9 +16,6 @@ export default function HomeBannerDetailsContainer({ homeBanner }: Props) {
       <Separator />
       {/* Description */}
       <HomeBannerDetailsDescription homeBanner={homeBanner} />
-      <Separator />
-      {/* Associated Perfumes */}
-      <HomeBannerDetailsPerfumes homeBanner={homeBanner} />
     </div>
   );
 }
