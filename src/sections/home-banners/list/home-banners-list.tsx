@@ -59,12 +59,16 @@ export default function HomeBannersList({ homeBanners }: Props) {
       cell: ({ row }) => {
         const isMain = row.getValue("isMain") as boolean;
         const bannerId = row.getValue("id") as string;
-        return isMain ? (
-          <Badge className="h-8 text-md" variant={"secondary"}>
-            Banner Principal
-          </Badge>
-        ) : (
-          <MarkedAsMainButton bannerId={bannerId} />
+        return (
+          <div className="max-w-[60px]">
+            {isMain ? (
+              <Badge className="h-8 text-md" variant={"secondary"}>
+                Banner Principal
+              </Badge>
+            ) : (
+              <MarkedAsMainButton bannerId={bannerId} />
+            )}
+          </div>
         );
       },
     },
