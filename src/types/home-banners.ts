@@ -18,6 +18,12 @@ export interface HomeBannerDetails {
 export interface HomeBannerCreateDTO {
   title: string;
   description: string;
+  statisticalTips: {
+    statistics: string;
+    info: string;
+  }[];
+
+  infoTips: string[];
 }
 
 export interface HomeBannerEditDTO {
@@ -35,6 +41,7 @@ export const convertHomeBannerCreateDTO = (
 ): HomeBannerCreateDTO => {
   return {
     ...homeBannerCreate,
+    infoTips: homeBannerCreate.infoTips.map((infoTip) => infoTip.name),
   };
 };
 

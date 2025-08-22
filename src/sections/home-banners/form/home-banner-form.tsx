@@ -3,8 +3,8 @@ import { useMemo } from "react";
 import { TabsContainer } from "@/components/ui/tabs-panel/tabs-panel";
 import { TabsPanelProvider } from "@/components/ui/tabs-panel/context/tabs-panel-context";
 import HomeBannerBasicInfoSection from "./form-sections/home-banner-basic-info-section/home-banner-basic-info-section";
-import HomeBannerPerfumesSection from "./form-sections/home-banner-perfumes-section/home-banner-perfumes-section";
 import HomeBannerFormSectionsController from "./form-sections/home-banner-form-sections-controller";
+import HomeBannerAdditionalInformationSection from "./form-sections/home-banner-additional-information-section/home-banner-additional-information-section";
 
 interface Props {
   imagesRecived?: {
@@ -22,9 +22,9 @@ export default function HomeBannerForm({ imagesRecived }: Props) {
         component: <HomeBannerBasicInfoSection imagesRecived={imagesRecived} />,
       },
       {
-        label: "Perfumes Asociados",
+        label: "Información adicional",
         value: "2",
-        component: <HomeBannerPerfumesSection />,
+        component: <HomeBannerAdditionalInformationSection />,
       },
     ],
     [imagesRecived]

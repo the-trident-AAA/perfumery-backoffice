@@ -3,6 +3,12 @@ import { z } from "zod";
 export interface HomeBannerCreate {
   title: string;
   description: string;
+  statisticalTips: {
+    statistics: string;
+    info: string;
+  }[];
+
+  infoTips: { name: string }[];
   images: File[];
 }
 
@@ -13,6 +19,21 @@ export const homeBannerCreateSchema = z.object({
   description: z.string().min(1, {
     message: "La descripción del banner de la página principal es requerida",
   }),
+  statisticalTips: z.array(
+    z.object({
+      statistics: z
+        .string()
+        .min(1, { message: "Es necesario especificar la estadística" }),
+      info: z.string().min(1, {
+        message: "Es necesario especificar la información de la estadística",
+      }),
+    })
+  ),
+  infoTips: z.array(
+    z.object({
+      name: z.string().min(1, { message: "El campo es requerido" }),
+    })
+  ),
   images: z.array(
     z
       .instanceof(File, {

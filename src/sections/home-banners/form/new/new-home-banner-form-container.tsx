@@ -34,6 +34,8 @@ export default function NewHomeBannerFormContainer() {
     defaultValues: {
       title: "",
       description: "",
+      statisticalTips: [],
+      infoTips: [],
       images: [],
     },
   });
