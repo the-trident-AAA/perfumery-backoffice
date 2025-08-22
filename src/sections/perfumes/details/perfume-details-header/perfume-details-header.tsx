@@ -44,7 +44,7 @@ export default function PerfumeDetailsHeader({ perfume }: Props) {
               <p className="text-sm font-medium text-secondary">
                 Disponibilidad
               </p>
-              <Badge variant={perfume.available ? "default" : "destructive"}>
+              <Badge variant={perfume.available ? "secondary" : "destructive"}>
                 {perfume.available ? "Disponible" : "No disponible"}
               </Badge>
             </div>
