@@ -20,6 +20,7 @@ interface Props {
   wide?: "small" | "normal" | "large";
   maxWidth?: string;
   className?: string;
+  overFlow?: boolean;
 }
 
 export default function Modal({
@@ -32,6 +33,7 @@ export default function Modal({
   wide = "normal",
   maxWidth,
   className,
+  overFlow = true,
 }: Props) {
   const { onOpenChange, isModalOpen } = useContext(ModalContext);
   return (
@@ -69,7 +71,13 @@ export default function Modal({
             <XIcon className="w-4 h-4 cursor-pointer hover:text-destructive" />
           </DialogClose>
         </DialogHeader>
-        <div className="flex-1 flex flex-col h-full p-4">{children}</div>
+        <div
+          className={`flex-1 flex flex-col h-full ${
+            overFlow ? "overflow-auto" : ""
+          } p-4`}
+        >
+          {children}
+        </div>
       </DialogContent>
     </Dialog>
   );
