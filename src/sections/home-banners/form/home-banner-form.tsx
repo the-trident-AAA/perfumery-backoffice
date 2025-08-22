@@ -33,7 +33,8 @@ export default function HomeBannerForm({ imagesRecived }: Props) {
   return (
     <TabsPanelProvider initialTab={tabs[0].value}>
       <HomeBannerFormSectionsController>
-        <TabsContainer tabs={tabs} fullWidth={false} />
+        <TabsContainer tabs={tabs} fullWidth
+          classNameTabsContent="flex-1 overflow-auto flex flex-col h-[65vh] p-2"/>
       </HomeBannerFormSectionsController>
     </TabsPanelProvider>
   );
