@@ -12,7 +12,11 @@ export default function HomeBannerDetailsHeader({ homeBanner }: Props) {
   return (
     <div className="flex flex-col gap-6 mb-6">
       {/* Banner Image - Larger and more prominent */}
-      <ThumbnailsImage altName={homeBanner.title} images={homeBanner.images} />
+      <ThumbnailsImage
+        altName={homeBanner.title}
+        images={homeBanner.images}
+        imageSize="lg"
+      />
       {/* Header with title and ID */}
       <div>
         <div className="flex items-center justify-between">
