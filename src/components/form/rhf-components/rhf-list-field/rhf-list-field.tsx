@@ -35,13 +35,13 @@ export function RHFListField<T>({
   }, [append, newItem]);
 
   return (
-    <Card>
+    <Card className="bg-muted">
       <CardHeader className="pb-4">
         <CardTitle className="text-lg flex flex-col gap-2 md:flex-row items-center justify-between">
           {label}
           <Button
             size="sm"
-            variant="outline"
+            variant="secondary"
             onClick={handleAddItem}
             type="button"
           >
