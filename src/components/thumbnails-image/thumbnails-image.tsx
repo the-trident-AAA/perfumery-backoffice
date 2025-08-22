@@ -5,14 +5,23 @@ import React, { useState } from "react";
 interface Props {
   altName: string;
   images: string[];
+  imageSize?: "sm" | "lg";
 }
 
-export default function ThumbnailsImage({ images, altName }: Props) {
+export default function ThumbnailsImage({
+  images,
+  altName,
+  imageSize = "sm",
+}: Props) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   return (
     <div className="flex flex-col gap-4">
       {/* Imagen principal */}
-      <div className="aspect-square w-full h-[36vh] rounded-xl overflow-hidden bg-gray-100">
+      <div
+        className={`aspect-square w-full ${
+          imageSize === "sm" ? "h-[36vh]" : "h-[46vh]"
+        } rounded-xl overflow-hidden bg-gray-100`}
+      >
         <Image
           src={images[selectedImageIndex] || "/placeholder.svg"}
           alt={altName}
