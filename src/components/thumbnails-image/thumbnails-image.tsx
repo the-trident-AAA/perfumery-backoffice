@@ -12,7 +12,7 @@ export default function ThumbnailsImage({ images, altName }: Props) {
 	return (
 		<div className="flex flex-col gap-4">
 			{/* Imagen principal */}
-			<div className="aspect-square w-full h-[52vh] rounded-xl overflow-hidden bg-gray-100">
+			<div className="aspect-square w-full h-[22vh] rounded-xl overflow-hidden bg-gray-100">
 				<Image
 					src={images[selectedImageIndex] || "/placeholder.svg"}
 					alt={altName}
@@ -28,7 +28,7 @@ export default function ThumbnailsImage({ images, altName }: Props) {
 					<button
 						key={index}
 						onClick={() => setSelectedImageIndex(index)}
-						className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+						className={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
 							selectedImageIndex === index
 								? "border-secondary ring-2 ring-primary"
 								: "border-gray-200 hover:border-gray-300"
