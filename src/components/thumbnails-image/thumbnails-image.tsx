@@ -23,7 +23,7 @@ export default function ThumbnailsImage({ images, altName }: Props) {
       </div>
 
       {/* Thumbnails */}
-      <div className="flex flex-wrap gap-2 overflow-x-auto ">
+      <div className="flex flex-wrap gap-1 overflow-x-auto ">
         {images.map((image, index) => (
           <button
             key={index}
