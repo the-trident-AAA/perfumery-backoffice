@@ -5,9 +5,13 @@ export function createFormDataBody(data: object) {
     if (value !== undefined && value !== null) {
       if (Array.isArray(value)) {
         if (value.length > 0) {
-          if (typeof value[0] === "object")
+          if (value[0] instanceof File)
             value.forEach((element) => {
               formData.append(key, element);
+            });
+          else if (typeof value[0] === "object")
+            value.forEach((element) => {
+              formData.append(key, JSON.stringify(element));
             });
           else formData.append(key, value.join(","));
         }
