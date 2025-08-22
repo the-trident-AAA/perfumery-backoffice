@@ -48,6 +48,7 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
       perfumeTypeId: perfume.perfumeType.id,
       price: perfume.price,
       scentsId: perfume.scents.map((scent) => scent.id),
+      images: [],
     },
   });
 
