@@ -8,6 +8,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import HomeBannersFiltersContainer from "../filters/home-banners-filters-container";
+import MarkedAsMainButton from "../components/marked-as-main-button/marked-as-main-button";
+import { Badge } from "@/components/ui/badge";
 
 interface Props {
   homeBanners: HomeBanner[];
@@ -50,6 +52,21 @@ export default function HomeBannersList({ homeBanners }: Props) {
     {
       accessorKey: "id",
       enableHiding: false,
+    },
+    {
+      accessorKey: "isMain",
+      header: "Estado",
+      cell: ({ row }) => {
+        const isMain = row.getValue("isMain") as boolean;
+        const bannerId = row.getValue("id") as string;
+        return isMain ? (
+          <Badge className="h-8 text-md" variant={"secondary"}>
+            Banner Principal
+          </Badge>
+        ) : (
+          <MarkedAsMainButton bannerId={bannerId} />
+        );
+      },
     },
     {
       accessorKey: "title",
