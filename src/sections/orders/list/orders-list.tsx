@@ -4,11 +4,11 @@ import { modalTypes } from "@/components/modal/types/modalTypes";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { Order } from "@/types/orders";
-import { User } from "@/types/users";
 import { ColumnDef } from "@tanstack/react-table";
 import { EyeIcon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import OrdersFiltersContainer from "../filters/orders-filters-container";
+import { fCurrency } from "@/lib/format-number";
 
 interface Props {
   orders: Order[];
@@ -37,35 +37,47 @@ export default function OrdersList({ orders }: Props) {
       header: "Estado",
     },
     {
-      accessorKey: "user",
-      header: "e-mail",
-      cell: ({row}) => {
-        const user = row.getValue("user") as User;
+      id: "username", // <- id único
+      header: "Nombre de usuario",
+      accessorFn: (row) => row.user?.username, // <- extraes username
+      cell: ({ row }) => {
+        const user = row.original.user;
+        return <p>{user.username}</p>;
+      },
+    },
+    {
+      id: "email", // <- id único
+      header: "E-mail",
+      accessorFn: (row) => row.user?.email, // <- extraes email
+      cell: ({ row }) => {
+        const user = row.original.user;
         return <p>{user.email}</p>;
-      }
+      },
+    },
+    {
+      accessorKey: "totalMount",
+      header: "Monto a pagar",
+      cell: ({ row }) => fCurrency(row.getValue("totalMount") as number),
     },
     {
       id: "actions",
-      cell: ({ row }) => {
-        return (
-          <div className="flex justify-end">
-            <TableMenu
-              titleTableMenu="Acciones"
-              actions={[
-                {
-                  label: "Ver Detalles",
-                  icon: <EyeIcon />,
-                  action: () => {
-                    handleViewDetails(row.getValue("id"));
-                  },
-                },
-              ]}
-            />
-          </div>
-        );
-      },
+      cell: ({ row }) => (
+        <div className="flex justify-end">
+          <TableMenu
+            titleTableMenu="Acciones"
+            actions={[
+              {
+                label: "Ver Detalles",
+                icon: <EyeIcon />,
+                action: () => handleViewDetails(row.getValue("id")),
+              },
+            ]}
+          />
+        </div>
+      ),
     },
   ];
+  
 
   return (
     <div className="flex flex-col gap-4">
