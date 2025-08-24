@@ -1,6 +1,5 @@
 import { OrdersFilters } from "@/sections/orders/filters/hooks/use-orders-filters";
 import { OrderPerfume } from "./order-perfumes";
-import { Perfume } from "./perfumes";
 import { User } from "./users";
 
 export interface Order {
