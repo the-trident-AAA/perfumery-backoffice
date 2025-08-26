@@ -26,6 +26,7 @@ import {
 import { DataTablePagination } from "./data-table-pagination";
 import React, { ReactNode } from "react";
 import { Button } from "./button";
+import { PaginationComponent } from "../pagination-component/pagination-component";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -33,6 +34,14 @@ interface DataTableProps<TData, TValue> {
   dataEmptyText?: string;
   initialVisibilityState?: VisibilityState;
   filters?: ReactNode;
+  serverPagination?: {
+    currentPage: number;
+    itemsPerPage: number;
+    onPageChange: (page: number) => void;
+    onItemsPerPageChange: (itemsPerPage: string) => void;
+    totalItems: number;
+    totalPages: number;
+  };
 }
 
 export function DataTable<TData, TValue>({
@@ -41,6 +50,7 @@ export function DataTable<TData, TValue>({
   dataEmptyText = "No hay resultados.",
   initialVisibilityState = {},
   filters,
+  serverPagination,
 }: DataTableProps<TData, TValue>) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>(initialVisibilityState);
@@ -136,7 +146,11 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} />
+      {serverPagination ? (
+        <PaginationComponent {...serverPagination} />
+      ) : (
+        <DataTablePagination table={table} />
+      )}
     </div>
   );
 }
