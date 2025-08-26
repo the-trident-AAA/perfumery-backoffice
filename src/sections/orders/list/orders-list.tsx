@@ -3,12 +3,13 @@ import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
-import { Order } from "@/types/orders";
+import { Order, OrderStatus, orderStatusMap } from "@/types/orders";
 import { ColumnDef } from "@tanstack/react-table";
 import { EyeIcon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import OrdersFiltersContainer from "../filters/orders-filters-container";
 import { fCurrency } from "@/lib/format-number";
+import { Badge } from "@/components/ui/badge";
 
 interface Props {
   orders: Order[];
@@ -35,6 +36,18 @@ export default function OrdersList({ orders }: Props) {
     {
       accessorKey: "state",
       header: "Estado",
+      cell: ({ row }) => {
+        const state = row.getValue("state") as OrderStatus;
+        return (
+          <Badge
+            variant={
+              orderStatusMap.get(state)?.color as "default" | "secondary"
+            }
+          >
+            {orderStatusMap.get(state)?.name as string}
+          </Badge>
+        );
+      },
     },
     {
       id: "username", // <- id único
@@ -57,7 +70,21 @@ export default function OrdersList({ orders }: Props) {
     {
       accessorKey: "totalMount",
       header: "Monto a pagar",
-      cell: ({ row }) => fCurrency(row.getValue("totalMount") as number),
+      cell: ({ row }) => (
+        <p>{fCurrency(row.getValue("totalMount") as number)}</p>
+      ),
+    },
+    {
+      accessorKey: "totalItems",
+      header: "Cantidad de productos",
+      cell: ({ row }) => {
+        const totalItems = row.getValue("totalItems") as number;
+        return (
+          <p className="flex items-center gap-2">
+            {totalItems + " " + (totalItems > 1 ? "productos" : "producto")}
+          </p>
+        );
+      },
     },
     {
       id: "actions",
@@ -77,7 +104,6 @@ export default function OrdersList({ orders }: Props) {
       ),
     },
   ];
-  
 
   return (
     <div className="flex flex-col gap-4">
