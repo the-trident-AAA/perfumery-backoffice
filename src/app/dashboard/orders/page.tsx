@@ -1,6 +1,7 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import OrderDetailsModalContainer from "@/sections/orders/details/order-details-modal-container";
+import EditOrderModalContainer from "@/sections/orders/form/edit/edit-order-modal-container";
 import OrdersContainer from "@/sections/orders/orders-container";
 import { getOrdersList } from "@/services/orders";
 import { SearchParamsPagination } from "@/types/pagination";
@@ -25,6 +26,12 @@ export default async function OrdersPage({ searchParams }: Props) {
         className="min-h-[65vh]"
       >
         <OrderDetailsModalContainer />
+      </Modal>
+      <Modal
+        formPath={modalTypes.editOrderModal.name}
+        title={modalTypes.editOrderModal.title}
+      >
+        <EditOrderModalContainer />
       </Modal>
     </>
   );

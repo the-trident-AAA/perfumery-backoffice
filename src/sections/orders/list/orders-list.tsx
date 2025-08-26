@@ -5,7 +5,7 @@ import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { Order, OrderStatus, orderStatusMap } from "@/types/orders";
 import { ColumnDef } from "@tanstack/react-table";
-import { EyeIcon } from "lucide-react";
+import { Edit, EyeIcon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import OrdersFiltersContainer from "../filters/orders-filters-container";
 import { fCurrency } from "@/lib/format-number";
@@ -22,6 +22,16 @@ export default function OrdersList({ orders }: Props) {
     (id: string) => {
       handleOpenModal({
         name: modalTypes.detailsOrderModal.name,
+        entity: id,
+      });
+    },
+    [handleOpenModal]
+  );
+
+  const handleEdit = useCallback(
+    (id: string) => {
+      handleOpenModal({
+        name: modalTypes.editOrderModal.name,
         entity: id,
       });
     },
@@ -97,6 +107,11 @@ export default function OrdersList({ orders }: Props) {
                 label: "Ver Detalles",
                 icon: <EyeIcon />,
                 action: () => handleViewDetails(row.getValue("id")),
+              },
+              {
+                label: "Editar",
+                icon: <Edit />,
+                action: () => handleEdit(row.getValue("id")),
               },
             ]}
           />

@@ -67,8 +67,9 @@ export interface ModalTypes {
     cancelButtonText: string;
     confirmButtonText: string;
   };
-   detailsUserModal: SectionModal;
-   detailsOrderModal: SectionModal;
+  detailsUserModal: SectionModal;
+  detailsOrderModal: SectionModal;
+  editOrderModal: SectionModal;
 }
 
 export const modalTypes: ModalTypes = {
@@ -117,7 +118,6 @@ export const modalTypes: ModalTypes = {
     name: "newOfferModal",
     title: "Formulario de Creación de Ofertas",
   },
-
   editOfferModal: {
     name: "editOfferModal",
     title: "Formulario de Edición de Oferta",
@@ -204,12 +204,16 @@ export const modalTypes: ModalTypes = {
     cancelButtonText: "Cancelar",
     confirmButtonText: "Confirmar",
   },
-    detailsUserModal: {
+  detailsUserModal: {
     name: "detailsUserModal",
     title: "Detalles del Usuario",
   },
-    detailsOrderModal: {
+  detailsOrderModal: {
     name: "detailsOrderModal",
     title: "Detalles del Pedido",
+  },
+  editOrderModal: {
+    name: "editOrderModal",
+    title: "Formulario de Edición de Orden",
   },
 };
