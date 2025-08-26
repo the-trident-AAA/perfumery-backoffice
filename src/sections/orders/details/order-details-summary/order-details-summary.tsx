@@ -1,6 +1,7 @@
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { OrderDetails } from "@/types/orders";
-import { ShoppingCart } from "lucide-react";
+import { fCurrency } from "@/lib/format-number";
+import { OrderDetails, orderStatusMap } from "@/types/orders";
 
 interface Props {
   order: OrderDetails;
@@ -8,32 +9,46 @@ interface Props {
 
 export function OrderSummary({ order }: Props) {
   return (
-    <Card>
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <ShoppingCart className="h-5 w-5" />
-          Resumen del Pedido
-        </CardTitle>
+    <Card className="bg-primary border-0">
+      <CardHeader>
+        <CardTitle className="text-lg">Resumen de la Orden</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="text-center p-3 bg-muted/50 rounded-lg">
-            <p className="text-2xl font-bold text-primary">
-              {order.totalItems}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="text-center p-4 bg-muted rounded-lg">
+            <p className="text-sm font-semibold text-secondary mb-1">
+              Total de Artículos
             </p>
-            <p className="text-sm text-muted-foreground">Total Artículos</p>
+            <p className="text-2xl font-bold text-foreground">
+              {order.totalItems || 0}
+            </p>
           </div>
-          <div className="text-center p-3 bg-muted/50 rounded-lg">
-            <p className="text-2xl font-bold text-primary">
-              {order.totalItems}
+
+          <div className="text-center p-4 bg-muted rounded-lg">
+            <p className="text-sm font-semibold text-secondary mb-1">
+              Monto Total
             </p>
-            <p className="text-sm text-muted-foreground">Productos Únicos</p>
+            <p className="text-2xl font-bold text-foreground">
+              {fCurrency(order.totalMount || 0)}
+            </p>
           </div>
-          <div className="text-center p-3 bg-muted/50 rounded-lg md:col-span-2">
-            <p className="text-2xl font-bold text-primary">
-              ${Number(order?.totalMount || 0).toFixed(2)}
+
+          <div className="text-center p-4 bg-muted rounded-lg">
+            <p className="text-sm font-semibold text-secondary mb-1">
+              Estado
             </p>
-            <p className="text-sm text-muted-foreground">Monto Total</p>
+            <Badge
+              variant={
+                orderStatusMap.get(order.state)?.color as
+                  | "secondary"
+                  | "default"
+              }
+              className={`text-sm font-semibold`}
+            >
+              {order.state
+                ? order.state.charAt(0).toUpperCase() + order.state.slice(1)
+                : "N/A"}
+            </Badge>
           </div>
         </div>
       </CardContent>

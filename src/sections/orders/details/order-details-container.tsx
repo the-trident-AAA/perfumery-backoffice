@@ -10,16 +10,15 @@ interface Props {
   order: OrderDetails;
 }
 
-export default function OrderDetailsModalContent({order}: Props) {
+export default function OrderDetailsModalContent({ order }: Props) {
   return (
     <div className="space-y-6 max-w-4xl">
-      <OrderHeader order={order}  />
+      <OrderHeader order={order} />
       <Separator />
       <CustomerInfo order={order} />
-      <OrderSummary order={order}/>
-      <ProductsTable orderPerfumes={order.orderPerfumes} />
-      <OrderTotal order={order}
-      />
+      <OrderSummary order={order} />
+      <ProductsTable order={order} />
+      <OrderTotal order={order} />
     </div>
   );
 }

@@ -25,10 +25,10 @@ export function OrderHeader({ order }: Props) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <Package className="h-6 w-6 text-muted-foreground" />
+        <Package className="h-6 w-6 text-secondary" />
         <div>
           <h2 className="text-xl font-semibold">Pedido #{order.id}</h2>
-          <p className="text-sm text-muted-foreground">Detalles completos del pedido</p>
+          <p className="text-sm text-secondary font-semibold">Detalles completos del pedido</p>
         </div>
       </div>
       <Badge className={`${getStateColor(order.state)} font-medium`}>

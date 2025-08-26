@@ -1,58 +1,35 @@
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { OrderPerfume } from "@/types/order-perfumes";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { OrderDetails } from "@/types/orders";
+import OrderPerfumeCard from "../../components/order-perfume-card/order-perfume-card";
 
 interface ProductsTableProps {
-  orderPerfumes: OrderPerfume[];
+  order: OrderDetails;
 }
 
-export function ProductsTable({ orderPerfumes }: ProductsTableProps) {
+export function ProductsTable({ order }: ProductsTableProps) {
   return (
-    <Card>
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg">Productos del Pedido</CardTitle>
+    <Card className="bg-primary border-0">
+      <CardHeader>
+        <CardTitle className="text-lg">Perfumes en la Orden</CardTitle>
       </CardHeader>
-      <CardContent className="p-0">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">ID Producto</TableHead>
-              <TableHead>Perfume</TableHead>
-              <TableHead>Marca</TableHead>
-              <TableHead className="text-center">Cantidad</TableHead>
-              <TableHead className="text-right">Precio Unitario</TableHead>
-              <TableHead className="text-right">Subtotal</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {orderPerfumes.map((orderPerfume) => (
-              <TableRow key={orderPerfume.id}>
-                <TableCell className="font-mono text-sm">
-                  {orderPerfume.perfume.id}
-                </TableCell>
-                <TableCell className="font-medium">
-                  {orderPerfume.perfume.name}
-                </TableCell>
-                <TableCell className="text-muted-foreground">
-                  {orderPerfume.perfume.brand.name}
-                </TableCell>
-                <TableCell className="text-center">
-                  <Badge variant="outline" className="font-mono">
-                    {orderPerfume.cant}
-                  </Badge>
-                </TableCell>
-                <TableCell className="text-right font-mono">
-                  ${Number(orderPerfume?.price || 0).toFixed(2)}
-                </TableCell>
-                <TableCell className="text-right font-mono font-medium">
-                  ${Number((orderPerfume?.price || 0) * (orderPerfume?.cant || 0)).toFixed(2)}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      <CardContent>
+        <div className="space-y-4">
+          {order.orderPerfumes && order.orderPerfumes.length > 0 ? (
+            order.orderPerfumes.map((orderPerfume) => (
+              <OrderPerfumeCard
+                key={orderPerfume.id}
+                orderPerfume={orderPerfume}
+              />
+            ))
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-muted-foreground">
+                No hay perfumes en esta orden
+              </p>
+            </div>
+          )}
+        </div>
       </CardContent>
     </Card>
-  )
+  );
 }
