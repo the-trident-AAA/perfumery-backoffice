@@ -18,9 +18,14 @@ export default async function PerfumesPage({ searchParams }: Props) {
 
   if (!res.response || res.error) throw new Error("Error fetching perfumes");
 
+  const pagination = res.response.paginationMeta;
+
   return (
     <>
-      <PerfumesContainer perfumes={res.response.data} />
+      <PerfumesContainer
+        perfumes={res.response.data}
+        apiPagination={pagination}
+      />
       <Modal
         formPath={modalTypes.newPerfumeModal.name}
         title={modalTypes.newPerfumeModal.title}

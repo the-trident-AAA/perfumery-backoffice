@@ -10,13 +10,23 @@ import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import PerfumesFiltersContainer from "../filters/perfumes-filters-container";
+import { PaginationMeta } from "@/types/pagination";
+import useServerPagination from "@/hooks/use-server-pagination";
 
 interface Props {
   perfumes: Perfume[];
+  apiPagination: PaginationMeta;
 }
 
-export default function PerfumesList({ perfumes }: Props) {
+export default function PerfumesList({ perfumes, apiPagination }: Props) {
   const { handleOpenModal } = useContext(ModalContext);
+  const { pagination, serverHandleChangePage, serverHandlePageSizeChange } =
+    useServerPagination({
+      defaultPagination: {
+        limit: apiPagination.limit,
+        page: apiPagination.page,
+      },
+    });
 
   const handleEdit = useCallback(
     (id: string) => {
@@ -144,6 +154,16 @@ export default function PerfumesList({ perfumes }: Props) {
         data={perfumes}
         initialVisibilityState={{ id: false }}
         filters={<PerfumesFiltersContainer />}
+        serverPagination={{
+          currentPage: pagination.page as number,
+          itemsPerPage: pagination.limit as number,
+          onPageChange: serverHandleChangePage,
+          onItemsPerPageChange: (pageSize: string) => {
+            serverHandlePageSizeChange(Number(pageSize));
+          },
+          totalItems: apiPagination.total,
+          totalPages: Math.ceil(apiPagination.total / apiPagination.limit),
+        }}
       />
     </div>
   );
