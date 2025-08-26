@@ -1,6 +1,7 @@
 import { OrdersFilters } from "@/sections/orders/filters/hooks/use-orders-filters";
 import { OrderPerfume } from "./order-perfumes";
 import { User } from "./users";
+import { OrderEdit } from "@/sections/orders/form/edit/schemas/order-edit-schema";
 
 export enum OrderStatus {
   PENDING = "pendiente",
@@ -25,10 +26,20 @@ export interface OrderDetails {
   totalItems: number;
 }
 
+export interface OrderEditDTO {
+  state: OrderStatus;
+}
+
 export interface OrderFiltersDTO {
   state?: string;
   userId?: string;
 }
+
+export const convertOrderEditDTO = (orderEdit: OrderEdit): OrderEditDTO => {
+  return {
+    ...orderEdit,
+  };
+};
 
 export const convertOrderFiltersDTO = (
   ordersFilters: OrdersFilters
