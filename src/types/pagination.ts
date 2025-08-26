@@ -8,9 +8,10 @@ export type IPaginatedData<T> = {
 };
 
 export type Pagination = {
-  page: number;
-  pageSize: number;
-  total: number;
+  page?: number;
+  pageSize?: number;
+  total?: number;
+  limit?: number;
 };
 
 export type SearchParamsPagination = {
