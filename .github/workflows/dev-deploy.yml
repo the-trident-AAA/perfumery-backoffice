@@ -30,8 +30,8 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "
             cd /home/deployer/projects/perfumery &&
+            rm -rf perfumery-backoffice &&
             git clone https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/the-trident-AAA/perfumery-backoffice.git || true &&
-            git remote set-url origin https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/the-trident-AAA/perfumery-backoffice.git
             cd perfumery-backoffice &&
             rm -f .env &&
             echo 'NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}' > .env &&
