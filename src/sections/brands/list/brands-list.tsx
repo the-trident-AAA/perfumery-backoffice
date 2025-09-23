@@ -7,7 +7,6 @@ import { Brand } from "@/types/brands";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
-import BrandsContainer from "../brands-container";
 import BrandsFiltersContainer from "../filters/brands-filters-container";
 
 interface Props {
