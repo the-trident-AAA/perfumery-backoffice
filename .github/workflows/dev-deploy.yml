@@ -12,6 +12,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Generate GitHub App token
+        id: generate_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.GH_APP_ID }}
+          private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          installation_id: ${{ secrets.GH_INSTALLATION_ID }}
+
       - name: Add SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
@@ -21,15 +29,15 @@ jobs:
       - name: Execute Deploy Script
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "
-            cd /home/deployer/projects/perfumery && 
-            git clone git@github.com:the-trident-AAA/perfumery-backoffice.git || true && 
+            cd /home/deployer/projects/perfumery &&
+            git clone https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/the-trident-AAA/perfumery-backoffice.git || true &&
             cd perfumery-backoffice &&
             rm -f .env &&
             echo 'NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}' > .env &&
             echo 'AUTH_SECRET=${{ secrets.AUTH_SECRET }}' >> .env &&
             echo 'AUTH_MODE=${{ secrets.AUTH_MODE }}' >> .env &&
-            git pull origin dev && 
+            git pull origin dev &&
             docker-compose down &&
-            docker-compose pull && 
+            docker-compose pull &&
             docker-compose up -d --build
           "
