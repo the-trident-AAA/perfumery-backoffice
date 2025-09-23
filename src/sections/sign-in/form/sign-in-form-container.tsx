@@ -1,6 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Credentials, credentialsSchema } from "./schemas/credentials-schema";
 import { Button } from "@/components/ui/button";
@@ -10,19 +10,20 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { paths } from "@/routes/path";
 import { AlertDestructive } from "@/components/ui/alert-destructive";
+import { useSession } from "next-auth/react";
 
 export default function SignInFormContainer() {
+  const { data: session, status } = useSession();
   const router = useRouter();
-  const {
-    signIn,
-    loading: submitLoading,
-    error,
-  } = useSignIn({
-    onSignInAction: () => {
-      toast.success("Inicio de sessión realizado con éxtio");
+  const { signIn, loading: submitLoading, error } = useSignIn();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      toast.success("Inicio de sesión realizado con éxito");
       router.push(paths.perfumes.root);
-    },
-  });
+    }
+  }, [session, status, router]);
+
   const form = useForm<Credentials>({
     resolver: zodResolver(credentialsSchema),
     defaultValues: {
