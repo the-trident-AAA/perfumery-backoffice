@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: perfumery-backoffice
     ports:
-      - "8001:8001"
+      - "4001:4001"
     environment:
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-https://perfumery-api.onrender.com/}
       - AUTH_SECRET=${AUTH_SECRET:-kagkhasghdgakjdghakghdkajgdkjasgdkagsdjgasjgdasdkgajdgaksd}
@@ -13,8 +13,8 @@ services:
       - AUTH_MODE=${AUTH_MODE:-dev}
     restart: unless-stopped
     networks:
-      - perfumery-backoffice-network
+      - perfumery-network
 
 networks:
-  perfumery-backoffice-network:
+  perfumery-network:
     driver: bridge
