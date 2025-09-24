@@ -12,7 +12,7 @@ export default function DeleteScentModalContainer() {
   const { getInfoModal, handleCloseModal } = useContext(ModalContext);
   const infoModal = getInfoModal(modalTypes.deleteScentModal.name);
   const id = infoModal && infoModal.entity ? infoModal.entity : null;
-  const { deleteScent, loading } = useDeleteScent({
+  const { deleteScent, loading, error } = useDeleteScent({
     id,
     onDeleteAction: () => {
       toast.success("Aroma eliminado con éxito");
@@ -27,6 +27,7 @@ export default function DeleteScentModalContainer() {
     <ConfirmationPanel
       title={modalTypes.deleteScentModal.title || "Elminación del Aroma"}
       message={modalTypes.deleteScentModal.message}
+      error={error}
       warningMessage={modalTypes.deleteScentModal.warningMessage}
       onConfirm={deleteScent}
       onCancel={onCloseModal}
