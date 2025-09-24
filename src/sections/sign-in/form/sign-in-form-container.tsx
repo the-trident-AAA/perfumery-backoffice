@@ -7,22 +7,20 @@ import { Button } from "@/components/ui/button";
 import SignInForm from "./sign-in-form";
 import useSignIn from "./hooks/use-sign-in";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 import { paths } from "@/routes/path";
 import { AlertDestructive } from "@/components/ui/alert-destructive";
 import { useSession } from "next-auth/react";
 
 export default function SignInFormContainer() {
   const { data: session, status } = useSession();
-  const router = useRouter();
   const { signIn, loading: submitLoading, error } = useSignIn();
 
   useEffect(() => {
     if (status === "authenticated") {
       toast.success("Inicio de sesión realizado con éxito");
-      router.push(paths.perfumes.root);
+      window.location.href = paths.home.root;
     }
-  }, [session, status, router]);
+  }, [session, status]);
 
   const form = useForm<Credentials>({
     resolver: zodResolver(credentialsSchema),
