@@ -18,7 +18,7 @@ export default function SignInFormContainer() {
   useEffect(() => {
     if (status === "authenticated") {
       toast.success("Inicio de sesión realizado con éxito");
-      window.location.href = paths.home.root;
+      window.location.href = paths.perfumes.root;
     }
   }, [session, status]);
 
