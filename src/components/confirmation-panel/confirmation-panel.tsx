@@ -10,7 +10,7 @@ import { AlertDestructive } from "../ui/alert-destructive";
 interface ConfirmationPanelProps {
   title: string;
   message: string;
-  error: string | null;
+  error?: string | null;
   warningMessage?: string;
   confirmButtonText?: string;
   cancelButtonText?: string;
