@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    extra_hosts:
+      - "minio.perfumesdelpuro.com:172.17.0.1"
     container_name: perfumery-backoffice
     ports:
       - "4001:4001"
