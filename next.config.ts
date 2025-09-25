@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "http",
         hostname: process.env.NEXT_PUBLIC_IMAGE_HOST || "localhost",
+        pathname: "/perfumery/**",
       },
     ],
   },
