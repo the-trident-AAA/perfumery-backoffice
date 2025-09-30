@@ -12,7 +12,7 @@ export default function DeletePerfumeModalContainer() {
   const { getInfoModal, handleCloseModal } = useContext(ModalContext);
   const infoModal = getInfoModal(modalTypes.detelePerfumeModal.name);
   const id = infoModal && infoModal.entity ? infoModal.entity : null;
-  const { deletePerfume, loading } = useDeletePerfume({
+  const { deletePerfume, loading, error } = useDeletePerfume({
     id,
     onDeleteAction: () => {
       toast.success("Perfume eliminado con éxito");
@@ -28,6 +28,7 @@ export default function DeletePerfumeModalContainer() {
       title={modalTypes.detelePerfumeModal.title || "Elminación de Perfume"}
       message={modalTypes.detelePerfumeModal.message}
       warningMessage={modalTypes.detelePerfumeModal.warningMessage}
+      error={error}
       onConfirm={deletePerfume}
       onCancel={onCloseModal}
       isLoading={loading}

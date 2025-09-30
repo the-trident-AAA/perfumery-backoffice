@@ -18,7 +18,7 @@ export default function useDeletePerfume({ id, onDeleteAction }: Props) {
         const res = await deletePerfumeService(id);
 
         if (!res.response || res.error)
-          throw new Error("Error durante la eliminación del perfume");
+          setError(res.error?.reason || "Error en la eliminación del perfume");
         else onDeleteAction();
       } catch (error) {
         if (error instanceof Error) setError(error.message);
