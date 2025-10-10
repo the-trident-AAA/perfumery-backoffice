@@ -18,7 +18,7 @@ export default function useDeleteBrand({ id, onDeleteAction }: Props) {
         const res = await deleteBrandService(id);
 
         if (!res.response || res.error)
-          throw new Error("Error durante la eliminación de la marca");
+          setError(res.error?.reason || "Error en la eliminación de la marca");
         else onDeleteAction();
       } catch (error) {
         if (error instanceof Error) setError(error.message);

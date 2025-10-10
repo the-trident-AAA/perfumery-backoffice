@@ -12,7 +12,7 @@ export default function DeleteBrandModalContainer() {
   const { getInfoModal, handleCloseModal } = useContext(ModalContext);
   const infoModal = getInfoModal(modalTypes.deleteBrandModal.name);
   const id = infoModal && infoModal.entity ? infoModal.entity : null;
-  const { deleteBrand, loading } = useDeleteBrand({
+  const { deleteBrand, loading, error } = useDeleteBrand({
     id,
     onDeleteAction: () => {
       toast.success("Marca eliminada con éxito");
@@ -26,6 +26,7 @@ export default function DeleteBrandModalContainer() {
   return (
     <ConfirmationPanel
       title={modalTypes.deleteBrandModal.title || "Elminación de la Marca"}
+      error={error}
       message={modalTypes.deleteBrandModal.message}
       warningMessage={modalTypes.deleteBrandModal.warningMessage}
       onConfirm={deleteBrand}
