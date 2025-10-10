@@ -58,7 +58,7 @@ export default function EditOrderFormContainer({ order }: Props) {
         <OrderForm />
         <FormActionButtons
           submitLoading={submitLoading}
-          submitButtonText="Actualizar Marca"
+          submitButtonText="Actualizar Pedido"
           handleClose={handleClose}
         />
       </form>
