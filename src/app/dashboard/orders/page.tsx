@@ -16,9 +16,11 @@ export default async function OrdersPage({ searchParams }: Props) {
 
   if (!res.response || res.error) throw new Error("Error fetching orders");
 
+  const pagination = res.response.paginationMeta;
+
   return (
     <>
-      <OrdersContainer orders={res.response.data} />
+      <OrdersContainer orders={res.response.data} apiPagination={pagination} />
       <Modal
         formPath={modalTypes.detailsOrderModal.name}
         title={modalTypes.detailsOrderModal.title}

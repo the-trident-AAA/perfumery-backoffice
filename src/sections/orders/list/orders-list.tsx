@@ -10,13 +10,23 @@ import React, { useCallback, useContext } from "react";
 import OrdersFiltersContainer from "../filters/orders-filters-container";
 import { fCurrency } from "@/lib/format-number";
 import { Badge } from "@/components/ui/badge";
+import useServerPagination from "@/hooks/use-server-pagination";
+import { PaginationMeta } from "@/types/pagination";
 
 interface Props {
   orders: Order[];
+  apiPagination: PaginationMeta;
 }
 
-export default function OrdersList({ orders }: Props) {
+export default function OrdersList({ orders, apiPagination }: Props) {
   const { handleOpenModal } = useContext(ModalContext);
+  const { pagination, serverHandleChangePage, serverHandlePageSizeChange } =
+    useServerPagination({
+      defaultPagination: {
+        limit: apiPagination.limit,
+        page: apiPagination.page,
+      },
+    });
 
   const handleViewDetails = useCallback(
     (id: string) => {
@@ -127,6 +137,16 @@ export default function OrdersList({ orders }: Props) {
         data={orders}
         initialVisibilityState={{ id: false }}
         filters={<OrdersFiltersContainer />}
+        serverPagination={{
+          currentPage: pagination.page as number,
+          itemsPerPage: pagination.limit as number,
+          onPageChange: serverHandleChangePage,
+          onItemsPerPageChange: (pageSize: string) => {
+            serverHandlePageSizeChange(Number(pageSize));
+          },
+          totalItems: apiPagination.total,
+          totalPages: Math.ceil(apiPagination.total / apiPagination.limit),
+        }}
       />
     </div>
   );
