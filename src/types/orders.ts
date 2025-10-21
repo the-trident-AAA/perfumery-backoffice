@@ -1,5 +1,5 @@
 import { OrdersFilters } from "@/sections/orders/filters/hooks/use-orders-filters";
-import { OrderPerfume } from "./order-perfumes";
+import { OrderPerfume, OrderPerfumeDTO } from "./order-perfumes";
 import { User } from "./users";
 import { OrderEdit } from "@/sections/orders/form/edit/schemas/order-edit-schema";
 
@@ -32,6 +32,7 @@ export interface OrderDetails {
 
 export interface OrderEditDTO {
   state: OrderStatus;
+  perfumes: OrderPerfumeDTO[];
 }
 
 export interface OrderFiltersDTO {
@@ -43,7 +44,11 @@ export interface OrderFiltersDTO {
 
 export const convertOrderEditDTO = (orderEdit: OrderEdit): OrderEditDTO => {
   return {
-    ...orderEdit,
+    state: orderEdit.state,
+    perfumes: orderEdit.orderPerfumes.map((orderPerfumeEdit) => ({
+      perfumeId: orderPerfumeEdit.perfumeId,
+      cant: orderPerfumeEdit.cant,
+    })),
   };
 };
 
