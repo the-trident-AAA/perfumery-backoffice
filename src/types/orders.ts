@@ -33,6 +33,8 @@ export interface OrderEditDTO {
 export interface OrderFiltersDTO {
   state?: string;
   userId?: string;
+  lastUpdateDateMin?: string;
+  lastUpdateDateMax?: string;
 }
 
 export const convertOrderEditDTO = (orderEdit: OrderEdit): OrderEditDTO => {
@@ -44,7 +46,11 @@ export const convertOrderEditDTO = (orderEdit: OrderEdit): OrderEditDTO => {
 export const convertOrderFiltersDTO = (
   ordersFilters: OrdersFilters
 ): OrderFiltersDTO => {
-  return { ...ordersFilters };
+  return {
+    ...ordersFilters,
+    lastUpdateDateMax: ordersFilters.lastUpdateDateMax?.toISOString(),
+    lastUpdateDateMin: ordersFilters.lastUpdateDateMin?.toISOString(),
+  };
 };
 
 export const orderStatusMap: Map<
