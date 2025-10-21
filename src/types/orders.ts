@@ -11,6 +11,7 @@ export enum OrderStatus {
 
 export interface Order {
   id: string;
+  code: string;
   state: OrderStatus;
   user: User;
   totalMount: number;
@@ -21,6 +22,7 @@ export interface Order {
 
 export interface OrderDetails {
   id: string;
+  code: string;
   state: OrderStatus;
   user: User;
   orderPerfumes: OrderPerfume[];
