@@ -8,7 +8,6 @@ interface Props {
 }
 
 export default function OrderForm({ order }: Props) {
-  
   return (
     <div className="flex flex-col gap-4">
       <RHFSelectField
@@ -30,7 +29,10 @@ export default function OrderForm({ order }: Props) {
           },
         ]}
       />
-      <RHFOrderPerfumesList orderPerfumesMap={order.orderPerfumes} />
+      {order.state !== OrderStatus.CANCELED &&
+        order.state !== OrderStatus.COMPLETED && (
+          <RHFOrderPerfumesList orderPerfumesMap={order.orderPerfumes} />
+        )}
     </div>
   );
 }
