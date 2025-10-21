@@ -1,13 +1,16 @@
 "use client";
 
 import useUrlFilters from "@/hooks/use-url-filters";
-import { OrderStatus } from "@/types/orders";
+import { convertOrderFiltersDTO, OrderStatus } from "@/types/orders";
 import { Pagination } from "@/types/pagination";
 import { useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export interface OrdersFilters {
   state?: OrderStatus;
+  lastUpdateDateMin?: Date;
+  lastUpdateDateMax?: Date;
+  userId?: string;
 }
 
 interface Props {
@@ -27,10 +30,20 @@ export default function useOrdersFilters({
 
   useEffect(() => {
     const stateParam = (searchParams.get("state") as OrderStatus) || null;
+    const lastUpdateDateMaxParam = searchParams.get("lastUpdateDateMax");
+    const lastUpdateDateMinParam = searchParams.get("lastUpdateDateMin");
+    const userIdParam = searchParams.get("userId");
 
     setFilters((oldFilters) => ({
       ...oldFilters,
       state: stateParam || undefined,
+      lastUpdateDateMax: lastUpdateDateMaxParam
+        ? new Date(lastUpdateDateMaxParam)
+        : undefined,
+      lastUpdateDateMin: lastUpdateDateMinParam
+        ? new Date(lastUpdateDateMinParam)
+        : undefined,
+      userId: userIdParam || undefined,
     }));
   }, [searchParams]);
 
@@ -43,7 +56,7 @@ export default function useOrdersFilters({
       ...prev,
       ...updatedFilters,
     }));
-    if (urlFilters) updateFiltersInUrl(newFilters);
+    if (urlFilters) updateFiltersInUrl(convertOrderFiltersDTO(newFilters));
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
@@ -58,6 +71,9 @@ export default function useOrdersFilters({
   const getActiveFiltersCount = () => {
     let count = 0;
     if (filters.state) count++;
+    if (filters.lastUpdateDateMax) count++;
+    if (filters.lastUpdateDateMin) count++;
+    if (filters.userId) count++;
 
     return count;
   };
