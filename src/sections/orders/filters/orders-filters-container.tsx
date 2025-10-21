@@ -2,7 +2,6 @@ import React from "react";
 import useOrdersFilters from "./hooks/use-orders-filters";
 import OrdersActiveFilters from "./components/orders-active-filters/orders-active-filters";
 import OrdersFilters from "./orders-filters";
-import useUsers from "@/sections/users/hooks/use-users";
 
 export default function OrdersFiltersContainer() {
   const {
@@ -11,12 +10,11 @@ export default function OrdersFiltersContainer() {
     handleResetFilters,
     getActiveFiltersCount,
   } = useOrdersFilters({});
-  const { users, loadingData: loadingUsers } = useUsers();
+
   return (
     <div className="flex flex-col gap-4">
       <OrdersFilters
         filters={filters}
-        users={{ data: users, loading: loadingUsers }}
         handleChangeFilters={handleChangeFilters}
       />
       {getActiveFiltersCount() > 0 && (

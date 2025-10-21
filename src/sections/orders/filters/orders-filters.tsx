@@ -1,65 +1,43 @@
 import React from "react";
 import { OrdersFilters as OrdersFiltersType } from "./hooks/use-orders-filters";
-import SearchInput from "@/components/inputs/search-input/search-input";
-import { OptionData } from "@/types/filters";
-import { User } from "@/types/users";
 import SelectInput from "@/components/inputs/select-input/select-input";
+import { OrderStatus, orderStatusMap } from "@/types/orders";
 
 interface Props {
   filters: OrdersFiltersType;
   handleChangeFilters: (filters: Partial<OrdersFiltersType>) => void;
-  users: OptionData<User>;
 }
 
-export default function OffersFilters({
-  filters,
-  users,
-  handleChangeFilters,
-}: Props) {
+export default function OffersFilters({ filters, handleChangeFilters }: Props) {
   return (
     <div className="flex items-center gap-4">
-      <SearchInput
-        id="state"
-        label="Estado del Pedido"
+      <SelectInput
+        label="Filtro de Estado"
+        fullWidth
+        placeHolder="Seleccione un estado por el que filtrar..."
         value={filters.state}
-        placeHolder="Estado del Pedido..."
-        onChange={(e) => {
-          handleChangeFilters({ state: e.target.value || undefined });
-        }}
-      />
-      <SelectInput
-        label="Nombre del Usuario"
-        placeHolder="Seleccione un Usuario..."
-        value={filters.userId}
         onValueChange={(value) => {
-          handleChangeFilters({ userId: value || undefined });
+          handleChangeFilters({
+            state: (value as OrderStatus) || undefined,
+          });
         }}
-        options={users.data.map((user) => ({
-          value: user.id,
-          label: user.username,
-        }))}
-        loading={users.loading}
-        clearable={{
-          handleClear: () => {
-            handleChangeFilters({ userId: undefined });
+        options={[
+          {
+            label: orderStatusMap.get(OrderStatus.COMPLETED)?.name as string,
+            value: OrderStatus.COMPLETED,
           },
-        }}
-      />
-      <SelectInput
-        label="Email del Usuario"
-        placeHolder="Seleccione un email..."
-        value={filters.userId}
-        onValueChange={(value) => {
-          handleChangeFilters({ userId: value || undefined });
-        }}
-        options={users.data.map((user) => ({
-          value: user.id,
-          label: user.email,
-        }))}
-        loading={users.loading}
+          {
+            label: orderStatusMap.get(OrderStatus.PENDING)?.name as string,
+            value: OrderStatus.PENDING,
+          },
+          {
+            label: orderStatusMap.get(OrderStatus.CANCELED)?.name as string,
+            value: OrderStatus.CANCELED,
+          },
+        ]}
         clearable={{
           handleClear: () => {
-            handleChangeFilters({ userId: undefined });
+            handleChangeFilters({ state: undefined });
           },
         }}
       />
