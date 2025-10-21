@@ -1,10 +1,16 @@
 import { RHFSelectField } from "@/components/form/rhf-components/rhf-select-field/rhf-select-field";
-import { OrderStatus, orderStatusMap } from "@/types/orders";
+import { OrderDetails, OrderStatus, orderStatusMap } from "@/types/orders";
 import React from "react";
+import RHFOrderPerfumesList from "./rhf-components/rhf-order-perfumes-list";
 
-export default function OrderForm() {
+interface Props {
+  order: OrderDetails;
+}
+
+export default function OrderForm({ order }: Props) {
+  
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <RHFSelectField
         name="state"
         label="Estado"
@@ -24,6 +30,7 @@ export default function OrderForm() {
           },
         ]}
       />
+      <RHFOrderPerfumesList orderPerfumesMap={order.orderPerfumes} />
     </div>
   );
 }
