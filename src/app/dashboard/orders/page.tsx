@@ -32,6 +32,7 @@ export default async function OrdersPage({ searchParams }: Props) {
       <Modal
         formPath={modalTypes.editOrderModal.name}
         title={modalTypes.editOrderModal.title}
+        maxWidth="max-w-3xl"
       >
         <EditOrderModalContainer />
       </Modal>
