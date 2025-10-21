@@ -15,6 +15,8 @@ export interface Order {
   user: User;
   totalMount: number;
   totalItems: number;
+  creationDate: string;
+  lastUpdateDate: string;
 }
 
 export interface OrderDetails {
@@ -24,6 +26,8 @@ export interface OrderDetails {
   orderPerfumes: OrderPerfume[];
   totalMount: number;
   totalItems: number;
+  creationDate: string;
+  lastUpdateDate: string;
 }
 
 export interface OrderEditDTO {
