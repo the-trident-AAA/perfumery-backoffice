@@ -91,8 +91,8 @@ export default function DatePickerInput({
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className={`w-full justify-start text-left font-normal ${
-              !internalDate && "text-muted-foreground"
+            className={`w-full justify-start bg-muted text-left font-normal ${
+              !internalDate && "text-foreground"
             }`}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
