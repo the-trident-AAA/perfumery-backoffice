@@ -12,6 +12,7 @@ import { fCurrency } from "@/lib/format-number";
 import { Badge } from "@/components/ui/badge";
 import useServerPagination from "@/hooks/use-server-pagination";
 import { PaginationMeta } from "@/types/pagination";
+import { formatDate } from "@/lib/format-date";
 
 interface Props {
   orders: Order[];
@@ -85,6 +86,24 @@ export default function OrdersList({ orders, apiPagination }: Props) {
       cell: ({ row }) => {
         const user = row.original.user;
         return <p>{user.email}</p>;
+      },
+    },
+    {
+      id: "creationDate", // <- id único
+      header: "Fecha de creación",
+      accessorFn: (row) => row.creationDate,
+      cell: ({ row }) => {
+        const creationDate = row.original.creationDate;
+        return <p>{formatDate(creationDate)}</p>;
+      },
+    },
+    {
+      id: "lastUpdateDate", // <- id único
+      header: "Fecha de Actualización",
+      accessorFn: (row) => row.lastUpdateDate,
+      cell: ({ row }) => {
+        const lastUpdateDate = row.original.lastUpdateDate;
+        return <p>{formatDate(lastUpdateDate)}</p>;
       },
     },
     {
