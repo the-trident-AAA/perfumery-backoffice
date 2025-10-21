@@ -3,13 +3,20 @@ import { OrdersFilters as OrdersFiltersType } from "./hooks/use-orders-filters";
 import SelectInput from "@/components/inputs/select-input/select-input";
 import { OrderStatus, orderStatusMap } from "@/types/orders";
 import DatePickerInput from "@/components/inputs/date-picker-input/date-picker-input";
+import { OptionData } from "@/types/filters";
+import { User } from "@/types/users";
 
 interface Props {
   filters: OrdersFiltersType;
   handleChangeFilters: (filters: Partial<OrdersFiltersType>) => void;
+  users: OptionData<User>;
 }
 
-export default function OffersFilters({ filters, handleChangeFilters }: Props) {
+export default function OffersFilters({
+  filters,
+  handleChangeFilters,
+  users,
+}: Props) {
   return (
     <div className="flex items-center gap-4">
       <SelectInput
@@ -58,6 +65,26 @@ export default function OffersFilters({ filters, handleChangeFilters }: Props) {
         value={filters.lastUpdateDateMax}
         onChange={(date) => {
           handleChangeFilters({ lastUpdateDateMax: date || undefined });
+        }}
+      />
+      <SelectInput
+        fullWidth
+        placeHolder="Seleccione el usuario..."
+        value={filters.userId}
+        onValueChange={(value) => {
+          handleChangeFilters({
+            userId: value || undefined,
+          });
+        }}
+        options={users.data.map((user) => ({
+          label: user.username,
+          value: user.id,
+        }))}
+        loading={users.loading}
+        clearable={{
+          handleClear: () => {
+            handleChangeFilters({ userId: undefined });
+          },
         }}
       />
     </div>

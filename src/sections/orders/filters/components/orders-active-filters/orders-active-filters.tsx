@@ -70,6 +70,15 @@ export default function OrdersActiveFilters({
               }}
             />
           )}
+          {filters.userId && (
+            <FilterBadge
+              filterName="Usuario"
+              filterValue={filters.userId}
+              handleDeleteFilter={() => {
+                handleChangeFilters({ userId: undefined });
+              }}
+            />
+          )}
         </div>
       </div>
     </div>
