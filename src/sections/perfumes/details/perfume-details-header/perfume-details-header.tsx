@@ -35,10 +35,20 @@ export default function PerfumeDetailsHeader({ perfume }: Props) {
               <p className="font-medium">{perfume.brand.name}</p>
             </div>
 
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-secondary">Precio</p>
-              <p className="font-medium">{fCurrency(perfume.price)}</p>
+            <div className="flex flex-col gap-2">
+            <p className="text-sm font-medium text-secondary">Precio</p>
+            <div className="flex items-baseline gap-3">
+            <span className="text-xl font-bold text-foreground">
+									{fCurrency(perfume.totalPrice)}
+								</span>
+								{perfume.offer && (
+									<span className="text-xl text-muted-foreground line-through">
+										{fCurrency(perfume.price)}
+									</span>
+								)}
             </div>
+							
+							</div>
 
             <div className="space-y-1">
               <p className="text-sm font-medium text-secondary">
