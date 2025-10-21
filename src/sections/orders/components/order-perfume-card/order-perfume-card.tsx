@@ -23,7 +23,7 @@ export default function OrderPerfumeCard({ orderPerfume }: Props) {
             height={600}
             width={600}
             alt={orderPerfume.perfume?.name || "Perfume"}
-            className="w-20 h-20 border-3 border-secondary rounded-2xl object-cover rounded-md border"
+            className="w-20 h-20 border-3 border-secondary rounded-2xl object-cover"
           />
         </div>
 
