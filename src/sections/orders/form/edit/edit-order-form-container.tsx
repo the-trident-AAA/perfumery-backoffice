@@ -37,6 +37,11 @@ export default function EditOrderFormContainer({ order }: Props) {
     resolver: zodResolver(orderEditSchema),
     defaultValues: {
       state: order.state,
+      orderPerfumes: order.orderPerfumes.map((orderPerfume) => ({
+        entityId: orderPerfume.id,
+        perfumeId: orderPerfume.perfume.id,
+        cant: orderPerfume.cant,
+      })),
     },
   });
 
@@ -55,7 +60,7 @@ export default function EditOrderFormContainer({ order }: Props) {
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
         {editBrandError && <AlertDestructive title={editBrandError} />}
-        <OrderForm />
+        <OrderForm order={order} />
         <FormActionButtons
           submitLoading={submitLoading}
           submitButtonText="Actualizar Pedido"
