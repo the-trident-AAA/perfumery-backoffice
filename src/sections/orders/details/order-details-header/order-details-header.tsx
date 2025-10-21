@@ -29,7 +29,7 @@ export function OrderHeader({ order }: Props) {
         <div className="flex items-center gap-3">
           <Package className="h-6 w-6 text-secondary" />
           <div>
-            <h2 className="text-xl font-semibold">Pedido #{order.id}</h2>
+            <h2 className="text-xl font-semibold">Pedido {order.code}</h2>
             <p className="text-sm text-secondary font-semibold">
               Detalles completos del pedido
             </p>
