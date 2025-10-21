@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { RotateCcwIcon } from "lucide-react";
 import { OrdersFilters } from "../../hooks/use-orders-filters";
+import { formatDate } from "@/lib/format-date";
 
 interface Props {
   filters: OrdersFilters;
@@ -51,7 +52,24 @@ export default function OrdersActiveFilters({
               }}
             />
           )}
-          
+          {filters.lastUpdateDateMin && (
+            <FilterBadge
+              filterName="Fecha de actualización mínima"
+              filterValue={formatDate(filters.lastUpdateDateMin.toISOString())}
+              handleDeleteFilter={() => {
+                handleChangeFilters({ lastUpdateDateMin: undefined });
+              }}
+            />
+          )}
+          {filters.lastUpdateDateMax && (
+            <FilterBadge
+              filterName="Fecha de actualización máxima"
+              filterValue={formatDate(filters.lastUpdateDateMax.toISOString())}
+              handleDeleteFilter={() => {
+                handleChangeFilters({ lastUpdateDateMax: undefined });
+              }}
+            />
+          )}
         </div>
       </div>
     </div>
