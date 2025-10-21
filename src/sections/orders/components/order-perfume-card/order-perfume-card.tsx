@@ -40,7 +40,7 @@ export default function OrderPerfumeCard({ orderPerfume }: Props) {
             </div>
             <div className="text-right">
               <p className="font-semibold text-foreground">
-                {fCurrency(orderPerfume.perfume.price || 0)}
+                {fCurrency(orderPerfume.perfume.totalPrice || 0)}
               </p>
               <p className="font-semibold text-secondary">
                 Cantidad: {orderPerfume.cant || 0}
