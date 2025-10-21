@@ -5,9 +5,10 @@ import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { User } from "@/types/users";
 import { ColumnDef } from "@tanstack/react-table";
-import { EyeIcon } from "lucide-react";
+import { EyeIcon, User as UserIcon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import UsersFiltersContainer from "../filters/users-filters-container";
+import AvatarContainer from "@/components/ui/avatar-container";
 
 interface Props {
   users: User[];
@@ -32,12 +33,23 @@ export default function UserList({ users }: Props) {
       enableHiding: false,
     },
     {
-      accessorKey: "username",
-      header: "Usuario",
-    },
-    {
       accessorKey: "avatar",
       header: "Avatar",
+      cell: ({ row }) => (
+        <AvatarContainer
+          className="size-12"
+          image={row.getValue("avatar")}
+          fallback={
+            <div className="flex size-12 bg-secondary justify-center items-center gap-2">
+              <UserIcon className="text-primary size-8" />
+            </div>
+          }
+        />
+      ),
+    },
+    {
+      accessorKey: "username",
+      header: "Usuario",
     },
     {
       accessorKey: "email",
@@ -47,7 +59,7 @@ export default function UserList({ users }: Props) {
       accessorKey: "role",
       header: "Rol",
     },
-       {
+    {
       id: "actions",
       cell: ({ row }) => {
         return (
@@ -76,7 +88,7 @@ export default function UserList({ users }: Props) {
         columns={columns}
         data={users}
         initialVisibilityState={{ id: false }}
-        filters = {<UsersFiltersContainer/>}
+        filters={<UsersFiltersContainer />}
       />
     </div>
   );
