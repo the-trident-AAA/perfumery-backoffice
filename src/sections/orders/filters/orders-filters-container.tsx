@@ -9,7 +9,7 @@ export default function OrdersFiltersContainer() {
     handleChangeFilters,
     handleResetFilters,
     getActiveFiltersCount,
-  } = useOrdersFilters({});
+  } = useOrdersFilters({ urlFilters: true });
 
   return (
     <div className="flex flex-col gap-4">
