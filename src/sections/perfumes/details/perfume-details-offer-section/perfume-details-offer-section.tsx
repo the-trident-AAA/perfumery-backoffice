@@ -28,7 +28,7 @@ export default function PerfumeDetailsOfferSection({ offer }: Props) {
         </div>
         <div className="space-y-1">
           <p className="text-sm font-medium text-gray-500">Descuento</p>
-          <p className="font-medium">{offer.discount}%</p>
+          <p className="font-medium">{offer.discount * 100}%</p>
         </div>
       </div>
     </div>
