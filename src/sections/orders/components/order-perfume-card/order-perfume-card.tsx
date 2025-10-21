@@ -40,7 +40,7 @@ export default function OrderPerfumeCard({ orderPerfume }: Props) {
             </div>
             <div className="text-right">
               <p className="font-semibold text-foreground">
-                {fCurrency(orderPerfume.price || 0)}
+                {fCurrency(orderPerfume.perfume.price || 0)}
               </p>
               <p className="font-semibold text-secondary">
                 Cantidad: {orderPerfume.cant || 0}
@@ -120,7 +120,7 @@ export default function OrderPerfumeCard({ orderPerfume }: Props) {
           <div className="flex justify-between items-center pt-2">
             <span className="font-semibold text-secondary">Subtotal:</span>
             <span className="font-semibold text-foreground">
-              {fCurrency((orderPerfume.price || 0) * (orderPerfume.cant || 0))}
+              {fCurrency(orderPerfume.price)}
             </span>
           </div>
         </div>
