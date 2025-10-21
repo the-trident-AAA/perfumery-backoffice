@@ -86,3 +86,19 @@ export const orderStatusMap: Map<
 export const genderMapInverted: Map<string, OrderStatus> = new Map(
   Array.from(orderStatusMap.entries()).map(([key, value]) => [value.name, key])
 );
+
+export const getOrderStateText = (orderStatus: OrderStatus) => {
+  if (orderStatus === OrderStatus.PENDING) return "Pendiente";
+  else if (orderStatus === OrderStatus.CANCELED) return "Cancelado";
+  else if (orderStatus === OrderStatus.COMPLETED) return "Aceptado";
+  else return "Desconocida";
+};
+
+export const getOrderStateVariant = (orderStatus: OrderStatus) => {
+  if (orderStatus === OrderStatus.PENDING) return "bg-[#ffb703] text-secondary";
+  else if (orderStatus === OrderStatus.CANCELED)
+    return "bg-destructive text-white";
+  else if (orderStatus === OrderStatus.COMPLETED)
+    return "bg-[#058c42] text-white";
+  else return "bg-destructive text-white";
+};
