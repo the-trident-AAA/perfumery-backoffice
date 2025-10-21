@@ -71,6 +71,15 @@ export default function OrdersList({ orders, apiPagination }: Props) {
       },
     },
     {
+      id: "code", // <- id único
+      header: "Código",
+      accessorFn: (row) => row.code,
+      cell: ({ row }) => {
+        const code = row.original.code;
+        return <p>{code}</p>;
+      },
+    },
+    {
       id: "username", // <- id único
       header: "Nombre de usuario",
       accessorFn: (row) => row.user?.username, // <- extraes username
