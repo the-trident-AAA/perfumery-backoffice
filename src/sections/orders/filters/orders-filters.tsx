@@ -12,9 +12,8 @@ export default function OffersFilters({ filters, handleChangeFilters }: Props) {
   return (
     <div className="flex items-center gap-4">
       <SelectInput
-        label="Filtro de Estado"
         fullWidth
-        placeHolder="Seleccione un estado por el que filtrar..."
+        placeHolder="Seleccione un estado..."
         value={filters.state}
         onValueChange={(value) => {
           handleChangeFilters({
