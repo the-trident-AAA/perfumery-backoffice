@@ -20,6 +20,7 @@ export interface Perfume {
   available: boolean;
   price: number;
   cant: number;
+  totalPrice: number;
 }
 
 export interface PerfumeDetails {
@@ -37,6 +38,7 @@ export interface PerfumeDetails {
   available: boolean;
   price: number;
   cant: number;
+  totalPrice: number;
 }
 
 export interface PerfumeCreateDTO {
