@@ -21,6 +21,7 @@ export default function OffersFilters({
     <div className="flex items-center gap-4">
       <SelectInput
         fullWidth
+        label="Filtar por estado"
         placeHolder="Seleccione un estado..."
         value={filters.state}
         onValueChange={(value) => {
@@ -50,7 +51,7 @@ export default function OffersFilters({
       />
       <DatePickerInput
         id="lastUpdateDateMin"
-        label="Fecha de Actualización Mínima"
+        label="Filtrar por fecha"
         placeholder="Ingrese una fecha mínima..."
         value={filters.lastUpdateDateMin}
         onChange={(date) => {
@@ -60,7 +61,7 @@ export default function OffersFilters({
 
       <DatePickerInput
         id="lastUpdateDateMax"
-        label="Fecha de Actualización Máxima"
+        label="Filtar por fecha"
         placeholder="Ingrese una fecha máxima..."
         value={filters.lastUpdateDateMax}
         onChange={(date) => {
@@ -69,6 +70,7 @@ export default function OffersFilters({
       />
       <SelectInput
         fullWidth
+        label="Filtar por usuario"
         placeHolder="Seleccione el usuario..."
         value={filters.userId}
         onValueChange={(value) => {
