@@ -12,6 +12,7 @@ import React, { useCallback, useContext } from "react";
 import PerfumesFiltersContainer from "../filters/perfumes-filters-container";
 import { PaginationMeta } from "@/types/pagination";
 import useServerPagination from "@/hooks/use-server-pagination";
+import { fCurrency } from "@/lib/format-number";
 
 interface Props {
   perfumes: Perfume[];
@@ -103,8 +104,11 @@ export default function PerfumesList({ perfumes, apiPagination }: Props) {
       ),
     },
     {
-      accessorKey: "price",
+      accessorKey: "totalPrice",
       header: "Precio",
+      cell: ({ row }) => (
+        <p>{fCurrency(row.getValue("totalPrice") as number)}</p>
+      ),
     },
     {
       accessorKey: "cant",
