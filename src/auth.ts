@@ -12,6 +12,9 @@ const useSecureCookies = isProduction;
 const cookiePrefix = useSecureCookies ? "__Secure-" : "";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  session: {
+		maxAge: 12 * 60 * 60, // 12 horas
+	},
   providers: [
     Credentials({
       credentials: {
