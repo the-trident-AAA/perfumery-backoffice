@@ -1,6 +1,11 @@
 import { UsersFilters } from "@/sections/users/filters/hooks/use-user-filters";
 import { ShopCart } from "./shop-carts";
 
+export enum UserRole {
+  ADMIN = "admin",
+  USER = "client",
+}
+
 export interface User {
   id: string;
   username: string;
@@ -35,4 +40,3 @@ export const getRoleColor = (role: string) => {
       return "outline";
   }
 };
-
