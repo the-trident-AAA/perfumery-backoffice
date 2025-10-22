@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { login } from "./services/auth";
+import { UserRole } from "./types/users";
 
 interface CredentialsType {
   username: string;
@@ -13,8 +14,8 @@ const cookiePrefix = useSecureCookies ? "__Secure-" : "";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
-		maxAge: 12 * 60 * 60, // 12 horas
-	},
+    maxAge: 12 * 60 * 60, // 12 horas
+  },
   providers: [
     Credentials({
       credentials: {
@@ -29,6 +30,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null;
         }
         const user = res.response;
+
+        if (user.role !== UserRole.ADMIN) return null;
+
         return {
           id: user.id,
           username: user.username,
