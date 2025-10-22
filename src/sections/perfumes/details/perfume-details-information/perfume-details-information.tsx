@@ -30,6 +30,11 @@ export default function PerfumeDetailsInformation({ perfume }: Props) {
           <p className="text-sm font-semibold text-secondary">Cantidad</p>
           <p className="font-medium">{perfume.cant}</p>
         </div>
+
+        <div className="space-y-1">
+          <p className="text-sm font-semibold text-secondary">Ventas</p>
+          <p className="font-medium">{perfume.sales}</p>
+        </div>
       </div>
     </div>
   );

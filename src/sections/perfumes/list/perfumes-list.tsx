@@ -111,6 +111,11 @@ export default function PerfumesList({ perfumes, apiPagination }: Props) {
       ),
     },
     {
+      accessorKey: "sales",
+      header: "Ventas",
+      cell: ({ row }) => <p>{row.getValue("sales") as number}</p>,
+    },
+    {
       accessorKey: "cant",
       header: "Cantidad",
     },
