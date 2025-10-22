@@ -78,7 +78,24 @@ export default function usePerfumesFilters({ setPagination }: Props) {
       millilitersRange: [0, 1000],
       scentsIds: [],
     });
-    updateFiltersInUrl({ page: 1 });
+    updateFiltersInUrl({
+      name: undefined,
+      description: undefined,
+      brandId: undefined,
+      gender: undefined,
+      scentsIds: undefined,
+      milliliters: undefined,
+      millilitersMin: undefined,
+      millilitersMax: undefined,
+      priceMin: undefined,
+      priceMax: undefined,
+      perfumeTypeId: undefined,
+      available: undefined,
+      price: undefined,
+      cant: undefined,
+      offerId: undefined,
+      page: 1,
+    });
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
