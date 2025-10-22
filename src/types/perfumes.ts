@@ -21,6 +21,7 @@ export interface Perfume {
   price: number;
   cant: number;
   totalPrice: number;
+  sales: number;
 }
 
 export interface PerfumeDetails {
@@ -39,6 +40,7 @@ export interface PerfumeDetails {
   price: number;
   cant: number;
   totalPrice: number;
+  sales: number;
 }
 
 export interface PerfumeCreateDTO {
