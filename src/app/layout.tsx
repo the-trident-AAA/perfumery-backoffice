@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Perfumes del Puro Panel",
+  title: "Panel de Administración Perfumes del Puro",
   description:
     "Panel de administración para administrar la tienda Perfumes del Puro",
 };
