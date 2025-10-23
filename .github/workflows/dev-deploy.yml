@@ -41,7 +41,7 @@ jobs:
             echo 'NEXT_PUBLIC_IMAGE_HOST=${{ secrets.NEXT_PUBLIC_IMAGE_HOST }}' >> .env &&
             echo 'NEXT_PUBLIC_IMAGE_PORT=${{ secrets.NEXT_PUBLIC_IMAGE_PORT }}' >> .env &&
             git pull origin dev &&
-            docker-compose down &&
-            docker-compose pull &&
-            docker-compose up -d --build
+            docker-compose -f docker-compose.dev.yml pull &&
+            docker-compose -f docker-compose.dev.yml build --no-cache &&
+            docker-compose -f docker-compose.dev.yml up -d
           "
