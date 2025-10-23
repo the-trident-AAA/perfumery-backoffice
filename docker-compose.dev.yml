@@ -1,11 +1,11 @@
 services:
-  perfumery-backoffice:
+  perfumery-backoffice-dev:
     build:
       context: .
       dockerfile: Dockerfile
     extra_hosts:
       - "minio.perfumesdelpuro.com:172.17.0.1"
-    container_name: perfumery-backoffice
+    container_name: perfumery-backoffice-dev
     ports:
       - "4001:4001"
     environment:
