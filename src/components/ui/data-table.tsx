@@ -147,7 +147,7 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       {serverPagination ? (
-        <PaginationComponent {...serverPagination} />
+        <PaginationComponent table={table} {...serverPagination} />
       ) : (
         <DataTablePagination table={table} />
       )}

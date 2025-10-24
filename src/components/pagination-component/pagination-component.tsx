@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Table } from "@tanstack/react-table";
 
 interface Props {
   currentPage: number;
@@ -25,6 +26,7 @@ interface Props {
   itemsPerPageOptions?: number[];
   showItemsPerPage?: boolean;
   showTotalItems?: boolean;
+  table: Table<any>;
 }
 
 export function PaginationComponent({
@@ -37,6 +39,7 @@ export function PaginationComponent({
   itemsPerPageOptions = [10, 20, 30, 40, 50],
   showItemsPerPage = true,
   showTotalItems = true,
+  table,
 }: Props) {
   // Calcular el rango de elementos mostrados
   const startItem = (currentPage - 1) * itemsPerPage + 1;
@@ -58,7 +61,10 @@ export function PaginationComponent({
             <p className="text-sm font-medium">Filas por página</p>
             <Select
               value={`${itemsPerPage}`}
-              onValueChange={onItemsPerPageChange}
+              onValueChange={(value) => {
+                onItemsPerPageChange(value);
+                table.setPageSize(Number(value));
+              }}
             >
               <SelectTrigger className="h-8 w-[70px]">
                 <SelectValue placeholder={itemsPerPage} />
