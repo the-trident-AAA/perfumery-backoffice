@@ -13,6 +13,7 @@ import PerfumesFiltersContainer from "../filters/perfumes-filters-container";
 import { PaginationMeta } from "@/types/pagination";
 import useServerPagination from "@/hooks/use-server-pagination";
 import { fCurrency } from "@/lib/format-number";
+import PerfumesOrderContainer from "./order/perfumes-order-container";
 
 interface Props {
   perfumes: Perfume[];
@@ -158,6 +159,7 @@ export default function PerfumesList({ perfumes, apiPagination }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
+      <PerfumesOrderContainer />
       <DataTable
         columns={columns}
         data={perfumes}
