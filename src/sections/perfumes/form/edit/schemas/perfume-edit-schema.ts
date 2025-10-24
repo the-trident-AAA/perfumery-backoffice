@@ -57,7 +57,10 @@ export const perfumeEditSchema = z.object({
   offerId: z.string(),
   milliliters: z
     .number()
-    .min(1, { message: "El volumen debe ser al menos 1 mililitro" }),
+    .min(1, { message: "El volumen debe ser al menos 1 mililitro" })
+    .multipleOf(0.01, {
+      message: "El volumen no puede tener más de 2 decimales",
+    }),
   gender: z.enum([Gender.MALE, Gender.FEMALE, Gender.UNISEX], {
     message:
       "Debes seleccionar un género válido (Masculino, Femenino o Unisex)",
@@ -66,7 +69,12 @@ export const perfumeEditSchema = z.object({
     .array(z.string())
     .min(1, { message: "Debes seleccionar al menos un aroma" }),
   available: z.boolean(),
-  price: z.number().min(1, { message: "El precio debe ser mayor a 0" }),
+  price: z
+    .number()
+    .min(1, { message: "El precio debe ser mayor a 0" })
+    .multipleOf(0.01, {
+      message: "El precio no puede tener más de 2 decimales",
+    }),
   cant: z
     .number()
     .int({ message: "La cantidad debe ser un número entero" })
