@@ -69,5 +69,6 @@ export const perfumeCreateSchema = z.object({
   price: z.number().min(1, { message: "El precio debe ser mayor a 0" }),
   cant: z
     .number()
+    .int({ message: "La cantidad debe ser un número entero" })
     .min(1, { message: "La cantidad en stock debe ser al menos 1" }),
 });

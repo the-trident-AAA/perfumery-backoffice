@@ -6,7 +6,7 @@ export interface PerfumeEdit {
   description: string;
   brandId: string;
   image: File;
-  images: File[]
+  images: File[];
   perfumeTypeId: string;
   offerId: string;
   milliliters: number;
@@ -36,20 +36,20 @@ export const perfumeEditSchema = z.object({
       (file) => file && file.type.startsWith("image/"),
       "El archivo debe ser una imagen."
     ),
-    images: z.array(
-      z
-        .instanceof(File, {
-          message: "Por favor selecciona una imagen.",
-        })
-        .refine(
-          (file) => file && file.size <= 5 * 1024 * 1024,
-          "La imagen no debe exceder 5MB."
-        )
-        .refine(
-          (file) => file && file.type.startsWith("image/"),
-          "El archivo debe ser una imagen."
-        )
-    ),
+  images: z.array(
+    z
+      .instanceof(File, {
+        message: "Por favor selecciona una imagen.",
+      })
+      .refine(
+        (file) => file && file.size <= 5 * 1024 * 1024,
+        "La imagen no debe exceder 5MB."
+      )
+      .refine(
+        (file) => file && file.type.startsWith("image/"),
+        "El archivo debe ser una imagen."
+      )
+  ),
   brandId: z.string().min(1, { message: "Debes seleccionar una marca válida" }),
   perfumeTypeId: z
     .string()
@@ -69,5 +69,6 @@ export const perfumeEditSchema = z.object({
   price: z.number().min(1, { message: "El precio debe ser mayor a 0" }),
   cant: z
     .number()
+    .int({ message: "La cantidad debe ser un número entero" })
     .min(1, { message: "La cantidad en stock debe ser al menos 1" }),
 });
