@@ -7,7 +7,7 @@ services:
       - "minio.perfumesdelpuro.com:172.17.0.1"
     container_name: perfumery-backoffice-prod
     ports:
-      - "4001:4001"
+      - "4011:4011"
     environment:
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-https://perfumery-api.onrender.com/}
       - AUTH_SECRET=${AUTH_SECRET:-kagkhasghdgakjdghakghdkajgdkjasgdkagsdjgasjgdasdkgajdgaksd}
