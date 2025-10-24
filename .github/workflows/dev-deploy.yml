@@ -40,6 +40,8 @@ jobs:
             echo 'AUTH_MODE=${{ secrets.AUTH_MODE }}' >> .env &&
             echo 'NEXT_PUBLIC_IMAGE_HOST=${{ secrets.NEXT_PUBLIC_IMAGE_HOST }}' >> .env &&
             echo 'NEXT_PUBLIC_IMAGE_PORT=${{ secrets.NEXT_PUBLIC_IMAGE_PORT }}' >> .env &&
+            echo 'NEXT_PUBLIC_IMAGE_PATH=${{ secrets.NEXT_PUBLIC_IMAGE_PATH }}' >> .env &&
+            echo 'NEXT_PUBLIC_IMAGE_PROTOCOL=${{ secrets.NEXT_PUBLIC_IMAGE_PROTOCOL }}' >> .env &&
             git checkout dev &&
             git pull origin dev &&
             docker-compose -f docker-compose.dev.yml pull &&
