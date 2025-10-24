@@ -1,0 +1,48 @@
+name: Deploy to VPS Prod
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate GitHub App token
+        id: generate_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.GH_APP_ID }}
+          private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          installation_id: ${{ secrets.GH_INSTALLATION_ID }}
+
+      - name: Add SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.VPS_SSH_KEY }}
+          known_hosts: "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl"
+
+      - name: Execute Deploy Script
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "
+            cd /home/deployer/projects/perfumery &&
+            rm -rf perfumery-backoffice &&
+            git clone https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/the-trident-AAA/perfumery-backoffice.git || true &&
+            cd perfumery-backoffice &&
+            rm -f .env &&
+            echo 'NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}' > .env &&
+            echo 'AUTH_SECRET=${{ secrets.AUTH_SECRET }}' >> .env &&
+            echo 'AUTH_MODE=${{ secrets.AUTH_MODE }}' >> .env &&
+            echo 'NEXT_PUBLIC_IMAGE_HOST=${{ secrets.NEXT_PUBLIC_IMAGE_HOST }}' >> .env &&
+            echo 'NEXT_PUBLIC_IMAGE_PORT=${{ secrets.NEXT_PUBLIC_IMAGE_PORT }}' >> .env &&
+            git checkout main &&
+            git pull origin main &&
+            docker-compose -f docker-compose.prod.yml pull &&
+            docker-compose -f docker-compose.prod.yml build --no-cache &&
+            docker-compose -f docker-compose.prod.yml up -d
+          "
