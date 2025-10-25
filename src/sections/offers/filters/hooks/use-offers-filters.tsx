@@ -8,20 +8,24 @@ export interface OffersFilters {
   name?: string;
   description?: string;
   scope?: string;
-  discount: [number , number];
+  discount: [number, number];
   offerType?: string;
 }
 
 interface Props {
   setPagination?: Dispatch<SetStateAction<Pagination>>;
+  urlFilters?: boolean;
 }
 
-export default function useOffersFilters({ setPagination }: Props) {
+export default function useOffersFilters({
+  setPagination,
+  urlFilters = true,
+}: Props) {
   const { updateFiltersInUrl } = useUrlFilters();
-  const [filters, setFilters] = useState<OffersFilters>({ discount : [0,100] });
+  const [filters, setFilters] = useState<OffersFilters>({ discount: [0, 100] });
 
   async function handleChangeFilters(updatedFilters: Partial<OffersFilters>) {
-        const newFilters = {
+    const newFilters = {
       ...filters,
       ...updatedFilters,
     };
@@ -29,19 +33,19 @@ export default function useOffersFilters({ setPagination }: Props) {
       ...prev,
       ...updatedFilters,
     }));
-    updateFiltersInUrl(convertOfferFiltersDTO(newFilters));
+    if (urlFilters) updateFiltersInUrl(convertOfferFiltersDTO(newFilters));
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
   function handleResetFilters() {
-    setFilters({ discount : [0,100] });
-    updateFiltersInUrl({});
+    setFilters({ discount: [0, 100] });
+    if (urlFilters) updateFiltersInUrl({});
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
-   const getActiveFiltersCount = () => {
+  const getActiveFiltersCount = () => {
     let count = 0;
     if (filters.name) count++;
     if (filters.description) count++;
@@ -50,7 +54,6 @@ export default function useOffersFilters({ setPagination }: Props) {
 
     return count;
   };
-
 
   return {
     filters,
