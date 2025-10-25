@@ -28,10 +28,6 @@ export default function useOffers() {
       setError(null);
       try {
         const res = await getOffersList({
-          pagination: {
-            page: clientPagination.page,
-            perPage: clientPagination.pageSize,
-          },
           ...convertOfferFiltersDTO(filters),
         });
 
