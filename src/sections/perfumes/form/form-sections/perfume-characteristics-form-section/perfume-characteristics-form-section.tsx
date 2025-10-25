@@ -9,8 +9,12 @@ import usePerfumeTypes from "@/sections/perfume-types/hooks/use-perfume-types";
 import useScents from "@/sections/scents/hooks/use-scents";
 import { Gender, genderMap } from "@/types/perfumes";
 export default function PerfumeCharacteristicsFormSection() {
-  const { perfumeTypes, loadingData: loadingDataPerfumeTypes } =
-    usePerfumeTypes();
+  const {
+    perfumeTypes,
+    loadingData: loadingDataPerfumeTypes,
+    filters: filtersPerfumeTypes,
+    handleChangeFilters: handleChangeFiltersPerfumeTypes,
+  } = usePerfumeTypes();
   const { scents, loadingData: loadingDataScents } = useScents();
   return (
     <Card className="shadow-sm bg-muted">
@@ -21,6 +25,10 @@ export default function PerfumeCharacteristicsFormSection() {
               name="perfumeTypeId"
               label="Tipo de Perfume"
               placeholder="Seleccione un tipo"
+              filterValue={filtersPerfumeTypes.name}
+              onFilterChange={(value) => {
+                handleChangeFiltersPerfumeTypes({ name: value || undefined });
+              }}
               options={perfumeTypes.map((perfumeTypes) => ({
                 value: perfumeTypes.id,
                 label: perfumeTypes.name,
