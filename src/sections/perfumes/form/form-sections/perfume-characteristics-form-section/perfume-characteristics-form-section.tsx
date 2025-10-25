@@ -15,7 +15,12 @@ export default function PerfumeCharacteristicsFormSection() {
     filters: filtersPerfumeTypes,
     handleChangeFilters: handleChangeFiltersPerfumeTypes,
   } = usePerfumeTypes();
-  const { scents, loadingData: loadingDataScents } = useScents();
+  const {
+    scents,
+    loadingData: loadingDataScents,
+    filters: filtersScents,
+    handleChangeFilters: handleChangeFiltersScents,
+  } = useScents();
   return (
     <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4">
@@ -79,6 +84,15 @@ export default function PerfumeCharacteristicsFormSection() {
             }))}
             columns={3}
             loading={loadingDataScents}
+            searchInput={{
+              placeHolderText: "Buscar esencia...",
+              value: filtersScents.name,
+              onChange: (e) => {
+                handleChangeFiltersScents({
+                  name: e.target.value || undefined,
+                });
+              },
+            }}
           />
         </div>
       </CardContent>
