@@ -103,7 +103,7 @@ export default function OrdersList({ orders, apiPagination }: Props) {
       accessorFn: (row) => row.creationDate,
       cell: ({ row }) => {
         const creationDate = row.original.creationDate;
-        return <p>{formatDate(creationDate)}</p>;
+        return <p>{formatDate(creationDate, "yymmdd")}</p>;
       },
     },
     {
@@ -112,7 +112,7 @@ export default function OrdersList({ orders, apiPagination }: Props) {
       accessorFn: (row) => row.lastUpdateDate,
       cell: ({ row }) => {
         const lastUpdateDate = row.original.lastUpdateDate;
-        return <p>{formatDate(lastUpdateDate)}</p>;
+        return <p>{formatDate(lastUpdateDate, "yymmdd")}</p>;
       },
     },
     {
