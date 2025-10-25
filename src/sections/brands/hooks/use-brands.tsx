@@ -2,7 +2,7 @@
 import { Pagination } from "@/types/pagination";
 import { useCallback, useEffect, useState, useRef } from "react";
 import { debounce } from "lodash";
-import { Brand } from "@/types/brands";
+import { Brand, convertBrandFiltersDTO } from "@/types/brands";
 import { getBrandsList } from "@/services/brands";
 import useClientPagination from "@/hooks/use-client-pagination";
 import useBrandsFilters from "../filters/hooks/use-brands-filters";
@@ -19,7 +19,7 @@ export default function useBrands() {
   } = useClientPagination();
   const [pagination, setPagination] = useState<Pagination>(clientPagination);
   const { filters, handleChangeFilters, handleResetFilters } = useBrandsFilters(
-    { setPagination: setClientPagination }
+    { setPagination: setClientPagination, urlFilters: false }
   );
 
   const debouncedFetchRef = useRef(
@@ -32,7 +32,7 @@ export default function useBrands() {
             page: clientPagination.page,
             perPage: clientPagination.pageSize,
           },
-          search: filters.search,
+          ...convertBrandFiltersDTO(filters),
         });
 
         if (!res.response || res.error)
