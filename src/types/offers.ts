@@ -60,5 +60,6 @@ export const convertOfferEditDTO = (offerCreate: OfferEdit): OfferEditDTO => {
 export const convertOfferFiltersDTO = (
   offersFilters: OffersFilters
 ): OfferFiltersDTO => {
-  return { ...offersFilters, minDiscount: offersFilters.discount[0], maxDiscount: offersFilters.discount[1] };
+  const {discount, ...rest} = offersFilters
+  return { ...rest, minDiscount: discount[0], maxDiscount: discount[1] };
 };
