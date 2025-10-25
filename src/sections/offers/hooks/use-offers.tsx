@@ -3,7 +3,7 @@ import { Pagination } from "@/types/pagination";
 import { useCallback, useEffect, useState, useRef } from "react";
 import { debounce } from "lodash";
 import useClientPagination from "@/hooks/use-client-pagination";
-import { Offer } from "@/types/offers";
+import { convertOfferFiltersDTO, Offer } from "@/types/offers";
 import useOffersFilters from "../filters/hooks/use-offers-filters";
 import { getOffersList } from "@/services/offers";
 
@@ -19,7 +19,7 @@ export default function useOffers() {
   } = useClientPagination();
   const [pagination, setPagination] = useState<Pagination>(clientPagination);
   const { filters, handleChangeFilters, handleResetFilters } = useOffersFilters(
-    { setPagination: setClientPagination }
+    { setPagination: setClientPagination, urlFilters: false }
   );
 
   const debouncedFetchRef = useRef(
@@ -32,7 +32,7 @@ export default function useOffers() {
             page: clientPagination.page,
             perPage: clientPagination.pageSize,
           },
-          search: filters.search,
+          ...convertOfferFiltersDTO(filters),
         });
 
         if (!res.response || res.error)
