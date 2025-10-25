@@ -10,9 +10,13 @@ export interface PerfumeTypesFilters {
 
 interface Props {
   setPagination?: Dispatch<SetStateAction<Pagination>>;
+  urlFilters?: boolean;
 }
 
-export default function usePerfumeTypesFilters({ setPagination }: Props) {
+export default function usePerfumeTypesFilters({
+  setPagination,
+  urlFilters = true,
+}: Props) {
   const { updateFiltersInUrl } = useUrlFilters();
   const [filters, setFilters] = useState<PerfumeTypesFilters>({});
 
@@ -25,14 +29,15 @@ export default function usePerfumeTypesFilters({ setPagination }: Props) {
       ...prev,
       ...updatedFilters,
     }));
-    updateFiltersInUrl(convertPerfumeTypeFiltersDTO(newFilters));
+    if (urlFilters)
+      updateFiltersInUrl(convertPerfumeTypeFiltersDTO(newFilters));
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
   function handleResetFilters() {
     setFilters({});
-    updateFiltersInUrl({});
+    if (urlFilters) updateFiltersInUrl({});
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
