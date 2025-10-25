@@ -17,7 +17,12 @@ interface Props {
 export default function PerfumeBasicInformationFormSection({
   imageRecived,
 }: Props) {
-  const { brands, loadingData } = useBrands();
+  const {
+    brands,
+    loadingData: brandsLoadingData,
+    filters: brandsFilters,
+    handleChangeFilters: brandsHandleChangeFilters,
+  } = useBrands();
   return (
     <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4 flex flex-col gap-4">
@@ -31,11 +36,15 @@ export default function PerfumeBasicInformationFormSection({
             name="brandId"
             label="Marca"
             placeholder="Seleccione una marca"
+            filterValue={brandsFilters.name}
+            onFilterChange={(value) => {
+              brandsHandleChangeFilters({ name: value || undefined });
+            }}
             options={brands.map((brand) => ({
               value: brand.id,
               label: brand.name,
             }))}
-            loading={loadingData}
+            loading={brandsLoadingData}
           />
         </div>
         <RHFTextAreaField
