@@ -9,9 +9,13 @@ export interface BrandsFilters {
 
 interface Props {
   setPagination?: Dispatch<SetStateAction<Pagination>>;
+  urlFilters?: boolean;
 }
 
-export default function useBrandsFilters({ setPagination }: Props) {
+export default function useBrandsFilters({
+  setPagination,
+  urlFilters = true,
+}: Props) {
   const { updateFiltersInUrl } = useUrlFilters();
   const [filters, setFilters] = useState<BrandsFilters>({});
 
@@ -24,14 +28,14 @@ export default function useBrandsFilters({ setPagination }: Props) {
       ...prev,
       ...updatedFilters,
     }));
-    updateFiltersInUrl(convertBrandFiltersDTO(newFilters));
+    if (urlFilters) updateFiltersInUrl(convertBrandFiltersDTO(newFilters));
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
 
   function handleResetFilters() {
     setFilters({});
-    updateFiltersInUrl({});
+    if (urlFilters) updateFiltersInUrl({});
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
