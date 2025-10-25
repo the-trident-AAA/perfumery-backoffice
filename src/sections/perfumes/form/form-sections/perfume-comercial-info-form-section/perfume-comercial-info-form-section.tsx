@@ -5,7 +5,8 @@ import { RHFSelectField } from "@/components/form/rhf-components/rhf-select-fiel
 import { RHFToggleField } from "@/components/form/rhf-components/rhf-toggle-field/rhf-toggle-field";
 import useOffers from "@/sections/offers/hooks/use-offers";
 export default function PerfumeComercialInfoFormSection() {
-  const { offers, loadingData } = useOffers();
+  const { offers, loadingData, filters, handleChangeFilters } = useOffers();
+
   return (
     <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4">
@@ -30,6 +31,10 @@ export default function PerfumeComercialInfoFormSection() {
               value: offer.id,
               label: offer.name,
             }))}
+            filterValue={filters.name}
+            onFilterChange={(value) => {
+              handleChangeFilters({ name: value || undefined });
+            }}
             loading={loadingData}
             emptyText="No hay ofertas"
             clearable
