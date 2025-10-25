@@ -10,29 +10,33 @@ export interface ScentsFilters {
 
 interface Props {
   setPagination?: Dispatch<SetStateAction<Pagination>>;
+  urlFilters?: boolean;
 }
 
-export default function useScentsFilters({ setPagination }: Props) {
+export default function useScentsFilters({
+  setPagination,
+  urlFilters = true,
+}: Props) {
   const { updateFiltersInUrl } = useUrlFilters();
   const [filters, setFilters] = useState<ScentsFilters>({});
 
   async function handleChangeFilters(updatedFilters: ScentsFilters) {
-     const newFilters = {
-       ...filters,
-       ...updatedFilters,
-     };
-     await setFilters((prev) => ({
-       ...prev,
-       ...updatedFilters,
-     }));
-     updateFiltersInUrl(convertScentFiltersDTO(newFilters));
-     if (setPagination)
-       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
-   }
+    const newFilters = {
+      ...filters,
+      ...updatedFilters,
+    };
+    await setFilters((prev) => ({
+      ...prev,
+      ...updatedFilters,
+    }));
+    if (urlFilters) updateFiltersInUrl(convertScentFiltersDTO(newFilters));
+    if (setPagination)
+      setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
+  }
 
   function handleResetFilters() {
     setFilters({});
-    updateFiltersInUrl({});
+    if (urlFilters) updateFiltersInUrl({});
     if (setPagination)
       setPagination((oldPagination) => ({ ...oldPagination, page: 1 }));
   }
