@@ -81,7 +81,7 @@ export default function OrdersList({ orders, apiPagination }: Props) {
     },
     {
       id: "username", // <- id único
-      header: "Nombre de usuario",
+      header: "Usuario",
       accessorFn: (row) => row.user?.username, // <- extraes username
       cell: ({ row }) => {
         const user = row.original.user;
