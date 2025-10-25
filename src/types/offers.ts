@@ -42,8 +42,8 @@ export interface OfferFiltersDTO {
   name?: string;
   description?: string;
   scope?: string;
-  minDiscont?: number;
-  maxDiscont?: number;
+  minDiscount?: number;
+  maxDiscount?: number;
   offerType?: string;
 }
 
@@ -60,5 +60,5 @@ export const convertOfferEditDTO = (offerCreate: OfferEdit): OfferEditDTO => {
 export const convertOfferFiltersDTO = (
   offersFilters: OffersFilters
 ): OfferFiltersDTO => {
-  return { ...offersFilters, minDiscont: offersFilters.discount[0], maxDiscont: offersFilters.discount[1] };
+  return { ...offersFilters, minDiscount: offersFilters.discount[0], maxDiscount: offersFilters.discount[1] };
 };
