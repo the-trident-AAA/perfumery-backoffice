@@ -12,6 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useFormContext } from "react-hook-form";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { AlertCircleIcon } from "lucide-react";
+import SearchInput from "@/components/inputs/search-input/search-input";
 
 interface SelectOption {
   label: string;
@@ -27,6 +28,11 @@ interface Props {
   maxHeight?: string; // opcional: altura máxima para scroll
   loading?: boolean;
   emptyText?: string;
+  searchInput?: {
+    placeHolderText?: string;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  };
 }
 const columnClasses: Record<number, string> = {
   1: "grid-cols-1",
@@ -45,6 +51,7 @@ export function RHFMultiSelectField({
   maxHeight = "max-h-60",
   loading = false,
   emptyText = "No hay datos",
+  searchInput,
 }: Props) {
   const { control } = useFormContext();
 
@@ -65,7 +72,17 @@ export function RHFMultiSelectField({
 
         return (
           <FormItem>
-            {label && <FormLabel>{label}</FormLabel>}
+            <div className="flex items-center gap-4">
+              {label && <FormLabel>{label}</FormLabel>}
+              {searchInput && (
+                <SearchInput
+                  id={name}
+                  placeHolder={searchInput.placeHolderText || "Buscar..."}
+                  value={searchInput.value}
+                  onChange={searchInput.onChange}
+                />
+              )}
+            </div>
             <FormControl>
               {!loading ? (
                 options.length > 0 ? (
