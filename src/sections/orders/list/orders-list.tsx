@@ -94,7 +94,7 @@ export default function OrdersList({ orders, apiPagination }: Props) {
       accessorFn: (row) => row.user?.email, // <- extraes email
       cell: ({ row }) => {
         const user = row.original.user;
-        return <p>{user.email}</p>;
+        return <p className="truncate max-w-[150px]">{user.email}</p>;
       },
     },
     {
@@ -124,7 +124,7 @@ export default function OrdersList({ orders, apiPagination }: Props) {
     },
     {
       accessorKey: "totalItems",
-      header: "Cantidad de productos",
+      header: "Productos",
       cell: ({ row }) => {
         const totalItems = row.getValue("totalItems") as number;
         return (
