@@ -3,7 +3,7 @@ import { Pagination } from "@/types/pagination";
 import { useCallback, useEffect, useState, useRef } from "react";
 import { debounce } from "lodash";
 import useClientPagination from "@/hooks/use-client-pagination";
-import { Scent } from "@/types/scents";
+import { convertScentFiltersDTO, Scent } from "@/types/scents";
 import useScentsFilters from "../filters/hooks/use-scents-filters";
 import { getScentsList } from "@/services/scents";
 
@@ -19,7 +19,7 @@ export default function useScents() {
   } = useClientPagination();
   const [pagination, setPagination] = useState<Pagination>(clientPagination);
   const { filters, handleChangeFilters, handleResetFilters } = useScentsFilters(
-    { setPagination: setClientPagination }
+    { setPagination: setClientPagination, urlFilters: false }
   );
 
   const debouncedFetchRef = useRef(
@@ -32,7 +32,7 @@ export default function useScents() {
             page: clientPagination.page,
             perPage: clientPagination.pageSize,
           },
-          search: filters.search,
+          ...convertScentFiltersDTO(filters),
         });
 
         if (!res.response || res.error)
