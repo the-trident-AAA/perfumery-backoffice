@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@/auth";
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { createFormDataBody } from "@/lib/request-body";
@@ -31,10 +32,21 @@ export async function createOffer(
   offerCreateDTO: OfferCreateDTO,
   formDataWithImage: FormData
 ) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.offers.get, {
     method: "POST",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
     },
     body: createFormDataBody({
       ...offerCreateDTO,
@@ -50,10 +62,21 @@ export async function editOffer(
   offerEditDTO: OfferEditDTO,
   formDataWithImage: FormData
 ) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.offers.getById.replace(":id", id), {
     method: "PATCH",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
     },
     body: createFormDataBody({
       ...offerEditDTO,
@@ -65,10 +88,21 @@ export async function editOffer(
 }
 
 export async function deleteOffer(id: string) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.offers.getById.replace(":id", id), {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
       "content-type": "application/json",
     },
   });

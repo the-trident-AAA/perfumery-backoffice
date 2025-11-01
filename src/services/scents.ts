@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@/auth";
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
@@ -27,10 +28,21 @@ export async function getScentById(id: string) {
 }
 
 export async function createScent(scentCreateDTO: ScentCreateDTO) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.scents.get, {
     method: "POST",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
       "content-type": "application/json",
     },
     body: JSON.stringify(scentCreateDTO),
@@ -40,10 +52,21 @@ export async function createScent(scentCreateDTO: ScentCreateDTO) {
 }
 
 export async function editScent(id: string, scentEditDTO: ScentEditDTO) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.scents.getById.replace(":id", id), {
     method: "PATCH",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
       "content-type": "application/json",
     },
     body: JSON.stringify(scentEditDTO),
@@ -53,10 +76,21 @@ export async function editScent(id: string, scentEditDTO: ScentEditDTO) {
 }
 
 export async function deleteScent(id: string) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.scents.getById.replace(":id", id), {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
       "content-type": "application/json",
     },
   });

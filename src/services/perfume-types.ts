@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@/auth";
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { createFormDataBody } from "@/lib/request-body";
@@ -38,10 +39,21 @@ export async function createPerfumeType(
   perfumeTypeCreateDTO: PerfumeTypeCreateDTO,
   formDataWithImage: FormData
 ) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.perfumeTypes.get, {
     method: "POST",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
     },
     body: createFormDataBody({
       ...perfumeTypeCreateDTO,
@@ -57,10 +69,21 @@ export async function editPerfumeType(
   perfumeTypeEditDTO: PerfumeTypeEditDTO,
   formDataWithImage: FormData
 ) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.perfumeTypes.getById.replace(":id", id), {
     method: "PATCH",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
     },
     body: createFormDataBody({
       ...perfumeTypeEditDTO,
@@ -72,10 +95,21 @@ export async function editPerfumeType(
 }
 
 export async function deletePerfumeType(id: string) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.perfumeTypes.getById.replace(":id", id), {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
       "content-type": "application/json",
     },
   });

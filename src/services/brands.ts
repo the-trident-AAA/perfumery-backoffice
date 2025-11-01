@@ -1,4 +1,5 @@
 "use server";
+import { auth } from "@/auth";
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { apiRoutes, tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
@@ -26,10 +27,21 @@ export async function getBrandById(id: string) {
 }
 
 export async function createBrand(brandCreateDTO: BrandCreateDTO) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+    
   const res = await fetch(apiRoutes.brands.get, {
     method: "POST",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
       "content-type": "application/json",
     },
     body: JSON.stringify(brandCreateDTO),
@@ -39,10 +51,21 @@ export async function createBrand(brandCreateDTO: BrandCreateDTO) {
 }
 
 export async function editBrand(id: string, brandEditDTO: BrandEditDTO) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.brands.getById.replace(":id", id), {
     method: "PATCH",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
       "content-type": "application/json",
     },
     body: JSON.stringify(brandEditDTO),
@@ -52,10 +75,21 @@ export async function editBrand(id: string, brandEditDTO: BrandEditDTO) {
 }
 
 export async function deleteBrand(id: string) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.brands.getById.replace(":id", id), {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
       "content-type": "application/json",
     },
   });

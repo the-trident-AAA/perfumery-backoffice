@@ -1,4 +1,5 @@
 "use server";
+import { auth } from "@/auth";
 import { buildApiResponse } from "@/lib/api";
 import { QueryParamsURLFactory } from "@/lib/request";
 import { createFormDataBody } from "@/lib/request-body";
@@ -38,10 +39,21 @@ export async function createHomeBanner(
   homeBannerCreateDTO: HomeBannerCreateDTO,
   formData: FormData
 ) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.homeBanners.get, {
     method: "POST",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
     },
     body: createFormDataBody({
       ...homeBannerCreateDTO,
@@ -57,10 +69,21 @@ export async function editHomeBanner(
   homeBannerEditDTO: HomeBannerEditDTO,
   formData: FormData
 ) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.homeBanners.getById.replace(":id", id), {
     method: "PATCH",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
     },
     body: createFormDataBody({
       ...homeBannerEditDTO,
@@ -72,12 +95,23 @@ export async function editHomeBanner(
 }
 
 export async function markedAsMain(id: string) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(
     apiRoutes.homeBanners.markedAsMain.replace(":id", id),
     {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + "token",
+        Authorization: "Bearer " + session.accessToken,
         "content-type": "application/json",
       },
     }
@@ -87,10 +121,21 @@ export async function markedAsMain(id: string) {
 }
 
 export async function deleteHomeBanner(id: string) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
   const res = await fetch(apiRoutes.homeBanners.getById.replace(":id", id), {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + "token",
+      Authorization: "Bearer " + session.accessToken,
       "content-type": "application/json",
     },
   });
