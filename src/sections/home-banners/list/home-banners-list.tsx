@@ -60,9 +60,9 @@ export default function HomeBannersList({ homeBanners }: Props) {
         const isMain = row.getValue("isMain") as boolean;
         const bannerId = row.getValue("id") as string;
         return (
-          <div className="max-w-[60px]">
+          <div >
             {isMain ? (
-              <Badge className="h-8 text-md" variant={"secondary"}>
+              <Badge className="h-7 text-sm" variant={"secondary"}>
                 Banner Principal
               </Badge>
             ) : (

@@ -24,6 +24,7 @@ export default function MarkedAsMainButton({ bannerId }: Props) {
         markedAsMain(bannerId);
       }}
       disabled={loading}
+      className="h-7 text-sm px-2"
     >
       Marcar como principal
     </Button>
