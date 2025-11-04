@@ -34,14 +34,22 @@ export default function PerfumesFiltersContainer() {
           />
         </SheetFilters>
       </div>
-      {getActiveFiltersCount() > 0 && (
-        <PerfumesActiveFilters
-          filters={filters}
-          handleChangeFilters={handleChangeFilters}
-          getActiveFiltersCount={getActiveFiltersCount}
-          handleResetFilters={handleResetFilters}
-        />
-      )}
+      {getActiveFiltersCount() > 0 &&
+        !loadingBrands &&
+        !loadingPerfumeTypes &&
+        !loadingScents &&
+        !loadingOffers && (
+          <PerfumesActiveFilters
+            filters={filters}
+            brands={brands}
+            perfumeTypes={perfumeTypes}
+            scents={scents}
+            offers={offers}
+            handleChangeFilters={handleChangeFilters}
+            getActiveFiltersCount={getActiveFiltersCount}
+            handleResetFilters={handleResetFilters}
+          />
+        )}
     </div>
   );
 }

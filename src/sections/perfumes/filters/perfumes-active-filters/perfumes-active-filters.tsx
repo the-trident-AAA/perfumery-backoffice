@@ -5,9 +5,17 @@ import { PerfumesFilters } from "../hooks/use-perfumes-filters";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { RotateCcwIcon } from "lucide-react";
+import { Brand } from "@/types/brands";
+import { PerfumeType } from "@/types/perfume-types";
+import { Scent } from "@/types/scents";
+import { Offer } from "@/types/offers";
 
 interface Props {
   filters: PerfumesFilters;
+  brands: Brand[];
+  perfumeTypes: PerfumeType[];
+  offers: Offer[];
+  scents: Scent[];
   handleChangeFilters: (filters: Partial<PerfumesFilters>) => void;
   getActiveFiltersCount: () => number;
   handleResetFilters: () => void;
@@ -15,6 +23,10 @@ interface Props {
 
 export default function PerfumesActiveFilters({
   filters,
+  brands,
+  perfumeTypes,
+  offers,
+  scents,
   handleChangeFilters,
   getActiveFiltersCount,
   handleResetFilters,
@@ -54,7 +66,10 @@ export default function PerfumesActiveFilters({
           {filters.brandId && (
             <FilterBadge
               filterName="Marca"
-              filterValue={filters.brandId}
+              filterValue={
+                brands.find((brand) => brand.id === filters.brandId)
+                  ?.name as string
+              }
               handleDeleteFilter={() => {
                 handleChangeFilters({ brandId: undefined });
               }}
@@ -81,25 +96,40 @@ export default function PerfumesActiveFilters({
           {filters.perfumeTypeId && (
             <FilterBadge
               filterName="Tipo De Perfume"
-              filterValue={filters.perfumeTypeId}
+              filterValue={
+                perfumeTypes.find(
+                  (perfumeType) => perfumeType.id === filters.perfumeTypeId
+                )?.name as string
+              }
               handleDeleteFilter={() => {
                 handleChangeFilters({ perfumeTypeId: undefined });
               }}
             />
           )}
-          {filters.scentsIds.length > 0 && (
-            <FilterBadge
-              filterName="Esencias"
-              filterValue={filters.scentsIds.length.toString()}
-              handleDeleteFilter={() => {
-                handleChangeFilters({ scentsIds: [] });
-              }}
-            />
-          )}
+          {filters.scentsIds.length > 0 &&
+            filters.scentsIds.map((scentId) => (
+              <FilterBadge
+                key={scentId}
+                filterName="Escencia"
+                filterValue={
+                  scents.find((scent) => scent.id === scentId)?.name as string
+                }
+                handleDeleteFilter={() => {
+                  handleChangeFilters({
+                    scentsIds: filters.scentsIds.filter(
+                      (filterScentId) => scentId !== filterScentId
+                    ),
+                  });
+                }}
+              />
+            ))}
           {filters.offerId && (
             <FilterBadge
               filterName="Oferta"
-              filterValue={filters.offerId}
+              filterValue={
+                offers.find((offer) => offer.id === filters.offerId)
+                  ?.name as string
+              }
               handleDeleteFilter={() => {
                 handleChangeFilters({ offerId: undefined });
               }}
