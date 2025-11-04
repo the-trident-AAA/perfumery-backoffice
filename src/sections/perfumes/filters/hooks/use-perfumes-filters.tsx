@@ -42,6 +42,13 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     const genderParam = searchParams.get("gender") as Gender | null;
     const offerParam = searchParams.get("offerId");
     const availableParam = searchParams.get("available");
+    const priceMinParam = searchParams.get("priceMin");
+    const priceMaxParam = searchParams.get("priceMax");
+    const millilitersMinParam = searchParams.get("millilitersMin");
+    const millilitersMaxParam = searchParams.get("millilitersMax");
+    const salesMinParam = searchParams.get("salesMin");
+    const salesMaxParam = searchParams.get("salesMax");
+
     setFilters((oldFilters) => ({
       ...oldFilters,
       name: nameParam || undefined,
@@ -54,6 +61,18 @@ export default function usePerfumesFilters({ setPagination }: Props) {
           ? true
           : false
         : undefined,
+      priceRange: [
+        priceMinParam ? Number(priceMinParam) : 0,
+        priceMaxParam ? Number(priceMaxParam) : 1000,
+      ],
+      millilitersRange: [
+        millilitersMinParam ? Number(millilitersMinParam) : 0,
+        millilitersMaxParam ? Number(millilitersMaxParam) : 1000,
+      ],
+      salesRange: [
+        salesMinParam ? Number(salesMinParam) : 0,
+        salesMaxParam ? Number(salesMaxParam) : 1000,
+      ],
     }));
   }, [searchParams]);
 
@@ -115,8 +134,11 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     if (filters.available !== undefined) count++;
     if (filters.offerId) count++;
     if (filters.priceRange[0] > 0) count++;
+    if (filters.priceRange[1] < 1000) count++;
     if (filters.millilitersRange[0] > 0) count++;
+    if (filters.millilitersRange[1] < 1000) count++;
     if (filters.salesRange[0] > 0) count++;
+    if (filters.salesRange[1] < 1000) count++;
     filters.scentsIds.forEach(() => {
       count++;
     });
