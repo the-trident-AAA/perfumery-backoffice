@@ -80,6 +80,8 @@ export interface PerfumesFiltersDTO {
   milliliters?: number;
   millilitersMin?: number;
   millilitersMax?: number;
+  salesMin?: number;
+  salesMax?: number;
   priceMin?: number;
   priceMax?: number;
   perfumeTypeId?: string;
@@ -151,12 +153,14 @@ export const convertPerfumeDetailsToPerfume = (
 export const convertPerfumesFiltersDTO = (
   perfumesFilters: PerfumesFilters
 ): PerfumesFiltersDTO => {
-  const { priceRange, millilitersRange, ...rest } = perfumesFilters;
+  const { priceRange, millilitersRange, salesRange, ...rest } = perfumesFilters;
   return {
     ...rest,
     priceMin: priceRange[0],
     priceMax: priceRange[1],
     millilitersMin: millilitersRange[0],
     millilitersMax: millilitersRange[1],
+    salesMin: salesRange[0],
+    salesMax: salesRange[1],
   };
 };
