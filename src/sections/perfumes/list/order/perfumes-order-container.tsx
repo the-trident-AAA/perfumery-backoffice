@@ -24,6 +24,11 @@ export default function PerfumesOrderContainer() {
           label: "Precio con Descuento",
           type: "number",
         },
+        {
+          key: "sales",
+          label: "Ventas",
+          type: "number",
+        },
       ]}
       defaultSort="totalPrice"
       onSortChange={(sortKey: string, direction: "asc" | "desc") => {
