@@ -137,19 +137,65 @@ export default function PerfumesActiveFilters({
           )}
           {filters.priceRange[0] > 0 && (
             <FilterBadge
-              filterName="Oferta"
+              filterName="precio mínimo"
               filterValue={filters.priceRange[0].toString()}
               handleDeleteFilter={() => {
-                handleChangeFilters({ priceRange: [0, 1000] });
+                handleChangeFilters({ priceRange: [0, filters.priceRange[1]] });
+              }}
+            />
+          )}
+          {filters.priceRange[1] < 1000 && (
+            <FilterBadge
+              filterName="precio máximo"
+              filterValue={filters.priceRange[1].toString()}
+              handleDeleteFilter={() => {
+                handleChangeFilters({
+                  priceRange: [filters.priceRange[0], 1000],
+                });
               }}
             />
           )}
           {filters.millilitersRange[0] > 0 && (
             <FilterBadge
-              filterName="Oferta"
+              filterName="mililitros mínimo"
               filterValue={filters.millilitersRange[0].toString()}
               handleDeleteFilter={() => {
-                handleChangeFilters({ millilitersRange: [0, 100] });
+                handleChangeFilters({
+                  millilitersRange: [0, filters.millilitersRange[1]],
+                });
+              }}
+            />
+          )}
+          {filters.millilitersRange[1] < 1000 && (
+            <FilterBadge
+              filterName="mililitros máximo"
+              filterValue={filters.millilitersRange[1].toString()}
+              handleDeleteFilter={() => {
+                handleChangeFilters({
+                  millilitersRange: [filters.millilitersRange[0], 1000],
+                });
+              }}
+            />
+          )}
+          {filters.salesRange[0] > 0 && (
+            <FilterBadge
+              filterName="ventas mínimas"
+              filterValue={filters.salesRange[0].toString()}
+              handleDeleteFilter={() => {
+                handleChangeFilters({
+                  salesRange: [0, filters.salesRange[1]],
+                });
+              }}
+            />
+          )}
+          {filters.salesRange[1] < 1000 && (
+            <FilterBadge
+              filterName="ventas máximas"
+              filterValue={filters.salesRange[1].toString()}
+              handleDeleteFilter={() => {
+                handleChangeFilters({
+                  salesRange: [filters.salesRange[0], 1000],
+                });
               }}
             />
           )}
