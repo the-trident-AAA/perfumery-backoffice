@@ -16,6 +16,7 @@ export interface PerfumesFilters {
   perfumeTypeId?: string;
   available?: boolean;
   priceRange: [number, number];
+  salesRange: [number, number];
   cant?: number;
   offerId?: string;
 }
@@ -30,6 +31,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
   const [filters, setFilters] = useState<PerfumesFilters>({
     priceRange: [0, 1000],
     millilitersRange: [0, 1000],
+    salesRange: [0, 1000],
     scentsIds: [],
   });
 
@@ -76,6 +78,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     setFilters({
       priceRange: [0, 1000],
       millilitersRange: [0, 1000],
+      salesRange: [0, 1000],
       scentsIds: [],
     });
     updateFiltersInUrl({
@@ -87,6 +90,8 @@ export default function usePerfumesFilters({ setPagination }: Props) {
       milliliters: undefined,
       millilitersMin: undefined,
       millilitersMax: undefined,
+      salesMin: undefined,
+      salesMax: undefined,
       priceMin: undefined,
       priceMax: undefined,
       perfumeTypeId: undefined,
@@ -111,6 +116,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     if (filters.offerId) count++;
     if (filters.priceRange[0] > 0) count++;
     if (filters.millilitersRange[0] > 0) count++;
+    if (filters.salesRange[0] > 0) count++;
     filters.scentsIds.forEach(() => {
       count++;
     });
