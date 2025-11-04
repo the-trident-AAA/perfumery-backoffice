@@ -189,6 +189,19 @@ export default function PerfumesFilters({
             });
           }}
         />
+
+        {/* Sales */}
+        <SliderInput
+          label="Ventas"
+          meansure="cantidad"
+          value={filters.salesRange}
+          step={5}
+          handleChangeFilters={(value) => {
+            handleChangeFilters({
+              salesRange: value as [number, number],
+            });
+          }}
+        />
       </div>
       <Separator />
       {/* Scents */}
