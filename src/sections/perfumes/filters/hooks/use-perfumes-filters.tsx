@@ -111,6 +111,9 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     if (filters.offerId) count++;
     if (filters.priceRange[0] > 0) count++;
     if (filters.millilitersRange[0] > 0) count++;
+    filters.scentsIds.forEach(() => {
+      count++;
+    });
     return count;
   };
 
