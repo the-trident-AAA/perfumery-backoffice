@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import { RotateCcwIcon } from "lucide-react";
 import { OrdersFilters } from "../../hooks/use-orders-filters";
 import { formatDate } from "@/lib/format-date";
+import { User } from "@/types/users";
 
 interface Props {
   filters: OrdersFilters;
+  users: User[];
   handleChangeFilters: (filters: Partial<OrdersFilters>) => void;
   getActiveFiltersCount: () => number;
   handleResetFilters: () => void;
@@ -16,6 +18,7 @@ interface Props {
 
 export default function OrdersActiveFilters({
   filters,
+  users,
   handleChangeFilters,
   getActiveFiltersCount,
   handleResetFilters,
@@ -73,7 +76,10 @@ export default function OrdersActiveFilters({
           {filters.userId && (
             <FilterBadge
               filterName="Usuario"
-              filterValue={filters.userId}
+              filterValue={
+                users.find((user) => user.id === filters.userId)
+                  ?.username as string
+              }
               handleDeleteFilter={() => {
                 handleChangeFilters({ userId: undefined });
               }}

@@ -20,9 +20,10 @@ export default function OrdersFiltersContainer() {
         handleChangeFilters={handleChangeFilters}
         users={{ data: users, loading: loadingUsers }}
       />
-      {getActiveFiltersCount() > 0 && (
+      {getActiveFiltersCount() > 0 && !loadingUsers && (
         <OrdersActiveFilters
           filters={filters}
+          users={users}
           handleChangeFilters={handleChangeFilters}
           getActiveFiltersCount={getActiveFiltersCount}
           handleResetFilters={handleResetFilters}
