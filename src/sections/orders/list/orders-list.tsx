@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import useServerPagination from "@/hooks/use-server-pagination";
 import { PaginationMeta } from "@/types/pagination";
 import { formatDate } from "@/lib/format-date";
+import OrdersOrderContainer from "./order/orders-order-container";
 
 interface Props {
   orders: Order[];
@@ -160,6 +161,7 @@ export default function OrdersList({ orders, apiPagination }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
+      <OrdersOrderContainer />
       <DataTable
         columns={columns}
         data={orders}
