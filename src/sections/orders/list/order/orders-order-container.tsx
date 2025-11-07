@@ -16,6 +16,7 @@ export default function OrdersOrderContainer() {
         },
       ]}
       defaultSort="lastUpdateDate"
+      defaultSortValue="desc"
       onSortChange={(sortKey: string, direction: "asc" | "desc") => {
         updateFiltersInUrl({
           orderBy: sortKey,
