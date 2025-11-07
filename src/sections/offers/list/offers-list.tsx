@@ -9,6 +9,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import OffersFiltersContainer from "../filters/offers-filters-container";
+import OffersOrderContainer from "./order/perfumes-order-container";
 
 interface Props {
   offers: Offer[];
@@ -123,11 +124,12 @@ export default function OffersList({ offers }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
+      <OffersOrderContainer />
       <DataTable
         columns={columns}
         data={offers}
         initialVisibilityState={{ id: false }}
-        filters ={<OffersFiltersContainer/>}
+        filters={<OffersFiltersContainer />}
       />
     </div>
   );
