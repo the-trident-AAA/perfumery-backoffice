@@ -8,7 +8,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import BrandsFiltersContainer from "../filters/brands-filters-container";
-import BrandsOrderContainer from "./order/perfumes-order-container";
+import BrandsOrderContainer from "./order/brands-order-container";
 
 interface Props {
   brands: Brand[];
