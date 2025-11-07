@@ -9,7 +9,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import OffersFiltersContainer from "../filters/offers-filters-container";
-import OffersOrderContainer from "./order/perfumes-order-container";
+import OffersOrderContainer from "./order/offers-order-container";
 
 interface Props {
   offers: Offer[];
