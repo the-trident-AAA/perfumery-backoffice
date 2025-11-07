@@ -9,6 +9,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import PerfumeTypesFiltersContainer from "../filters/perfume-types-filters-container";
+import PerfumeTypesOrderContainer from "./order/perfume-types-order-container";
 
 interface Props {
   perfumeTypes: PerfumeType[];
@@ -27,15 +28,15 @@ export default function PerfumeTypesList({ perfumeTypes }: Props) {
     [handleOpenModal]
   );
 
-   const handleDelete = useCallback(
-      (id: string) => {
-        handleOpenModal({
-          name: modalTypes.deletePerfumeTypeModal.name,
-          entity: id,
-        });
-      },
-      [handleOpenModal]
-    );
+  const handleDelete = useCallback(
+    (id: string) => {
+      handleOpenModal({
+        name: modalTypes.deletePerfumeTypeModal.name,
+        entity: id,
+      });
+    },
+    [handleOpenModal]
+  );
 
   const columns: ColumnDef<PerfumeType>[] = [
     {
@@ -89,11 +90,12 @@ export default function PerfumeTypesList({ perfumeTypes }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
+      <PerfumeTypesOrderContainer />
       <DataTable
         columns={columns}
         data={perfumeTypes}
         initialVisibilityState={{ id: false }}
-        filters ={<PerfumeTypesFiltersContainer/>}
+        filters={<PerfumeTypesFiltersContainer />}
       />
     </div>
   );
