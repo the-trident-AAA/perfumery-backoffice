@@ -15,7 +15,7 @@ export default function ScentsOrderContainer() {
           type: "string",
         },
       ]}
-      defaultSort="totalPrice"
+      defaultSort="name"
       onSortChange={(sortKey: string, direction: "asc" | "desc") => {
         updateFiltersInUrl({
           orderBy: sortKey,
