@@ -8,6 +8,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import ScentsFiltersContainer from "../filters/scents-filters-container";
+import ScentsOrderContainer from "./order/scents-order-container";
 
 interface Props {
   scents: Scent[];
@@ -74,6 +75,7 @@ export default function ScentsList({ scents }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
+      <ScentsOrderContainer />
       <DataTable
         columns={columns}
         data={scents}
