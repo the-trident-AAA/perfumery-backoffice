@@ -57,7 +57,7 @@ export async function createHomeBanner(
     },
     body: createFormDataBody({
       ...homeBannerCreateDTO,
-      images: formData.getAll("images[]") as File[],
+      image: formData.getAll("image"),
     }),
   });
 
@@ -87,7 +87,7 @@ export async function editHomeBanner(
     },
     body: createFormDataBody({
       ...homeBannerEditDTO,
-      images: formData.getAll("images[]") as File[],
+      image: formData.getAll("image"),
     }),
   });
 
