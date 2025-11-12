@@ -36,7 +36,6 @@ export default function NewHomeBannerFormContainer() {
       description: "",
       statisticalTips: [],
       infoTips: [],
-      images: [],
     },
   });
 
