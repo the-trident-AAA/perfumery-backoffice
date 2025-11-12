@@ -1,7 +1,7 @@
-import ThumbnailsImage from "@/components/thumbnails-image/thumbnails-image";
 import { Badge } from "@/components/ui/badge";
 import { HomeBannerDetails } from "@/types/home-banners";
 import { Layout } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 
 interface Props {
@@ -12,11 +12,15 @@ export default function HomeBannerDetailsHeader({ homeBanner }: Props) {
   return (
     <div className="flex flex-col gap-6 mb-6">
       {/* Banner Image - Larger and more prominent */}
-      <ThumbnailsImage
-        altName={homeBanner.title}
-        images={homeBanner.images}
-        imageSize="lg"
-      />
+      <div className="relative h-[250px] w-full">
+        <Image
+          src={homeBanner.image || "/images/place-holder.jpg"}
+          alt={homeBanner.title}
+          width={600}
+          height={600}
+          className="w-full h-full object-center"
+        />
+      </div>
       {/* Header with title and ID */}
       <div>
         <div className="flex items-center justify-between">
