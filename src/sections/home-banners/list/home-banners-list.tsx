@@ -8,8 +8,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import HomeBannersFiltersContainer from "../filters/home-banners-filters-container";
-import MarkedAsMainButton from "../components/marked-as-main-button/marked-as-main-button";
-import { Badge } from "@/components/ui/badge";
+import PreviewImage from "@/components/preview-image/preview-image";
 
 interface Props {
   homeBanners: HomeBanner[];
@@ -54,23 +53,15 @@ export default function HomeBannersList({ homeBanners }: Props) {
       enableHiding: false,
     },
     {
-      accessorKey: "isMain",
-      header: "Estado",
-      cell: ({ row }) => {
-        const isMain = row.getValue("isMain") as boolean;
-        const bannerId = row.getValue("id") as string;
-        return (
-          <div >
-            {isMain ? (
-              <Badge className="h-7 text-sm" variant={"secondary"}>
-                Banner Principal
-              </Badge>
-            ) : (
-              <MarkedAsMainButton bannerId={bannerId} />
-            )}
-          </div>
-        );
-      },
+      accessorKey: "image",
+      header: "Imagen",
+      cell: ({ row }) => (
+        <PreviewImage
+          preview={row.getValue("image") || "/images/place-holder.jpg"}
+          height={80}
+          width={80}
+        />
+      ),
     },
     {
       accessorKey: "title",
