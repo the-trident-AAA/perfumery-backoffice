@@ -1,6 +1,17 @@
 import { ReactNode } from "react";
 import { paths } from "../path";
-import { SprayCan , SoapDispenserDroplet, Type , HandCoins , House , ShoppingCart , GalleryHorizontal , Users , Layers} from "lucide-react";
+import {
+  SprayCan,
+  SoapDispenserDroplet,
+  Type,
+  HandCoins,
+  House,
+  ShoppingCart,
+  GalleryHorizontal,
+  Users,
+  Layers,
+  RectangleHorizontal,
+} from "lucide-react";
 
 export interface GroupRoute {
   title: string;
@@ -68,6 +79,11 @@ export const groupRoutes: GroupRoute[] = [
             title: "Banners",
             icon: <GalleryHorizontal />,
             path: paths.homeBanners.root,
+          },
+          {
+            title: "Listones",
+            icon: <RectangleHorizontal/>,
+            path: paths.tapes.root,
           },
         ],
       },

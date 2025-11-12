@@ -14,6 +14,7 @@ interface ApplicationPath {
   homeBanners: Path;
   users: Path;
   orders: Path;
+  tapes: Path;
 }
 
 /*function buildQueryString(query: Record<string, string> = {}): string {
@@ -60,6 +61,10 @@ export const paths: ApplicationPath = {
   },
   orders: {
     root: "/dashboard/orders",
+    isProtected: true,
+  },
+    tapes: {
+    root: "/dashboard/tapes",
     isProtected: true,
   },
 } as const;

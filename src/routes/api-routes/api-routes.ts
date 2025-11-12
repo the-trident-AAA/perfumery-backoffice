@@ -35,6 +35,11 @@ export const apiRoutes = {
     get: `${process.env.NEXT_PUBLIC_API_URL}order`,
     getById: `${process.env.NEXT_PUBLIC_API_URL}order/:id`,
   },
+    tapes: {
+    get: `${process.env.NEXT_PUBLIC_API_URL}tape`,
+    getById: `${process.env.NEXT_PUBLIC_API_URL}tape/:id`,
+    markedAsMain: `${process.env.NEXT_PUBLIC_API_URL}tape/marked-as-active/:id`,
+  },
 } as const;
 
 export const tagsCacheByRoutes = {
@@ -69,5 +74,9 @@ export const tagsCacheByRoutes = {
   orders: {
     singleTag: "order",
     multipleTag: "orders",
+  },
+    tapes: {
+    singleTag: "tape",
+    multipleTag: "tapes",
   },
 } as const;

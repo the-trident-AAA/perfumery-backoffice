@@ -70,6 +70,15 @@ export interface ModalTypes {
   detailsUserModal: SectionModal;
   detailsOrderModal: SectionModal;
   editOrderModal: SectionModal;
+  newTapeModal: SectionModal;
+  editTapeModal: SectionModal;
+  detailsTapeModal: SectionModal;
+  deleteTapeModal: SectionModal & {
+    message: string;
+    warningMessage: string;
+    cancelButtonText: string;
+    confirmButtonText: string;
+  };
 }
 
 export const modalTypes: ModalTypes = {
@@ -215,5 +224,27 @@ export const modalTypes: ModalTypes = {
   editOrderModal: {
     name: "editOrderModal",
     title: "Formulario de Edición de Orden",
+  },
+   newTapeModal: {
+    name: "newTapeModal",
+    title: "Formulario de Creación de Cinta",
+  },
+  editTapeModal: {
+    name: "editTapeModal",
+    title: "Formulario de Edición de Cinta",
+  },
+  detailsTapeModal: {
+    name: "detailsTapeModal",
+    title: "Detalles de la Cinta",
+  },
+  deleteTapeModal: {
+    name: "deleteTapeModal",
+    title: "Eliminación de la Cinta",
+    message:
+      "¿Está seguro de que desea eliminar la Cinta?",
+    warningMessage:
+      "Esta acción provocará la eliminación permanente de la Cinta.",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Confirmar",
   },
 };
