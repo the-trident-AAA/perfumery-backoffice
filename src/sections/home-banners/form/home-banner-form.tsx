@@ -7,19 +7,19 @@ import HomeBannerFormSectionsController from "./form-sections/home-banner-form-s
 import HomeBannerAdditionalInformationSection from "./form-sections/home-banner-additional-information-section/home-banner-additional-information-section";
 
 interface Props {
-  imagesRecived?: {
+  imageRecived?: {
     loading: boolean;
     error: string | null;
   };
 }
 
-export default function HomeBannerForm({ imagesRecived }: Props) {
+export default function HomeBannerForm({ imageRecived }: Props) {
   const tabs = useMemo(
     () => [
       {
         label: "Información Básica",
         value: "1",
-        component: <HomeBannerBasicInfoSection imagesRecived={imagesRecived} />,
+        component: <HomeBannerBasicInfoSection imageRecived={imageRecived} />,
       },
       {
         label: "Información adicional",
@@ -27,14 +27,17 @@ export default function HomeBannerForm({ imagesRecived }: Props) {
         component: <HomeBannerAdditionalInformationSection />,
       },
     ],
-    [imagesRecived]
+    [imageRecived]
   );
 
   return (
     <TabsPanelProvider initialTab={tabs[0].value}>
       <HomeBannerFormSectionsController>
-        <TabsContainer tabs={tabs} fullWidth
-          classNameTabsContent="flex-1 overflow-auto flex flex-col h-[65vh] p-2"/>
+        <TabsContainer
+          tabs={tabs}
+          fullWidth
+          classNameTabsContent="flex-1 overflow-auto flex flex-col h-[65vh] p-2"
+        />
       </HomeBannerFormSectionsController>
     </TabsPanelProvider>
   );
