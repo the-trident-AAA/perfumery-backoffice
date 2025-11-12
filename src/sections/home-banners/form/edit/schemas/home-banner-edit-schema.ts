@@ -9,7 +9,7 @@ export interface HomeBannerEdit {
   }[];
 
   infoTips: { name: string }[];
-  images: File[];
+  image: File;
 }
 
 export const homeBannerEditSchema = z.object({
@@ -34,20 +34,16 @@ export const homeBannerEditSchema = z.object({
       name: z.string().min(1, { message: "El campo es requerido" }),
     })
   ),
-  images: z
-    .array(
-      z
-        .instanceof(File, {
-          message: "Por favor selecciona una imagen.",
-        })
-        .refine(
-          (file) => file && file.size <= 5 * 1024 * 1024,
-          "La imagen no debe exceder 5MB."
-        )
-        .refine(
-          (file) => file && file.type.startsWith("image/"),
-          "El archivo debe ser una imagen."
-        )
+  image: z
+    .instanceof(File, {
+      message: "Por favor selecciona una imagen.",
+    })
+    .refine(
+      (file) => file && file.size <= 5 * 1024 * 1024,
+      "La imagen no debe exceder 5MB."
     )
-    .min(1, { message: "Es necesario seleccionar al menos una imagen" }),
+    .refine(
+      (file) => file && file.type.startsWith("image/"),
+      "El archivo debe ser una imagen."
+    ),
 });
