@@ -42,7 +42,7 @@ export default async function TapesPage({ searchParams }: Props) {
         maxWidth="max-w-3xl"
         className="min-h-[74vh]"
       >
-        <TapeDetailsModalContainer />
+       Ver detalles
       </Modal>
       <Modal
         formPath={modalTypes.deleteTapeModal.name}
