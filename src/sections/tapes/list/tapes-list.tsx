@@ -60,7 +60,7 @@ export default function TapeList({ tapes }: Props) {
         const isMain = row.getValue("isMain") as boolean;
         const tapeId = row.getValue("id") as string;
         return (
-          <div >
+          <div>
             {isMain ? (
               <Badge className="h-7 text-sm" variant={"secondary"}>
                 Cinta Principal
@@ -73,8 +73,8 @@ export default function TapeList({ tapes }: Props) {
       },
     },
     {
-      accessorKey: "title",
-      header: "Título",
+      accessorKey: "name",
+      header: "Nombre",
     },
     {
       id: "actions",
