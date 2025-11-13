@@ -42,12 +42,12 @@ export default function TapesActiveFilters({
           )}
         </div>
         <div className="flex flex-wrap gap-2">
-          {filters.title && (
+          {filters.name && (
             <FilterBadge
-              filterName="Título"
-              filterValue={filters.title}
+              filterName="Nombre"
+              filterValue={filters.name}
               handleDeleteFilter={() => {
-                handleChangeFilters({ title: undefined });
+                handleChangeFilters({ name: undefined });
               }}
             />
           )}

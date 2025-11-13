@@ -14,12 +14,12 @@ export default function TapesFilters({
   return (
     <div className="flex items-center gap-4">
       <SearchInput
-        id="title"
-        label="Buscar por título"
-        value={filters.title}
+        id="name"
+        label="Buscar por nombre"
+        value={filters.name}
         placeHolder="Título..."
         onChange={(e) => {
-          handleChangeFilters({ title: e.target.value || undefined });
+          handleChangeFilters({ name: e.target.value || undefined });
         }}
       />
     </div>
