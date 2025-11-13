@@ -1,6 +1,7 @@
 import Modal from "@/components/modal/modal";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import DeleteTapeModalContainer from "@/sections/tapes/delete/delete-tape-modal-container";
+import TapeDetailsModalContainer from "@/sections/tapes/details/tape-details-modal-container";
 import EditTapeModalContainer from "@/sections/tapes/form/edit/edit-tape-modal-container";
 import NewTapeFormContainer from "@/sections/tapes/form/new/new-tape-form-container";
 import TapesContainer from "@/sections/tapes/tapes-container";
@@ -15,8 +16,7 @@ type Props = {
 export default async function TapesPage({ searchParams }: Props) {
   const res = await getTapesList(await searchParams);
 
-  if (!res.response || res.error)
-    throw new Error("Error fetching tapes");
+  if (!res.response || res.error) throw new Error("Error fetching tapes");
   return (
     <>
       <TapesContainer tapes={res.response} />
@@ -42,12 +42,9 @@ export default async function TapesPage({ searchParams }: Props) {
         maxWidth="max-w-3xl"
         className="min-h-[74vh]"
       >
-       Ver detalles
+        <TapeDetailsModalContainer />
       </Modal>
-      <Modal
-        formPath={modalTypes.deleteTapeModal.name}
-        maxWidth="max-w-xl"
-      >
+      <Modal formPath={modalTypes.deleteTapeModal.name} maxWidth="max-w-xl">
         <DeleteTapeModalContainer />
       </Modal>
     </>
