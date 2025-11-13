@@ -3,7 +3,6 @@ import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
-import { HomeBanner } from "@/types/home-banners";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
