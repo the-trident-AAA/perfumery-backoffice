@@ -1,7 +1,6 @@
 "use client";
 import { useCallback, useState } from "react";
 import { editTape as editTapeService } from "@/services/tapes";
-import { convertHomeBannerEditDTO } from "@/types/home-banners";
 import { TapeEdit } from "../form/edit/schemas/tape-edit-schema";
 import { convertTapeEditDTO } from "@/types/tapes";
 
@@ -16,15 +15,13 @@ export default function useEditTape({ id, onEditAction }: Props) {
 
   const editTape = useCallback(
     async (tape: TapeEdit) => {
-      const { images, ...rest } = tape;
+      const { image, ...rest } = tape;
       try {
         setLoading(true);
         setError(null);
-        // create form data for images
+        // create form data for image
         const formData = new FormData();
-        images.forEach((image) => {
-          formData.append("images[]", image);
-        });
+        formData.append("image", image);
         const res = await editTapeService(
           id,
           convertTapeEditDTO(rest),

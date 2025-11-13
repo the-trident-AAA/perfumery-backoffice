@@ -14,15 +14,14 @@ export default function useCreateTape({ onCreateAction }: Props) {
 
   const createTape = useCallback(
     async (tape: TapeCreate) => {
-      const { images, ...rest } = tape;
+      const { image, ...rest } = tape;
       try {
         setLoading(true);
         setError(null);
-        // create form data for images
+
+        // create form data for image
         const formData = new FormData();
-        images.forEach((image) => {
-          formData.append("images[]", image);
-        });
+        formData.append("image", image);
         const res = await createTapeService(
           convertTapeCreateDTO(rest),
           formData
