@@ -17,7 +17,7 @@ export default function TapesContainer({ tapes }: Props) {
         sectionTitle="Gestión de Cintas"
         sectionDescription="Gestione toda la información referente a las cintas de la Tienda"
         addButton={{
-          buttonText: "Añadir Nuevo Cinta",
+          buttonText: "Añadir Nueva Cinta",
           creationPath: modalTypes.newTapeModal.name,
           isModalRedirect: true,
         }}
