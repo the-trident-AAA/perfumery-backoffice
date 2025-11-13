@@ -8,10 +8,7 @@ import { IQueryable } from "@/types/request";
 import { Tape, TapeCreateDTO, TapeDetails, TapeEditDTO } from "@/types/tapes";
 
 export async function getTapesList(params: IQueryable) {
-  const url = new QueryParamsURLFactory(
-    params,
-    apiRoutes.tapes.get
-  ).build();
+  const url = new QueryParamsURLFactory(params, apiRoutes.tapes.get).build();
 
   const res = await fetch(url, {
     method: "GET",
@@ -52,7 +49,7 @@ export async function createTape(
     },
     body: createFormDataBody({
       ...tapeCreateDTO,
-      images: formData.getAll("images[]") as File[],
+      images: formData.get("image"),
     }),
   });
 
@@ -82,7 +79,7 @@ export async function editTape(
     },
     body: createFormDataBody({
       ...tapeEditDTO,
-      images: formData.getAll("images[]") as File[],
+      images: formData.get("image"),
     }),
   });
 
@@ -101,16 +98,13 @@ export async function markedAsMain(id: string) {
       status: 401,
     };
 
-  const res = await fetch(
-    apiRoutes.tapes.markedAsMain.replace(":id", id),
-    {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + session.accessToken,
-        "content-type": "application/json",
-      },
-    }
-  );
+  const res = await fetch(apiRoutes.tapes.markedAsMain.replace(":id", id), {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + session.accessToken,
+      "content-type": "application/json",
+    },
+  });
 
   return await buildApiResponse<TapeDetails>(res);
 }
