@@ -5,8 +5,8 @@ import React, { useCallback, useContext } from "react";
 import ConfirmationPanel from "@/components/confirmation-panel/confirmation-panel";
 import { revalidateServerTags } from "@/lib/cache";
 import { tagsCacheByRoutes } from "@/routes/api-routes/api-routes";
-import useDeleteBrand from "../hooks/use-delete-brand";
 import { toast } from "react-toastify";
+import useDeleteTape from "../hooks/use-delete-tape";
 
 export default function DeleteTapeModalContainer() {
   const { getInfoModal, handleCloseModal } = useContext(ModalContext);
