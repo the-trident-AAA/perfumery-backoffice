@@ -29,7 +29,7 @@ export interface TapeFiltersDTO {
 }
 
 export const convertTapeCreateDTO = (
-  tapeCreate: Omit<TapeCreate, "images">
+  tapeCreate: Omit<TapeCreate, "image">
 ): TapeCreateDTO => {
   return {
     ...tapeCreate,
@@ -37,7 +37,7 @@ export const convertTapeCreateDTO = (
 };
 
 export const convertTapeEditDTO = (
-  tapeEdit: Omit<TapeEdit, "images">
+  tapeEdit: Omit<TapeEdit, "image">
 ): TapeEditDTO => {
   return {
     ...tapeEdit,
