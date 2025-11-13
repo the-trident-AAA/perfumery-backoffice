@@ -55,17 +55,6 @@ export default function TapeList({ tapes }: Props) {
       enableHiding: false,
     },
     {
-      accessorKey: "image",
-      header: "Imagen",
-      cell: ({ row }) => (
-        <PreviewImage
-          preview={row.getValue("image") || "/images/place-holder.jpg"}
-          height={80}
-          width={80}
-        />
-      ),
-    },
-    {
       accessorKey: "isMain",
       header: "Estado",
       cell: ({ row }) => {
@@ -83,6 +72,17 @@ export default function TapeList({ tapes }: Props) {
           </div>
         );
       },
+    },
+    {
+      accessorKey: "image",
+      header: "Imagen",
+      cell: ({ row }) => (
+        <PreviewImage
+          preview={row.getValue("image") || "/images/place-holder.jpg"}
+          height={80}
+          width={80}
+        />
+      ),
     },
     {
       accessorKey: "name",
