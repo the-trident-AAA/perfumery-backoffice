@@ -29,8 +29,7 @@ export default function NewTapeFormContainer() {
   const form = useForm<TapeCreate>({
     resolver: zodResolver(tapeCreateSchema),
     defaultValues: {
-      title: "",
-      images: [],
+      name: "",
     },
   });
 
@@ -47,9 +46,7 @@ export default function NewTapeFormContainer() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
-        {createTapeError && (
-          <AlertDestructive title={createTapeError} />
-        )}
+        {createTapeError && <AlertDestructive title={createTapeError} />}
         <TapeForm />
         <FormActionButtons
           submitLoading={submitLoading}
