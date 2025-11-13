@@ -13,7 +13,7 @@ export interface TapeDetails {
   id: string;
   name: string;
   isMain: boolean;
-  images: string[];
+  image: string;
 }
 
 export interface TapeCreateDTO {
