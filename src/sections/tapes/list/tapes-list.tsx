@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import TapesFiltersContainer from "../filters/tapes-filters-container";
 import { Tape } from "@/types/tapes";
 import MarkedAsMainButton from "../components/marked-as-main-button/marked-as-main-button";
+import PreviewImage from "@/components/preview-image/preview-image";
 
 interface Props {
   tapes: Tape[];
@@ -52,6 +53,17 @@ export default function TapeList({ tapes }: Props) {
     {
       accessorKey: "id",
       enableHiding: false,
+    },
+    {
+      accessorKey: "image",
+      header: "Imagen",
+      cell: ({ row }) => (
+        <PreviewImage
+          preview={row.getValue("image") || "/images/place-holder.jpg"}
+          height={80}
+          width={80}
+        />
+      ),
     },
     {
       accessorKey: "isMain",
