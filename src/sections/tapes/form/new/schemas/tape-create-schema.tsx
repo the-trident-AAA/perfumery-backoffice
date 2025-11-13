@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 export interface TapeCreate {
-  title: string;
+  name: string;
   image: File;
 }
 
 export const tapeCreateSchema = z.object({
-  title: z.string().min(1, {
+  name: z.string().min(1, {
     message: "El título de la cinta no puede estar vacío",
   }),
   image: z

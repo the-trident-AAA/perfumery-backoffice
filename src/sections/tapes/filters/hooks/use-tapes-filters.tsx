@@ -5,7 +5,7 @@ import { convertTapeFiltersDTO } from "@/types/tapes";
 import { Dispatch, SetStateAction, useState } from "react";
 
 export interface TapesFilters {
-  title?: string;
+  name?: string;
 }
 
 interface Props {
@@ -39,7 +39,7 @@ export default function useTapesFilters({ setPagination }: Props) {
 
    const getActiveFiltersCount = () => {
     let count = 0;
-    if (filters.title) count++;
+    if (filters.name) count++;
 
     return count;
   };

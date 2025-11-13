@@ -4,28 +4,28 @@ import { TapeCreate } from "@/sections/tapes/form/new/schemas/tape-create-schema
 
 export interface Tape {
   id: string;
-  title: string;
+  name: string;
   image: string;
   isMain: boolean;
 }
 
 export interface TapeDetails {
   id: string;
-  title: string;
+  name: string;
   isMain: boolean;
   images: string[];
 }
 
 export interface TapeCreateDTO {
-  title: string;
+  name: string;
 }
 
 export interface TapeEditDTO {
-  title: string;
+  name: string;
 }
 
 export interface TapeFiltersDTO {
-  title?: string;
+  name?: string;
 }
 
 export const convertTapeCreateDTO = (
