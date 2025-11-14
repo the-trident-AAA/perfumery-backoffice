@@ -51,6 +51,7 @@ export default function HomeBannerFiltersSection() {
             label: perfumeTypes.name,
           }))}
           loading={loadingDataPerfumeTypes}
+          clearable
         />
         <RHFSelectField
           name="brandFilter.value"
@@ -65,6 +66,7 @@ export default function HomeBannerFiltersSection() {
             label: brand.name,
           }))}
           loading={loadingDataBrands}
+          clearable
         />
         <RHFSelectField
           name="offerFilter.value"
@@ -79,6 +81,7 @@ export default function HomeBannerFiltersSection() {
             label: offer.name,
           }))}
           loading={loadingDataOffers}
+          clearable
         />
         <RHFSelectField
           name="genderFilter.value"
@@ -98,6 +101,7 @@ export default function HomeBannerFiltersSection() {
               label: genderMap.get(Gender.UNISEX)?.name as string,
             },
           ]}
+          clearable
         />
 
         <RHFNumberField
