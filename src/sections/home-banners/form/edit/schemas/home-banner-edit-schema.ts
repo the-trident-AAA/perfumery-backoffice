@@ -30,6 +30,8 @@ export interface HomeBannerEdit {
   priceMaxFilter: HomeBannerFilterNumberSchema;
   perfumeTypeFilter: HomeBannerFilterSchema;
   offerFilter: HomeBannerFilterSchema;
+  totalPriceMinFilter: HomeBannerFilterNumberSchema;
+  totalPriceMaxFilter: HomeBannerFilterNumberSchema;
 }
 
 export const homeBannerEditSchema = z.object({
@@ -79,4 +81,6 @@ export const homeBannerEditSchema = z.object({
   priceMaxFilter: homeBannerFilterNumberSchema,
   perfumeTypeFilter: homeBannerFilterSchema,
   offerFilter: homeBannerFilterSchema,
+  totalPriceMinFilter: homeBannerFilterNumberSchema,
+  totalPriceMaxFilter: homeBannerFilterNumberSchema,
 });
