@@ -156,7 +156,7 @@ export default function HomeBannerFiltersSection() {
         />
 
         <RHFMultiSelectField
-          name="scentsIdsFilter.value"
+          name="scentsFilters.value"
           label="Aromas"
           description="Seleccione todos los aromas que apliquen"
           emptyText="No hay aromas disponibles"
