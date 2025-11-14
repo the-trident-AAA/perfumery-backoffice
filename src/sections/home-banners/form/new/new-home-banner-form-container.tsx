@@ -85,6 +85,14 @@ export default function NewHomeBannerFormContainer() {
         name: "offerId",
         value: "",
       },
+      totalPriceMinFilter: {
+        name: "totalPriceMin",
+        value: 0,
+      },
+      totalPriceMaxFilter: {
+        name: "totalPriceMax",
+        value: 0,
+      },
     },
   });
 

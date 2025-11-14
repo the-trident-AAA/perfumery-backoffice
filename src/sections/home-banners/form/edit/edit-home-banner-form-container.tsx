@@ -123,6 +123,20 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
           homeBanner.filters.find((filter) => filter.name === "offerId")
             ?.value || "",
       },
+      totalPriceMinFilter: {
+        name: "totalPriceMin",
+        value: Number(
+          homeBanner.filters.find((filter) => filter.name === "totalPriceMin")
+            ?.value || 0
+        ),
+      },
+      totalPriceMaxFilter: {
+        name: "totalPriceMax",
+        value: Number(
+          homeBanner.filters.find((filter) => filter.name === "totalPriceMax")
+            ?.value || 0
+        ),
+      },
     },
   });
 
