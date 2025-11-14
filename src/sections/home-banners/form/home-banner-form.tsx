@@ -5,6 +5,7 @@ import { TabsPanelProvider } from "@/components/ui/tabs-panel/context/tabs-panel
 import HomeBannerBasicInfoSection from "./form-sections/home-banner-basic-info-section/home-banner-basic-info-section";
 import HomeBannerFormSectionsController from "./form-sections/home-banner-form-sections-controller";
 import HomeBannerAdditionalInformationSection from "./form-sections/home-banner-additional-information-section/home-banner-additional-information-section";
+import HomeBannerFiltersSection from "./form-sections/home-banner-filters-section/home-banner-filters-section";
 
 interface Props {
   imageRecived?: {
@@ -25,6 +26,11 @@ export default function HomeBannerForm({ imageRecived }: Props) {
         label: "Información adicional",
         value: "2",
         component: <HomeBannerAdditionalInformationSection />,
+      },
+      {
+        label: "Filtros",
+        value: "3",
+        component: <HomeBannerFiltersSection />,
       },
     ],
     [imageRecived]
