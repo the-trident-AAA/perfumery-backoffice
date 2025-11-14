@@ -5,7 +5,7 @@ import { HomeBannersFilters } from "@/sections/home-banners/filters/hooks/use-ho
 export interface HomeBanner {
   id: string;
   title: string;
-  image: string
+  image: string;
   description: string;
   isMain: boolean;
 }
@@ -14,6 +14,7 @@ export interface HomeBannerDetails {
   id: string;
   title: string;
   description: string;
+  buttonText: string;
   isMain: boolean;
   image: string;
   statisticalTips: {
@@ -21,28 +22,40 @@ export interface HomeBannerDetails {
     info: string;
   }[];
   infoTips: string[];
+  filters: {
+    name: string;
+    value: string;
+  }[];
 }
 
 export interface HomeBannerCreateDTO {
   title: string;
   description: string;
+  buttonText: string;
   statisticalTips: {
     statistics: string;
     info: string;
   }[];
-
   infoTips: string[];
+  filters: {
+    name: string;
+    value: string;
+  }[];
 }
 
 export interface HomeBannerEditDTO {
   title: string;
   description: string;
+  buttonText: string;
   statisticalTips: {
     statistics: string;
     info: string;
   }[];
-
   infoTips: string[];
+  filters: {
+    name: string;
+    value: string;
+  }[];
 }
 
 export interface HomeBannerFiltersDTO {
