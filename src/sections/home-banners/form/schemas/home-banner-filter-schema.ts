@@ -23,3 +23,15 @@ export const homeBannerFilterArraySchema = z.object({
   }),
   value: z.array(z.string()),
 });
+
+export interface HomeBannerFilterNumberSchema {
+  name: string;
+  value: number;
+}
+
+export const homeBannerFilterNumberSchema = z.object({
+  name: z.string().min(1, {
+    message: "El nombre del filtro no puede estar vacío",
+  }),
+  value: z.number(),
+});
