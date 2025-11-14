@@ -83,6 +83,8 @@ export const convertHomeBannerCreateDTO = (
         priceMaxFilter: homeBannerCreate.priceMaxFilter,
         perfumeTypeFilter: homeBannerCreate.perfumeTypeFilter,
         offerFilter: homeBannerCreate.offerFilter,
+        totalPriceMinFilter: homeBannerCreate.totalPriceMinFilter,
+        totalPriceMaxFilter: homeBannerCreate.totalPriceMaxFilter,
       },
       [
         "millilitersMinFilter",
@@ -91,6 +93,8 @@ export const convertHomeBannerCreateDTO = (
         "salesMaxFilter",
         "priceMinFilter",
         "priceMaxFilter",
+        "totalPriceMinFilter",
+        "totalPriceMaxFilter",
       ]
     ),
   };
@@ -116,6 +120,8 @@ export const convertHomeBannerEditDTO = (
         priceMaxFilter: homeBannerEdit.priceMaxFilter,
         perfumeTypeFilter: homeBannerEdit.perfumeTypeFilter,
         offerFilter: homeBannerEdit.offerFilter,
+        totalPriceMinFilter: homeBannerEdit.totalPriceMinFilter,
+        totalPriceMaxFilter: homeBannerEdit.totalPriceMaxFilter,
       },
       [
         "millilitersMinFilter",
@@ -124,6 +130,8 @@ export const convertHomeBannerEditDTO = (
         "salesMaxFilter",
         "priceMinFilter",
         "priceMaxFilter",
+        "totalPriceMinFilter",
+        "totalPriceMaxFilter",
       ]
     ),
   };
