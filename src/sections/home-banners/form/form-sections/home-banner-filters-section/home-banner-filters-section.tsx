@@ -37,123 +37,127 @@ export default function HomeBannerFiltersSection() {
   } = useOffers();
   return (
     <Card className="shadow-sm bg-muted">
-      <CardContent className="pt-4 px-4 grid grid-cols-3 gap-3">
-        <RHFSelectField
-          name="perfumeTypeFilter.value"
-          label="Tipo de Perfume"
-          placeholder="Seleccione un tipo"
-          filterValue={filtersPerfumeTypes.name}
-          onFilterChange={(value) => {
-            handleChangeFiltersPerfumeTypes({ name: value || undefined });
-          }}
-          options={perfumeTypes.map((perfumeTypes) => ({
-            value: perfumeTypes.id,
-            label: perfumeTypes.name,
-          }))}
-          loading={loadingDataPerfumeTypes}
-          clearable
-        />
-        <RHFSelectField
-          name="brandFilter.value"
-          label="Marca"
-          placeholder="Seleccione una marca"
-          filterValue={filtersBrands.name}
-          onFilterChange={(value) => {
-            handleChangeFiltersBrands({ name: value || undefined });
-          }}
-          options={brands.map((brand) => ({
-            value: brand.id,
-            label: brand.name,
-          }))}
-          loading={loadingDataBrands}
-          clearable
-        />
-        <RHFSelectField
-          name="offerFilter.value"
-          label="Oferta"
-          placeholder="Seleccione una oferta"
-          filterValue={filtersOffers.name}
-          onFilterChange={(value) => {
-            handleChangeFiltersOffers({ name: value || undefined });
-          }}
-          options={offers.map((offer) => ({
-            value: offer.id,
-            label: offer.name,
-          }))}
-          loading={loadingDataOffers}
-          clearable
-        />
-        <RHFSelectField
-          name="genderFilter.value"
-          label="Género"
-          placeholder="Seleccione un género"
-          options={[
-            {
-              value: Gender.MALE,
-              label: genderMap.get(Gender.MALE)?.name as string,
-            },
-            {
-              value: Gender.FEMALE,
-              label: genderMap.get(Gender.FEMALE)?.name as string,
-            },
-            {
-              value: Gender.UNISEX,
-              label: genderMap.get(Gender.UNISEX)?.name as string,
-            },
-          ]}
-          clearable
-        />
+      <CardContent className="pt-4 px-4 flex flex-col gap-3">
+        <div className="grid grid-cols-3 gap-3">
+          <RHFSelectField
+            name="perfumeTypeFilter.value"
+            label="Tipo de Perfume"
+            placeholder="Seleccione un tipo"
+            filterValue={filtersPerfumeTypes.name}
+            onFilterChange={(value) => {
+              handleChangeFiltersPerfumeTypes({ name: value || undefined });
+            }}
+            options={perfumeTypes.map((perfumeTypes) => ({
+              value: perfumeTypes.id,
+              label: perfumeTypes.name,
+            }))}
+            loading={loadingDataPerfumeTypes}
+            clearable
+          />
+          <RHFSelectField
+            name="brandFilter.value"
+            label="Marca"
+            placeholder="Seleccione una marca"
+            filterValue={filtersBrands.name}
+            onFilterChange={(value) => {
+              handleChangeFiltersBrands({ name: value || undefined });
+            }}
+            options={brands.map((brand) => ({
+              value: brand.id,
+              label: brand.name,
+            }))}
+            loading={loadingDataBrands}
+            clearable
+          />
+          <RHFSelectField
+            name="offerFilter.value"
+            label="Oferta"
+            placeholder="Seleccione una oferta"
+            filterValue={filtersOffers.name}
+            onFilterChange={(value) => {
+              handleChangeFiltersOffers({ name: value || undefined });
+            }}
+            options={offers.map((offer) => ({
+              value: offer.id,
+              label: offer.name,
+            }))}
+            loading={loadingDataOffers}
+            clearable
+          />
 
-        <RHFNumberField
-          name="priceMinFilter.value"
-          label="Precio Mínimo"
-          placeholder="0.1"
-          description="Precio en USD"
-          fullWidth={false}
-        />
-        <RHFNumberField
-          name="priceMaxFilter.value"
-          label="Precio Máximo"
-          placeholder="0.1"
-          description="Precio en USD"
-          fullWidth={false}
-        />
+          <RHFNumberField
+            name="millilitersMinFilter.value"
+            label="Mililitros Mínimo"
+            placeholder="0.1"
+            description="Volumen en Mililitros"
+            fullWidth={false}
+          />
+          <RHFNumberField
+            name="millilitersMaxFilter.value"
+            label="Mililitros Máximo"
+            placeholder="0.1"
+            description="Volumen en Mililitros"
+            fullWidth={false}
+          />
 
-        <RHFNumberField
-          name="totalPriceMinFilter.value"
-          label="Precio Total Mínimo"
-          placeholder="0.1"
-          description="Precio Total en USD"
-          fullWidth={false}
-        />
-        <RHFNumberField
-          name="totalPriceMaxFilter.value"
-          label="Precio Total Máximo"
-          placeholder="0.1"
-          description="Precio Total en USD"
-          fullWidth={false}
-        />
+          <RHFNumberField
+            name="priceMinFilter.value"
+            label="Precio Mínimo"
+            placeholder="0.1"
+            description="Precio en USD"
+            fullWidth={false}
+          />
+          <RHFNumberField
+            name="priceMaxFilter.value"
+            label="Precio Máximo"
+            placeholder="0.1"
+            description="Precio en USD"
+            fullWidth={false}
+          />
 
-        <RHFNumberField
-          name="millilitersMinFilter.value"
-          label="Mililitros Mínimo"
-          placeholder="0.1"
-          description="Volumen en Mililitros"
-          fullWidth={false}
-        />
-        <RHFNumberField
-          name="millilitersMaxFilter.value"
-          label="Mililitros Máximo"
-          placeholder="0.1"
-          description="Volumen en Mililitros"
-          fullWidth={false}
-        />
+          <RHFNumberField
+            name="totalPriceMinFilter.value"
+            label="Precio Total Mínimo"
+            placeholder="0.1"
+            description="Precio Total en USD"
+            fullWidth={false}
+          />
+          <RHFNumberField
+            name="totalPriceMaxFilter.value"
+            label="Precio Total Máximo"
+            placeholder="0.1"
+            description="Precio Total en USD"
+            fullWidth={false}
+          />
+        </div>
 
-        <RHFTextField
-          name="nameFilter.value"
-          label="Nombre"
-          placeholder="Ingrese el nombre"
-        />
+        <div className="grid grid-cols-2 gap-3">
+          <RHFSelectField
+            name="genderFilter.value"
+            label="Género"
+            placeholder="Seleccione un género"
+            options={[
+              {
+                value: Gender.MALE,
+                label: genderMap.get(Gender.MALE)?.name as string,
+              },
+              {
+                value: Gender.FEMALE,
+                label: genderMap.get(Gender.FEMALE)?.name as string,
+              },
+              {
+                value: Gender.UNISEX,
+                label: genderMap.get(Gender.UNISEX)?.name as string,
+              },
+            ]}
+            clearable
+          />
+          <RHFTextField
+            name="nameFilter.value"
+            label="Nombre"
+            placeholder="Ingrese el nombre"
+          />
+        </div>
 
         <RHFMultiSelectField
           name="scentsFilters.value"
