@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { RHFTextField } from "@/components/form/rhf-components/rhf-text-field/rhf-text-field";
 import { RHFTextAreaField } from "@/components/form/rhf-components/rhf-text-area-field/rhf-text-area-field";
 import { RHFImageUpload } from "@/components/form/rhf-components/rhf-image-upload/rhf-image-upload";
+import ButtonTextField from "./components/button-text-field";
 
 interface Props {
   imageRecived?: {
@@ -27,6 +28,7 @@ export default function HomeBannerBasicInfoSection({ imageRecived }: Props) {
           description="Introduzca la descripción del banner"
           fullWidth
         />
+        <ButtonTextField />
         <RHFImageUpload
           name="image"
           label="Imagen del Home Banner"
