@@ -11,3 +11,15 @@ export const homeBannerFilterSchema = z.object({
   }),
   value: z.string(),
 });
+
+export interface HomeBannerFilterArraySchema {
+  name: string;
+  value: string[];
+}
+
+export const homeBannerFilterArraySchema = z.object({
+  name: z.string().min(1, {
+    message: "El nombre del filtro no puede estar vacío",
+  }),
+  value: z.array(z.string()),
+});
