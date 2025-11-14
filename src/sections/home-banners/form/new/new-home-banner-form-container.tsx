@@ -34,8 +34,57 @@ export default function NewHomeBannerFormContainer() {
     defaultValues: {
       title: "",
       description: "",
+      buttonText: "",
       statisticalTips: [],
       infoTips: [],
+      nameFilter: {
+        name: "name",
+        value: "",
+      },
+      brandFilter: {
+        name: "brandId",
+        value: "",
+      },
+      genderFilter: {
+        name: "gender",
+        value: "",
+      },
+      scentsFilters: {
+        name: "scentsIds",
+        value: [],
+      },
+      millilitersMinFilter: {
+        name: "millilitersMin",
+        value: 0,
+      },
+      millilitersMaxFilter: {
+        name: "millilitersMax",
+        value: 0,
+      },
+      salesMinFilter: {
+        name: "salesMin",
+        value: 0,
+      },
+      salesMaxFilter: {
+        name: "salesMax",
+        value: 0,
+      },
+      priceMinFilter: {
+        name: "priceMin",
+        value: 0,
+      },
+      priceMaxFilter: {
+        name: "priceMax",
+        value: 0,
+      },
+      perfumeTypeFilter: {
+        name: "perfumeTypeId",
+        value: "",
+      },
+      offerFilter: {
+        name: "offerId",
+        value: "",
+      },
     },
   });
 

@@ -41,8 +41,88 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
     defaultValues: {
       title: homeBanner.title,
       description: homeBanner.description,
+      buttonText: homeBanner.buttonText,
       statisticalTips: homeBanner.statisticalTips,
       infoTips: homeBanner.infoTips.map((infoTip) => ({ name: infoTip })),
+      nameFilter: {
+        name: "name",
+        value:
+          homeBanner.filters.find((filter) => filter.name === "name")?.value ||
+          "",
+      },
+      brandFilter: {
+        name: "brandId",
+        value:
+          homeBanner.filters.find((filter) => filter.name === "brandId")
+            ?.value || "",
+      },
+      genderFilter: {
+        name: "gender",
+        value:
+          homeBanner.filters.find((filter) => filter.name === "gender")
+            ?.value || "",
+      },
+      scentsFilters: {
+        name: "scentsIds",
+        value:
+          homeBanner.filters
+            .filter((filter) => filter.name === "scentsIds")
+            ?.map((filter) => filter.value) || [],
+      },
+      millilitersMinFilter: {
+        name: "millilitersMin",
+        value: Number(
+          homeBanner.filters.find((filter) => filter.name === "millilitersMin")
+            ?.value || 0
+        ),
+      },
+      millilitersMaxFilter: {
+        name: "millilitersMax",
+        value: Number(
+          homeBanner.filters.find((filter) => filter.name === "millilitersMax")
+            ?.value || 0
+        ),
+      },
+      salesMinFilter: {
+        name: "salesMin",
+        value: Number(
+          homeBanner.filters.find((filter) => filter.name === "salesMin")
+            ?.value || 0
+        ),
+      },
+      salesMaxFilter: {
+        name: "salesMax",
+        value: Number(
+          homeBanner.filters.find((filter) => filter.name === "salesMax")
+            ?.value || 0
+        ),
+      },
+      priceMinFilter: {
+        name: "priceMin",
+        value: Number(
+          homeBanner.filters.find((filter) => filter.name === "priceMin")
+            ?.value || 0
+        ),
+      },
+      priceMaxFilter: {
+        name: "priceMax",
+        value: Number(
+          homeBanner.filters.find((filter) => filter.name === "priceMax")
+            ?.value || 0
+        ),
+      },
+      perfumeTypeFilter: {
+        name: "perfumeTypeId",
+        value:
+          homeBanner.filters.find((filter) => filter.name === "perfumeTypeId")
+            ?.value || "",
+      },
+      offerFilter: {
+        name: "offerId",
+        value:
+          homeBanner.filters.find((filter) => filter.name === "offerId")
+            ?.value || "",
+      },
     },
   });
 
