@@ -39,6 +39,7 @@ export const homeBannerEditSchema = z.object({
   description: z.string().min(1, {
     message: "La descripción del banner de la página principal es requerida",
   }),
+  buttonText: z.string(),
   statisticalTips: z.array(
     z.object({
       statistics: z
