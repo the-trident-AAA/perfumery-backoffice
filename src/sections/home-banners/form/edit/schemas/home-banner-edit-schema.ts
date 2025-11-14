@@ -1,15 +1,35 @@
 import { z } from "zod";
+import {
+  homeBannerFilterArraySchema,
+  HomeBannerFilterArraySchema,
+  homeBannerFilterNumberSchema,
+  HomeBannerFilterNumberSchema,
+  homeBannerFilterSchema,
+  HomeBannerFilterSchema,
+} from "../../schemas/home-banner-filter-schema";
 
 export interface HomeBannerEdit {
   title: string;
   description: string;
+  buttonText: string;
   statisticalTips: {
     statistics: string;
     info: string;
   }[];
-
   infoTips: { name: string }[];
   image: File;
+  nameFilter: HomeBannerFilterSchema;
+  brandFilter: HomeBannerFilterSchema;
+  genderFilter: HomeBannerFilterSchema;
+  scentsFilters: HomeBannerFilterArraySchema;
+  millilitersMinFilter: HomeBannerFilterNumberSchema;
+  millilitersMaxFilter: HomeBannerFilterNumberSchema;
+  salesMinFilter: HomeBannerFilterNumberSchema;
+  salesMaxFilter: HomeBannerFilterNumberSchema;
+  priceMinFilter: HomeBannerFilterNumberSchema;
+  priceMaxFilter: HomeBannerFilterNumberSchema;
+  perfumeTypeFilter: HomeBannerFilterSchema;
+  offerFilter: HomeBannerFilterSchema;
 }
 
 export const homeBannerEditSchema = z.object({
@@ -46,4 +66,16 @@ export const homeBannerEditSchema = z.object({
       (file) => file && file.type.startsWith("image/"),
       "El archivo debe ser una imagen."
     ),
+  nameFilter: homeBannerFilterSchema,
+  brandFilter: homeBannerFilterSchema,
+  genderFilter: homeBannerFilterSchema,
+  scentsFilters: homeBannerFilterArraySchema,
+  millilitersMinFilter: homeBannerFilterNumberSchema,
+  millilitersMaxFilter: homeBannerFilterNumberSchema,
+  salesMinFilter: homeBannerFilterNumberSchema,
+  salesMaxFilter: homeBannerFilterNumberSchema,
+  priceMinFilter: homeBannerFilterNumberSchema,
+  priceMaxFilter: homeBannerFilterNumberSchema,
+  perfumeTypeFilter: homeBannerFilterSchema,
+  offerFilter: homeBannerFilterSchema,
 });

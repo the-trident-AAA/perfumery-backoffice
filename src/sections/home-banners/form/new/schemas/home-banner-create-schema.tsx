@@ -1,14 +1,34 @@
 import { z } from "zod";
+import {
+  homeBannerFilterArraySchema,
+  HomeBannerFilterArraySchema,
+  homeBannerFilterNumberSchema,
+  HomeBannerFilterNumberSchema,
+  homeBannerFilterSchema,
+  HomeBannerFilterSchema,
+} from "../../schemas/home-banner-filter-schema";
 
 export interface HomeBannerCreate {
   title: string;
   description: string;
+  buttonText: string;
   statisticalTips: {
     statistics: string;
     info: string;
   }[];
-
   infoTips: { name: string }[];
+  nameFilter: HomeBannerFilterSchema;
+  brandFilter: HomeBannerFilterSchema;
+  genderFilter: HomeBannerFilterSchema;
+  scentsFilters: HomeBannerFilterArraySchema;
+  millilitersMinFilter: HomeBannerFilterNumberSchema;
+  millilitersMaxFilter: HomeBannerFilterNumberSchema;
+  salesMinFilter: HomeBannerFilterNumberSchema;
+  salesMaxFilter: HomeBannerFilterNumberSchema;
+  priceMinFilter: HomeBannerFilterNumberSchema;
+  priceMaxFilter: HomeBannerFilterNumberSchema;
+  perfumeTypeFilter: HomeBannerFilterSchema;
+  offerFilter: HomeBannerFilterSchema;
   image: File;
 }
 
@@ -19,6 +39,7 @@ export const homeBannerCreateSchema = z.object({
   description: z.string().min(1, {
     message: "La descripción del banner de la página principal es requerida",
   }),
+  buttonText: z.string(),
   statisticalTips: z.array(
     z.object({
       statistics: z
@@ -46,4 +67,16 @@ export const homeBannerCreateSchema = z.object({
       (file) => file && file.type.startsWith("image/"),
       "El archivo debe ser una imagen."
     ),
+  nameFilter: homeBannerFilterSchema,
+  brandFilter: homeBannerFilterSchema,
+  genderFilter: homeBannerFilterSchema,
+  scentsFilters: homeBannerFilterArraySchema,
+  millilitersMinFilter: homeBannerFilterNumberSchema,
+  millilitersMaxFilter: homeBannerFilterNumberSchema,
+  salesMinFilter: homeBannerFilterNumberSchema,
+  salesMaxFilter: homeBannerFilterNumberSchema,
+  priceMinFilter: homeBannerFilterNumberSchema,
+  priceMaxFilter: homeBannerFilterNumberSchema,
+  perfumeTypeFilter: homeBannerFilterSchema,
+  offerFilter: homeBannerFilterSchema,
 });
