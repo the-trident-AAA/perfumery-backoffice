@@ -17,6 +17,7 @@ interface Props {
   description?: string;
   type?: "text" | "email" | "password";
   fullWidth?: boolean;
+  disabled?: boolean;
 }
 
 export function RHFTextField({
@@ -26,6 +27,7 @@ export function RHFTextField({
   description,
   type = "text",
   fullWidth = true,
+  disabled = false,
 }: Props) {
   const { control } = useFormContext();
 
@@ -41,6 +43,7 @@ export function RHFTextField({
               type={type}
               className={`${fullWidth ? "w-full" : ""}`}
               placeholder={placeholder}
+              disabled={disabled} // ← aplicado aquí
               {...field}
             />
           </FormControl>
