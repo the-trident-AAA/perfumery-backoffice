@@ -53,11 +53,6 @@ export default function OfferForm({ imageRecived, mobileImageRecived }: Props) {
         />
         <RHFImageUpload
           name="image"
-          label="Imagen de la Oferta"
-          {...(imageRecived && { loading: imageRecived.loading })}
-        />
-        <RHFImageUpload
-          name="image"
           label="Imagen de vista de escritorio"
           {...(imageRecived && { loading: imageRecived.loading })}
         />
