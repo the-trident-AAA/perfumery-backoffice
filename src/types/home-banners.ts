@@ -17,6 +17,7 @@ export interface HomeBannerDetails {
   buttonText: string;
   isMain: boolean;
   image: string;
+  mobileImage: string;
   statisticalTips: {
     statistics: string;
     info: string;
