@@ -46,6 +46,14 @@ export default function EditTapeFormContainer({ tape }: Props) {
     imageName: tape.name,
     fieldName: "image",
   });
+  const { loading: mobileImageLoading, error: errorMobileImage } = useImageForm(
+    {
+      form,
+      imageUrl: tape.mobileImage,
+      imageName: tape.name,
+      fieldName: "mobileImage",
+    }
+  );
 
   const handleClose = () => {
     handleCloseModal(modalTypes.editTapeModal.name);
@@ -61,7 +69,13 @@ export default function EditTapeFormContainer({ tape }: Props) {
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
         {editTapeError && <AlertDestructive title={editTapeError} />}
-        <TapeForm imageRecived={{ loading: imageLoading, error: errorImage }} />
+        <TapeForm
+          imageRecived={{ loading: imageLoading, error: errorImage }}
+          mobileImageRecived={{
+            loading: mobileImageLoading,
+            error: errorMobileImage,
+          }}
+        />
         <FormActionButtons
           submitLoading={submitLoading}
           submitButtonText="Actualizar Cinta"
