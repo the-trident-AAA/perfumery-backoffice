@@ -15,13 +15,14 @@ export default function useEditHomeBanner({ id, onEditAction }: Props) {
 
   const editHomeBanner = useCallback(
     async (homeBanner: HomeBannerEdit) => {
-      const { image, ...rest } = homeBanner;
+      const { image, mobileImage, ...rest } = homeBanner;
       try {
         setLoading(true);
         setError(null);
         // create form data for image
         const formData = new FormData();
         formData.append("image", image);
+        formData.append("mobileImage", mobileImage);
         const res = await editHomeBannerService(
           id,
           convertHomeBannerEditDTO(rest),
