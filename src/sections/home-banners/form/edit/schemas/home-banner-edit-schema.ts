@@ -7,11 +7,13 @@ import {
   homeBannerFilterSchema,
   HomeBannerFilterSchema,
 } from "../../schemas/home-banner-filter-schema";
+import { TextColor } from "@/types/home-banners";
 
 export interface HomeBannerEdit {
   title: string;
   description: string;
   buttonText: string;
+  textColor: TextColor;
   statisticalTips: {
     statistics: string;
     info: string;
@@ -43,6 +45,9 @@ export const homeBannerEditSchema = z.object({
     message: "La descripción del banner de la página principal es requerida",
   }),
   buttonText: z.string(),
+  textColor: z.enum([TextColor.LIGHT, TextColor.DARK], {
+    message: "Debes seleccionar un color de texto válido (Claro o Oscuro)",
+  }),
   statisticalTips: z.array(
     z.object({
       statistics: z
