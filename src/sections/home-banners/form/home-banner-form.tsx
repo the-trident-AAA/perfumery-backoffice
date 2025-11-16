@@ -45,7 +45,7 @@ export default function HomeBannerForm({
         component: <HomeBannerFiltersSection />,
       },
     ],
-    [imageRecived]
+    [imageRecived, mobileImageRecived]
   );
 
   return (
