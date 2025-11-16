@@ -4,6 +4,7 @@ export interface OfferCreate {
   name: string;
   description: string;
   image?: File;
+  mobileImage?: File;
   scope: string;
   discount: number;
   offerType: string;
@@ -17,6 +18,19 @@ export const offerCreateSchema = z.object({
     .string()
     .min(1, { message: "La descripción de la oferta es requerida" }),
   image: z
+    .instanceof(File, {
+      message: "Por favor selecciona una imagen.",
+    })
+    .optional()
+    .refine(
+      (file) => !file || file.size <= 5 * 1024 * 1024,
+      "La imagen no debe exceder 5MB."
+    )
+    .refine(
+      (file) => !file || file.type.startsWith("image/"),
+      "El archivo debe ser una imagen."
+    ),
+  mobileImage: z
     .instanceof(File, {
       message: "Por favor selecciona una imagen.",
     })
