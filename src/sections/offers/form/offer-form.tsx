@@ -11,9 +11,13 @@ interface Props {
     loading: boolean;
     error: string | null;
   };
+  mobileImageRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
 }
 
-export default function OfferForm({ imageRecived }: Props) {
+export default function OfferForm({ imageRecived, mobileImageRecived }: Props) {
   return (
     <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4 flex flex-col gap-4">
@@ -51,6 +55,16 @@ export default function OfferForm({ imageRecived }: Props) {
           name="image"
           label="Imagen de la Oferta"
           {...(imageRecived && { loading: imageRecived.loading })}
+        />
+        <RHFImageUpload
+          name="image"
+          label="Imagen de vista de escritorio"
+          {...(imageRecived && { loading: imageRecived.loading })}
+        />
+        <RHFImageUpload
+          name="mobileImage"
+          label="Imagen de vista móvil"
+          {...(mobileImageRecived && { loading: mobileImageRecived.loading })}
         />
       </CardContent>
     </Card>
