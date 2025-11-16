@@ -50,6 +50,7 @@ export async function createTape(
     body: createFormDataBody({
       ...tapeCreateDTO,
       image: formData.get("image"),
+      mobileImage: formData.get("mobileImage"),
     }),
   });
 
@@ -80,6 +81,7 @@ export async function editTape(
     body: createFormDataBody({
       ...tapeEditDTO,
       image: formData.get("image"),
+      mobileImage: formData.get("mobileImage"),
     }),
   });
 
