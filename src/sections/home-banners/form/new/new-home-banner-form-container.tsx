@@ -15,6 +15,7 @@ import HomeBannerForm from "../home-banner-form";
 import { toast } from "react-toastify";
 import FormActionButtons from "@/components/form/components/form-action-buttons/form-action-buttons";
 import { AlertDestructive } from "@/components/ui/alert-destructive";
+import { TextColor } from "@/types/home-banners";
 
 export default function NewHomeBannerFormContainer() {
   const { handleCloseModal } = useContext(ModalContext);
@@ -35,6 +36,7 @@ export default function NewHomeBannerFormContainer() {
       title: "",
       description: "",
       buttonText: "",
+      textColor: TextColor.LIGHT,
       statisticalTips: [],
       infoTips: [],
       nameFilter: {

@@ -42,6 +42,7 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
       title: homeBanner.title,
       description: homeBanner.description,
       buttonText: homeBanner.buttonText || "",
+      textColor: homeBanner.textColor || "",
       statisticalTips: homeBanner.statisticalTips,
       infoTips: homeBanner.infoTips.map((infoTip) => ({ name: infoTip })),
       nameFilter: {
