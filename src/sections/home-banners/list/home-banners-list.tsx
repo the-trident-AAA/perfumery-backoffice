@@ -3,7 +3,7 @@ import { ModalContext } from "@/components/modal/context/modalContext";
 import { modalTypes } from "@/components/modal/types/modalTypes";
 import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
-import { HomeBanner } from "@/types/home-banners";
+import { getTextColorText, HomeBanner } from "@/types/home-banners";
 import { ColumnDef } from "@tanstack/react-table";
 import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
@@ -74,6 +74,17 @@ export default function HomeBannersList({ homeBanners }: Props) {
         return (
           <p className="text-sm line-clamp-3 break-words max-w-[300px] whitespace-pre-wrap leading-relaxed text-gray-700">
             {row.getValue("description")}
+          </p>
+        );
+      },
+    },
+    {
+      accessorKey: "textColor",
+      header: "Color de Textos",
+      cell: ({ row }) => {
+        return (
+          <p className="text-sm line-clamp-3 break-words max-w-[300px] whitespace-pre-wrap leading-relaxed">
+            {getTextColorText(row.getValue("textColor"))}
           </p>
         );
       },
