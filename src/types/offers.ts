@@ -17,6 +17,7 @@ export interface OfferDetails {
   name: string;
   description: string;
   image?: string;
+  mobileImage?: string;
   scope: string;
   discount: number;
   offerType: string;
@@ -60,6 +61,6 @@ export const convertOfferEditDTO = (offerCreate: OfferEdit): OfferEditDTO => {
 export const convertOfferFiltersDTO = (
   offersFilters: OffersFilters
 ): OfferFiltersDTO => {
-  const {discount, ...rest} = offersFilters
+  const { discount, ...rest } = offersFilters;
   return { ...rest, minDiscount: discount[0], maxDiscount: discount[1] };
 };
