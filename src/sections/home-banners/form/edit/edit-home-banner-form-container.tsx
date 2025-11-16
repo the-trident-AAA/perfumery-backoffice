@@ -147,6 +147,15 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
     fieldName: "image",
   });
 
+  const { loading: mobileImageLoading, error: errorMobileImage } = useImageForm(
+    {
+      form,
+      imageUrl: homeBanner.mobileImage,
+      imageName: homeBanner.title,
+      fieldName: "mobileImage",
+    }
+  );
+
   const handleClose = () => {
     handleCloseModal(modalTypes.editHomeBannerModal.name);
   };
@@ -165,6 +174,10 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
         )}
         <HomeBannerForm
           imageRecived={{ loading: imageLoading, error: errorImage }}
+          mobileImageRecived={{
+            loading: mobileImageLoading,
+            error: errorMobileImage,
+          }}
         />
         <FormActionButtons
           submitLoading={submitLoading}
