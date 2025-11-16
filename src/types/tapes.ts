@@ -14,6 +14,7 @@ export interface TapeDetails {
   name: string;
   isMain: boolean;
   image: string;
+  mobileImage: string;
 }
 
 export interface TapeCreateDTO {
@@ -29,7 +30,7 @@ export interface TapeFiltersDTO {
 }
 
 export const convertTapeCreateDTO = (
-  tapeCreate: Omit<TapeCreate, "image">
+  tapeCreate: Omit<TapeCreate, "image" | "mobileImage">
 ): TapeCreateDTO => {
   return {
     ...tapeCreate,
@@ -37,7 +38,7 @@ export const convertTapeCreateDTO = (
 };
 
 export const convertTapeEditDTO = (
-  tapeEdit: Omit<TapeEdit, "image">
+  tapeEdit: Omit<TapeEdit, "image" | "mobileImage">
 ): TapeEditDTO => {
   return {
     ...tapeEdit,
