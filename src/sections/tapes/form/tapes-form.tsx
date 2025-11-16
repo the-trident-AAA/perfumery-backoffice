@@ -8,9 +8,13 @@ interface Props {
     loading: boolean;
     error: string | null;
   };
+  mobileImageRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
 }
 
-export default function TapeForm({ imageRecived }: Props) {
+export default function TapeForm({ imageRecived, mobileImageRecived }: Props) {
   return (
     <Card className="shadow-sm bg-muted">
       <CardContent className="pt-4 px-4 flex flex-col gap-4">
@@ -22,8 +26,13 @@ export default function TapeForm({ imageRecived }: Props) {
 
         <RHFImageUpload
           name="image"
-          label="Imagen del Home Banner"
+          label="Imagen de vista de escritorio"
           {...(imageRecived && { loading: imageRecived.loading })}
+        />
+        <RHFImageUpload
+          name="mobileImage"
+          label="Imagen de vista móvil"
+          {...(mobileImageRecived && { loading: mobileImageRecived.loading })}
         />
       </CardContent>
     </Card>
