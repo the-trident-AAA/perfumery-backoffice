@@ -15,13 +15,14 @@ export default function useEditTape({ id, onEditAction }: Props) {
 
   const editTape = useCallback(
     async (tape: TapeEdit) => {
-      const { image, ...rest } = tape;
+      const { image, mobileImage, ...rest } = tape;
       try {
         setLoading(true);
         setError(null);
         // create form data for image
         const formData = new FormData();
         formData.append("image", image);
+        formData.append("mobileImage", mobileImage);
         const res = await editTapeService(
           id,
           convertTapeEditDTO(rest),
