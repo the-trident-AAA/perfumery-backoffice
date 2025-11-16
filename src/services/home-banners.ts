@@ -58,6 +58,7 @@ export async function createHomeBanner(
     body: createFormDataBody({
       ...homeBannerCreateDTO,
       image: formData.get("image"),
+      mobileImage: formData.get("mobileImage"),
     }),
   });
 
@@ -88,6 +89,7 @@ export async function editHomeBanner(
     body: createFormDataBody({
       ...homeBannerEditDTO,
       image: formData.get("image"),
+      mobileImage: formData.get("mobileImage"),
     }),
   });
 
