@@ -15,15 +15,17 @@ export default function useEditOffer({ id, onEditAction }: Props) {
 
   const editOffer = useCallback(
     async (offer: OfferEdit) => {
+      const { image, mobileImage, ...rest } = offer;
       try {
         setLoading(true);
         setError(null);
         // create form data for image
         const formDataWithImage = new FormData();
-        if (offer.image) formDataWithImage.append("image", offer.image);
+        if (image) formDataWithImage.append("image", image);
+        if (mobileImage) formDataWithImage.append("mobileImage", mobileImage);
         const res = await editOfferService(
           id,
-          convertOfferEditDTO(offer),
+          convertOfferEditDTO(rest),
           formDataWithImage
         );
         if (!res.response || res.error)

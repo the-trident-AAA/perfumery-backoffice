@@ -14,14 +14,16 @@ export default function useCreateOffer({ onCreateAction }: Props) {
 
   const createOffer = useCallback(
     async (offer: OfferCreate) => {
+      const { image, mobileImage, ...rest } = offer;
       try {
         setLoading(true);
         setError(null);
         // create form data for image
         const formDataWithImage = new FormData();
-        if (offer.image) formDataWithImage.append("image", offer.image);
+        if (image) formDataWithImage.append("image", image);
+        if (mobileImage) formDataWithImage.append("mobileImage", mobileImage);
         const res = await createOfferService(
-          convertOfferCreateDTO(offer),
+          convertOfferCreateDTO(rest),
           formDataWithImage
         );
         if (!res.response || res.error)
