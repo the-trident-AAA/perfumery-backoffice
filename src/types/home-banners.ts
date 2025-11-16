@@ -10,6 +10,7 @@ export enum TextColor {
 export const getTextColorText = (textColor: TextColor) => {
   if (textColor === TextColor.DARK) return "Oscuro";
   if (textColor === TextColor.LIGHT) return "Claro";
+  return "Oscuro";
 };
 
 export interface HomeBanner {
