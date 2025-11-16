@@ -32,6 +32,7 @@ export interface HomeBannerCreate {
   totalPriceMinFilter: HomeBannerFilterNumberSchema;
   totalPriceMaxFilter: HomeBannerFilterNumberSchema;
   image: File;
+  mobileImage: File;
 }
 
 export const homeBannerCreateSchema = z.object({
@@ -58,6 +59,18 @@ export const homeBannerCreateSchema = z.object({
     })
   ),
   image: z
+    .instanceof(File, {
+      message: "Por favor selecciona una imagen.",
+    })
+    .refine(
+      (file) => file && file.size <= 5 * 1024 * 1024,
+      "La imagen no debe exceder 5MB."
+    )
+    .refine(
+      (file) => file && file.type.startsWith("image/"),
+      "El archivo debe ser una imagen."
+    ),
+  mobileImage: z
     .instanceof(File, {
       message: "Por favor selecciona una imagen.",
     })
