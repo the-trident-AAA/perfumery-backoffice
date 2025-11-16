@@ -21,7 +21,11 @@ interface Props {
 
 export default function EditOfferFormContainer({ offer }: Props) {
   const { handleCloseModal } = useContext(ModalContext);
-  const { loading: submitLoading, editOffer, error: editOfferError } = useEditOffer({
+  const {
+    loading: submitLoading,
+    editOffer,
+    error: editOfferError,
+  } = useEditOffer({
     id: offer.id,
     onEditAction: () => {
       toast.success("Oferta actualizada con éxito");
@@ -40,12 +44,21 @@ export default function EditOfferFormContainer({ offer }: Props) {
     },
   });
 
-  const { loading, error } = useImageForm({
+  const { loading: loadingImage, error: errorImage } = useImageForm({
     form,
     imageUrl: offer.image,
     imageName: offer.name,
     fieldName: "image",
   });
+
+  const { loading: loadingMobileImage, error: errorMobileImage } = useImageForm(
+    {
+      form,
+      imageUrl: offer.mobileImage,
+      imageName: offer.name,
+      fieldName: "mobileImage",
+    }
+  );
 
   const handleClose = () => {
     handleCloseModal(modalTypes.editOfferModal.name);
@@ -61,7 +74,13 @@ export default function EditOfferFormContainer({ offer }: Props) {
         className="w-full flex flex-1 flex-col justify-between gap-8 h-full"
       >
         {editOfferError && <AlertDestructive title={editOfferError} />}
-        <OfferForm imageRecived={{ loading, error }} />
+        <OfferForm
+          imageRecived={{ loading: loadingImage, error: errorImage }}
+          mobileImageRecived={{
+            loading: loadingMobileImage,
+            error: errorMobileImage,
+          }}
+        />
         <FormActionButtons
           submitLoading={submitLoading}
           submitButtonText="Actualizar Oferta"
