@@ -2,11 +2,22 @@ import { HomeBannerCreate } from "@/sections/home-banners/form/new/schemas/home-
 import { HomeBannerEdit } from "@/sections/home-banners/form/edit/schemas/home-banner-edit-schema";
 import { HomeBannersFilters } from "@/sections/home-banners/filters/hooks/use-home-banners-filters";
 
+export enum TextColor {
+  DARK = "oscuro",
+  LIGHT = "claro",
+}
+
+export const getTextColorText = (textColor: TextColor) => {
+  if (textColor === TextColor.DARK) return "Oscuro";
+  if (textColor === TextColor.LIGHT) return "Claro";
+};
+
 export interface HomeBanner {
   id: string;
   title: string;
   image: string;
   description: string;
+  textColor: TextColor;
   isMain: boolean;
 }
 
@@ -18,6 +29,7 @@ export interface HomeBannerDetails {
   isMain: boolean;
   image: string;
   mobileImage: string;
+  textColor: TextColor;
   statisticalTips: {
     statistics: string;
     info: string;
@@ -33,6 +45,7 @@ export interface HomeBannerCreateDTO {
   title: string;
   description: string;
   buttonText: string;
+  textColor: TextColor;
   statisticalTips: {
     statistics: string;
     info: string;
@@ -48,6 +61,7 @@ export interface HomeBannerEditDTO {
   title: string;
   description: string;
   buttonText: string;
+  textColor: TextColor;
   statisticalTips: {
     statistics: string;
     info: string;
