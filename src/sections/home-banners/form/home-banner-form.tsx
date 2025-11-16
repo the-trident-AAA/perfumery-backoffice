@@ -12,15 +12,27 @@ interface Props {
     loading: boolean;
     error: string | null;
   };
+  mobileImageRecived?: {
+    loading: boolean;
+    error: string | null;
+  };
 }
 
-export default function HomeBannerForm({ imageRecived }: Props) {
+export default function HomeBannerForm({
+  imageRecived,
+  mobileImageRecived,
+}: Props) {
   const tabs = useMemo(
     () => [
       {
         label: "Información Básica",
         value: "1",
-        component: <HomeBannerBasicInfoSection imageRecived={imageRecived} />,
+        component: (
+          <HomeBannerBasicInfoSection
+            imageRecived={imageRecived}
+            mobileImageRecived={mobileImageRecived}
+          />
+        ),
       },
       {
         label: "Información adicional",
