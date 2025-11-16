@@ -51,6 +51,7 @@ export async function createOffer(
     body: createFormDataBody({
       ...offerCreateDTO,
       image: formDataWithImage.get("image"),
+      mobileImage: formDataWithImage.get("mobileImage"),
     }),
   });
 
@@ -81,6 +82,7 @@ export async function editOffer(
     body: createFormDataBody({
       ...offerEditDTO,
       image: formDataWithImage.get("image"),
+      mobileImage: formDataWithImage.get("mobileImage"),
     }),
   });
 
