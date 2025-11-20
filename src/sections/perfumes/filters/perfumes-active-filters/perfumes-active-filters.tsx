@@ -95,7 +95,7 @@ export default function PerfumesActiveFilters({
           )}
           {filters.isHidden && (
             <FilterBadge
-              filterName="Disponible"
+              filterName="Solo"
               filterValue={filters.isHidden ? "Ocultos" : "No Ocultos"}
               handleDeleteFilter={() => {
                 handleChangeFilters({ isHidden: undefined });
