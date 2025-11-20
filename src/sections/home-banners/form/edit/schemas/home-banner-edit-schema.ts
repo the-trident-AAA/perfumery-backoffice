@@ -38,12 +38,8 @@ export interface HomeBannerEdit {
 }
 
 export const homeBannerEditSchema = z.object({
-  title: z.string().min(1, {
-    message: "El título del banner de la página principal no puede estar vacío",
-  }),
-  description: z.string().min(1, {
-    message: "La descripción del banner de la página principal es requerida",
-  }),
+  title: z.string(),
+  description: z.string(),
   buttonText: z.string(),
   textColor: z.enum([TextColor.LIGHT, TextColor.DARK], {
     message: "Debes seleccionar un color de texto válido (Claro o Oscuro)",
