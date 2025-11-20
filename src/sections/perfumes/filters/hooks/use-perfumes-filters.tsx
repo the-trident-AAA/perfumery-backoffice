@@ -19,6 +19,7 @@ export interface PerfumesFilters {
   salesRange: [number, number];
   cant?: number;
   offerId?: string;
+  isHidden?: boolean;
 }
 
 interface Props {
@@ -48,6 +49,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     const millilitersMaxParam = searchParams.get("millilitersMax");
     const salesMinParam = searchParams.get("salesMin");
     const salesMaxParam = searchParams.get("salesMax");
+    const isHiddenParam = searchParams.get("isHidden");
 
     setFilters((oldFilters) => ({
       ...oldFilters,
@@ -56,6 +58,11 @@ export default function usePerfumesFilters({ setPagination }: Props) {
       brandId: brandParam || undefined,
       gender: genderParam || undefined,
       offerId: offerParam || undefined,
+      isHidden: isHiddenParam
+        ? isHiddenParam === "true"
+          ? true
+          : false
+        : undefined,
       available: availableParam
         ? availableParam === "true"
           ? true
@@ -118,6 +125,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
       price: undefined,
       cant: undefined,
       offerId: undefined,
+      isHidden: undefined,
       page: 1,
     });
     if (setPagination)
@@ -132,6 +140,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     if (filters.scentsIds?.length) count++;
     if (filters.perfumeTypeId) count++;
     if (filters.available !== undefined) count++;
+    if (filters.isHidden) count++;
     if (filters.offerId) count++;
     if (filters.priceRange[0] > 0) count++;
     if (filters.priceRange[1] < 1000) count++;
