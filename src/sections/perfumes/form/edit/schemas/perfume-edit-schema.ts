@@ -15,6 +15,7 @@ export interface PerfumeEdit {
   available: boolean;
   price: number;
   cant: number;
+  isHidden: boolean;
 }
 
 export const perfumeEditSchema = z.object({
@@ -79,4 +80,5 @@ export const perfumeEditSchema = z.object({
     .number()
     .int({ message: "La cantidad debe ser un número entero" })
     .min(1, { message: "La cantidad en stock debe ser al menos 1" }),
+  isHidden: z.boolean(),
 });

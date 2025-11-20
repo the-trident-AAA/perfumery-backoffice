@@ -15,6 +15,7 @@ export interface PerfumeCreate {
   available: boolean;
   price: number;
   cant: number;
+  isHidden: boolean;
 }
 
 export const perfumeCreateSchema = z.object({
@@ -58,7 +59,9 @@ export const perfumeCreateSchema = z.object({
   milliliters: z
     .number()
     .min(1, { message: "El volumen debe ser al menos 1 mililitro" })
-    .multipleOf(0.01, { message: "El volumen no puede tener más de 2 decimales" }),
+    .multipleOf(0.01, {
+      message: "El volumen no puede tener más de 2 decimales",
+    }),
   gender: z.enum([Gender.MALE, Gender.FEMALE, Gender.UNISEX], {
     message:
       "Debes seleccionar un género válido (Masculino, Femenino o Unisex)",
@@ -70,9 +73,12 @@ export const perfumeCreateSchema = z.object({
   price: z
     .number()
     .min(1, { message: "El precio debe ser mayor a 0" })
-    .multipleOf(0.01, { message: "El precio no puede tener más de 2 decimales" }),
+    .multipleOf(0.01, {
+      message: "El precio no puede tener más de 2 decimales",
+    }),
   cant: z
     .number()
     .int({ message: "La cantidad debe ser un número entero" })
     .min(1, { message: "La cantidad en stock debe ser al menos 1" }),
+  isHidden: z.boolean(),
 });
