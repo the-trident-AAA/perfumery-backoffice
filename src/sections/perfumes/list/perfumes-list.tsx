@@ -7,7 +7,7 @@ import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { Perfume } from "@/types/perfumes";
 import { ColumnDef } from "@tanstack/react-table";
-import { EditIcon, EyeIcon, Trash2Icon } from "lucide-react";
+import { EditIcon, EyeIcon, EyeOff, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import PerfumesFiltersContainer from "../filters/perfumes-filters-container";
 import { PaginationMeta } from "@/types/pagination";
@@ -51,6 +51,16 @@ export default function PerfumesList({ perfumes, apiPagination }: Props) {
     (id: string) => {
       handleOpenModal({
         name: modalTypes.detelePerfumeModal.name,
+        entity: id,
+      });
+    },
+    [handleOpenModal]
+  );
+
+  const handleHidden = useCallback(
+    (id: string) => {
+      handleOpenModal({
+        name: modalTypes.makeAsHiddenPerfumeModal.name,
         entity: id,
       });
     },
@@ -158,6 +168,13 @@ export default function PerfumesList({ perfumes, apiPagination }: Props) {
                   icon: <Trash2Icon />,
                   action: () => {
                     handleDelete(row.getValue("id"));
+                  },
+                },
+                {
+                  label: "Ocultar",
+                  icon: <EyeOff />,
+                  action: () => {
+                    handleHidden(row.getValue("id"));
                   },
                 },
               ]}
