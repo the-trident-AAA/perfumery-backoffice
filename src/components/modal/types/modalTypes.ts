@@ -79,6 +79,12 @@ export interface ModalTypes {
     cancelButtonText: string;
     confirmButtonText: string;
   };
+  makeAsHiddenPerfumeModal: SectionModal & {
+    message: string;
+    warningMessage: string;
+    cancelButtonText: string;
+    confirmButtonText: string;
+  };
 }
 
 export const modalTypes: ModalTypes = {
@@ -225,7 +231,7 @@ export const modalTypes: ModalTypes = {
     name: "editOrderModal",
     title: "Formulario de Edición de Orden",
   },
-   newTapeModal: {
+  newTapeModal: {
     name: "newTapeModal",
     title: "Formulario de Creación de Cinta",
   },
@@ -240,10 +246,18 @@ export const modalTypes: ModalTypes = {
   deleteTapeModal: {
     name: "deleteTapeModal",
     title: "Eliminación de la Cinta",
-    message:
-      "¿Está seguro de que desea eliminar la Cinta?",
+    message: "¿Está seguro de que desea eliminar la Cinta?",
     warningMessage:
       "Esta acción provocará la eliminación permanente de la Cinta.",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Confirmar",
+  },
+  makeAsHiddenPerfumeModal: {
+    name: "makeAsHiddenPerfumeModal",
+    title: "Ocultación de Perfume",
+    message: "¿Está seguro de que desea ocultar este Perfume?",
+    warningMessage:
+      "Un perfume ocultado no será visible por los clientes de la Tienda.",
     cancelButtonText: "Cancelar",
     confirmButtonText: "Confirmar",
   },
