@@ -22,6 +22,7 @@ export interface Perfume {
   cant: number;
   totalPrice: number;
   sales: number;
+  isHidden: boolean;
 }
 
 export interface PerfumeDetails {
@@ -41,6 +42,7 @@ export interface PerfumeDetails {
   cant: number;
   totalPrice: number;
   sales: number;
+  isHidden: boolean;
 }
 
 export interface PerfumeCreateDTO {
