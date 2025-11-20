@@ -4,6 +4,7 @@ import DeletePerfumeModalContainer from "@/sections/perfumes/delete/delete-perfu
 import PerfumeDetailsModalContainer from "@/sections/perfumes/details/perfume-details-modal-container";
 import EditPerfumeModalContainer from "@/sections/perfumes/form/edit/edit-perfume-modal-container";
 import NewPerfumeFormContainer from "@/sections/perfumes/form/new/new-perfume-form-container";
+import MakeAssHiddenPerfumeModalContainer from "@/sections/perfumes/make-as-hidden/make-as-hidden-perfume-modal-container";
 import PerfumesContainer from "@/sections/perfumes/perfumes-container";
 import { getPerfumesList } from "@/services/perfumes";
 import { SearchParamsPagination } from "@/types/pagination";
@@ -52,6 +53,12 @@ export default async function PerfumesPage({ searchParams }: Props) {
       </Modal>
       <Modal formPath={modalTypes.detelePerfumeModal.name} maxWidth="max-w-xl">
         <DeletePerfumeModalContainer />
+      </Modal>
+      <Modal
+        formPath={modalTypes.makeAsHiddenPerfumeModal.name}
+        maxWidth="max-w-xl"
+      >
+        <MakeAssHiddenPerfumeModalContainer />
       </Modal>
     </>
   );
