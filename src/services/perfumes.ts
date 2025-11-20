@@ -102,6 +102,28 @@ export async function editPerfume(
   return await buildApiResponse<Perfume>(res);
 }
 
+export async function makeAsHiddenPerfume(id: string) {
+  const session = await auth();
+  if (!session)
+    return {
+      error: {
+        name: "Unauthorized",
+        reason: "No está autorizado para usar este recurso",
+        code: "401",
+      },
+      status: 401,
+    };
+
+  const res = await fetch(apiRoutes.perfumes.makeAsHidden.replace(":id", id), {
+    method: "PATCH",
+    headers: {
+      Authorization: "Bearer " + session.accessToken,
+    },
+  });
+
+  return await buildApiResponse<Perfume>(res);
+}
+
 export async function deletePerfume(id: string) {
   const session = await auth();
   if (!session)
