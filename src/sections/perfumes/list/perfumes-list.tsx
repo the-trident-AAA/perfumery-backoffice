@@ -121,6 +121,17 @@ export default function PerfumesList({ perfumes, apiPagination }: Props) {
       header: "Cantidad",
     },
     {
+      accessorKey: "isHidden",
+      header: "Visibilidad",
+      cell: ({ row }) => (
+        <Badge
+          variant={`${row.getValue("isHidden") ? "destructive" : "secondary"}`}
+        >
+          {row.getValue("isHidden") ? "Oculto" : "Visible"}
+        </Badge>
+      ),
+    },
+    {
       id: "actions",
       cell: ({ row }) => {
         return (
