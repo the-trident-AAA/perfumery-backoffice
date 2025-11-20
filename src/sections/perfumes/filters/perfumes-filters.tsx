@@ -140,27 +140,38 @@ export default function PerfumesFilters({
             handleChangeFilters({ available: checked ? true : undefined });
           }}
         />
-
-        {/* Offers */}
-        <SelectInput
-          label="Oferta"
-          placeHolder="Seleccione una oferta..."
-          value={filters.offerId}
-          onValueChange={(value) => {
-            handleChangeFilters({ offerId: value || undefined });
-          }}
-          options={offers.data.map((offer) => ({
-            value: offer.id,
-            label: offer.name,
-          }))}
-          loading={offers.loading}
-          clearable={{
-            handleClear: () => {
-              handleChangeFilters({ offerId: undefined });
-            },
+        {/* Ocultación */}
+        <CheckboxInput
+          id="available"
+          label="Ocultación"
+          description="Solo productos ocultos"
+          value={filters.isHidden}
+          onCheckedChange={(checked) => {
+            handleChangeFilters({ isHidden: checked ? true : undefined });
           }}
         />
       </div>
+      <Separator />
+
+      {/* Offers */}
+      <SelectInput
+        label="Oferta"
+        placeHolder="Seleccione una oferta..."
+        value={filters.offerId}
+        onValueChange={(value) => {
+          handleChangeFilters({ offerId: value || undefined });
+        }}
+        options={offers.data.map((offer) => ({
+          value: offer.id,
+          label: offer.name,
+        }))}
+        loading={offers.loading}
+        clearable={{
+          handleClear: () => {
+            handleChangeFilters({ offerId: undefined });
+          },
+        }}
+      />
       <Separator />
       {/* Price and Mililiters */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
