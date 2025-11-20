@@ -140,7 +140,7 @@ export default function usePerfumesFilters({ setPagination }: Props) {
     if (filters.scentsIds?.length) count++;
     if (filters.perfumeTypeId) count++;
     if (filters.available !== undefined) count++;
-    if (filters.isHidden) count++;
+    if (filters.isHidden !== undefined) count++;
     if (filters.offerId) count++;
     if (filters.priceRange[0] > 0) count++;
     if (filters.priceRange[1] < 1000) count++;
