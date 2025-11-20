@@ -43,9 +43,9 @@ export interface HomeBannerDetails {
 }
 
 export interface HomeBannerCreateDTO {
-  title: string;
-  description: string;
-  buttonText: string;
+  title?: string;
+  description?: string;
+  buttonText?: string;
   textColor: TextColor;
   statisticalTips: {
     statistics: string;
@@ -59,9 +59,9 @@ export interface HomeBannerCreateDTO {
 }
 
 export interface HomeBannerEditDTO {
-  title: string;
-  description: string;
-  buttonText: string;
+  title?: string;
+  description?: string;
+  buttonText?: string;
   textColor: TextColor;
   statisticalTips: {
     statistics: string;
@@ -101,6 +101,9 @@ export const convertHomeBannerCreateDTO = (
   } = homeBannerCreate;
   return {
     ...rest,
+    title: rest.title || undefined,
+    description: rest.description || undefined,
+    buttonText: rest.buttonText || undefined,
     infoTips: homeBannerCreate.infoTips.map((infoTip) => infoTip.name),
     filters: buildFilters(
       {
@@ -156,6 +159,9 @@ export const convertHomeBannerEditDTO = (
   return {
     ...rest,
     infoTips: homeBannerEdit.infoTips.map((infoTip) => infoTip.name),
+    title: rest.title || undefined,
+    description: rest.description || undefined,
+    buttonText: rest.buttonText || undefined,
     filters: buildFilters(
       {
         nameFilter,
