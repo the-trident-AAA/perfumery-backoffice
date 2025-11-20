@@ -53,6 +53,14 @@ export default function PerfumeComercialInfoFormSection() {
             description="Marque si el producto está disponible para la venta"
           />
         </div>
+
+        <div className="mt-3">
+          <RHFToggleField
+            name="isHidden"
+            label="Oculto"
+            description="Marque si quiere que el perfume no sea visto por los clientes"
+          />
+        </div>
       </CardContent>
     </Card>
   );
