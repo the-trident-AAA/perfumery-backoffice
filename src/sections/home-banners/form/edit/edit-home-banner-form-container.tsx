@@ -39,8 +39,8 @@ export default function EditHomeBannerFormContainer({ homeBanner }: Props) {
   const form = useForm<HomeBannerEdit>({
     resolver: zodResolver(homeBannerEditSchema),
     defaultValues: {
-      title: homeBanner.title,
-      description: homeBanner.description,
+      title: homeBanner.title || "",
+      description: homeBanner.description || "",
       buttonText: homeBanner.buttonText || "",
       textColor: homeBanner.textColor || "",
       statisticalTips: homeBanner.statisticalTips,
