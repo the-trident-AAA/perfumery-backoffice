@@ -57,6 +57,7 @@ export interface PerfumeCreateDTO {
   price: number;
   cant: number;
   offerId?: string;
+  isHidden: boolean;
 }
 
 export interface PerfumeEditDTO {
@@ -71,6 +72,7 @@ export interface PerfumeEditDTO {
   price: number;
   cant: number;
   offerId?: string;
+  isHidden: boolean;
 }
 
 export interface PerfumesFiltersDTO {
