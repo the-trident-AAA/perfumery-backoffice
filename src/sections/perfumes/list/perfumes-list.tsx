@@ -7,7 +7,7 @@ import { DataTable } from "@/components/ui/data-table";
 import TableMenu from "@/components/ui/table-menu";
 import { Perfume } from "@/types/perfumes";
 import { ColumnDef } from "@tanstack/react-table";
-import { EditIcon, EyeIcon, EyeOff, Trash2Icon } from "lucide-react";
+import { EditIcon, Eye, EyeIcon, EyeOff, Trash2Icon } from "lucide-react";
 import React, { useCallback, useContext } from "react";
 import PerfumesFiltersContainer from "../filters/perfumes-filters-container";
 import { PaginationMeta } from "@/types/pagination";
@@ -144,6 +144,7 @@ export default function PerfumesList({ perfumes, apiPagination }: Props) {
     {
       id: "actions",
       cell: ({ row }) => {
+        const isHidden = row.getValue("isHidden") as boolean;
         return (
           <div className="flex justify-end">
             <TableMenu
@@ -171,8 +172,8 @@ export default function PerfumesList({ perfumes, apiPagination }: Props) {
                   },
                 },
                 {
-                  label: "Ocultar",
-                  icon: <EyeOff />,
+                  label: isHidden ? "Hacer Visible" : "Ocultar",
+                  icon: isHidden ? <Eye /> : <EyeOff />,
                   action: () => {
                     handleHidden(row.getValue("id"));
                   },
