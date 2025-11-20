@@ -35,6 +35,7 @@ export default function NewPerfumeFormContainer() {
     defaultValues: {
       name: "",
       available: false,
+      isHidden: false,
       brandId: "",
       cant: 1,
       gender: Gender.MALE,

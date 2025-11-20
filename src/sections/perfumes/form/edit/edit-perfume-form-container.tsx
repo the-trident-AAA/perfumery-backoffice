@@ -40,6 +40,7 @@ export default function EditPerfumeFormContainer({ perfume }: Props) {
       name: perfume.name,
       description: perfume.description,
       available: perfume.available,
+      isHidden: perfume.isHidden,
       brandId: perfume.brand.id,
       cant: perfume.cant,
       gender: perfume.gender,
