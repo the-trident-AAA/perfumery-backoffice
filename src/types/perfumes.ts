@@ -91,6 +91,7 @@ export interface PerfumesFiltersDTO {
   price?: number;
   cant?: number;
   offerId?: string;
+  isHidden?: boolean;
 }
 
 export enum Gender {
